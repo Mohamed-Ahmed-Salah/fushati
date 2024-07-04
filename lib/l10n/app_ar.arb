@@ -1,0 +1,23 @@
+{
+
+"fieldOnlyNumbers":"يجب أن يحتوي هذا الحقل على أرقام فقط",
+"onlyNineNumber":"يجب أن يحتوي هذا الحقل على 9 أرقام",
+"fieldDontStartWithZero":"يجب ألا يبدأ هذا الحقل بصفر",
+"requiredField":"هذه الخانة مطلوبه",
+"enterValidEmail":"يرجى إدخال البريد الإلكتروني الصحيح",
+"enterFullName":"الرجاء إدخال الاسم الكامل",
+"enterNameWithNoNumber":"يرجى إدخال اسم كامل بدون أي أرقام",
+"enterValidFullName":"الرجاء إدخال الاسم الكامل الصحيح",
+"selectLanguage":"حدد لغة التطبيق",
+
+"getOTP":"ارسال كلمة مرور",
+"fieldOnlyNumbers":"يجب أن يحتوي هذا الحقل على أرقام فقط",
+"onlyNineNumber":"يجب أن يحتوي هذا الحقل على 9 أرقام",
+"onlyFourNumber":"يجب أن يحتوي هذا الحقل على 4 أرقام",
+"fieldDontStartWithZero":"يجب ألا يبدأ هذا الحقل بصفر",
+"requiredField":"هذه الخانة مطلوبه"
+
+
+
+
+}

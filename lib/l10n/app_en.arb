@@ -1,0 +1,22 @@
+{
+"fieldOnlyNumbers":"This field must only contain numbers",
+"onlyNineNumber":"This field should contain 9 numbers",
+"fieldDontStartWithZero":"This field should not start with 0",
+"requiredField":"This field is required",
+"enterValidEmail":"Please enter a valid Email",
+"enterFullName":"Please enter full name",
+"enterNameWithNoNumber":"Please enter valid full name with no numbers",
+"enterValidFullName":"Please enter valid full name",
+"selectLanguage":"Select the app language",
+
+"getOTP":"Get OTP",
+"fieldOnlyNumbers":"This field must only contain numbers",
+"onlyNineNumber":"This field should contain 9 numbers",
+"onlyFourNumber":"This field should contain 4 numbers",
+"fieldDontStartWithZero":"This field should not start with 0",
+"requiredField":"This field is required"
+
+
+
+}
+
