@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fushati/src/auth/presentation/app/blocs/auth_bloc/authenticator_bloc.dart';
+import 'package:fushati/src/splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'core/res/theme/app_theme.dart';
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
       return MultiBlocProvider(
         providers: [
+          BlocProvider<AppRedirectionBloc>(
+            create: (BuildContext context) => AppRedirectionBloc(),
+          ),
           BlocProvider<CustomerInfoBloc>(
             create: (BuildContext context) => CustomerInfoBloc(
               addUserInfo: sl(),
@@ -69,7 +73,7 @@ class MyApp extends StatelessWidget {
             ],
             scaffoldMessengerKey: scaffoldKey,
             debugShowCheckedModeBanner: false,
-            title: 'SaladBar',
+            title: 'Fushati',
             locale: state.locale,
             theme: CustomTheme.lightTheme(),
           );

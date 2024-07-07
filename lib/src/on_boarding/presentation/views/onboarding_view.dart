@@ -16,10 +16,8 @@ class OnBoardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-
-        ],
+      body: Center(
+        child: Text("ONBOARDING")
       ),
     );
   }

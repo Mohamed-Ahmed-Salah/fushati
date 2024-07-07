@@ -14,7 +14,17 @@
 "onlyNineNumber":"This field should contain 9 numbers",
 "onlyFourNumber":"This field should contain 4 numbers",
 "fieldDontStartWithZero":"This field should not start with 0",
-"requiredField":"This field is required"
+"requiredField":"This field is required",
+
+"newExperience":"A new experience",
+"forSchool":"for school cafeterias",
+
+"login":"Log in",
+"enterPhone":"Please enter your phone number to complete login or create account.",
+"ksa":"Saudi Arabia",
+"cont":"Continue",
+"enterCode":"Enter code",
+"weSetSMS":"We’ve sent an SMS with an activation code to your phone"
 
 
 

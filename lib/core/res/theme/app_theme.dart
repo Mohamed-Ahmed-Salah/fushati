@@ -5,13 +5,7 @@ import '../../utils/constants/size_constatnts.dart';
 import '../styles/colours.dart';
 
 abstract class CustomTheme {
-  static final containerDecoration = BoxDecoration(
-    color: Colours.lighterGreenColor,
-    borderRadius: BorderRadius.all(
-      Radius.circular(4.w),
-    ),
-    border: Border.all(color: Colours.borderGreyColor),
-  );
+
   static const textFieldTextStyle = TextStyle(fontWeight: FontWeight.w100);
   static final notSelectedDaysBoxDecoration = BoxDecoration(
       color: Colours.greyColor.withOpacity(0.16),
@@ -34,15 +28,14 @@ abstract class CustomTheme {
     style: ElevatedButton.styleFrom(
       backgroundColor: Colours.primaryGreenColor,
       disabledBackgroundColor: Colours.primaryGreenColor,
-      disabledForegroundColor: Colours.whiteColor,
-      foregroundColor: Colours.whiteColor,
+      disabledForegroundColor: Colours.blackColor,
+      foregroundColor: Colours.blackColor,
       //change background color of button
       minimumSize: Size(100.w, 6.h),
       textStyle: TextStyle(
-          fontFamily: "Apfel-Grotezk",
           fontSize: 16.px,
           fontWeight: FontWeight.w500,
-          color: Colours.whiteColor),
+          color: Colours.blackColor),
       shape: RoundedRectangleBorder(
         borderRadius:
             BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
@@ -66,7 +59,7 @@ abstract class CustomTheme {
         color: Colours.greyColor,
         fontWeight: FontWeight.w500,
         fontFamily: "Apfel-Grotezk"),
-    hintStyle: const TextStyle(
+    hintStyle:  TextStyle(
         color: Colours.hintTextColor,
         fontWeight: FontWeight.w500,
         fontFamily: "Apfel-Grotezk"),
@@ -76,7 +69,7 @@ abstract class CustomTheme {
     border: OutlineInputBorder(
       borderRadius:
           BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
-      borderSide: const BorderSide(
+      borderSide:  BorderSide(
         width: 1.5,
         color: Colours.borderGreyColor,
       ),
@@ -84,7 +77,7 @@ abstract class CustomTheme {
     enabledBorder: OutlineInputBorder(
       borderRadius:
           BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
-      borderSide: const BorderSide(
+      borderSide:  BorderSide(
         width: 1.5,
         color: Colours.borderGreyColor,
       ),
@@ -94,7 +87,7 @@ abstract class CustomTheme {
           BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
       borderSide: const BorderSide(
         width: 1.5,
-        color: Colours.blueButtonColor,
+        color: Colours.blackColor,
       ),
     ),
     errorBorder: OutlineInputBorder(

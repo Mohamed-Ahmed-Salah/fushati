@@ -17,12 +17,12 @@ Future<void> _appLanguageInit() async {
 
 Future<void> _authInit() async {
   sl
-    // ..registerFactory(
-    //     () => AuthenticatorBloc(cacheHelper: sl(), loginUsecase: sl()))
-    // ..registerLazySingleton(() => LoginUsecase(sl()))
-    // ..registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()))
-    // ..registerLazySingleton<AuthRemoteDataSrc>(
-    //     () => AuthRemoteDataSrcImpl(sl()))
+    ..registerFactory(
+        () => AuthenticatorBloc(cacheHelper: sl(), loginOrRegister: sl()))
+    ..registerLazySingleton(() => LoginOrRegister(sl()))
+    ..registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()))
+    ..registerLazySingleton<AuthRemoteDataSrc>(
+        () => AuthRemoteDataSrcImpl(sl()))
     ..registerSingleton(Dio());
 }
 

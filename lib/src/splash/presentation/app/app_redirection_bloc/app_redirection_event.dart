@@ -10,18 +10,17 @@ sealed class AppRedirectionEvent extends Equatable {
 class GetAppDataAndRedirect extends AppRedirectionEvent {
   final BuildContext context;
 
-  GetAppDataAndRedirect({required this.context});
+  const GetAppDataAndRedirect({required this.context});
 }
 
 class GetAppData extends AppRedirectionEvent {
   final BuildContext context;
 
-  GetAppData({required this.context});
+  const GetAppData({required this.context});
 }
-
 
 class GetAppLocalDataData extends AppRedirectionEvent {
   final BuildContext context;
 
-  GetAppLocalDataData({required this.context});
+  const GetAppLocalDataData({required this.context});
 }

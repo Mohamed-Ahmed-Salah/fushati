@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mesh_gradient/mesh_gradient.dart';
 
 import '../../../../../core/common/app/cache_helper.dart';
 import '../../../../../core/common/singletons/cache.dart';
@@ -36,7 +37,7 @@ class AppRedirectionBloc
     BuildContext context = event.context;
 
     ///called to get workspaces for create account page
-    getSavedDataAndRedirect(context);
+    redirect(context);
   }
 
   ///called from login screen success and also from home screen just to not recall everyhing again
@@ -60,12 +61,14 @@ class AppRedirectionBloc
       ..getLanguage();
   }
 
-  getSavedDataAndRedirect(BuildContext context) {
+  redirect(BuildContext context) {
     final isFirstTime = Cache.instance.firstTime;
     print(isFirstTime);
+
     if (isFirstTime) {
+      //todo go onboarding
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        router.go(OnBoardingView.path);
+        router.go(LoginView.path);
       });
     } else if (Cache.instance.isLoggedOut()) {
       SchedulerBinding.instance.addPostFrameCallback((_) {

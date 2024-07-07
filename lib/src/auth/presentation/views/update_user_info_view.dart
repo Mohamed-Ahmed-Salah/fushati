@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../core/common/widgets/green_background.dart';
+
 class UpdateUserInfoView extends StatefulWidget {
   const UpdateUserInfoView({super.key});
 
@@ -46,11 +48,13 @@ class _UpdateUserInfoViewState extends State<UpdateUserInfoView> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
+      body: GreenBackground(
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
 
+          ),
         ),
       ),
     );

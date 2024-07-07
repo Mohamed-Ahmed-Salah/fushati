@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../core/common/widgets/green_background.dart';
+
 class FailedOTPThreeTimesView extends StatelessWidget {
   static const path = '/OTP-failed';
   static const name = '/OTP-failed';
@@ -14,11 +16,13 @@ class FailedOTPThreeTimesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(5.w),
-        child: SizedBox(
-          height: double.infinity,
+      body: GreenBackground(
+        child: Padding(
+          padding: EdgeInsets.all(5.w),
+          child: SizedBox(
+            height: double.infinity,
 
+          ),
         ),
       ),
     );
