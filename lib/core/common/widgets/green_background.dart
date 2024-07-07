@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:fushati/core/res/theme/app_theme.dart';
 
 import '../../res/styles/colours.dart';
 
@@ -13,19 +14,9 @@ class GreenBackground extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: const [0, 0.2, 0.3, 0],
-          colors: [
-            Colours.primaryGreenColor.withOpacity(0.2),
-            Colours.primaryGreenColor.withOpacity(0.1),
-            Colours.primaryGreenColor.withOpacity(0.01),
-            Colours.whiteColor,
-          ],
-        ),
+        gradient: CustomTheme.linearGradiant
       ),
-      child: child,
+      child: SafeArea(child: child),
     );
   }
 }

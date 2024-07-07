@@ -14,6 +14,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 
 import '../../../../core/common/singletons/form_validation.dart';
 import '../../../../core/common/widgets/animated_button_circular_loader.dart';
+import '../../../../core/common/widgets/custome_appbar.dart';
 import '../../../../core/common/widgets/green_background.dart';
 import '../../../../core/res/theme/app_theme.dart';
 import '../../../../core/utils/constants/text_constants.dart';
@@ -63,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
                       delegate: SliverChildListDelegate(
                         [
                           SizedBox(height: 2.h),
-                          const AuthAppBar(),
+                          const CustomAppBar(showBackButton: false),
                           SizedBox(height: 7.h),
                           Text(
                             "${AppLocalizations.of(context)?.login}",
@@ -238,10 +239,12 @@ class _LoginViewState extends State<LoginView> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 ElevatedButton(
-                                  onPressed:(){
+                                  onPressed: () {
                                     context.pushNamed(
                                       VerifyOTPView.name,
-                                      queryParameters: {"phone": _controller.text},
+                                      queryParameters: {
+                                        "phone": _controller.text
+                                      },
                                     );
                                   },
                                   // onPressed: state ==
@@ -283,45 +286,6 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class AuthAppBar extends StatelessWidget {
-  const AuthAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        GestureDetector(
-          onTap: () {
-            context.pop();
-          },
-          child: Container(
-            padding: EdgeInsets.all(2.w),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    width: 2, color: Colours.blackColor.withOpacity(0.1)),
-                borderRadius: BorderRadius.all(Radius.circular(2.w))),
-            child: AppLocalizations.of(context)?.localeName == "en"
-                ? Icon(
-                    Media.backIOSIcon,
-                    size: SizeConst.iconSize,
-                  )
-                : Icon(
-                    Media.backIOSARIcon,
-                    size: SizeConst.iconSize,
-                  ),
-          ),
-        ),
-        SvgPicture.asset(
-          Media.logoSvg,
-          height: 5.h,
-          // width: SizeConst.iconSize,
-        )
-      ],
     );
   }
 }

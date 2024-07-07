@@ -35,7 +35,29 @@
 "iDidntGetOtp":"I didn’t receive a code",
 "resend":"Resend",
 "sendCodeIn":"Send code again {time}",
-"verify":"Verify"
+"verify":"Verify",
+
+"allSet":"All set!",
+"weRedirectToHome":"Verification succeeded. We’re redirecting you to the home page",
+"youDontHaveCards":"You haven’t added any cards",
+"addFirstCard":"Add your first card",
+
+"addNewCard":"Add new card",
+"pleaseEnterCardNum":"Please enter card number",
+"cardNumber":"Card number",
+"cardDetails":"Card details",
+"name":"Name",
+"phoneNumber": "Phone number",
+"notes":"Notes",
+"creatingNewCard":"Creating new student card",
+"newCardAdded":"New Card Added!",
+"successCardAdded":"You’ve successfully created new a new card. Click manage to top up your card",
+"done":"Done",
+"manage":"Manage",
+"confirm":"Confirm",
+"cancel":"Cancel"
+
+
 
 
 

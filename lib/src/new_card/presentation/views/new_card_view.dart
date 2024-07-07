@@ -1,0 +1,124 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/src/card_details/presentation/views/card_details_view.dart';
+import 'package:go_router/go_router.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../../core/common/singletons/form_validation.dart';
+import '../../../../core/common/widgets/custome_appbar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../core/res/theme/app_theme.dart';
+
+class NewCardView extends StatefulWidget {
+  static String path = "/card-new";
+  static String name = "/card-new";
+
+  const NewCardView({super.key});
+
+  @override
+  State<NewCardView> createState() => _NewCardViewState();
+}
+
+class _NewCardViewState extends State<NewCardView> {
+  late TextEditingController controller;
+  late final _formKey;
+
+  @override
+  void initState() {
+    _formKey = GlobalKey<FormState>();
+
+    controller = TextEditingController();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: SizeConst.horizontalPadding,
+              vertical: SizeConst.verticalPadding),
+          child: Form(
+            key: _formKey,
+            child: CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      SizedBox(height: SizeConst.verticalPadding),
+                      const CustomAppBar(),
+                      SizedBox(height: 7.h),
+                      Text(
+                        "${AppLocalizations.of(context)?.addNewCard}",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      SizedBox(height: 1.h),
+                      Text(
+                        "${AppLocalizations.of(context)?.pleaseEnterCardNum}",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(height: SizeConst.verticalPaddingFour),
+                      TextFormField(
+                        style: CustomTheme.textFieldTextStyle,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(14),
+                        ],
+                        decoration: InputDecoration(
+                          hintText:
+                              "${AppLocalizations.of(context)?.cardNumber}",
+                        ),
+                        controller: controller,
+                        validator: (value) => TextFormValidation.requiredField(
+                            value,
+                            context: context),
+                        onFieldSubmitted: (_) {
+                          bool filledFormCorrectly =
+                              _formKey.currentState?.validate();
+                          if (filledFormCorrectly) {
+                            ///todo call  function
+                          }
+                        },
+                        onTapOutside: (_) =>
+                            FocusScope.of(context).requestFocus(FocusNode()),
+                      ),
+                    ],
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            context.push(CardDetailsView.path);
+                            // bool filledFormCorrectly =
+                            //     _formKey.currentState?.validate();
+                            // if (filledFormCorrectly) {
+                            //   ///todo call  function
+                            // }
+                          },
+                          child: Text("${AppLocalizations.of(context)?.cont}")),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

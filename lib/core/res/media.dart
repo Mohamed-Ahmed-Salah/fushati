@@ -13,6 +13,8 @@ abstract class Media {
   static const logoSvg = "$_baseSvg/logo.svg";
   static const starSvg = "$_baseSvg/star.svg";
   static const saSvg = "$_baseSvg/sa.svg";
+  static const okaySvg = "$_baseSvg/okay.svg";
+  static const bubbleSvg = "$_baseSvg/bubble.svg";
 
 
 
@@ -27,5 +29,6 @@ abstract class Media {
   static const plusIcon= Icons.add;
   static const minusIcon= Icons.remove;
   static const closeIcon=   Icons.close;
+  static const menuIcon=   Icons.menu;
 
 }

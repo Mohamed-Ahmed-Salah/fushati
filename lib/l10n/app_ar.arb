@@ -35,7 +35,29 @@
   "iDidntGetOtp": "لم أستلم الرمز",
   "resend": "إعادة الإرسال",
   "sendCodeIn": "أعد إرسال الرمز في {time}",
-  "verify": "تأكيد"
+  "verify": "تأكيد",
+    "allSet": "كل شيء جاهز!",
+    "weRedirectToHome": "تم التحقق بنجاح. سنقوم بإعادة توجيهك إلى الصفحة الرئيسية",
+     "youDontHaveCards": "لم تقم بإضافة أي بطاقات",
+      "addFirstCard": "أضف بطاقتك الأولى",
+
+
+        "addNewCard": "إضافة بطاقة جديدة",
+        "pleaseEnterCardNum": "يرجى إدخال رقم البطاقة",
+        "cardNumber": "رقم البطاقة",
+        "cardDetails": "تفاصيل البطاقة",
+        "name": "الاسم",
+        "phoneNumber": "رقم الهاتف",
+        "notes": "ملاحظات",
+        "creatingNewCard": "إنشاء بطاقة طالب جديدة",
+        "newCardAdded": "تمت إضافة بطاقة جديدة!",
+        "successCardAdded": "لقد نجحت في إنشاء بطاقة جديدة. انقر على إدارة لشحن بطاقتك",
+        "done": "تم",
+        "manage": "إدارة",
+          "confirm": "تأكيد",
+
+  "cancel": "إلغاء"
+
 
 
 }

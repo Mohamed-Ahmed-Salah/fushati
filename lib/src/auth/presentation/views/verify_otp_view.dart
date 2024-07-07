@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fushati/src/auth/presentation/views/update_user_info_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/common/singletons/form_validation.dart';
 import '../../../../core/common/widgets/animated_button_circular_loader.dart';
+import '../../../../core/common/widgets/custome_appbar.dart';
 import '../../../../core/common/widgets/green_background.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../app/blocs/otp_bloc/otp_bloc.dart';
@@ -37,7 +40,7 @@ class VerifyOTPView extends StatelessWidget {
                 delegate: SliverChildListDelegate(
                   [
                     SizedBox(height: 2.h),
-                    const AuthAppBar(),
+                    const CustomAppBar(),
                     SizedBox(height: 7.h),
                     Text(
                       "${AppLocalizations.of(context)?.verifyPhone}",
@@ -126,7 +129,9 @@ class VerifyOTPView extends StatelessWidget {
                     BlocBuilder<OtpBloc, OtpState>(
                       builder: (context, state) {
                         return ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.go(UpdateUserInfoView.path);
+                          },
                           // onPressed: state == const OtpState.loading() ||
                           //         otp.length < 4
                           //     ? null

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fushati/src/auth/presentation/views/auth_success.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../src/app_language/presentation/views/app_language.dart';
@@ -6,6 +7,9 @@ import '../../src/auth/presentation/views/login_view.dart';
 import '../../src/auth/presentation/views/resend_otp_after_failure.dart';
 import '../../src/auth/presentation/views/update_user_info_view.dart';
 import '../../src/auth/presentation/views/verify_otp_view.dart';
+import '../../src/card_details/presentation/views/card_details_view.dart';
+import '../../src/home/presentation/views/home_view.dart';
+import '../../src/new_card/presentation/views/new_card_view.dart';
 import '../../src/on_boarding/presentation/views/onboarding_view.dart';
 import '../../src/splash/presentation/views/splash_view.dart';
 
@@ -37,7 +41,7 @@ final _shellNavigatorProfile =
 final router = GoRouter(
   debugLogDiagnostics: true,
   navigatorKey: _rootNavigatorKey,
-  initialLocation: SplashView.path,
+  initialLocation: AuthenticatedSuccessfully.path,
   routes: [
     GoRoute(
       path: SplashView.path,
@@ -69,6 +73,23 @@ final router = GoRouter(
     GoRoute(
       path: UpdateUserInfoView.path,
       builder: (context, state) => const UpdateUserInfoView(),
+    ),
+    GoRoute(
+      path: HomeView.path,
+      builder: (context, state) => const HomeView(),
+    ),
+    GoRoute(
+      path: NewCardView.path,
+      name: NewCardView.name,
+      builder: (context, state) => const NewCardView(),
+    ),
+    GoRoute(
+      path: CardDetailsView.path,
+      builder: (context, state) => const CardDetailsView(),
+    ),
+    GoRoute(
+      path: AuthenticatedSuccessfully.path,
+      builder: (context, state) => const AuthenticatedSuccessfully(),
     ),
     GoRoute(
       path: OnBoardingView.path,
