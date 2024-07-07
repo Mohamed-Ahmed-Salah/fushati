@@ -54,7 +54,7 @@ class VerifyOTPView extends StatelessWidget {
                             color: Colours.textBlackColor.withOpacity(0.7),
                           ),
                     ),
-                    SizedBox(height: 1.h),
+                    SizedBox(height: 2.h),
                     Align(
                       alignment: Alignment.center,
                       child: Pinput(
