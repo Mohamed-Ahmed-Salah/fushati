@@ -74,6 +74,7 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: scaffoldKey,
             debugShowCheckedModeBanner: false,
             title: 'Fushati',
+
             locale: state.locale,
             theme: CustomTheme.lightTheme(),
           );

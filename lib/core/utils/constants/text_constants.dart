@@ -2,6 +2,7 @@ import '../../common/singletons/cache.dart';
 
 abstract class TextConstants {
   static const String starterLangCode = "en";
+  static const String font = "Sans-Arabic";
 
   static const closeEn = "Close";
   static const closeAr = "اغلق";

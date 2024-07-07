@@ -6,6 +6,7 @@ import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/auth/presentation/app/blocs/auth_bloc/authenticator_bloc.dart';
+import 'package:fushati/src/auth/presentation/views/verify_otp_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,6 +16,7 @@ import '../../../../core/common/singletons/form_validation.dart';
 import '../../../../core/common/widgets/animated_button_circular_loader.dart';
 import '../../../../core/common/widgets/green_background.dart';
 import '../../../../core/res/theme/app_theme.dart';
+import '../../../../core/utils/constants/text_constants.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -91,6 +93,7 @@ class _LoginViewState extends State<LoginView> {
                             padding: EdgeInsets.symmetric(
                                 vertical: SizeConst.horizontalPadding),
                             width: 100.h,
+                            height: 7.h,
                             child: Row(
                               children: [
                                 SvgPicture.asset(
@@ -120,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           SizedBox(
                             width: 100.w,
-                            // height: 7.h,
+                            height: 7.h,
                             child: Row(
                               children: [
                                 Text(
@@ -209,28 +212,6 @@ class _LoginViewState extends State<LoginView> {
                                           color: Colors.transparent,
                                         ),
                                       ),
-                                      // prefixIcon: Row(
-                                      //   mainAxisSize: MainAxisSize.min,
-                                      //   mainAxisAlignment: MainAxisAlignment.center,
-                                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                                      //   children: [
-                                      //     Text(
-                                      //       "+966",
-                                      //       style: Theme.of(context)
-                                      //           .textTheme
-                                      //           .titleMedium
-                                      //           ?.copyWith(
-                                      //               fontWeight: FontWeight.w400,
-                                      //               color: Colours.blackColor),
-                                      //     ),
-                                      //   ],
-                                      // )
-
-                                      // CountryCodePicker(
-                                      //   enabled: false,
-                                      //   showCountryOnly:true,
-                                      //   initialSelection: "SA",
-                                      // ),
                                     ),
                                   ),
                                 ),
@@ -257,19 +238,25 @@ class _LoginViewState extends State<LoginView> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 ElevatedButton(
-                                  onPressed: state ==
-                                          const AuthenticatorState.loading()
-                                      ? null
-                                      : () {
-                                          bool filledFormCorrectly =
-                                              _formKey.currentState?.validate();
-                                          if (filledFormCorrectly) {}
-                                          context.read<AuthenticatorBloc>().add(
-                                              AuthenticatorEvent
-                                                  .loginOrRegister(
-                                                      phone: _controller.text,
-                                                      context: context));
-                                        },
+                                  onPressed:(){
+                                    context.pushNamed(
+                                      VerifyOTPView.name,
+                                      queryParameters: {"phone": _controller.text},
+                                    );
+                                  },
+                                  // onPressed: state ==
+                                  //         const AuthenticatorState.loading()
+                                  //     ? null
+                                  //     : () {
+                                  //         bool filledFormCorrectly =
+                                  //             _formKey.currentState?.validate();
+                                  //         if (filledFormCorrectly) {}
+                                  //         context.read<AuthenticatorBloc>().add(
+                                  //             AuthenticatorEvent
+                                  //                 .loginOrRegister(
+                                  //                     phone: _controller.text,
+                                  //                     context: context));
+                                  //       },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [

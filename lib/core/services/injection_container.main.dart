@@ -20,6 +20,8 @@ Future<void> _authInit() async {
     ..registerFactory(
         () => AuthenticatorBloc(cacheHelper: sl(), loginOrRegister: sl()))
     ..registerLazySingleton(() => LoginOrRegister(sl()))
+    ..registerLazySingleton(() => VerifyOTP(sl()))
+    ..registerLazySingleton(() => AddUserInfo(sl()))
     ..registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()))
     ..registerLazySingleton<AuthRemoteDataSrc>(
         () => AuthRemoteDataSrcImpl(sl()))

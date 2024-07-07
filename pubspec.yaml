@@ -122,3 +122,19 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Sans-Arabic
+      fonts:
+        - asset: assets/fonts/IBMPlexSansArabic-ExtraLight.ttf
+          weight: 100
+        - asset: assets/fonts/IBMPlexSansArabic-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/IBMPlexSansArabic-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/IBMPlexSansArabic-Medium.ttf
+          weight: 400
+        - asset: assets/fonts/IBMPlexSansArabic-SemiBold.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexSansArabic-Bold.ttf
+          weight: 900
+

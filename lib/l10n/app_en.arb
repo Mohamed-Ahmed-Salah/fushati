@@ -24,7 +24,18 @@
 "ksa":"Saudi Arabia",
 "cont":"Continue",
 "enterCode":"Enter code",
-"weSetSMS":"We’ve sent an SMS with an activation code to your phone"
+"weSetSMS":"We’ve sent an SMS with an activation code to your phone",
+
+
+
+
+
+"verifyPhone":"Verify your phone number",
+"weSentOtp":"We’ve sent an SMS with an activation code to your phone {phone}",
+"iDidntGetOtp":"I didn’t receive a code",
+"resend":"Resend",
+"sendCodeIn":"Send code again {time}",
+"verify":"Verify"
 
 
 

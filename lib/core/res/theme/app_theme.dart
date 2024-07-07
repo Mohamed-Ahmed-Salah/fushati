@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fushati/core/utils/constants/text_constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../utils/constants/size_constatnts.dart';
@@ -6,7 +7,7 @@ import '../styles/colours.dart';
 
 abstract class CustomTheme {
 
-  static const textFieldTextStyle = TextStyle(fontWeight: FontWeight.w100);
+  static const textFieldTextStyle = TextStyle(fontWeight: FontWeight.w400);
   static final notSelectedDaysBoxDecoration = BoxDecoration(
       color: Colours.greyColor.withOpacity(0.16),
       borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -47,7 +48,7 @@ abstract class CustomTheme {
     style: TextButton.styleFrom(
       foregroundColor: Colours.primaryGreenColor,
       textStyle: const TextStyle(
-          color: Colours.primaryGreenColor, fontFamily: "Apfel-Grotezk"),
+          color: Colours.primaryGreenColor, fontFamily: TextConstants.font),
     ),
   );
 
@@ -56,13 +57,19 @@ abstract class CustomTheme {
     filled: true,
 
     labelStyle: const TextStyle(
-        color: Colours.greyColor,
+        color: Colours.blackColor,
         fontWeight: FontWeight.w500,
-        fontFamily: "Apfel-Grotezk"),
+        fontFamily: TextConstants.font),
     hintStyle:  TextStyle(
         color: Colours.hintTextColor,
         fontWeight: FontWeight.w500,
-        fontFamily: "Apfel-Grotezk"),
+        fontFamily: TextConstants.font),
+
+      errorStyle:  TextStyle(
+      color: Colours.errorColor,
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w500,
+      fontFamily: TextConstants.font),
     contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
 
     // prefixIconColor: AppColors.primaryColor,
@@ -112,7 +119,7 @@ abstract class CustomTheme {
           .copyWith(secondary: Colours.primaryGreenColor),
       bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: Colors.transparent, elevation: 0),
-      fontFamily: "Apfel-Grotezk",
+      fontFamily: TextConstants.font,
       primaryColor: Colours.primaryGreenColor,
       scaffoldBackgroundColor: Colours.whiteColor,
       appBarTheme: appBarLightTheme,
@@ -122,7 +129,7 @@ abstract class CustomTheme {
         displaySmall: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.sp),
         displayMedium: TextStyle(
           color: Colours.blackColor,
-          fontFamily: "Apfel-Grotezk",
+          fontFamily: TextConstants.font,
           fontSize: 25.sp,
         ),
         bodySmall: TextStyle(
@@ -131,21 +138,21 @@ abstract class CustomTheme {
             fontWeight: FontWeight.w500),
         displayLarge: TextStyle(
             color: Colours.blackColor,
-            fontFamily: "Apfel-Grotezk",
+            fontFamily: TextConstants.font,
             fontSize: 31.sp,
             fontWeight: FontWeight.w900),
         titleMedium: TextStyle(
-            fontFamily: "Apfel-Grotezk",
+            fontFamily: TextConstants.font,
             fontSize: 16.sp,
-            fontWeight: FontWeight.w100,
+            fontWeight: FontWeight.w300,
             color: Colours.textBlackColor),
         headlineLarge: TextStyle(
-          fontFamily: "Apfel-Grotezk",
+          fontFamily: TextConstants.font,
           fontWeight: FontWeight.w700,
           fontSize: 23.sp,
         ),
         headlineMedium: TextStyle(
-            fontFamily: "Apfel-Grotezk",
+            fontFamily: TextConstants.font,
             fontWeight: FontWeight.w500,
             fontSize: 23.sp,
             color: Colours.textBlackColor),
