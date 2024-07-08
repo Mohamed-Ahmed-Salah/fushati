@@ -56,7 +56,21 @@
         "manage": "إدارة",
           "confirm": "تأكيد",
 
-  "cancel": "إلغاء"
+  "cancel": "إلغاء",
+
+  "next":"التالي",
+  "topUpBalance":"شحن الرصيد",
+  "enterRechargeAmount":"أدخل المبلغ الذي تريد شحنه",
+  "manageCard":"إدارة البطاقة",
+  "topUpCard": "شحن البطاقة",
+  "deleteCard": "حذف البطاقة",
+  "transactionHistory": "تاريخ المعاملات",
+  "credited": "ايداع" ,
+  "debited": "خصم" ,
+  "viewAll": "عرض الكل"
+
+
+
 
 
 

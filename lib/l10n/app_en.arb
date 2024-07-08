@@ -55,7 +55,18 @@
 "done":"Done",
 "manage":"Manage",
 "confirm":"Confirm",
-"cancel":"Cancel"
+"cancel":"Cancel",
+"topUpBalance":"Top up balance",
+"enterRechargeAmount":"Enter the amount you want to charge",
+"next":"Next",
+"manageCard":"Manage card",
+"topUpCard":"Top up card",
+"deleteCard":"Delete card",
+"transactionHistory":"Transaction history",
+"credited":"Credited",
+"debited":"debited",
+"viewAll":"View all"
+
 
 
 

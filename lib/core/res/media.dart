@@ -15,6 +15,8 @@ abstract class Media {
   static const saSvg = "$_baseSvg/sa.svg";
   static const okaySvg = "$_baseSvg/okay.svg";
   static const bubbleSvg = "$_baseSvg/bubble.svg";
+  static const boltSvg = "$_baseSvg/electric_bolt.svg";
+  static const deleteSvg = "$_baseSvg/delete.svg";
 
 
 

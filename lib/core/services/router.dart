@@ -9,6 +9,7 @@ import '../../src/auth/presentation/views/update_user_info_view.dart';
 import '../../src/auth/presentation/views/verify_otp_view.dart';
 import '../../src/card_details/presentation/views/card_details_view.dart';
 import '../../src/home/presentation/views/home_view.dart';
+import '../../src/manage_card/presentation/views/manage_card_view.dart';
 import '../../src/new_card/presentation/views/new_card_view.dart';
 import '../../src/on_boarding/presentation/views/onboarding_view.dart';
 import '../../src/splash/presentation/views/splash_view.dart';
@@ -98,6 +99,10 @@ final router = GoRouter(
     GoRoute(
       path: AppLanguageView.path,
       builder: (context, state) => const AppLanguageView(),
+    ),
+    GoRoute(
+      path: ManageCardView.path,
+      builder: (context, state) => const ManageCardView(),
     ),
   ],
 );

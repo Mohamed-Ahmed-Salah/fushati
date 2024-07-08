@@ -9,9 +9,10 @@ import '../../utils/constants/size_constatnts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomAppBar extends StatelessWidget {
+  final String? text;
   final bool showBackButton;
 
-  const CustomAppBar({super.key, this.showBackButton = true});
+  const CustomAppBar({super.key, this.showBackButton = true, this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +44,20 @@ class CustomAppBar extends StatelessWidget {
         SizedBox(
           width: SizeConst.horizontalPaddingFour,
         ),
+        if(text==null)
         SvgPicture.asset(
           Media.logoSvg,
           height: 5.h,
           // width: SizeConst.iconSize,
         ),
+        if(text!=null)
+          Text(text!,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w500,
+            color: Colours.textBlackColor,
+          ),
+          ),
+
       ],
     );
   }
