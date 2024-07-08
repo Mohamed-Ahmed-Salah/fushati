@@ -4,7 +4,6 @@ import 'package:fushati/core/common/widgets/custome_appbar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
@@ -19,9 +18,8 @@ class EmptyCardsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         context.push(NewCardView.path);
-
       },
       child: CardContainerDesign(
         child: Stack(
@@ -29,7 +27,7 @@ class EmptyCardsList extends StatelessWidget {
             const Positioned(
               bottom: 0,
               right: 0,
-              child:BubbleImage(),
+              child: BubbleImage(),
             ),
             Align(
               alignment: Alignment.center,
@@ -89,7 +87,7 @@ class BubbleImage extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             borderRadius:
-            BorderRadius.only(bottomRight: Radius.circular(20.w))),
+                BorderRadius.only(bottomRight: Radius.circular(20.w))),
         child: ClipRRect(
           borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(SizeConst.borderRadius)),
@@ -136,12 +134,10 @@ class CardContainerDesign extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              stops: const [0, 0.2, 0.6, 0],
+              stops: const [0.4, 1],
               colors: [
-                Colours.primaryGreenColor.withOpacity(0.2),
-                Colours.primaryGreenColor.withOpacity(0.1),
-                Colours.primaryGreenColor.withOpacity(0.01),
                 Colours.whiteColor,
+                Colours.primaryGreenTintColor.withOpacity(0.5),
               ],
             ),
 

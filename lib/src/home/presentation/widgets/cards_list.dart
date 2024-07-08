@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'empty_card_list.dart';
 
@@ -14,7 +15,7 @@ class LoadedCardList extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           return Padding(
-            padding:  EdgeInsets.symmetric(vertical: 1.h),
+            padding: EdgeInsets.symmetric(vertical: 1.h),
             child: CardContainerDesign(
               child: Stack(
                 children: [
@@ -22,6 +23,30 @@ class LoadedCardList extends StatelessWidget {
                     bottom: 0,
                     right: 0,
                     child: BubbleImage(),
+                  ),
+                  Positioned(
+                    bottom: 1.h,
+                    right: 7.w,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: SizeConst.horizontalPaddingFour*2,
+                          vertical: SizeConst.horizontalPaddingFour,
+
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colours.whiteColor,
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.w))),
+                      child: Text(
+                        "${AppLocalizations.of(context)?.manage}",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                color: Colours.brandColorOne),
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
@@ -38,11 +63,15 @@ class LoadedCardList extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Card Number",
+                                  "CARD NUMBER",
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleSmall
-                                      ?.copyWith(fontWeight: FontWeight.w300),
+                                      ?.copyWith(fontWeight: FontWeight.w400,
+
+                                  color: Colours.textBlackColor.withOpacity(0.5),
+                                  letterSpacing: 3
+                                  ),
                                 ),
                                 Text(
                                   "2727253960",
@@ -92,11 +121,13 @@ class LoadedCardList extends StatelessWidget {
                           ),
                           Text(
                             "60.00 R.S",
-                            style:
-                                Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colours.brandColorOne,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  color: Colours.brandColorOne,
+                                ),
                           ),
                         ],
                       ),
