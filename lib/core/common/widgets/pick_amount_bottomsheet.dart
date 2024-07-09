@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
+import '../../../src/moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
 import '../../res/styles/colours.dart';
 import '../../res/theme/app_theme.dart';
 import '../singletons/form_validation.dart';
@@ -209,11 +211,6 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                           price: "500",
                           onTap: () {
                             _controller.text = "500";
-                            // context
-                            //     .read<AmountToTransferCubit>()
-                            //     .addingAmountEvent(amount: int.parse(price));
-                            // context.pop();
-                            // context.pushNamed(MoyasarWalletTransferView.name);
                           },
                         ),
                         CustomChipButton(
@@ -251,10 +248,10 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                       bool filledFormCorrectly =
                           _formKey.currentState?.validate();
                       if (filledFormCorrectly) {
-                        // context.read<AmountToTransferCubit>().addingAmountEvent(
-                        //     amount: int.parse(_controller.text));
-                        // Navigator.pop(context);
-                        // context.pushNamed(MoyasarWalletTransferView.name);
+                        context.read<AmountToTransferCubit>().addingAmountEvent(
+                            amount: int.parse(_controller.text));
+                        Navigator.pop(context);
+                        context.pushNamed(MoyasarWalletTransferView.name);
                       }
                     },
                     child: Text(
