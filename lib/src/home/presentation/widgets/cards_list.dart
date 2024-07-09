@@ -7,17 +7,20 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../manage_card/presentation/views/manage_card_view.dart';
 import '../../../new_card/presentation/views/new_card_view.dart';
+import '../../domain/entity/card.dart';
 import 'empty_card_list.dart';
 
 class LoadedCardList extends StatelessWidget {
-  const LoadedCardList({super.key});
+  final List<CardEntity> cards;
+
+  const LoadedCardList({super.key, required this.cards});
 
   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          if (index == 2) {
+          if (index == cards.length) {
             return GestureDetector(
               onTap: () {
                 context.push(NewCardView.path);
@@ -54,12 +57,13 @@ class LoadedCardList extends StatelessWidget {
           }
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 1.h),
-            child: const CardBox(
+            child: CardBox(
               showManage: true,
+              card: cards[index],
             ),
           );
         },
-        childCount: 3, // Example: 10 builders
+        childCount: cards.length + 1, // Example: 10 builders
       ),
     );
   }
@@ -67,8 +71,9 @@ class LoadedCardList extends StatelessWidget {
 
 class CardBox extends StatelessWidget {
   final bool showManage;
+  final CardEntity card;
 
-  const CardBox({super.key, this.showManage = false});
+  const CardBox({super.key, this.showManage = false, required this.card});
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +91,7 @@ class CardBox extends StatelessWidget {
               right: 7.w,
               child: GestureDetector(
                 onTap: () {
-                  context.push(ManageCardView.path);
+                  context.push(ManageCardView.path, extra: card);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(
@@ -126,7 +131,7 @@ class CardBox extends StatelessWidget {
                             letterSpacing: 3),
                       ),
                       Text(
-                        "2727253960",
+                        card.userCard,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -140,7 +145,7 @@ class CardBox extends StatelessWidget {
                     height: 2.h,
                   ),
                   Text(
-                    "Ahmed Mohamed Khalid",
+                    card.name,
                     textAlign: TextAlign.left,
                     style: Theme.of(context)
                         .textTheme

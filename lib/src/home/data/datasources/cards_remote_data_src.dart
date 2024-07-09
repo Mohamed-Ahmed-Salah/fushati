@@ -12,7 +12,7 @@ import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/network_constants.dart';
 
 class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
-  static const studentCardsEndpoint = '/students';
+  static const studentCardsEndpoint = '/parent/students';
   static const addCardEndpoint = '/parent-student';
   static const deleteCardEndpoint = '/parent-student';
   static const getCardDetailsEndpoint = '/parent-student';
@@ -26,7 +26,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .post('${NetworkConstants.parentUrl}$addCardEndpoint',
+          .post('${NetworkConstants.parentsUrl}$addCardEndpoint',
               data: {"student_card": cardNumber},
               options: Options(
                 headers: header,
@@ -34,10 +34,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
-      print(response.data);
       if (isSuccess) {
-        print("------------------------------------------- success");
-        print(response.data);
         return;
       } else {
         if (response.statusCode == 401) {
@@ -91,7 +88,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .delete('${NetworkConstants.parentUrl}$deleteCardEndpoint',
+          .delete('${NetworkConstants.parentsUrl}$deleteCardEndpoint',
               data: {"student_id": id},
               options: Options(
                 headers: header,
@@ -99,10 +96,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
-      print(response.data);
       if (isSuccess) {
-        print("------------------------------------------- success");
-        print(response.data);
         return;
       } else {
         if (response.statusCode == 401) {
@@ -156,7 +150,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .get('${NetworkConstants.parentUrl}$addCardEndpoint',
+          .get('${NetworkConstants.parentsUrl}$addCardEndpoint',
               data: {"student_card": cardNumber},
               options: Options(
                 headers: header,
@@ -164,10 +158,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
-      print(response.data);
       if (isSuccess) {
-        print("------------------------------------------- success");
-        print(response.data);
         return CardModel.fromJson(response.data);
       } else {
         if (response.statusCode == 401) {
@@ -221,18 +212,15 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .get('${NetworkConstants.parentUrl}$studentCardsEndpoint',
+          .get('${NetworkConstants.parentsUrl}$studentCardsEndpoint',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
-      print(response.data);
       if (isSuccess) {
-        print("------------------------------------------- success");
-        print(response.data);
-        final list = (json.decode(jsonEncode(response.data["data"])) as List)
+        final list = (json.decode(jsonEncode(response.data)) as List)
             .map((i) => CardModel.fromJson(i))
             .toList();
         return list;

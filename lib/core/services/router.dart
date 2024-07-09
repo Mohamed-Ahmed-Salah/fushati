@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fushati/src/auth/presentation/views/auth_success.dart';
+import 'package:fushati/src/home/domain/entity/card.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../src/app_language/presentation/views/app_language.dart';
@@ -102,7 +103,10 @@ final router = GoRouter(
     ),
     GoRoute(
       path: ManageCardView.path,
-      builder: (context, state) => const ManageCardView(),
+      name: ManageCardView.name,
+      builder: (context, state) => ManageCardView(
+        card: state.extra as CardEntity,
+      ),
     ),
   ],
 );

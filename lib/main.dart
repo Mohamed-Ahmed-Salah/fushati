@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fushati/src/auth/presentation/app/blocs/auth_bloc/authenticator_bloc.dart';
+import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -59,6 +60,11 @@ class MyApp extends StatelessWidget {
               cacheHelper: sl(),
             ),
           ),
+          BlocProvider<CardsBloc>(
+            create: (BuildContext context) => CardsBloc(
+              getCard: sl(),
+            )..add(const CardsEvent.getCards()),
+          ),
         ],
         child: BlocBuilder<AppLanguageCubit, AppLanguageState>(
             builder: (context, state) {
@@ -74,7 +80,6 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: scaffoldKey,
             debugShowCheckedModeBanner: false,
             title: 'Fushati',
-
             locale: state.locale,
             theme: CustomTheme.lightTheme(),
           );

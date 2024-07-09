@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/common/widgets/custome_appbar.dart';
+import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/home/presentation/widgets/custom_drawer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../core/common/widgets/error_view.dart';
+import '../../../../core/common/widgets/loading_view.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
@@ -27,7 +31,9 @@ class HomeView extends StatelessWidget {
 
     return Scaffold(
       key: _scaffoldKey,
-      appBar:  CustomHomeAppBar(drawerKey: _scaffoldKey,),
+      appBar: CustomHomeAppBar(
+        drawerKey: _scaffoldKey,
+      ),
       drawer: const CustomDrawer(),
       body: SafeArea(
         child: Padding(
@@ -37,17 +43,66 @@ class HomeView extends StatelessWidget {
           ),
           child: CustomScrollView(
             slivers: [
-              SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    const EmptyCardsList(),
-                  ],
-                ),
-              ),
-              const LoadedCardList(),
+              BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
+                return state.when(
+                    loading: () => const LoadingSliver(),
+                    emptyList: () => const EmptyCardList(),
+                    failed: (message) => ErrorSliver(
+                          onPressed: () {
+                            context.read<CardsBloc>().add(const CardsEvent.getCards());
+                          },
+                          message: message,
+                        ),
+                    success: (cards) =>  LoadedCardList(cards:cards));
+              }),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class LoadingSliver extends StatelessWidget {
+  const LoadingSliver({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SliverToBoxAdapter(
+      child: LoadingWidget(),
+    );
+  }
+}
+
+class ErrorSliver extends StatelessWidget {
+  final String message;
+  final Function()? onPressed;
+
+  const ErrorSliver(
+      {super.key, required this.onPressed, required this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverFillRemaining(
+      // child: Text(message),
+      child: ErrorView(
+        onPressed: onPressed,
+        message: message,
+      ),
+    );
+  }
+}
+
+class EmptyCardList extends StatelessWidget {
+  const EmptyCardList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          const EmptyCardsList(),
+        ],
       ),
     );
   }

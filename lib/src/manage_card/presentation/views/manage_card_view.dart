@@ -15,12 +15,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/common/widgets/pick_amount_bottomsheet.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/res/theme/app_theme.dart';
+import '../../../home/domain/entity/card.dart';
 
 class ManageCardView extends StatefulWidget {
   static String path = "/manage-new";
   static String name = "/manage-new";
+  static String param = "card";
+  final CardEntity card;
 
-  const ManageCardView({super.key});
+  const ManageCardView({super.key, required this.card});
 
   @override
   State<ManageCardView> createState() => _ManageCardViewState();
@@ -59,7 +62,7 @@ class _ManageCardViewState extends State<ManageCardView> {
                         text: "${AppLocalizations.of(context)?.manageCard}",
                       ),
                       SizedBox(height: 5.h),
-                      const CardBox(),
+                       CardBox(card: widget.card,),
                       SizedBox(height: SizeConst.verticalPadding),
                       Row(
                         children: [

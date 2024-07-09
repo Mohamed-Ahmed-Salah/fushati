@@ -73,7 +73,10 @@
 "appLanguage":"لغة التطبيق",
 "transHistory":"تاريخ المعاملات",
 "profile":"الحساب الشخصي",
-"addNewCard":"إضافة بطاقة جديدة"
+"addNewCard":"إضافة بطاقة جديدة",
+"tryAgian":"اعاده المحاوله",
+"connectionLost":"انقطع الاتصال :(",
+"connectionLostDesc":"يبدو أنه ليس لديك اتصال بالإنترنت. دعنا نحاول مرة أخرى"
 
 
 

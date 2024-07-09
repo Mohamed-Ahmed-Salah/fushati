@@ -72,7 +72,10 @@
 "appLanguage":"App Language",
 "transHistory":"Trans History",
 "profile":"Profile",
-"addNewCard":"Add new card"
+"addNewCard":"Add new card",
+"tryAgian":"Try again",
+"connectionLost":"Connection lost :(",
+"connectionLostDesc":"It seems like you don’t have internet connection. Let’s give it another try"
 
 
 
