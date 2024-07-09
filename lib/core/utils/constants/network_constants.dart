@@ -11,7 +11,7 @@ abstract class NetworkConstants {
   static const String productImgUrl =
       "https://ourvend-image.oss-cn-qingdao.aliyuncs.com/Regular/";
   static const String packageImgUrl = "https://dev.app.saladbar.sa/storage/";
-  static const String TestAPIKey =
+  static const String MoyasarAPIKey =
       "asdfghjkl12334";
 
   static const apiUrl = '/api/v1';

@@ -64,6 +64,12 @@
   "manageCard":"إدارة البطاقة",
   "topUpCard": "شحن البطاقة",
   "deleteCard": "حذف البطاقة",
+  "areYouSureDeleteCard":"هل أنت متأكد أنك تريد حذف البطاقة؟",
+  "delete":"حذف",
+  "or":"أو",
+
+
+
   "transactionHistory": "تاريخ المعاملات",
   "credited": "ايداع" ,
   "debited": "خصم" ,

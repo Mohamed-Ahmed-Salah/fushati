@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fushati/core/common/widgets/close_button.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/card_details/presentation/views/card_details_view.dart';
@@ -9,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/common/singletons/form_validation.dart';
+import '../../../../core/common/widgets/card_box.dart';
 import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -16,6 +18,8 @@ import '../../../../core/common/widgets/pick_amount_bottomsheet.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/res/theme/app_theme.dart';
 import '../../../home/domain/entity/card.dart';
+import '../widgets/delete_card_button.dart';
+import '../widgets/top_up_button.dart';
 
 class ManageCardView extends StatefulWidget {
   static String path = "/manage-new";
@@ -62,15 +66,21 @@ class _ManageCardViewState extends State<ManageCardView> {
                         text: "${AppLocalizations.of(context)?.manageCard}",
                       ),
                       SizedBox(height: 5.h),
-                       CardBox(card: widget.card,),
+                      CardBox(
+                        card: widget.card,
+                      ),
                       SizedBox(height: SizeConst.verticalPadding),
                       Row(
                         children: [
-                          const TopUpButton(),
+                          TopUpButton(
+                            card: widget.card,
+                          ),
                           SizedBox(
                             width: SizeConst.horizontalPadding,
                           ),
-                          const DeleteCardButton(),
+                          DeleteCardButton(
+                            card: widget.card,
+                          ),
                         ],
                       ),
                     ],
@@ -94,112 +104,6 @@ class _ManageCardViewState extends State<ManageCardView> {
                           child: Text("${AppLocalizations.of(context)?.cont}")),
                     ],
                   ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class DeleteCardButton extends StatelessWidget {
-  const DeleteCardButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: (){
-
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
-              Radius.circular(SizeConst.borderRadius),
-            ),
-            border: Border.all(color: Colours.borderGreyColor),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(1.h),
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(SizeConst.horizontalPadding),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(SizeConst.borderRadius),
-                    ),
-                    border: Border.all(color: Colours.borderGreyColor),
-                  ),
-                  child: SvgPicture.asset(
-                    Media.deleteSvg,
-                    height: SizeConst.iconSize - 0.3.h,
-                  ),
-                ),
-                Expanded(
-                  child: Text("${AppLocalizations.of(context)?.deleteCard}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(fontWeight: FontWeight.w400),
-                      textAlign: TextAlign.center),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class TopUpButton extends StatelessWidget {
-  const TopUpButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: (){
-          print("object");
-          showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return const PickAmountBottomSheet();
-            },
-          );
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(SizeConst.borderRadius),
-              ),
-              border: Border.all(color: Colours.borderGreyColor)),
-          child: Padding(
-            padding: EdgeInsets.all(1.h),
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(SizeConst.horizontalPadding),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(SizeConst.borderRadius),
-                      ),
-                      color: Colours.primaryGreenColor),
-                  child: SvgPicture.asset(
-                    Media.boltSvg,
-                    height: SizeConst.iconSize,
-                  ),
-                ),
-                Expanded(
-                  child: Text("${AppLocalizations.of(context)?.topUpCard}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(fontWeight: FontWeight.w400),
-                      textAlign: TextAlign.center),
                 )
               ],
             ),

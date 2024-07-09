@@ -66,8 +66,10 @@ abstract class CoreUtils {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
-          const Icon(Icons.check_circle_rounded, color: Colours.primaryGreenColor,),
+          const Icon(
+            Icons.check_circle_rounded,
+            color: Colours.primaryGreenColor,
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -147,20 +149,19 @@ abstract class CoreUtils {
     required IconData icon,
   }) {
     showDialog(
-        context: rootNavigatorKey.currentContext!,
-        builder: (context) => Scaffold(
-          body: Container(
-            color: Colors.white,
-            child: Column(
-              children: [
-                Text(title),
-                Text(subTitle),
-              ],
-            ),
-          
-          
-              ),
-        ));
+      context: rootNavigatorKey.currentContext!,
+      builder: (context) => Scaffold(
+        body: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              Text(title),
+              Text(subTitle),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   static void showLoadingDialog() {
@@ -176,5 +177,4 @@ abstract class CoreUtils {
 
     return dateFormated;
   }
-
 }

@@ -11,6 +11,7 @@ import '../../src/auth/presentation/views/verify_otp_view.dart';
 import '../../src/card_details/presentation/views/card_details_view.dart';
 import '../../src/home/presentation/views/home_view.dart';
 import '../../src/manage_card/presentation/views/manage_card_view.dart';
+import '../../src/moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
 import '../../src/new_card/presentation/views/new_card_view.dart';
 import '../../src/on_boarding/presentation/views/onboarding_view.dart';
 import '../../src/splash/presentation/views/splash_view.dart';
@@ -105,6 +106,13 @@ final router = GoRouter(
       path: ManageCardView.path,
       name: ManageCardView.name,
       builder: (context, state) => ManageCardView(
+        card: state.extra as CardEntity,
+      ),
+    ),
+    GoRoute(
+      path: MoyasarWalletTransferView.path,
+      name: MoyasarWalletTransferView.name,
+      builder: (context, state) => MoyasarWalletTransferView(
         card: state.extra as CardEntity,
       ),
     ),

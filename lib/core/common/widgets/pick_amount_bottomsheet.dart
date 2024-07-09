@@ -10,6 +10,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../res/styles/colours.dart';
 import '../../res/theme/app_theme.dart';
 import '../singletons/form_validation.dart';
+import 'close_button.dart';
 
 class PickAmountBottomSheet extends StatefulWidget {
   const PickAmountBottomSheet({super.key});
@@ -71,18 +72,7 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                               ?.copyWith(fontWeight: FontWeight.w500),
                         ),
                       ),
-                      InkWell(
-                        onTap: () => context.pop(),
-                        child: Container(
-                          padding: EdgeInsets.all(1.h),
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colours.borderGreyColor),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(SizeConst.borderRadius))),
-                          child: const Icon(Media.closeIcon),
-                        ),
-                      ),
+                      const CustomCloseButton(),
                     ],
                   ),
                   SizedBox(

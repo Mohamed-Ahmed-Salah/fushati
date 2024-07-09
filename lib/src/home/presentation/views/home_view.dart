@@ -17,7 +17,9 @@ import '../../../../core/res/theme/app_theme.dart';
 import '../../../../core/utils/constants/size_constatnts.dart';
 import '../widgets/cards_list.dart';
 import '../widgets/empty_card_list.dart';
+import '../widgets/error_sliver.dart';
 import '../widgets/home_appbar.dart';
+import '../widgets/loading_sliver.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -49,60 +51,17 @@ class HomeView extends StatelessWidget {
                     emptyList: () => const EmptyCardList(),
                     failed: (message) => ErrorSliver(
                           onPressed: () {
-                            context.read<CardsBloc>().add(const CardsEvent.getCards());
+                            context
+                                .read<CardsBloc>()
+                                .add(const CardsEvent.getCards());
                           },
                           message: message,
                         ),
-                    success: (cards) =>  LoadedCardList(cards:cards));
+                    success: (cards) => LoadedCardList(cards: cards));
               }),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class LoadingSliver extends StatelessWidget {
-  const LoadingSliver({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SliverToBoxAdapter(
-      child: LoadingWidget(),
-    );
-  }
-}
-
-class ErrorSliver extends StatelessWidget {
-  final String message;
-  final Function()? onPressed;
-
-  const ErrorSliver(
-      {super.key, required this.onPressed, required this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      // child: Text(message),
-      child: ErrorView(
-        onPressed: onPressed,
-        message: message,
-      ),
-    );
-  }
-}
-
-class EmptyCardList extends StatelessWidget {
-  const EmptyCardList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildListDelegate(
-        [
-          const EmptyCardsList(),
-        ],
       ),
     );
   }
