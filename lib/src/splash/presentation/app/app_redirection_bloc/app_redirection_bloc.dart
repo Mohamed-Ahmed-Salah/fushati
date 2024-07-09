@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/src/home/presentation/views/home_view.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 
 import '../../../../../core/common/app/cache_helper.dart';
@@ -78,7 +79,7 @@ class AppRedirectionBloc
       getData(context);
       // Wrap Navigator with SchedulerBinding to wait for rendering state before navigating
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        router.go(LoginView.path);
+        router.go(HomeView.path);
       });
     }
   }

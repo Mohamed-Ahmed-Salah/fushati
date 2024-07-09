@@ -18,6 +18,15 @@ abstract class Media {
   static const boltSvg = "$_baseSvg/electric_bolt.svg";
   static const deleteSvg = "$_baseSvg/delete.svg";
 
+  static const logoutSvg = "$_baseSvg/logout.svg";
+  static const contactSvg = "$_baseSvg/support_agent.svg";
+  static const profileSvg = "$_baseSvg/person.svg";
+  static const languageSvg = "$_baseSvg/language.svg";
+
+  static const successSvg = "$_baseSvg/card_success.svg";
+  static const warningSvg = "$_baseSvg/card_warning.svg";
+  static const deleteCardSvg = "$_baseSvg/delete_card.svg";
+
 
 
   static const splashLottie = "$_baseLottie/splash.json";

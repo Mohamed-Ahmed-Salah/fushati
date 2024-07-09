@@ -65,7 +65,14 @@
 "transactionHistory":"Transaction history",
 "credited":"Credited",
 "debited":"debited",
-"viewAll":"View all"
+"viewAll":"View all",
+"logOut":"Log out",
+"contactUs":"Contact us",
+
+"appLanguage":"App Language",
+"transHistory":"Trans History",
+"profile":"Profile"
+
 
 
 

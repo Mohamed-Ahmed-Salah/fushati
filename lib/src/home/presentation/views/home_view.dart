@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/common/widgets/custome_appbar.dart';
+import 'package:fushati/src/home/presentation/widgets/custom_drawer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,8 +23,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
-      appBar: const CustomHomeAppBar(),
+      key: _scaffoldKey,
+      appBar:  CustomHomeAppBar(drawerKey: _scaffoldKey,),
+      drawer: const CustomDrawer(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(

@@ -10,8 +10,11 @@ import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
 import '../../../../core/utils/constants/size_constatnts.dart';
+
 class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomHomeAppBar({super.key});
+  final GlobalKey<ScaffoldState> drawerKey;
+
+  const CustomHomeAppBar({super.key, required this.drawerKey});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +25,19 @@ class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             vertical: SizeConst.verticalPadding),
         child: Row(
           children: [
-            Container(
-              padding: EdgeInsets.all(2.w),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 2, color: Colours.blackColor.withOpacity(0.1)),
-                  borderRadius: BorderRadius.all(Radius.circular(2.w))),
-              child: const Icon(
-                Media.menuIcon,
+            GestureDetector(
+              onTap: () {
+                drawerKey.currentState?.openDrawer();
+              },
+              child: Container(
+                padding: EdgeInsets.all(2.w),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 2, color: Colours.blackColor.withOpacity(0.1)),
+                    borderRadius: BorderRadius.all(Radius.circular(2.w))),
+                child: const Icon(
+                  Media.menuIcon,
+                ),
               ),
             ),
             SizedBox(
@@ -50,4 +58,3 @@ class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   // TODO: implement preferredSize
   Size get preferredSize => Size(100.w, 10.h);
 }
-

@@ -67,7 +67,13 @@
   "transactionHistory": "تاريخ المعاملات",
   "credited": "ايداع" ,
   "debited": "خصم" ,
-  "viewAll": "عرض الكل"
+  "viewAll": "عرض الكل",
+  "logOut":"تسجيل خروج",
+  "contactUs":"اتصل بنا",
+"appLanguage":"لغة التطبيق",
+"transHistory":"تاريخ المعاملات",
+"profile":"الحساب الشخصي"
+
 
 
 
