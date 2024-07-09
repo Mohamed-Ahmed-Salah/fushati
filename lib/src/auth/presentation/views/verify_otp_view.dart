@@ -18,6 +18,7 @@ import '../../../../core/common/widgets/green_background.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../app/blocs/auth_bloc/authenticator_bloc.dart';
 import '../app/blocs/otp_bloc/otp_bloc.dart';
+import '../widgets/resend_otp_widget.dart';
 import 'login_view.dart';
 
 class VerifyOTPView extends StatelessWidget {
@@ -126,7 +127,7 @@ class VerifyOTPView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CountdownWidget(
+                    ResendOtpWidget(
                       phone: phone,
                     ),
                     BlocBuilder<OtpBloc, OtpState>(
@@ -162,138 +163,6 @@ class VerifyOTPView extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CountdownWidget extends StatefulWidget {
-  final String phone;
-
-  const CountdownWidget({super.key, required this.phone});
-
-  @override
-  State<CountdownWidget> createState() => _CountdownWidgetState();
-}
-
-class _CountdownWidgetState extends State<CountdownWidget> {
-  Timer? _timer;
-  int _start = 30; // countdown starting time in seconds
-  bool _showResend = false;
-
-  void startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_start > 0) {
-          _start--;
-        } else {
-          _showResend = true;
-          _timer?.cancel();
-        }
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  resendBloc() {
-    context.read<AuthenticatorBloc>().add(
-        AuthenticatorEvent.resendOTP(context: context, phone: widget.phone));
-  }
-
-  void _resendCode() {
-    setState(() {
-      _start = 30; // reset the timer
-      _showResend = false;
-      startTimer();
-    });
-    // Add your resend code logic here
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<AuthenticatorBloc, AuthenticatorState>(
-      listener: (BuildContext context, state) {
-        state.whenOrNull(
-            loading: () {},
-            loggedInSuccessfully: (_) {
-              _resendCode();
-            },
-            failed: (_) {});
-      },
-      builder: (BuildContext context, AuthenticatorState state) {
-        bool showLoading = false;
-        state.whenOrNull(loading: () {
-          showLoading = true;
-        });
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 1.5.h),
-          child: Container(
-            height: 5.h,
-            color: Colors.red,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: const TextStyle(color: Colors.black),
-                    children: <TextSpan>[
-                      if (_showResend)
-                        TextSpan(
-                            text:
-                                '${AppLocalizations.of(context)?.iDidntGetOtp} ',
-                            style:
-                                Theme.of(context).textTheme.titleMedium?.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                      if (_showResend)
-                        TextSpan(
-                          text: '${AppLocalizations.of(context)?.resend}',
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: Colours.blackColor,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                          recognizer: TapGestureRecognizer()..onTap = resendBloc,
-                        ),
-                      if (!_showResend)
-                        TextSpan(
-                          text: '${AppLocalizations.of(context)?.sendCodeIn("")}',
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ),
-                      if (!_showResend)
-                        TextSpan(
-                          text: "00:${_start.toString().padLeft(2, '0')}",
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                        ),
-                    ],
-                  ),
-                ),
-                AnimatedButtonCircularLoader(
-                  loading: showLoading,
-                  color: Colours.brandColorOne,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
