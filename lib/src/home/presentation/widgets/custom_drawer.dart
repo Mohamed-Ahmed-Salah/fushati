@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/core/res/styles/colours.dart';
+import 'package:fushati/core/utils/constants/size_constatnts.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -26,8 +27,20 @@ class CustomDrawer extends StatelessWidget {
           color: Colours.whiteColor,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Spacer(),
+              SizedBox(
+                height: SizeConst.verticalPadding,
+              ),
+              ListTile(
+                leading: SvgPicture.asset(
+                  Media.logoSvg,
+                  height: 7.h,
+                ),
+              ),
+              SizedBox(
+                height: SizeConst.verticalPaddingFour,
+              ),
               CustomListTile(
                 onTap: () {
                   // context.push(ProfileView.path);

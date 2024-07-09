@@ -18,6 +18,7 @@ import '../../../../core/res/styles/colours.dart';
 import '../app/blocs/auth_bloc/authenticator_bloc.dart';
 import '../app/blocs/otp_bloc/otp_bloc.dart';
 import '../widgets/resend_otp_widget.dart';
+
 class ResendOtpWidget extends StatefulWidget {
   final String phone;
 
@@ -91,7 +92,6 @@ class _ResendOtpWidgetState extends State<ResendOtpWidget> {
           padding: EdgeInsets.symmetric(vertical: 1.5.h),
           child: Container(
             height: 5.h,
-            color: Colors.red,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,36 +103,40 @@ class _ResendOtpWidgetState extends State<ResendOtpWidget> {
                       if (_showResend)
                         TextSpan(
                             text:
-                            '${AppLocalizations.of(context)?.iDidntGetOtp} ',
-                            style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w400,
-                            )),
+                                '${AppLocalizations.of(context)?.iDidntGetOtp} ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                )),
                       if (_showResend)
                         TextSpan(
                           text: '${AppLocalizations.of(context)?.resend}',
                           style:
-                          Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Colours.blackColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          recognizer: TapGestureRecognizer()..onTap = resendBloc,
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: Colours.blackColor,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = resendBloc,
                         ),
                       if (!_showResend)
                         TextSpan(
-                          text: '${AppLocalizations.of(context)?.sendCodeIn("")}',
+                          text:
+                              '${AppLocalizations.of(context)?.sendCodeIn("")}',
                           style:
-                          Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       if (!_showResend)
                         TextSpan(
                           text: "00:${_start.toString().padLeft(2, '0')}",
                           style:
-                          Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w400,
-                          ),
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                  ),
                         ),
                     ],
                   ),

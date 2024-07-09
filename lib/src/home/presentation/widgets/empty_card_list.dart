@@ -44,18 +44,7 @@ class EmptyCardsList extends StatelessWidget {
                     const SizedBox(height: 16.0),
                     Column(
                       children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: Colours.brandColorOne,
-                            shape: BoxShape.circle,
-                          ),
-                          padding: const EdgeInsets.all(16.0),
-                          child: Icon(
-                            Media.plusIcon,
-                            color: Colours.primaryGreenColor,
-                            size: 5.h,
-                          ),
-                        ),
+                        AddCardButton(),
                         const SizedBox(height: 8.0),
                         Text(
                           "${AppLocalizations.of(context)?.addFirstCard}",
@@ -74,6 +63,26 @@ class EmptyCardsList extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AddCardButton extends StatelessWidget {
+  const AddCardButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return   Container(
+      decoration: const BoxDecoration(
+        color: Colours.brandColorOne,
+        shape: BoxShape.circle,
+      ),
+      padding: const EdgeInsets.all(16.0),
+      child: Icon(
+        Media.plusIcon,
+        color: Colours.primaryGreenColor,
+        size: 5.h,
       ),
     );
   }

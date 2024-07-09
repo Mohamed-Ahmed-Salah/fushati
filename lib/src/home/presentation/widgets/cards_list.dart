@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../manage_card/presentation/views/manage_card_view.dart';
+import '../../../new_card/presentation/views/new_card_view.dart';
 import 'empty_card_list.dart';
 
 class LoadedCardList extends StatelessWidget {
@@ -16,12 +17,49 @@ class LoadedCardList extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
+          if (index == 2) {
+            return GestureDetector(
+              onTap: () {
+                context.push(NewCardView.path);
+              },
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: SizeConst.verticalPadding),
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(vertical: SizeConst.verticalPadding),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(SizeConst.borderRadius),
+                      ),
+                      border: Border.all(color: Colours.borderGreyColor)),
+                  child: Column(
+                    children: [
+                      const AddCardButton(),
+                      Padding(
+                        padding: EdgeInsets.only(top: 1.h),
+                        child: Text(
+                          "${AppLocalizations.of(context)?.addNewCard}",
+                          style: TextStyle(
+                              fontSize: 17.sp,
+                              fontWeight: FontWeight.w400,
+                              color: Colours.textBlackColor.withOpacity(0.5)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 1.h),
-            child: const CardBox(showManage: true,),
+            child: const CardBox(
+              showManage: true,
+            ),
           );
         },
-        childCount: 10, // Example: 10 builders
+        childCount: 3, // Example: 10 builders
       ),
     );
   }
@@ -29,7 +67,8 @@ class LoadedCardList extends StatelessWidget {
 
 class CardBox extends StatelessWidget {
   final bool showManage;
-  const CardBox({super.key, this.showManage=false});
+
+  const CardBox({super.key, this.showManage = false});
 
   @override
   Widget build(BuildContext context) {
@@ -41,30 +80,31 @@ class CardBox extends StatelessWidget {
             right: 0,
             child: BubbleImage(),
           ),
-          if(showManage)
-          Positioned(
-            bottom: 1.h,
-            right: 7.w,
-            child: GestureDetector(
-              onTap: (){
-                context.push(ManageCardView.path);
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: SizeConst.horizontalPaddingFour * 2,
-                  vertical: SizeConst.horizontalPaddingFour,
-                ),
-                decoration: BoxDecoration(
-                    color: Colours.whiteColor,
-                    borderRadius: BorderRadius.all(Radius.circular(20.w))),
-                child: Text(
-                  "${AppLocalizations.of(context)?.manage}",
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w500, color: Colours.brandColorOne),
+          if (showManage)
+            Positioned(
+              bottom: 1.h,
+              right: 7.w,
+              child: GestureDetector(
+                onTap: () {
+                  context.push(ManageCardView.path);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: SizeConst.horizontalPaddingFour * 2,
+                    vertical: SizeConst.horizontalPaddingFour,
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colours.whiteColor,
+                      borderRadius: BorderRadius.all(Radius.circular(20.w))),
+                  child: Text(
+                    "${AppLocalizations.of(context)?.manage}",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colours.brandColorOne),
+                  ),
                 ),
               ),
             ),
-          ),
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: SizeConst.horizontalPadding,

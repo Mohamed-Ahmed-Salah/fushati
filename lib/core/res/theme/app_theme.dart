@@ -136,50 +136,54 @@ abstract class CustomTheme {
       appBarTheme: appBarLightTheme,
       iconTheme: const IconThemeData(color: Colours.textBlackColor),
       textTheme: TextTheme(
-        titleLarge: TextStyle(fontSize: 18.sp),
+        titleSmall: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w300,
+            color: Colours.textBlackColor),
+
+        titleMedium: TextStyle(
+            fontFamily: TextConstants.font,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w300,
+            color: Colours.textBlackColor),
+        titleLarge: TextStyle(fontSize: 18.sp,   fontWeight: FontWeight.w300,),
+        headlineSmall: TextStyle(
+            fontSize: 23.5.sp,
+            fontWeight: FontWeight.w300,
+            color: Colours.textBlackColor),
+        headlineMedium: TextStyle(
+            fontFamily: TextConstants.font,
+            fontWeight: FontWeight.w300,
+            fontSize: 23.sp,
+            color: Colours.textBlackColor),
+        headlineLarge: TextStyle(
+          fontFamily: TextConstants.font,
+          fontWeight: FontWeight.w300,
+          fontSize: 23.sp,
+        ),
+
+        bodySmall: TextStyle(
+            color: Colours.textBlackColor,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w300),
+        bodyMedium: TextStyle(color: Colours.textBlackColor, fontSize: 14.5.sp),
+        bodyLarge: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w300,
+        ),
+
         displaySmall: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.sp),
         displayMedium: TextStyle(
           color: Colours.blackColor,
           fontFamily: TextConstants.font,
           fontSize: 25.sp,
         ),
-        bodySmall: TextStyle(
-            color: Colours.textBlackColor,
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w500),
         displayLarge: TextStyle(
             color: Colours.blackColor,
             fontFamily: TextConstants.font,
             fontSize: 31.sp,
             fontWeight: FontWeight.w900),
-        titleMedium: TextStyle(
-            fontFamily: TextConstants.font,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w300,
-            color: Colours.textBlackColor),
-        headlineLarge: TextStyle(
-          fontFamily: TextConstants.font,
-          fontWeight: FontWeight.w700,
-          fontSize: 23.sp,
-        ),
-        headlineMedium: TextStyle(
-            fontFamily: TextConstants.font,
-            fontWeight: FontWeight.w500,
-            fontSize: 23.sp,
-            color: Colours.textBlackColor),
-        bodyLarge: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w700,
-        ),
-        headlineSmall: TextStyle(
-            fontSize: 23.5.sp,
-            fontWeight: FontWeight.w500,
-            color: Colours.textBlackColor),
-        titleSmall: TextStyle(
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w500,
-            color: Colours.textBlackColor),
-        bodyMedium: TextStyle(color: Colours.textBlackColor, fontSize: 14.5.sp),
+
       ),
       textSelectionTheme: const TextSelectionThemeData(
         cursorColor: Colours.textBlackColor,
