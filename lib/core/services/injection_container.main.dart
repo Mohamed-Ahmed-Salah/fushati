@@ -8,6 +8,7 @@ Future<void> init() async {
     ///we call cache from main file and call init from slash app and redirection bloc
     _appLanguageInit(),
     _authInit(),
+    _cardsInit()
   ]);
 }
 
@@ -26,6 +27,19 @@ Future<void> _authInit() async {
     ..registerLazySingleton<AuthRemoteDataSrc>(
         () => AuthRemoteDataSrcImpl(sl()))
     ..registerSingleton(Dio());
+}
+
+Future<void> _cardsInit() async {
+  sl
+    // ..registerFactory(
+    //         () => AuthenticatorBloc(cacheHelper: sl(), loginOrRegister: sl()))
+    ..registerLazySingleton(() => DeleteCard(sl()))
+    ..registerLazySingleton(() => AddCard(sl()))
+    ..registerLazySingleton(() => GetCardDetails(sl()))
+    ..registerLazySingleton(() => GetCards(sl()))
+    ..registerLazySingleton<CardRepo>(() => CardRepoImpl(sl()))
+    ..registerLazySingleton<CardRemoteDataSrc>(
+        () => CardRemoteDataSrcImpl(sl()));
 }
 
 Future<void> cacheInit() async {

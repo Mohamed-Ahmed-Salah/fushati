@@ -41,8 +41,14 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
         print(response.data["verification_code"]);
         return LoginResponseModel.fromJson(response.data);
       } else {
+        if (response.statusCode == 401) {
+          throw AuthenticationException(
+              message: ErrorConst.OTP_NOT_FOUND,
+              statusCode: response.statusCode ?? 0);
+        }
         throw ServerException(
-            message: response.data, statusCode: response.statusCode ?? 0);
+            message: response.data['message'],
+            statusCode: response.statusCode ?? 0);
       }
 
       // CoreUtils.showErrorSnackBar(message: "Success");
@@ -98,6 +104,11 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
 
       if (response.statusCode == 200) {
         return OtpResponseModel.fromJson(response.data);
+      }
+      if (response.statusCode == 401) {
+        throw AuthenticationException(
+            message: ErrorConst.OTP_NOT_FOUND,
+            statusCode: response.statusCode ?? 0);
       }
       throw AuthenticationException(
           message: ErrorConst.getError(statusCode: response.statusCode ?? 500),
