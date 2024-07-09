@@ -31,6 +31,8 @@ class AuthenticatorBloc extends Bloc<AuthenticatorEvent, AuthenticatorState> {
         _cacheHelper = cacheHelper,
         super(const AuthenticatorState.initial()) {
     on<AuthLoginOrRegister>(_loginOrRegisterEvent);
+    on<AuthResendOTP>(_resendOTPEvent);
+
   }
 
 //todo add context or save phone in OTP
@@ -38,7 +40,7 @@ class AuthenticatorBloc extends Bloc<AuthenticatorEvent, AuthenticatorState> {
     // TODO: implement event handler
     BuildContext context = event.context;
 
-    String phone = "966${event.phone}";
+    String phone = "${event.phone}";
     if (event.phone.length < 9) {
       return;
     }
@@ -69,6 +71,47 @@ class AuthenticatorBloc extends Bloc<AuthenticatorEvent, AuthenticatorState> {
           VerifyOTPView.name,
           queryParameters: {"phone": phone},
         );
+      },
+    );
+  }
+
+
+
+  _resendOTPEvent(event, emit) async {
+    // TODO: implement event handler
+    BuildContext context = event.context;
+
+    String phone = "${event.phone}";
+    if (event.phone.length < 9) {
+      return;
+    }
+    emit(const AuthenticatorState.loading());
+    final result = await _loginOrRegister(
+      LoginOrRegisterParams(phone: phone),
+    );
+    result.fold(
+          (failure) {
+
+        emit(AuthenticatorState.failed(
+            ErrorConst.getErrorBody(text: failure.message)));
+        CoreUtils.showMyDialog(
+          // message: ,
+            title: ErrorConst.getErrorBody(text: ErrorConst.errorEn),
+            subTitle: ErrorConst.getErrorBody(text: failure.message),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            buttonText: TextConstants.getText(text: TextConstants.closeEn),
+            icon: Icons.info);
+      },
+          (user) {
+        emit(AuthenticatorState.loggedInSuccessfully(phone: phone));
+        // getCartCount(Cache.instance.userId!);
+        // BuildContext context = event.context;
+        // context.pushNamed(
+        //   VerifyOTPView.name,
+        //   queryParameters: {"phone": phone},
+        // );
       },
     );
   }

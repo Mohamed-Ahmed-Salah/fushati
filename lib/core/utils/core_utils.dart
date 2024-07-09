@@ -148,9 +148,19 @@ abstract class CoreUtils {
   }) {
     showDialog(
         context: rootNavigatorKey.currentContext!,
-        builder: (context) => Container(
-
-            ));
+        builder: (context) => Scaffold(
+          body: Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                Text(title),
+                Text(subTitle),
+              ],
+            ),
+          
+          
+              ),
+        ));
   }
 
   static void showLoadingDialog() {

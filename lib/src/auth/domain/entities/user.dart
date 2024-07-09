@@ -1,61 +1,39 @@
-import 'package:equatable/equatable.dart';
-
-import '../../data/models/user_model.dart';
-
-
-class User extends Equatable {
-  final int customerStatus;
-  final String apiToken;
-  final CustomerModel customer;
+class User {
+  final int id;
+  final String? name;
+  final String? email;
+  final DateTime? emailVerifiedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String userPhone;
 
   User({
-    required this.customerStatus,
-    required this.apiToken,
-    required this.customer,
-  });
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}
-
-class Customer {
-  final int id;
-  final String username;
-  final DateTime birthdate;
-  final String gender;
-  final String walletAmount;
-  final String email;
-  final String phone;
-  final dynamic workplace;
-
-  Customer({
     required this.id,
-    required this.username,
-    required this.birthdate,
-    required this.gender,
-    required this.walletAmount,
+    required this.name,
     required this.email,
-    required this.phone,
-    required this.workplace,
+    required this.emailVerifiedAt,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.userPhone,
   });
-}
 
-//
-//
-// class User extends Equatable {
-//   final int customerStatus;
-//   final String apiToken;
-//   final int id;
-//   final String name;
-//
-//   User({
-//     required this.name,
-//     required this.id,
-//     required this.customerStatus,
-//     required this.apiToken,
-//   });
-//
-//   @override
-//   List<dynamic> get props => [id, customerStatus, apiToken, name];
-// }
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        name: json["name"],
+        email: json["email"],
+        emailVerifiedAt: json["email_verified_at"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        userPhone: json["user_phone"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "email": email,
+        "email_verified_at": emailVerifiedAt,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "user_phone": userPhone,
+      };
+}

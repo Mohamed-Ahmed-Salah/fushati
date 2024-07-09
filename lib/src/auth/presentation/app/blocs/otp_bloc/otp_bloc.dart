@@ -11,6 +11,7 @@ import '../../../../../../core/services/router.dart';
 import '../../../../../../core/utils/constants/error_consts.dart';
 import '../../../../../../core/utils/constants/text_constants.dart';
 import '../../../../../../core/utils/core_utils.dart';
+import '../../../../../home/presentation/views/home_view.dart';
 import '../../../../domain/usecases/auth_usecases.dart';
 import '../../../views/login_view.dart';
 import '../../../views/resend_otp_after_failure.dart';
@@ -37,7 +38,6 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         _cacheHelper = cacheHelper,
         super(const OtpState.initial()) {
     on<AuthVerifyOTP>(_verifyOTPEvent);
-    on<AuthResendOTP>(_resendOTPEvent);
   }
 
   _verifyOTPEvent(event, emit) async {
@@ -69,7 +69,8 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
           } else {
             CoreUtils.showMyDialog(
               title: ErrorConst.getErrorTitle(title: ErrorConst.otpErrorEn),
-              subTitle: ErrorConst.getErrorBody(text: failure.message),
+              subTitle: failure.message,
+              // ErrorConst.getErrorBody(text: failure.message),
               buttonText: TextConstants.getText(text: TextConstants.closeEn),
               onPressed: () {
                 Navigator.pop(context);
@@ -78,33 +79,23 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
             );
           }
         },
-        (user) async {
+        (response) async {
           emit(const OtpState.success());
 
-          await _cacheHelper.cacheSessionToken(user.apiToken);
-          await _cacheHelper.cacheUserId(user.customer.id);
-          await _cacheHelper.cacheUsername(user.customer.username);
+          await _cacheHelper.cacheSessionToken(response.token);
+          await _cacheHelper.cacheUserId(response.user.id);
+          await _cacheHelper.cacheUsername(response.user.name ?? "");
           // await Future.delayed(Duration(seconds: 1));
           //0 means user is first time and didnt complete his data info
-          if (user.customerStatus == 0) {
+          if (response.user.name == null) {
             router.push(UpdateUserInfoView.path);
-          } else if (user.customerStatus == 1) {
-            //used to not push until home loading is completed
-            // SchedulerBinding.instance.addPostFrameCallback((_) {
-            //   router.pushReplacementNamed(HomeView.name,
-            //       queryParameters: {HomeView.param: "true"});
-            // });
           } else {
-            //called if user status is not 0 or 1.....
-            CoreUtils.showMyDialog(
-              title: ErrorConst.getErrorBody(text: ErrorConst.errorEn),
-              subTitle: ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              buttonText: TextConstants.getText(text: TextConstants.closeEn),
-              icon: Media.infoIcon,
-            );
+            //used to not push until home loading is completed
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              router.go(
+                HomeView.name,
+              );
+            });
           }
         },
       );
@@ -121,59 +112,4 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
     }
   }
 
-  _resendOTPEvent(event, emit) async {
-    // TODO: implement event handler
-    BuildContext context = event.context;
-
-    // TODO: implement event handler
-
-    String phone = event.phone;
-    try {
-      if (phone.length < 9 || state == _loadingState) {
-        phone = "";
-        return;
-      }
-
-      emit(const OtpState.loading());
-      // await Future.delayed(const Duration(seconds: 2));
-      final result = await _loginOrRegister(
-        LoginOrRegisterParams(phone: phone),
-      );
-      result.fold(
-        (failure) {
-          emit(OtpState.failed(failure.message));
-          CoreUtils.showMyDialog(
-            title: ErrorConst.getErrorTitle(title: ErrorConst.otpErrorEn),
-            subTitle: ErrorConst.getErrorBody(text: failure.message),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            buttonText: TextConstants.getText(text: TextConstants.closeEn),
-            icon: Media.infoIcon,
-          );
-        },
-        (user) {
-          emit(const OtpState.initial());
-
-          context.pushReplacementNamed(
-            VerifyOTPView.path,
-            queryParameters: {"phone": event.phone},
-          );
-        },
-      );
-    } catch (e) {
-      if (phone.length > 9)
-        emit(OtpState.failed(
-            ErrorConst.getErrorTitle(title: ErrorConst.errorEn)));
-      CoreUtils.showMyDialog(
-        title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
-        subTitle: ErrorConst.getErrorBody(text: ErrorConst.errorOccuredEn),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        buttonText: TextConstants.getText(text: TextConstants.closeEn),
-        icon: Media.infoIcon,
-      );
-    }
-  }
 }

@@ -1,5 +1,3 @@
-
-
 import '../../common/singletons/cache.dart';
 
 abstract class ErrorConst {
@@ -164,6 +162,7 @@ abstract class ErrorConst {
       "Failed to change subscription product";
   static const String FAILED_CHANGING_MEAL_MESSAGEAR =
       "حدث خطأ في تغيير وجبه الاشتراك";
+
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
     return isArabic
@@ -456,8 +455,8 @@ abstract class ErrorConst {
     switch (statusCode) {
       case 200:
         return UNKNOWN_ERROR;
-      // case 401:
-      //   return OTP_NOT_FOUND;
+      case 401:
+        return OTP_NOT_FOUND;
       case 402:
         return NO_TOKEN;
       case 403:

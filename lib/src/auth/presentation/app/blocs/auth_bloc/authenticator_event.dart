@@ -7,5 +7,7 @@ sealed class AuthenticatorEvent with _$AuthenticatorEvent {
       required BuildContext context}) = AuthLoginOrRegister;
 
 
+  const factory AuthenticatorEvent.resendOTP({required BuildContext context, required String phone}) =
+  AuthResendOTP;
 // const factory AuthenticatorEvent.keyboardTyping({required String number})=AuthKeyboardTyping;
 }

@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utils/typedefs.dart';
+import '../../domain/entities/otp_response.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../datasources/auth_remote_data_src.dart';
 import '../models/user_model.dart';
@@ -34,12 +35,13 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  ResultFuture<UserModel> verifyOTP({
+  ResultFuture<OtpResponse> verifyOTP({
     required String phone,
     required String otp,
   }) async {
     try {
       final result = await _remoteDataSource.verifyOTP(phone: phone, otp: otp);
+
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

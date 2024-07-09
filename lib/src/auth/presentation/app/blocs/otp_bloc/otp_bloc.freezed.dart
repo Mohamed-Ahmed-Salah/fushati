@@ -16,44 +16,39 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OtpEvent {
-  BuildContext get context => throw _privateConstructorUsedError;
+  String get otp => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  BuildContext get context => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, String phone) resendOTP,
     required TResult Function(String otp, String phone, BuildContext context)
         verifyOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, String phone)? resendOTP,
     TResult? Function(String otp, String phone, BuildContext context)?
         verifyOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, String phone)? resendOTP,
     TResult Function(String otp, String phone, BuildContext context)? verifyOTP,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthResendOTP value) resendOTP,
     required TResult Function(AuthVerifyOTP value) verifyOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthResendOTP value)? resendOTP,
     TResult? Function(AuthVerifyOTP value)? verifyOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthResendOTP value)? resendOTP,
     TResult Function(AuthVerifyOTP value)? verifyOTP,
     required TResult orElse(),
   }) =>
@@ -69,7 +64,7 @@ abstract class $OtpEventCopyWith<$Res> {
   factory $OtpEventCopyWith(OtpEvent value, $Res Function(OtpEvent) then) =
       _$OtpEventCopyWithImpl<$Res, OtpEvent>;
   @useResult
-  $Res call({BuildContext context, String phone});
+  $Res call({String otp, String phone, BuildContext context});
 }
 
 /// @nodoc
@@ -85,171 +80,25 @@ class _$OtpEventCopyWithImpl<$Res, $Val extends OtpEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? context = null,
+    Object? otp = null,
     Object? phone = null,
+    Object? context = null,
   }) {
     return _then(_value.copyWith(
-      context: null == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
+      otp: null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
     ) as $Val);
   }
-}
-
-/// @nodoc
-abstract class _$$AuthResendOTPImplCopyWith<$Res>
-    implements $OtpEventCopyWith<$Res> {
-  factory _$$AuthResendOTPImplCopyWith(
-          _$AuthResendOTPImpl value, $Res Function(_$AuthResendOTPImpl) then) =
-      __$$AuthResendOTPImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({BuildContext context, String phone});
-}
-
-/// @nodoc
-class __$$AuthResendOTPImplCopyWithImpl<$Res>
-    extends _$OtpEventCopyWithImpl<$Res, _$AuthResendOTPImpl>
-    implements _$$AuthResendOTPImplCopyWith<$Res> {
-  __$$AuthResendOTPImplCopyWithImpl(
-      _$AuthResendOTPImpl _value, $Res Function(_$AuthResendOTPImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? context = null,
-    Object? phone = null,
-  }) {
-    return _then(_$AuthResendOTPImpl(
-      context: null == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AuthResendOTPImpl implements AuthResendOTP {
-  const _$AuthResendOTPImpl({required this.context, required this.phone});
-
-  @override
-  final BuildContext context;
-  @override
-  final String phone;
-
-  @override
-  String toString() {
-    return 'OtpEvent.resendOTP(context: $context, phone: $phone)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthResendOTPImpl &&
-            (identical(other.context, context) || other.context == context) &&
-            (identical(other.phone, phone) || other.phone == phone));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, context, phone);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthResendOTPImplCopyWith<_$AuthResendOTPImpl> get copyWith =>
-      __$$AuthResendOTPImplCopyWithImpl<_$AuthResendOTPImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, String phone) resendOTP,
-    required TResult Function(String otp, String phone, BuildContext context)
-        verifyOTP,
-  }) {
-    return resendOTP(context, phone);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, String phone)? resendOTP,
-    TResult? Function(String otp, String phone, BuildContext context)?
-        verifyOTP,
-  }) {
-    return resendOTP?.call(context, phone);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, String phone)? resendOTP,
-    TResult Function(String otp, String phone, BuildContext context)? verifyOTP,
-    required TResult orElse(),
-  }) {
-    if (resendOTP != null) {
-      return resendOTP(context, phone);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthResendOTP value) resendOTP,
-    required TResult Function(AuthVerifyOTP value) verifyOTP,
-  }) {
-    return resendOTP(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthResendOTP value)? resendOTP,
-    TResult? Function(AuthVerifyOTP value)? verifyOTP,
-  }) {
-    return resendOTP?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthResendOTP value)? resendOTP,
-    TResult Function(AuthVerifyOTP value)? verifyOTP,
-    required TResult orElse(),
-  }) {
-    if (resendOTP != null) {
-      return resendOTP(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthResendOTP implements OtpEvent {
-  const factory AuthResendOTP(
-      {required final BuildContext context,
-      required final String phone}) = _$AuthResendOTPImpl;
-
-  @override
-  BuildContext get context;
-  @override
-  String get phone;
-  @override
-  @JsonKey(ignore: true)
-  _$$AuthResendOTPImplCopyWith<_$AuthResendOTPImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -335,7 +184,6 @@ class _$AuthVerifyOTPImpl implements AuthVerifyOTP {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, String phone) resendOTP,
     required TResult Function(String otp, String phone, BuildContext context)
         verifyOTP,
   }) {
@@ -345,7 +193,6 @@ class _$AuthVerifyOTPImpl implements AuthVerifyOTP {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, String phone)? resendOTP,
     TResult? Function(String otp, String phone, BuildContext context)?
         verifyOTP,
   }) {
@@ -355,7 +202,6 @@ class _$AuthVerifyOTPImpl implements AuthVerifyOTP {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, String phone)? resendOTP,
     TResult Function(String otp, String phone, BuildContext context)? verifyOTP,
     required TResult orElse(),
   }) {
@@ -368,7 +214,6 @@ class _$AuthVerifyOTPImpl implements AuthVerifyOTP {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthResendOTP value) resendOTP,
     required TResult Function(AuthVerifyOTP value) verifyOTP,
   }) {
     return verifyOTP(this);
@@ -377,7 +222,6 @@ class _$AuthVerifyOTPImpl implements AuthVerifyOTP {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthResendOTP value)? resendOTP,
     TResult? Function(AuthVerifyOTP value)? verifyOTP,
   }) {
     return verifyOTP?.call(this);
@@ -386,7 +230,6 @@ class _$AuthVerifyOTPImpl implements AuthVerifyOTP {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthResendOTP value)? resendOTP,
     TResult Function(AuthVerifyOTP value)? verifyOTP,
     required TResult orElse(),
   }) {
@@ -403,6 +246,7 @@ abstract class AuthVerifyOTP implements OtpEvent {
       required final String phone,
       required final BuildContext context}) = _$AuthVerifyOTPImpl;
 
+  @override
   String get otp;
   @override
   String get phone;

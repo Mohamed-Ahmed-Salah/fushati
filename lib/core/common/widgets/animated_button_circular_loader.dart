@@ -6,7 +6,8 @@ import '../../res/styles/colours.dart';
 class AnimatedButtonCircularLoader extends StatelessWidget {
   final bool loading;
 
-  const AnimatedButtonCircularLoader({super.key, required this.loading});
+  final Color? color;
+  const AnimatedButtonCircularLoader({super.key, required this.loading ,this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class AnimatedButtonCircularLoader extends StatelessWidget {
         width: 2.5.h,
         margin: const EdgeInsets.all(8.0),
         child: CircularProgressIndicator(
-          color: Colours.whiteColor.withOpacity(0.7),
+          color:color?? Colours.whiteColor.withOpacity(0.7),
         ),
       ),
       secondChild: const SizedBox.shrink(),

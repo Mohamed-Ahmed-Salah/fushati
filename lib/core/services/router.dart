@@ -42,7 +42,7 @@ final _shellNavigatorProfile =
 final router = GoRouter(
   debugLogDiagnostics: true,
   navigatorKey: _rootNavigatorKey,
-  initialLocation: AuthenticatedSuccessfully.path,
+  initialLocation: SplashView.path,
   routes: [
     GoRoute(
       path: SplashView.path,

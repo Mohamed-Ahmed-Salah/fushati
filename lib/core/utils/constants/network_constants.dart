@@ -2,12 +2,9 @@ import '../../common/app/cache_helper.dart';
 import '../../services/injection_container.dart';
 
 abstract class NetworkConstants {
-  static const baseUrl = 'https://dev.app.saladbar.sa/api/v1';
-  static const String customerUrl = '$baseUrl/customers';
-  static const String packageUrl = '$baseUrl/packages';
-  static const String walletUrl = '$baseUrl/wallet';
-  static const String workPlacesUrl = '$baseUrl/workplaces';
-  static const String platformUrl = '$baseUrl/minimum-version';
+  static const baseUrl = 'http://52.233.82.20/api';
+  static const String parentUrl = '$baseUrl/parent';
+
 
 
   static const String productImgUrl =

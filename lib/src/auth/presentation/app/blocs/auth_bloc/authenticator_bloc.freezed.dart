@@ -22,32 +22,38 @@ mixin _$AuthenticatorEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String phone, BuildContext context)
         loginOrRegister,
+    required TResult Function(BuildContext context, String phone) resendOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phone, BuildContext context)? loginOrRegister,
+    TResult? Function(BuildContext context, String phone)? resendOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phone, BuildContext context)? loginOrRegister,
+    TResult Function(BuildContext context, String phone)? resendOTP,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthLoginOrRegister value) loginOrRegister,
+    required TResult Function(AuthResendOTP value) resendOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthLoginOrRegister value)? loginOrRegister,
+    TResult? Function(AuthResendOTP value)? resendOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthLoginOrRegister value)? loginOrRegister,
+    TResult Function(AuthResendOTP value)? resendOTP,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -172,6 +178,7 @@ class _$AuthLoginOrRegisterImpl implements AuthLoginOrRegister {
   TResult when<TResult extends Object?>({
     required TResult Function(String phone, BuildContext context)
         loginOrRegister,
+    required TResult Function(BuildContext context, String phone) resendOTP,
   }) {
     return loginOrRegister(phone, context);
   }
@@ -180,6 +187,7 @@ class _$AuthLoginOrRegisterImpl implements AuthLoginOrRegister {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phone, BuildContext context)? loginOrRegister,
+    TResult? Function(BuildContext context, String phone)? resendOTP,
   }) {
     return loginOrRegister?.call(phone, context);
   }
@@ -188,6 +196,7 @@ class _$AuthLoginOrRegisterImpl implements AuthLoginOrRegister {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phone, BuildContext context)? loginOrRegister,
+    TResult Function(BuildContext context, String phone)? resendOTP,
     required TResult orElse(),
   }) {
     if (loginOrRegister != null) {
@@ -200,6 +209,7 @@ class _$AuthLoginOrRegisterImpl implements AuthLoginOrRegister {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthLoginOrRegister value) loginOrRegister,
+    required TResult Function(AuthResendOTP value) resendOTP,
   }) {
     return loginOrRegister(this);
   }
@@ -208,6 +218,7 @@ class _$AuthLoginOrRegisterImpl implements AuthLoginOrRegister {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthLoginOrRegister value)? loginOrRegister,
+    TResult? Function(AuthResendOTP value)? resendOTP,
   }) {
     return loginOrRegister?.call(this);
   }
@@ -216,6 +227,7 @@ class _$AuthLoginOrRegisterImpl implements AuthLoginOrRegister {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthLoginOrRegister value)? loginOrRegister,
+    TResult Function(AuthResendOTP value)? resendOTP,
     required TResult orElse(),
   }) {
     if (loginOrRegister != null) {
@@ -237,6 +249,156 @@ abstract class AuthLoginOrRegister implements AuthenticatorEvent {
   @override
   @JsonKey(ignore: true)
   _$$AuthLoginOrRegisterImplCopyWith<_$AuthLoginOrRegisterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthResendOTPImplCopyWith<$Res>
+    implements $AuthenticatorEventCopyWith<$Res> {
+  factory _$$AuthResendOTPImplCopyWith(
+          _$AuthResendOTPImpl value, $Res Function(_$AuthResendOTPImpl) then) =
+      __$$AuthResendOTPImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({BuildContext context, String phone});
+}
+
+/// @nodoc
+class __$$AuthResendOTPImplCopyWithImpl<$Res>
+    extends _$AuthenticatorEventCopyWithImpl<$Res, _$AuthResendOTPImpl>
+    implements _$$AuthResendOTPImplCopyWith<$Res> {
+  __$$AuthResendOTPImplCopyWithImpl(
+      _$AuthResendOTPImpl _value, $Res Function(_$AuthResendOTPImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+    Object? phone = null,
+  }) {
+    return _then(_$AuthResendOTPImpl(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthResendOTPImpl implements AuthResendOTP {
+  const _$AuthResendOTPImpl({required this.context, required this.phone});
+
+  @override
+  final BuildContext context;
+  @override
+  final String phone;
+
+  @override
+  String toString() {
+    return 'AuthenticatorEvent.resendOTP(context: $context, phone: $phone)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthResendOTPImpl &&
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.phone, phone) || other.phone == phone));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, context, phone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthResendOTPImplCopyWith<_$AuthResendOTPImpl> get copyWith =>
+      __$$AuthResendOTPImplCopyWithImpl<_$AuthResendOTPImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String phone, BuildContext context)
+        loginOrRegister,
+    required TResult Function(BuildContext context, String phone) resendOTP,
+  }) {
+    return resendOTP(context, phone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String phone, BuildContext context)? loginOrRegister,
+    TResult? Function(BuildContext context, String phone)? resendOTP,
+  }) {
+    return resendOTP?.call(context, phone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phone, BuildContext context)? loginOrRegister,
+    TResult Function(BuildContext context, String phone)? resendOTP,
+    required TResult orElse(),
+  }) {
+    if (resendOTP != null) {
+      return resendOTP(context, phone);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthLoginOrRegister value) loginOrRegister,
+    required TResult Function(AuthResendOTP value) resendOTP,
+  }) {
+    return resendOTP(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthLoginOrRegister value)? loginOrRegister,
+    TResult? Function(AuthResendOTP value)? resendOTP,
+  }) {
+    return resendOTP?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthLoginOrRegister value)? loginOrRegister,
+    TResult Function(AuthResendOTP value)? resendOTP,
+    required TResult orElse(),
+  }) {
+    if (resendOTP != null) {
+      return resendOTP(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthResendOTP implements AuthenticatorEvent {
+  const factory AuthResendOTP(
+      {required final BuildContext context,
+      required final String phone}) = _$AuthResendOTPImpl;
+
+  @override
+  BuildContext get context;
+  @override
+  String get phone;
+  @override
+  @JsonKey(ignore: true)
+  _$$AuthResendOTPImplCopyWith<_$AuthResendOTPImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

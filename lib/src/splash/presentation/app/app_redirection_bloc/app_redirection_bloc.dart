@@ -68,7 +68,7 @@ class AppRedirectionBloc
     if (isFirstTime) {
       //todo go onboarding
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        router.go(LoginView.path);
+        router.go(OnBoardingView.path);
       });
     } else if (Cache.instance.isLoggedOut()) {
       SchedulerBinding.instance.addPostFrameCallback((_) {

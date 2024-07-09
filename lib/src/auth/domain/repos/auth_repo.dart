@@ -1,13 +1,14 @@
 
 import '../../../../core/utils/typedefs.dart';
 import '../../data/models/user_model.dart';
+import '../entities/otp_response.dart';
 
 abstract class AuthRepo {
   ResultFuture<void> loginOrRegister({
     required String phone,
   });
 
-  ResultFuture<UserModel> verifyOTP({
+  ResultFuture<OtpResponse> verifyOTP({
     required String phone,
     required String otp,
   });
