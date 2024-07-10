@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/card_details/presentation/views/card_details_view.dart';
+import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -10,6 +15,9 @@ import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/res/theme/app_theme.dart';
+import '../widgets/card_detail_confirmation.dart';
+import '../widgets/card_detail_dialog.dart';
+import '../widgets/card_detail_error.dart';
 
 class NewCardView extends StatefulWidget {
   static String path = "/card-new";
@@ -71,7 +79,6 @@ class _NewCardViewState extends State<NewCardView> {
                       TextFormField(
                         style: CustomTheme.textFieldTextStyle,
                         inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
                           LengthLimitingTextInputFormatter(14),
                         ],
                         decoration: InputDecoration(
@@ -103,12 +110,21 @@ class _NewCardViewState extends State<NewCardView> {
                     children: [
                       ElevatedButton(
                           onPressed: () {
-                            context.push(CardDetailsView.path);
-                            // bool filledFormCorrectly =
-                            //     _formKey.currentState?.validate();
-                            // if (filledFormCorrectly) {
-                            //   ///todo call  function
-                            // }
+                            // context.push(CardDetailsView.path);
+                            bool filledFormCorrectly =
+                                _formKey.currentState?.validate();
+
+                            if (filledFormCorrectly) {
+                              showDialog(
+                                context: context,
+                                builder: (context) => CardDetailsDialog(
+                                  cardNumber: controller.text,
+                                ),
+                              );
+                              context.read<GetCardDetailsBloc>().add(
+                                  GetCardDetailsEvent.getCard(
+                                      cardNumber: controller.text));
+                            }
                           },
                           child: Text("${AppLocalizations.of(context)?.cont}")),
                     ],

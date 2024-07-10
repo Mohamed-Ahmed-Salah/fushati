@@ -77,9 +77,14 @@
 "addNewCard":"Add new card",
 "tryAgian":"Try again",
 "connectionLost":"Connection lost :(",
-"connectionLostDesc":"It seems like you don’t have internet connection. Let’s give it another try"
+"connectionLostDesc":"It seems like you don’t have internet connection. Let’s give it another try",
 
-
+"cardConfirmationFailed":"Card Confirmation Failed",
+"fushatiVerifivation":"Fushaty card verification",
+"verifyCardInfo":"Please verify your card information",
+"phoneNo":"Phone No.:",
+"dateCreated":"Date created:",
+"cardNo":"Card No.:"
 
 
 

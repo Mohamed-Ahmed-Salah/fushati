@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/src/home/domain/entity/card.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,7 +16,8 @@ import '../singletons/form_validation.dart';
 import 'close_button.dart';
 
 class PickAmountBottomSheet extends StatefulWidget {
-  const PickAmountBottomSheet({super.key});
+  final CardEntity card;
+  const PickAmountBottomSheet({super.key, required this.card});
 
   @override
   State<PickAmountBottomSheet> createState() => _PickAmountBottomSheetState();
@@ -251,7 +253,7 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                         context.read<AmountToTransferCubit>().addingAmountEvent(
                             amount: int.parse(_controller.text));
                         Navigator.pop(context);
-                        context.pushNamed(MoyasarWalletTransferView.name);
+                        context.pushNamed(MoyasarWalletTransferView.name,extra: widget.card);
                       }
                     },
                     child: Text(

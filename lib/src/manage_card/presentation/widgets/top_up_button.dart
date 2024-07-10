@@ -19,6 +19,7 @@ import '../../../../core/res/theme/app_theme.dart';
 import '../../../home/domain/entity/card.dart';
 import '../widgets/delete_card_button.dart';
 import '../widgets/top_up_button.dart';
+
 class TopUpButton extends StatelessWidget {
   final CardEntity card;
 
@@ -29,11 +30,12 @@ class TopUpButton extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          print("object");
           showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
-              return const PickAmountBottomSheet();
+              return PickAmountBottomSheet(
+                card: card,
+              );
             },
           );
         },

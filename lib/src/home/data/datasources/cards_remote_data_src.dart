@@ -165,6 +165,9 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
+      if (response.data["id"] == null) {
+        throw const CardNotFoundException(statusCode: 422);
+      }
       if (isSuccess) {
         return CardModel.fromJson(response.data);
       } else {
@@ -228,6 +231,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
+      print("AAAAAAAAAAAAA ${response.statusCode}");
+      print(response.data);
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data)) as List)
             .map((i) => CardModel.fromJson(i))
@@ -277,6 +282,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
+      print("E#### ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

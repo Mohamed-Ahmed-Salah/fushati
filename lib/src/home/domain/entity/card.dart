@@ -3,24 +3,24 @@ class CardEntity {
   final int id;
   final String name;
   final String email;
-  final DateTime emailVerifiedAt;
+  final DateTime? emailVerifiedAt;
   final DateTime createdAt;
   final DateTime updatedAt;
   final String userNumber;
   final String userPhone;
-  final String department;
-  final String position;
+  final String? department;
+  final String? position;
   final String userCard;
-  final String equipment;
-  final String identityId;
-  final String role;
-  final String type;
+  final String? equipment;
+  final String? identityId;
+  final String? role;
+  final String? type;
 
   CardEntity({
     required this.id,
     required this.name,
     required this.email,
-    required this.emailVerifiedAt,
+     this.emailVerifiedAt,
     required this.createdAt,
     required this.updatedAt,
     required this.userNumber,

@@ -46,8 +46,8 @@ class ErrorView extends StatelessWidget {
                     : "$message",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colours.greyColor.withOpacity(0.72),
-                    fontWeight: FontWeight.w100)),
+                    color: Colours.blackColor,
+                    fontWeight: FontWeight.w400)),
             Spacer(),
             ElevatedButton(
                 onPressed: onPressed,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fushati/core/utils/constants/size_constatnts.dart';
 
 import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -13,7 +14,7 @@ class AlertLoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(5.w),
+        padding: EdgeInsets.all(SizeConst.horizontalPaddingFour),
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(

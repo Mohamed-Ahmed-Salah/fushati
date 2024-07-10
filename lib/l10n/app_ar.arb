@@ -82,7 +82,14 @@
 "addNewCard":"إضافة بطاقة جديدة",
 "tryAgian":"اعاده المحاوله",
 "connectionLost":"انقطع الاتصال :(",
-"connectionLostDesc":"يبدو أنه ليس لديك اتصال بالإنترنت. دعنا نحاول مرة أخرى"
+"connectionLostDesc":"يبدو أنه ليس لديك اتصال بالإنترنت. دعنا نحاول مرة أخرى",
+
+"cardConfirmationFailed": "فشل تأكيد البطاقة",
+"fushatiVerifivation": "التحقق من بطاقة فسحتي",
+"verifyCardInfo": "يرجى التحقق من معلومات بطاقتك",
+"phoneNo": "رقم الهاتف:",
+"dateCreated": "تاريخ الإنشاء:",
+"cardNo": "رقم البطاقة:"
 
 
 
