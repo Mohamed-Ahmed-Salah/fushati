@@ -20,6 +20,7 @@ import '../../../../core/res/theme/app_theme.dart';
 import '../../../home/domain/entity/card.dart';
 import '../widgets/delete_card_button.dart';
 import '../widgets/top_up_button.dart';
+
 class DeleteCardButton extends StatelessWidget {
   final CardEntity card;
 
@@ -76,44 +77,92 @@ class DeleteCardButton extends StatelessWidget {
   }
 }
 
-
-
-
 class DeleteConfirmationCardBox extends StatelessWidget {
   const DeleteConfirmationCardBox({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CustomCloseButton(),
-            ],
-          ),
-          SvgPicture.asset(Media.deleteCardSvg),
-          Text("${AppLocalizations.of(context)?.deleteCard}"),
-          Text("${AppLocalizations.of(context)?.areYouSureDeleteCard}"),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text("${AppLocalizations.of(context)?.cancel}"),
-                ),
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.all(SizeConst.horizontalPadding),
+        child: Material(
+          elevation: 0,
+          color: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colours.whiteColor,
+                borderRadius:
+                    BorderRadius.all(Radius.circular(SizeConst.borderRadius))),
+            child: Padding(
+              padding: EdgeInsets.all(SizeConst.horizontalPadding),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      CustomCloseButton(),
+                    ],
+                  ),
+                  SvgPicture.asset(Media.deleteCardSvg),
+                  SizedBox(
+                    height: SizeConst.verticalPadding,
+                  ),
+                  Text(
+                    "${AppLocalizations.of(context)?.deleteCard}",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 1.h,
+                  ),
+                  Text(
+                    "${AppLocalizations.of(context)?.areYouSureDeleteCard}",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: Colours.textBlackColor.withOpacity(0.7)),
+                  ),
+                  SizedBox(
+                    height: SizeConst.verticalPadding,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: Colours.lightGreyButton,
+                          ),
+                          onPressed: () {
+                            context.pop();
+                          },
+                          child: Text(
+                            "${AppLocalizations.of(context)?.cancel}",
+                            style: const TextStyle(fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: SizeConst.horizontalPadding,
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            "${AppLocalizations.of(context)?.delete}",
+                            style: const TextStyle(fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text("${AppLocalizations.of(context)?.delete}"),
-                ),
-              ),
-            ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

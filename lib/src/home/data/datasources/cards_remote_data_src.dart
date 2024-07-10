@@ -24,6 +24,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   @override
   Future<void> addCard({required String cardNumber}) async {
     try {
+      print("NEW CARD ADDING $cardNumber");
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
           .post('${NetworkConstants.parentsUrl}$addCardEndpoint',
@@ -32,7 +33,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
                 headers: header,
               ))
           .timeout(const Duration(seconds: 10));
-      bool isSuccess = response.statusCode == 200;
+      bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
+      print("responseeeeeeee------ ${response.data}");
 
       if (isSuccess) {
         return;

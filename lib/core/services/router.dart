@@ -14,6 +14,8 @@ import '../../src/card_details/presentation/views/card_details_view.dart';
 import '../../src/home/presentation/views/home_view.dart';
 import '../../src/manage_card/presentation/views/manage_card_view.dart';
 import '../../src/moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
+import '../../src/new_card/presentation/views/add_card_loader.dart';
+import '../../src/new_card/presentation/views/add_card_success.dart';
 import '../../src/new_card/presentation/views/new_card_view.dart';
 import '../../src/on_boarding/presentation/views/onboarding_view.dart';
 import '../../src/splash/presentation/views/splash_view.dart';
@@ -84,10 +86,21 @@ final router = GoRouter(
       builder: (context, state) => const HomeView(),
     ),
     GoRoute(
-      path: NewCardView.path,
-      name: NewCardView.name,
-      builder: (context, state) => const NewCardView(),
-    ),
+        path: NewCardView.path,
+        name: NewCardView.name,
+        builder: (context, state) => const NewCardView(),
+        routes: [
+          GoRoute(
+            path: AddCardLoaderView.path,
+            name: AddCardLoaderView.name,
+            builder: (context, state) => const AddCardLoaderView(),
+          ),
+          GoRoute(
+            path: AddCardSuccessView.path,
+            name: AddCardSuccessView.name,
+            builder: (context, state) => const AddCardSuccessView(),
+          ),
+        ]),
     GoRoute(
       path: CardDetailsView.path,
       builder: (context, state) => const CardDetailsView(),
@@ -118,7 +131,6 @@ final router = GoRouter(
         card: state.extra as CardEntity,
       ),
     ),
-
     GoRoute(
       path: ProfileView.path,
       builder: (context, state) => const ProfileView(),

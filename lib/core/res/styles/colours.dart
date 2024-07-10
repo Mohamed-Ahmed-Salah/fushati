@@ -19,8 +19,7 @@ abstract class Colours {
 
   static const Color greyColor = Color(0xFF999DA3);
   static const Color greyLightColor = Color(0xFFF4F7F8);
-  static const Color lightGreyButton = Color.fromRGBO(
-      33, 37, 41, 0.05);
+  static final Color lightGreyButton =Colors.black.withOpacity(0.03);
   static const Color dividerGreyColor = Color(0xFFD8DADC);
   static const Color textBlackColor = Colors.black;
   static const Color blackColor = Colors.black;

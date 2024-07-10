@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fushati/src/auth/presentation/app/blocs/auth_bloc/authenticator_bloc.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
+import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:fushati/src/splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
 
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<AppRedirectionBloc>(
             create: (BuildContext context) => AppRedirectionBloc(),
+          ),
+          BlocProvider<AddNewCardBloc>(
+            create: (BuildContext context) => AddNewCardBloc(addCard: sl()),
           ),
           BlocProvider<CustomerInfoBloc>(
             create: (BuildContext context) => CustomerInfoBloc(
