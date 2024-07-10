@@ -55,3 +55,10 @@ class TimeOutFailure extends Failure {
       : this(message: e.message, statusCode: e.statusCode);
 }
 
+class CardNotFoundFailure extends Failure {
+  const CardNotFoundFailure(
+      {required super.message, required super.statusCode});
+
+  CardNotFoundFailure.fromException(CardNotFoundException e)
+      : this(message: e.message, statusCode: e.statusCode);
+}

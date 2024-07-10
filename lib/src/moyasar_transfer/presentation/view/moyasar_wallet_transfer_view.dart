@@ -16,7 +16,7 @@ import '../app/bloc/transfer_money_bloc.dart';
 import '../app/cubit/amount_to_transfer_cubit.dart';
 
 class MoyasarWalletTransferView extends StatelessWidget {
-  static const String path = "moyasar";
+  static const String path = "/moyasar";
   static const String name = "/moyasar";
 
   final CardEntity card;

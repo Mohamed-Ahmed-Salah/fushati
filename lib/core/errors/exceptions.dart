@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:fushati/core/utils/constants/error_consts.dart';
+import 'package:fushati/core/utils/constants/text_constants.dart';
 
 class ServerException extends Equatable implements Exception {
   const ServerException({required this.message, required this.statusCode});
@@ -6,6 +8,19 @@ class ServerException extends Equatable implements Exception {
   final String message;
   final int statusCode;
 
+  @override
+  List<Object> get props => [message, statusCode];
+}
+
+class CardNotFoundException extends Equatable implements Exception {
+  const CardNotFoundException(
+      {this.message = ErrorConst.CANNOT_FIND_CARD_EN,
+      required this.statusCode});
+
+  final String message;
+  final int statusCode;
+
+  @override
   List<Object> get props => [message, statusCode];
 }
 
@@ -16,6 +31,7 @@ class AuthenticationException extends Equatable implements Exception {
   final String message;
   final int statusCode;
 
+  @override
   List<Object> get props => [message, statusCode];
 }
 
@@ -24,6 +40,7 @@ class CacheException extends Equatable implements Exception {
 
   final String message;
 
+  @override
   List<Object> get props => [message];
 }
 
@@ -35,6 +52,7 @@ class NoInternetException extends Equatable implements Exception {
   const NoInternetException({required this.message, required this.statusCode});
 
   // TODO: implement props
+  @override
   List<Object?> get props => [message, statusCode];
 }
 
@@ -47,5 +65,6 @@ class TimeOutException extends Equatable implements Exception {
   const TimeOutException({required this.message, required this.statusCode});
 
   // TODO: implement props
+  @override
   List<Object?> get props => [message, statusCode];
 }

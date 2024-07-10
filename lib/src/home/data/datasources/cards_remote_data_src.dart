@@ -15,7 +15,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   static const studentCardsEndpoint = '/parent/students';
   static const addCardEndpoint = '/parent-student';
   static const deleteCardEndpoint = '/parent-student';
-  static const getCardDetailsEndpoint = '/parent-student';
+  static const getCardDetailsEndpoint = '/student-card';
 
   const CardRemoteDataSrcImpl(this._dio);
 
@@ -39,8 +39,11 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
-              message: ErrorConst.OTP_NOT_FOUND,
+              message: ErrorConst.NO_TOKEN,
               statusCode: response.statusCode ?? 0);
+        }
+        if (response.statusCode == 422) {
+          throw const CardNotFoundException(statusCode: 422);
         }
         throw ServerException(
             message: response.data['message'],
@@ -73,6 +76,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on NoInternetException {
       rethrow;
     } on TimeOutException {
+      rethrow;
+    } on CardNotFoundException {
       rethrow;
     } on TimeoutException {
       throw throw const TimeOutException(
@@ -101,7 +106,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
-              message: ErrorConst.OTP_NOT_FOUND,
+              message: ErrorConst.NO_TOKEN,
               statusCode: response.statusCode ?? 0);
         }
         throw ServerException(
@@ -135,6 +140,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on NoInternetException {
       rethrow;
     } on TimeOutException {
+      rethrow;
+    } on CardNotFoundException {
       rethrow;
     } on TimeoutException {
       throw throw const TimeOutException(
@@ -150,8 +157,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .get('${NetworkConstants.parentsUrl}$addCardEndpoint',
-              data: {"student_card": cardNumber},
+          .get(
+              '${NetworkConstants.parentsUrl}$getCardDetailsEndpoint/$cardNumber',
               options: Options(
                 headers: header,
               ))
@@ -163,7 +170,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
-              message: ErrorConst.OTP_NOT_FOUND,
+              message: ErrorConst.NO_TOKEN,
               statusCode: response.statusCode ?? 0);
         }
         throw ServerException(
@@ -201,6 +208,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
+    } on CardNotFoundException {
+      rethrow;
     } catch (e, s) {
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
@@ -227,7 +236,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
-              message: ErrorConst.OTP_NOT_FOUND,
+              message: ErrorConst.NO_TOKEN,
               statusCode: response.statusCode ?? 0);
         }
         throw ServerException(
@@ -265,6 +274,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
+    } on CardNotFoundException {
+      rethrow;
     } catch (e, s) {
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
