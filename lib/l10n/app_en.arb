@@ -89,7 +89,9 @@
 "cardDeleted":"Card deleted",
 "noWorries":"No worries! we got everything tide up!",
 "balanceRS":"{balance} R.S",
+"rs":"{balance} R.s",
 "balance":"Balance",
+"transactionId":"Trx ID ",
 
 "profileDetails":"Profile details",
 "completeProfile":"Please enter your name and email to complete your profile setup",

@@ -220,10 +220,56 @@ abstract class CoreUtils {
     showDialog(
         context: rootNavigatorKey.currentContext!,
         builder: (context) => SuccessAlertDialog(
-          title: title,
-          subtitle: subTitle,
-          onPressed: onPressed,
-        ));
+              title: title,
+              subtitle: subTitle,
+              onPressed: onPressed,
+            ));
+  }
 
+  // static String formatDateTime(String dateTimeString) {
+  //    // Parse the string into a DateTime object
+  //    DateTime dateTime = DateTime.parse(dateTimeString);
+  //
+  //    // Define the output format
+  //    DateFormat outputFormat = DateFormat('dd MMM yyyy hh:mm:ss a');
+  //
+  //    // Format the DateTime object into the desired string format
+  //    String formattedDate = outputFormat.format(dateTime);
+  //
+  //    return formattedDate;
+  //  }
+
+// Function to format the complete date and time
+  static String formatDateTime(DateTime dateTime) {
+    DateFormat outputFormat = DateFormat('dd MMM yyyy hh:mm:ss a');
+    String formattedDate = outputFormat.format(dateTime);
+    return formattedDate;
+  }
+
+// Function to get the date part only
+  static String getFormattedDate(DateTime dateTime) {
+    // DateTime dateTime = DateTime.parse(dateTimeString);
+    DateFormat dateFormat = DateFormat('dd MMM yyyy');
+    String formattedDate = dateFormat.format(dateTime);
+    return formattedDate;
+  }
+
+// Function to get the time part only
+  static String getFormattedTime(DateTime dateTime) {
+    DateFormat timeFormat = DateFormat('hh:mm:ss a');
+    String formattedTime = timeFormat.format(dateTime);
+    return formattedTime;
+  }
+
+  static String getAmOrPm(DateTime dateTime) {
+    // Define the output format to get only the AM or PM part
+    DateFormat amPmFormat = DateFormat('a');
+
+    // Format the DateTime object to get only the AM or PM part
+    String amOrPm = amPmFormat.format(dateTime);
+    String formattedAmOrPm = "${amOrPm.split('').join('.').toUpperCase()}.";
+
+
+    return formattedAmOrPm;
   }
 }

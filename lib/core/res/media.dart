@@ -23,6 +23,9 @@ abstract class Media {
   static const profileSvg = "$_baseSvg/person.svg";
   static const profileEditSvg = "$_baseSvg/person_edit.svg";
   static const languageSvg = "$_baseSvg/language.svg";
+  static const studentsSvg = "$_baseSvg/students.svg";
+  static const blocksSvg = "$_baseSvg/blocks.svg";
+  static const safeSvg = "$_baseSvg/safe.svg";
 
   static const successSvg = "$_baseSvg/card_success.svg";
   static const warningSvg = "$_baseSvg/card_warning.svg";
@@ -31,6 +34,7 @@ abstract class Media {
 
 
   static const splashLottie = "$_baseLottie/splash.json";
+  static const loadingLottie = "$_baseLottie/loader.json";
 
 
   static const backIcon = Icons.arrow_back_rounded;

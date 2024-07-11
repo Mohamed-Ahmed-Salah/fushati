@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entity/card.dart';
+import "transaction_model.dart";
 
 class CardModel extends CardEntity {
   CardModel({
@@ -20,6 +21,7 @@ class CardModel extends CardEntity {
     super.role,
     super.type,
     required super.balance,
+    required super.transactions,
   });
 
   factory CardModel.fromJson(Map<String, dynamic> json) => CardModel(
@@ -41,6 +43,10 @@ class CardModel extends CardEntity {
         role: json["role"],
         type: json["type"],
         balance: json["balance"],
+        transactions: json["transactions"].toString().length > 2
+            ? List<Transaction>.from(
+                json["transactions"].map((x) => Transaction.fromJson(x)))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {

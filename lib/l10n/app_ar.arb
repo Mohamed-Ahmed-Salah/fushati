@@ -94,6 +94,10 @@
 "cardDeleted": "تم حذف البطاقة",
 "noWorries": "لا تقلق! لقد رتبنا كل شيء!",
 "balanceRS":"ر.س {balance}",
+"rs":"ر.س {balance}",
+"transactionId":"رقم التحويله ",
+
+
 "balance":"رصيد",
 
 "profileDetails": "تفاصيل الملف الشخصي",

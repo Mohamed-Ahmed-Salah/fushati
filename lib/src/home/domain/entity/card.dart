@@ -1,4 +1,6 @@
 
+import '../../data/models/transaction_model.dart';
+
 class CardEntity {
   final int id;
   final String name;
@@ -16,6 +18,8 @@ class CardEntity {
   final String? role;
   final String? type;
   final String balance;
+  final List<Transaction> transactions;
+
 
   CardEntity({
     required this.id,
@@ -34,6 +38,7 @@ class CardEntity {
     required this.identityId,
     required this.role,
     required this.type,
+     required this.transactions,
   });
 
 }

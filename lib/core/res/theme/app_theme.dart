@@ -18,6 +18,17 @@ abstract class CustomTheme {
       Colours.whiteColor,
     ],
   );
+  static LinearGradient linearGradiantLarge =LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops:  const [0, 0.4, 1, 0],
+    colors: [
+      Colours.primaryGreenColor.withOpacity(0.2),
+      Colours.primaryGreenColor.withOpacity(0.1),
+      Colours.primaryGreenColor.withOpacity(0.01),
+      Colours.whiteColor,
+    ],
+  );
   static const textFieldTextStyle = TextStyle(fontWeight: FontWeight.w400);
   static final notSelectedDaysBoxDecoration = BoxDecoration(
       color: Colours.greyColor.withOpacity(0.16),
