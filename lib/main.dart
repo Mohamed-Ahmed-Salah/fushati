@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fushati/src/auth/presentation/app/blocs/auth_bloc/authenticator_bloc.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
+import 'package:fushati/src/manage_card/presentation/app/bloc/delete_card_bloc.dart';
 import 'package:fushati/src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
@@ -73,6 +74,10 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => GetCardDetailsBloc(
               getCardDetails: sl(),
             ),
+          ), BlocProvider<DeleteCardBloc>(
+            create: (BuildContext context) => DeleteCardBloc(
+              deleteCard: sl(),
+            )
           ),
           BlocProvider<CardsBloc>(
             create: (BuildContext context) => CardsBloc(

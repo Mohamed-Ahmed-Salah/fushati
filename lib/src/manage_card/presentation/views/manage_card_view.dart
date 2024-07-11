@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/common/widgets/close_button.dart';
 import 'package:fushati/core/res/styles/colours.dart';
@@ -18,6 +19,7 @@ import '../../../../core/common/widgets/pick_amount_bottomsheet.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/res/theme/app_theme.dart';
 import '../../../home/domain/entity/card.dart';
+import '../app/bloc/delete_card_bloc.dart';
 import '../widgets/delete_card_button.dart';
 import '../widgets/top_up_button.dart';
 
@@ -44,6 +46,14 @@ class _ManageCardViewState extends State<ManageCardView> {
     controller = TextEditingController();
     // TODO: implement initState
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    context.read<DeleteCardBloc>().add(const DeleteCardEvent.reset());
+
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
   }
 
   @override

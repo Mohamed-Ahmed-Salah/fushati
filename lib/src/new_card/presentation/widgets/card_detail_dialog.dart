@@ -11,10 +11,12 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/common/singletons/form_validation.dart';
+import '../../../../core/common/widgets/custom_animated_switcher.dart';
 import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/res/theme/app_theme.dart';
+import '../../../manage_card/presentation/widgets/delete_card_button.dart';
 import '../widgets/card_detail_confirmation.dart';
 import '../widgets/card_detail_error.dart';
 
@@ -66,21 +68,7 @@ class CardDetailsDialog extends StatelessWidget {
                           color: Colors.transparent,
                           elevation: 0,
                           child: Center(
-                            child: AnimatedSwitcher(
-                              transitionBuilder: (child, animation) {
-                                return FadeTransition(
-                                  opacity: animation,
-                                  child: SlideTransition(
-                                      position: Tween<Offset>(
-                                        begin: const Offset(0.0, 0.3),
-                                        end: const Offset(0.0, 0.0),
-                                      ).animate(animation),
-                                      child: child),
-                                );
-                              },
-                              duration: const Duration(milliseconds: 600),
-                              switchInCurve: Curves.easeInOut,
-                              switchOutCurve: Curves.easeInOut,
+                            child: CustomAnimatedSwitcher(
                               child: state.when(
                                   loading: () => Center(
                                         child: Padding(
