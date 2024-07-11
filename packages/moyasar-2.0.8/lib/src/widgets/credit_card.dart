@@ -173,9 +173,9 @@ class _CreditCardState extends State<CreditCard> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   minimumSize:
-                      const MaterialStatePropertyAll<Size>(Size.fromHeight(55)),
+                      const WidgetStatePropertyAll<Size>(Size.fromHeight(55)),
                   backgroundColor:
-                      MaterialStatePropertyAll<Color>(widget.buttonColor),
+                      WidgetStatePropertyAll<Color>(widget.buttonColor),
                 ),
                 onPressed: _isSubmitting ? () {} : _saveForm,
                 child: _isSubmitting
@@ -211,7 +211,7 @@ class SaveCardNotice extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.info,
                   color: Color(0xFF7EC242),
                 ),
@@ -220,7 +220,7 @@ class SaveCardNotice extends StatelessWidget {
                 ),
                 Text(
                   locale.saveCardNotice,
-                  style: TextStyle(color: Color(0xFF7EC242)),
+                  style: const TextStyle(color: Color(0xFF7EC242)),
                 ),
               ],
             ))
@@ -251,7 +251,7 @@ class CardFormField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
-          style: TextStyle(fontWeight: FontWeight.w100),
+          style: const TextStyle(fontWeight: FontWeight.w400),
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           decoration: inputDecoration,
