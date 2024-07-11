@@ -61,21 +61,14 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         (failure) {
           // if (failure.statusCode == 0) {}
           emit(OtpState.failed(failure.message));
-          if (failure.message.contains(ErrorConst.OTP_FAILURE_TRIES_ERROR)) {
-            context.pushReplacementNamed(
-              FailedOTPThreeTimesView.name,
-              queryParameters: {"phone": phone},
-            );
-          } else {
-            CoreUtils.showMyDialog(
-              title: ErrorConst.getErrorTitle(title: ErrorConst.otpErrorEn),
-              subTitle: failure.message,
-              // ErrorConst.getErrorBody(text: failure.message),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            );
-          }
+          CoreUtils.showMyDialog(
+            title: ErrorConst.getErrorTitle(title: ErrorConst.otpErrorEn),
+            subTitle: failure.message,
+            // ErrorConst.getErrorBody(text: failure.message),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          );
         },
         (response) async {
           emit(const OtpState.success());

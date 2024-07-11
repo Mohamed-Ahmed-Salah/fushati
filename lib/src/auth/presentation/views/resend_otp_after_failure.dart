@@ -19,7 +19,7 @@ class FailedOTPThreeTimesView extends StatelessWidget {
       body: GreenBackground(
         child: Padding(
           padding: EdgeInsets.all(5.w),
-          child: SizedBox(
+          child: const SizedBox(
             height: double.infinity,
 
           ),
