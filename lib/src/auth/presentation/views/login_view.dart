@@ -237,14 +237,6 @@ class _LoginViewState extends State<LoginView> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             ElevatedButton(
-                              // onPressed: () {
-                              //   context.pushNamed(
-                              //     VerifyOTPView.name,
-                              //     queryParameters: {
-                              //       "phone": _controller.text
-                              //     },
-                              //   );
-                              // },
                               onPressed: state ==
                                       const AuthenticatorState.loading()
                                   ? null
@@ -252,13 +244,15 @@ class _LoginViewState extends State<LoginView> {
                                       bool filledFormCorrectly = _formKey
                                           .currentState
                                           ?.validate();
-                                      if (filledFormCorrectly) {}
-                                      context
-                                          .read<AuthenticatorBloc>()
-                                          .add(AuthenticatorEvent
-                                              .loginOrRegister(
-                                                  phone: "+966${_controller.text}",
-                                                  context: context));
+                                      if (filledFormCorrectly) {
+                                        context
+                                            .read<AuthenticatorBloc>()
+                                            .add(AuthenticatorEvent
+                                            .loginOrRegister(
+                                            phone: "+966${_controller.text}",
+                                            context: context));
+                                      }
+
                                     },
                               child: Row(
                                 mainAxisAlignment:

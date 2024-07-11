@@ -2,16 +2,13 @@ part of 'user_info_bloc.dart';
 
 @freezed
 sealed class UserInfoEvent with _$UserInfoEvent {
-  const factory UserInfoEvent.getUserInfo({required BuildContext context}) =
+  const factory UserInfoEvent.getUserInfo() =
       GetUserInfoEvent;
 
   const factory UserInfoEvent.EditUserInfo({
     required String name,
-    required String email,
-    required String workplace,
-    required String birthday,
+     String? email,
 
-    required int workPlaceId,
-    required String gender,
+
   }) = LocalUserInfoEvent;
 }

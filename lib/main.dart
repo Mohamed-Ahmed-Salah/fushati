@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fushati/src/auth/presentation/app/blocs/auth_bloc/authenticator_bloc.dart';
+import 'package:fushati/src/edit_profile/presentation/app/bloc/edit_profile_bloc.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/manage_card/presentation/app/bloc/delete_card_bloc.dart';
 import 'package:fushati/src/moyasar_transfer/presentation/app/bloc/transfer_money_bloc.dart';
 import 'package:fushati/src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
+import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_user_bloc.dart';
+import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import 'package:fushati/src/splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -86,7 +89,21 @@ class MyApp extends StatelessWidget {
           BlocProvider<CardsBloc>(
             create: (BuildContext context) => CardsBloc(
               getCard: sl(),
-            )..add(const CardsEvent.getCards()),
+            ),
+          ),
+          BlocProvider<UserInfoBloc>(
+            create: (BuildContext context) => UserInfoBloc(
+              getUserInfo: sl(),
+            ),
+          ),
+          BlocProvider<DeleteUserBloc>(
+            create: (BuildContext context) => DeleteUserBloc(
+              deleteUserInfo: sl(),
+            ),
+          ), BlocProvider<EditProfileBloc>(
+            create: (BuildContext context) => EditProfileBloc(
+              editUserInfo: sl(),
+            ),
           ),
         ],
         child: BlocBuilder<AppLanguageCubit, AppLanguageState>(

@@ -84,7 +84,9 @@ final router = GoRouter(
     ),
     GoRoute(
       path: HomeView.path,
-      builder: (context, state) => const HomeView(),
+      builder: (context, state) => HomeView(
+        shouldGetAppData: state.extra != null ? state.extra as bool : false,
+      ),
     ),
     GoRoute(
         path: NewCardView.path,
@@ -135,7 +137,7 @@ final router = GoRouter(
           GoRoute(
             path: CardDeletedSuccessView.path,
             name: CardDeletedSuccessView.name,
-            builder: (context, state) => CardDeletedSuccessView(),
+            builder: (context, state) => const CardDeletedSuccessView(),
           ),
         ]),
     GoRoute(

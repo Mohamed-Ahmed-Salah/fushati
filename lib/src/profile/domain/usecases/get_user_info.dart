@@ -1,4 +1,4 @@
-import 'package:fushati/src/auth/domain/entities/user.dart';
+import 'package:fushati/src/profile/domain/entities/user.dart';
 
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/typedefs.dart';

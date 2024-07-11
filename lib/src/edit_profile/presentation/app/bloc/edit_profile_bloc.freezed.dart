@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user_info_bloc.dart';
+part of 'edit_profile_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,264 +15,206 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$UserInfoEvent {
+mixin _$EditProfileEvent {
+  BuildContext get context => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUserInfo,
-    required TResult Function(String name, String? email) EditUserInfo,
+    required TResult Function(BuildContext context, String name, String email)
+        editUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserInfo,
-    TResult? Function(String name, String? email)? EditUserInfo,
+    TResult? Function(BuildContext context, String name, String email)?
+        editUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserInfo,
-    TResult Function(String name, String? email)? EditUserInfo,
+    TResult Function(BuildContext context, String name, String email)?
+        editUserProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetUserInfoEvent value) getUserInfo,
-    required TResult Function(LocalUserInfoEvent value) EditUserInfo,
+    required TResult Function(EditUserAccountProfileEvent value)
+        editUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetUserInfoEvent value)? getUserInfo,
-    TResult? Function(LocalUserInfoEvent value)? EditUserInfo,
+    TResult? Function(EditUserAccountProfileEvent value)? editUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserInfoEvent value)? getUserInfo,
-    TResult Function(LocalUserInfoEvent value)? EditUserInfo,
+    TResult Function(EditUserAccountProfileEvent value)? editUserProfile,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $EditProfileEventCopyWith<EditProfileEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserInfoEventCopyWith<$Res> {
-  factory $UserInfoEventCopyWith(
-          UserInfoEvent value, $Res Function(UserInfoEvent) then) =
-      _$UserInfoEventCopyWithImpl<$Res, UserInfoEvent>;
+abstract class $EditProfileEventCopyWith<$Res> {
+  factory $EditProfileEventCopyWith(
+          EditProfileEvent value, $Res Function(EditProfileEvent) then) =
+      _$EditProfileEventCopyWithImpl<$Res, EditProfileEvent>;
+  @useResult
+  $Res call({BuildContext context, String name, String email});
 }
 
 /// @nodoc
-class _$UserInfoEventCopyWithImpl<$Res, $Val extends UserInfoEvent>
-    implements $UserInfoEventCopyWith<$Res> {
-  _$UserInfoEventCopyWithImpl(this._value, this._then);
+class _$EditProfileEventCopyWithImpl<$Res, $Val extends EditProfileEvent>
+    implements $EditProfileEventCopyWith<$Res> {
+  _$EditProfileEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+    Object? name = null,
+    Object? email = null,
+  }) {
+    return _then(_value.copyWith(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$GetUserInfoEventImplCopyWith<$Res> {
-  factory _$$GetUserInfoEventImplCopyWith(_$GetUserInfoEventImpl value,
-          $Res Function(_$GetUserInfoEventImpl) then) =
-      __$$GetUserInfoEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetUserInfoEventImplCopyWithImpl<$Res>
-    extends _$UserInfoEventCopyWithImpl<$Res, _$GetUserInfoEventImpl>
-    implements _$$GetUserInfoEventImplCopyWith<$Res> {
-  __$$GetUserInfoEventImplCopyWithImpl(_$GetUserInfoEventImpl _value,
-      $Res Function(_$GetUserInfoEventImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetUserInfoEventImpl implements GetUserInfoEvent {
-  const _$GetUserInfoEventImpl();
-
+abstract class _$$EditUserAccountProfileEventImplCopyWith<$Res>
+    implements $EditProfileEventCopyWith<$Res> {
+  factory _$$EditUserAccountProfileEventImplCopyWith(
+          _$EditUserAccountProfileEventImpl value,
+          $Res Function(_$EditUserAccountProfileEventImpl) then) =
+      __$$EditUserAccountProfileEventImplCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'UserInfoEvent.getUserInfo()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetUserInfoEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getUserInfo,
-    required TResult Function(String name, String? email) EditUserInfo,
-  }) {
-    return getUserInfo();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserInfo,
-    TResult? Function(String name, String? email)? EditUserInfo,
-  }) {
-    return getUserInfo?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserInfo,
-    TResult Function(String name, String? email)? EditUserInfo,
-    required TResult orElse(),
-  }) {
-    if (getUserInfo != null) {
-      return getUserInfo();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetUserInfoEvent value) getUserInfo,
-    required TResult Function(LocalUserInfoEvent value) EditUserInfo,
-  }) {
-    return getUserInfo(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetUserInfoEvent value)? getUserInfo,
-    TResult? Function(LocalUserInfoEvent value)? EditUserInfo,
-  }) {
-    return getUserInfo?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserInfoEvent value)? getUserInfo,
-    TResult Function(LocalUserInfoEvent value)? EditUserInfo,
-    required TResult orElse(),
-  }) {
-    if (getUserInfo != null) {
-      return getUserInfo(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetUserInfoEvent implements UserInfoEvent {
-  const factory GetUserInfoEvent() = _$GetUserInfoEventImpl;
-}
-
-/// @nodoc
-abstract class _$$LocalUserInfoEventImplCopyWith<$Res> {
-  factory _$$LocalUserInfoEventImplCopyWith(_$LocalUserInfoEventImpl value,
-          $Res Function(_$LocalUserInfoEventImpl) then) =
-      __$$LocalUserInfoEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, String? email});
+  $Res call({BuildContext context, String name, String email});
 }
 
 /// @nodoc
-class __$$LocalUserInfoEventImplCopyWithImpl<$Res>
-    extends _$UserInfoEventCopyWithImpl<$Res, _$LocalUserInfoEventImpl>
-    implements _$$LocalUserInfoEventImplCopyWith<$Res> {
-  __$$LocalUserInfoEventImplCopyWithImpl(_$LocalUserInfoEventImpl _value,
-      $Res Function(_$LocalUserInfoEventImpl) _then)
+class __$$EditUserAccountProfileEventImplCopyWithImpl<$Res>
+    extends _$EditProfileEventCopyWithImpl<$Res,
+        _$EditUserAccountProfileEventImpl>
+    implements _$$EditUserAccountProfileEventImplCopyWith<$Res> {
+  __$$EditUserAccountProfileEventImplCopyWithImpl(
+      _$EditUserAccountProfileEventImpl _value,
+      $Res Function(_$EditUserAccountProfileEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? context = null,
     Object? name = null,
-    Object? email = freezed,
+    Object? email = null,
   }) {
-    return _then(_$LocalUserInfoEventImpl(
+    return _then(_$EditUserAccountProfileEventImpl(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: freezed == email
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LocalUserInfoEventImpl implements LocalUserInfoEvent {
-  const _$LocalUserInfoEventImpl({required this.name, this.email});
+class _$EditUserAccountProfileEventImpl implements EditUserAccountProfileEvent {
+  const _$EditUserAccountProfileEventImpl(
+      {required this.context, required this.name, required this.email});
 
+  @override
+  final BuildContext context;
   @override
   final String name;
   @override
-  final String? email;
+  final String email;
 
   @override
   String toString() {
-    return 'UserInfoEvent.EditUserInfo(name: $name, email: $email)';
+    return 'EditProfileEvent.editUserProfile(context: $context, name: $name, email: $email)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalUserInfoEventImpl &&
+            other is _$EditUserAccountProfileEventImpl &&
+            (identical(other.context, context) || other.context == context) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, email);
+  int get hashCode => Object.hash(runtimeType, context, name, email);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalUserInfoEventImplCopyWith<_$LocalUserInfoEventImpl> get copyWith =>
-      __$$LocalUserInfoEventImplCopyWithImpl<_$LocalUserInfoEventImpl>(
-          this, _$identity);
+  _$$EditUserAccountProfileEventImplCopyWith<_$EditUserAccountProfileEventImpl>
+      get copyWith => __$$EditUserAccountProfileEventImplCopyWithImpl<
+          _$EditUserAccountProfileEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUserInfo,
-    required TResult Function(String name, String? email) EditUserInfo,
+    required TResult Function(BuildContext context, String name, String email)
+        editUserProfile,
   }) {
-    return EditUserInfo(name, email);
+    return editUserProfile(context, name, email);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserInfo,
-    TResult? Function(String name, String? email)? EditUserInfo,
+    TResult? Function(BuildContext context, String name, String email)?
+        editUserProfile,
   }) {
-    return EditUserInfo?.call(name, email);
+    return editUserProfile?.call(context, name, email);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserInfo,
-    TResult Function(String name, String? email)? EditUserInfo,
+    TResult Function(BuildContext context, String name, String email)?
+        editUserProfile,
     required TResult orElse(),
   }) {
-    if (EditUserInfo != null) {
-      return EditUserInfo(name, email);
+    if (editUserProfile != null) {
+      return editUserProfile(context, name, email);
     }
     return orElse();
   }
@@ -280,73 +222,81 @@ class _$LocalUserInfoEventImpl implements LocalUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetUserInfoEvent value) getUserInfo,
-    required TResult Function(LocalUserInfoEvent value) EditUserInfo,
+    required TResult Function(EditUserAccountProfileEvent value)
+        editUserProfile,
   }) {
-    return EditUserInfo(this);
+    return editUserProfile(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetUserInfoEvent value)? getUserInfo,
-    TResult? Function(LocalUserInfoEvent value)? EditUserInfo,
+    TResult? Function(EditUserAccountProfileEvent value)? editUserProfile,
   }) {
-    return EditUserInfo?.call(this);
+    return editUserProfile?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetUserInfoEvent value)? getUserInfo,
-    TResult Function(LocalUserInfoEvent value)? EditUserInfo,
+    TResult Function(EditUserAccountProfileEvent value)? editUserProfile,
     required TResult orElse(),
   }) {
-    if (EditUserInfo != null) {
-      return EditUserInfo(this);
+    if (editUserProfile != null) {
+      return editUserProfile(this);
     }
     return orElse();
   }
 }
 
-abstract class LocalUserInfoEvent implements UserInfoEvent {
-  const factory LocalUserInfoEvent(
-      {required final String name,
-      final String? email}) = _$LocalUserInfoEventImpl;
+abstract class EditUserAccountProfileEvent implements EditProfileEvent {
+  const factory EditUserAccountProfileEvent(
+      {required final BuildContext context,
+      required final String name,
+      required final String email}) = _$EditUserAccountProfileEventImpl;
 
+  @override
+  BuildContext get context;
+  @override
   String get name;
-  String? get email;
+  @override
+  String get email;
+  @override
   @JsonKey(ignore: true)
-  _$$LocalUserInfoEventImplCopyWith<_$LocalUserInfoEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$EditUserAccountProfileEventImplCopyWith<_$EditUserAccountProfileEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$UserInfoState {
+mixin _$EditProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function(User user) success,
+    required TResult Function() success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(User user)? success,
+    TResult? Function()? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function(User user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -354,6 +304,7 @@ mixin _$UserInfoState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -361,6 +312,7 @@ mixin _$UserInfoState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -370,21 +322,135 @@ mixin _$UserInfoState {
 }
 
 /// @nodoc
-abstract class $UserInfoStateCopyWith<$Res> {
-  factory $UserInfoStateCopyWith(
-          UserInfoState value, $Res Function(UserInfoState) then) =
-      _$UserInfoStateCopyWithImpl<$Res, UserInfoState>;
+abstract class $EditProfileStateCopyWith<$Res> {
+  factory $EditProfileStateCopyWith(
+          EditProfileState value, $Res Function(EditProfileState) then) =
+      _$EditProfileStateCopyWithImpl<$Res, EditProfileState>;
 }
 
 /// @nodoc
-class _$UserInfoStateCopyWithImpl<$Res, $Val extends UserInfoState>
-    implements $UserInfoStateCopyWith<$Res> {
-  _$UserInfoStateCopyWithImpl(this._value, this._then);
+class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
+    implements $EditProfileStateCopyWith<$Res> {
+  _$EditProfileStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$initialStateImplCopyWith<$Res> {
+  factory _$$initialStateImplCopyWith(
+          _$initialStateImpl value, $Res Function(_$initialStateImpl) then) =
+      __$$initialStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$initialStateImplCopyWithImpl<$Res>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$initialStateImpl>
+    implements _$$initialStateImplCopyWith<$Res> {
+  __$$initialStateImplCopyWithImpl(
+      _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$initialStateImpl implements _initialState {
+  const _$initialStateImpl();
+
+  @override
+  String toString() {
+    return 'EditProfileState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$initialStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String message) failed,
+    required TResult Function() success,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String message)? failed,
+    TResult? Function()? success,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String message)? failed,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
+    required TResult Function(_loadingState value) loading,
+    required TResult Function(_failedState value) failed,
+    required TResult Function(_successState value) success,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
+    TResult? Function(_loadingState value)? loading,
+    TResult? Function(_failedState value)? failed,
+    TResult? Function(_successState value)? success,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
+    TResult Function(_loadingState value)? loading,
+    TResult Function(_failedState value)? failed,
+    TResult Function(_successState value)? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _initialState implements EditProfileState {
+  const factory _initialState() = _$initialStateImpl;
 }
 
 /// @nodoc
@@ -396,7 +462,7 @@ abstract class _$$loadingStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$loadingStateImplCopyWithImpl<$Res>
-    extends _$UserInfoStateCopyWithImpl<$Res, _$loadingStateImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$loadingStateImpl>
     implements _$$loadingStateImplCopyWith<$Res> {
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
@@ -410,7 +476,7 @@ class _$loadingStateImpl implements _loadingState {
 
   @override
   String toString() {
-    return 'UserInfoState.loading()';
+    return 'EditProfileState.loading()';
   }
 
   @override
@@ -425,9 +491,10 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function(User user) success,
+    required TResult Function() success,
   }) {
     return loading();
   }
@@ -435,9 +502,10 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(User user)? success,
+    TResult? Function()? success,
   }) {
     return loading?.call();
   }
@@ -445,9 +513,10 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function(User user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -459,6 +528,7 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -469,6 +539,7 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -479,6 +550,7 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -491,7 +563,7 @@ class _$loadingStateImpl implements _loadingState {
   }
 }
 
-abstract class _loadingState implements UserInfoState {
+abstract class _loadingState implements EditProfileState {
   const factory _loadingState() = _$loadingStateImpl;
 }
 
@@ -506,7 +578,7 @@ abstract class _$$failedStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$failedStateImplCopyWithImpl<$Res>
-    extends _$UserInfoStateCopyWithImpl<$Res, _$failedStateImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$failedStateImpl>
     implements _$$failedStateImplCopyWith<$Res> {
   __$$failedStateImplCopyWithImpl(
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
@@ -536,7 +608,7 @@ class _$failedStateImpl implements _failedState {
 
   @override
   String toString() {
-    return 'UserInfoState.failed(message: $message)';
+    return 'EditProfileState.failed(message: $message)';
   }
 
   @override
@@ -559,9 +631,10 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function(User user) success,
+    required TResult Function() success,
   }) {
     return failed(message);
   }
@@ -569,9 +642,10 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(User user)? success,
+    TResult? Function()? success,
   }) {
     return failed?.call(message);
   }
@@ -579,9 +653,10 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function(User user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -593,6 +668,7 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -603,6 +679,7 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -613,6 +690,7 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -625,7 +703,7 @@ class _$failedStateImpl implements _failedState {
   }
 }
 
-abstract class _failedState implements UserInfoState {
+abstract class _failedState implements EditProfileState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
@@ -639,92 +717,69 @@ abstract class _$$successStateImplCopyWith<$Res> {
   factory _$$successStateImplCopyWith(
           _$successStateImpl value, $Res Function(_$successStateImpl) then) =
       __$$successStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({User user});
 }
 
 /// @nodoc
 class __$$successStateImplCopyWithImpl<$Res>
-    extends _$UserInfoStateCopyWithImpl<$Res, _$successStateImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$successStateImpl>
     implements _$$successStateImplCopyWith<$Res> {
   __$$successStateImplCopyWithImpl(
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$successStateImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$successStateImpl implements _successState {
-  const _$successStateImpl({required this.user});
-
-  @override
-  final User user;
+  const _$successStateImpl();
 
   @override
   String toString() {
-    return 'UserInfoState.success(user: $user)';
+    return 'EditProfileState.success()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$successStateImpl &&
-            (identical(other.user, user) || other.user == user));
+        (other.runtimeType == runtimeType && other is _$successStateImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
-      __$$successStateImplCopyWithImpl<_$successStateImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function(User user) success,
+    required TResult Function() success,
   }) {
-    return success(user);
+    return success();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(User user)? success,
+    TResult? Function()? success,
   }) {
-    return success?.call(user);
+    return success?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function(User user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(user);
+      return success();
     }
     return orElse();
   }
@@ -732,6 +787,7 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -742,6 +798,7 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -752,6 +809,7 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -764,11 +822,6 @@ class _$successStateImpl implements _successState {
   }
 }
 
-abstract class _successState implements UserInfoState {
-  const factory _successState({required final User user}) = _$successStateImpl;
-
-  User get user;
-  @JsonKey(ignore: true)
-  _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _successState implements EditProfileState {
+  const factory _successState() = _$successStateImpl;
 }

@@ -10,6 +10,7 @@ Future<void> init() async {
     _authInit(),
     _cardsInit(),
     _moyasarInit(),
+    _userInfo(),
   ]);
 }
 
@@ -39,7 +40,9 @@ Future<void> _cardsInit() async {
     ..registerLazySingleton<CardRepo>(() => CardRepoImpl(sl()))
     ..registerLazySingleton<CardRemoteDataSrc>(
         () => CardRemoteDataSrcImpl(sl()));
-}Future<void> _moyasarInit() async {
+}Future<void>
+
+_moyasarInit() async {
   sl
     ..registerLazySingleton(() => TransferAmount(sl()))
 
@@ -53,4 +56,16 @@ Future<void> cacheInit() async {
   sl
     ..registerLazySingleton(() => CacheHelper(sl()))
     ..registerLazySingleton<SharedPreferences>(() => prefs);
+}
+
+
+
+Future<void> _userInfo() async {
+  sl
+    ..registerLazySingleton(() => DeleteUserInfo(sl()))
+    ..registerLazySingleton(() => EditUserInfo(sl()))
+    ..registerLazySingleton(() => GetUserInfo(sl()))
+    ..registerLazySingleton<UserInfoRepo>(() => UserInfoRepoImpl(sl()))
+    ..registerLazySingleton<UserInfoRemoteDataSrc>(
+            () => UserInfoRemoteDataSrcImpl(sl()));
 }

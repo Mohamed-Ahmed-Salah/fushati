@@ -38,6 +38,17 @@ abstract class TextFormValidation {
     }
     return null;
   }
+  static String? optionalEmailValidation(String? value,
+      {required BuildContext context}) {
+    if (value!.isEmpty) return null;
+    String pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    if (!(regex.hasMatch(value!))) {
+      return "${AppLocalizations.of(context)?.enterValidEmail}";
+    }
+    return null;
+  }
 
   static String? emailValidation(String? value,
       {required BuildContext context}) {
@@ -45,8 +56,9 @@ abstract class TextFormValidation {
     String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
-    if (!(regex.hasMatch(value!)))
+    if (!(regex.hasMatch(value!))) {
       return "${AppLocalizations.of(context)?.enterValidEmail}";
+    }
     return null;
   }
 

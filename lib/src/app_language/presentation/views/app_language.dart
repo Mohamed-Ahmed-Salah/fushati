@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../core/common/widgets/custome_appbar.dart';
 import '../../../../core/res/styles/colours.dart';
+import '../../../../core/utils/constants/size_constatnts.dart';
 import '../app/cubit/app_language_cubit.dart';
 
 class AppLanguageView extends StatelessWidget {
@@ -17,29 +19,43 @@ class AppLanguageView extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(7.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(AppLocalizations.of(context)!.selectLanguage),
-            LanguageRow(
-                language: "English",
-                isCurrentLanguage:
-                    AppLocalizations.of(context)!.localeName == "en",
-                onTap: () {
-                  context
-                      .read<AppLanguageCubit>()
-                      .changeLanguage(newLanguage: "en");
-                }),
-            LanguageRow(
-                language: "العربية",
-                isCurrentLanguage:
-                    AppLocalizations.of(context)!.localeName == "ar",
-                onTap: () {
-                  context
-                      .read<AppLanguageCubit>()
-                      .changeLanguage(newLanguage: "ar");
-                }),
-
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  SizedBox(height: SizeConst.verticalPadding),
+                  CustomAppBar(
+                    text: "${AppLocalizations.of(context)?.appLanguage}",
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    "${AppLocalizations.of(context)?.selectLanguage}",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: Colours.textBlackColor.withOpacity(0.7)),
+                  ),
+                  LanguageRow(
+                      language: "English",
+                      isCurrentLanguage:
+                          AppLocalizations.of(context)!.localeName == "en",
+                      onTap: () {
+                        context
+                            .read<AppLanguageCubit>()
+                            .changeLanguage(newLanguage: "en");
+                      }),
+                  LanguageRow(
+                      language: "العربية",
+                      isCurrentLanguage:
+                          AppLocalizations.of(context)!.localeName == "ar",
+                      onTap: () {
+                        context
+                            .read<AppLanguageCubit>()
+                            .changeLanguage(newLanguage: "ar");
+                      }),
+                ],
+              ),
+            ),
           ],
         ),
       ),

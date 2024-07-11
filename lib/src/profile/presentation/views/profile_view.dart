@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
-import 'package:fushati/src/auth/domain/entities/user.dart';
+import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,58 +23,59 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: Padding(
-        padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
-        child: BlocBuilder<DeleteUserBloc, DeleteUserState>(
-            builder: (context, state) {
-          return ElevatedButton(
-              onPressed: () {
-                // showDialog(
-                //     context: context,
-                //     builder: (builderContext) => AlertPopUpWidget(
-                //           isDeleteWidget: true,
-                //           title:
-                //               "${AppLocalizations.of(context)?.deleteAccount}",
-                //           subTitle:
-                //               "${AppLocalizations.of(context)?.areYouSureToDelete}",
-                //           buttonText: "${AppLocalizations.of(context)?.yes}",
-                //           state: StateEnum.error,
-                //           onPressed: () {
-                //             Navigator.pop(builderContext);
-                //             context.read<DeleteUserBloc>().add(
-                //                 DeleteUserEvent.deleteUser(context: context));
-                //           },
-                //           icon: Icons.delete,
-                //         ));
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "DELETEEEE",
-                  ),
-                  AnimatedButtonCircularLoader(
-                      loading: state == const DeleteUserState.loading())
-                ],
-              ));
-        }),
-      ),
-
+      // bottomSheet: Padding(
+      //   padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+      //   child: BlocBuilder<DeleteUserBloc, DeleteUserState>(
+      //       builder: (context, state) {
+      //     return ElevatedButton(
+      //         onPressed: () {
+      //           // showDialog(
+      //           //     context: context,
+      //           //     builder: (builderContext) => AlertPopUpWidget(
+      //           //           isDeleteWidget: true,
+      //           //           title:
+      //           //               "${AppLocalizations.of(context)?.deleteAccount}",
+      //           //           subTitle:
+      //           //               "${AppLocalizations.of(context)?.areYouSureToDelete}",
+      //           //           buttonText: "${AppLocalizations.of(context)?.yes}",
+      //           //           state: StateEnum.error,
+      //           //           onPressed: () {
+      //           //             Navigator.pop(builderContext);
+      //           //             context.read<DeleteUserBloc>().add(
+      //           //                 DeleteUserEvent.deleteUser(context: context));
+      //           //           },
+      //           //           icon: Icons.delete,
+      //           //         ));
+      //         },
+      //         child: Row(
+      //           mainAxisAlignment: MainAxisAlignment.center,
+      //           children: [
+      //             const Text(
+      //               "DELETEEEE",
+      //             ),
+      //             AnimatedButtonCircularLoader(
+      //                 loading: state == const DeleteUserState.loading())
+      //           ],
+      //         ));
+      //   }),
+      // ),
       body: Padding(
         padding: EdgeInsets.all(4.w),
         child:
             BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state) {
           return state.when(
-              loading: () => LoadingWidget(),
+              loading: () => const LoadingWidget(),
               failed: (error) => ErrorView(
                     onPressed: () {
                       context
                           .read<UserInfoBloc>()
-                          .add(UserInfoEvent.getUserInfo(context: context));
+                          .add(const UserInfoEvent.getUserInfo());
                     },
                     message: error,
                   ),
-              success: (user) => ProfileBody(user: user));
+              success: (user) => user.name == null
+                  ? const EditProfileView()
+                  : ProfileBody(user: user));
         }),
       ),
     );
@@ -92,7 +93,6 @@ class ProfileBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-
           "He",
           // "Hello ${user.username}",
           style: Theme.of(context)
@@ -113,7 +113,6 @@ class ProfileBody extends StatelessWidget {
               //   user.gender == "1" ? Media.manAvatar : Media.femaleAvatar,
               // ),
               Expanded(
-
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w),
                   child: Column(

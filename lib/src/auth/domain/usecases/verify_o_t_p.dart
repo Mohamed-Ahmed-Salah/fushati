@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/typedefs.dart';
 import '../entities/otp_response.dart';
-import '../entities/user.dart';
+import '../../../profile/domain/entities/user.dart';
 import '../repos/auth_repo.dart';
 
 class VerifyOTP extends UsecaseWithParams<OtpResponse, VerifyOTPParams> {

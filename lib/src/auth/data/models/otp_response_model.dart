@@ -1,7 +1,7 @@
-import 'package:fushati/src/auth/data/models/user_model.dart';
+import 'package:fushati/src/profile/data/models/user_model.dart';
 
 import '../../domain/entities/otp_response.dart';
-import '../../domain/entities/user.dart';
+import '../../../profile/domain/entities/user.dart';
 
 class OtpResponseModel extends OtpResponse {
   OtpResponseModel({

@@ -15,6 +15,7 @@ import '../../../../core/services/injection_container.dart';
 import '../../../../core/utils/constants/text_constants.dart';
 import '../../../app_language/presentation/views/app_language.dart';
 import '../../../auth/presentation/views/login_view.dart';
+import '../../../profile/presentation/views/profile_view.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -43,7 +44,7 @@ class CustomDrawer extends StatelessWidget {
               ),
               CustomListTile(
                 onTap: () {
-                  // context.push(ProfileView.path);
+                  context.push(ProfileView.path);
                 },
                 leading: SvgPicture.asset(Media.profileSvg),
                 title: AppLocalizations.of(context)!.profile,

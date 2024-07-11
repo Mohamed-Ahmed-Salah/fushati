@@ -18,6 +18,11 @@ abstract class TextConstants {
   static const successPaymentEn = "Successful Payment";
   static const successPaymentAr = "تم التحويل بنجاح";
 
+  static const successEn = "Success";
+  static const successAr = "نجاح";
+  static const userEditedSuccessEn = "User edited Successfully!!";
+  static const userEditedSuccessAr = "تم التعديل بنجاح!";
+
   static String getText({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
     return isArabic ? getArabicText(text: text) : getEnglishText(text: text);
@@ -35,6 +40,14 @@ abstract class TextConstants {
         return successPaymentAr;
       case amountAddedEn:
         return amountAddedAr;
+      case successEn:
+        return successAr;
+      case userEditedSuccessEn:
+        return userEditedSuccessAr;
+
+
+
+
     }
     return okayAr;
   }
@@ -51,6 +64,11 @@ abstract class TextConstants {
         return successPaymentEn;
       case amountAddedEn:
         return amountAddedEn;
+      case successEn:
+        return successEn;
+
+      case userEditedSuccessEn:
+        return userEditedSuccessEn;
     }
     return okayEn;
   }

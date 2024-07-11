@@ -93,9 +93,13 @@
 "cardDeleted": "تم حذف البطاقة",
 "noWorries": "لا تقلق! لقد رتبنا كل شيء!",
 "balanceRS":"ر.س {balance}",
-"balance":"رصيد"
+"balance":"رصيد",
 
-
+"profileDetails": "تفاصيل الملف الشخصي",
+"completeProfile": "يرجى إدخال اسمك وبريدك الإلكتروني لإكمال إعداد ملفك الشخصي",
+"nameReq": "الاسم (مطلوب)",
+"emailOption": "البريد الإلكتروني (اختياري)",
+"discard": "تجاهل"
 
 
 

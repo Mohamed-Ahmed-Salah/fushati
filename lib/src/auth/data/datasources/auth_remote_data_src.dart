@@ -10,7 +10,7 @@ import '../../../../core/utils/constants/network_constants.dart';
 import '../../domain/entities/otp_response.dart';
 import '../models/login_response_model.dart';
 import '../models/otp_response_model.dart';
-import '../models/user_model.dart';
+import '../../../profile/data/models/user_model.dart';
 
 const loginEndpoint = '/login';
 const addUserInfoEndpoint = '/login';

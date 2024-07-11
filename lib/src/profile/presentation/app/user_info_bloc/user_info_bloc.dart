@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:fushati/src/auth/domain/entities/user.dart';
+import 'package:fushati/src/profile/domain/entities/user.dart';
 
 import '../../../../../core/common/app/cache_helper.dart';
 import '../../../../../core/services/injection_container.dart';
@@ -31,29 +31,12 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   }
 
   _getUserInfoEvent(event, emit) async {
-    BuildContext context = event.context;
     emit(const UserInfoState.loading());
     final result = await _getUserInfo();
     result.fold(
-      (failure) async {
-        if (failure.message == ErrorConst.PROFILE_NOT_COMPLETED_MESSAGE) {
-          CoreUtils.showMyDialog(
-            title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
-            subTitle: ErrorConst.getErrorBody(text: failure.message),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-
-          );
-          final cacheHelper = sl<CacheHelper>();
-          await cacheHelper.logout();
-          router.go(LoginView.path);
-
-          // emit(UserInfoState.failed(failure.message));
-        } else {
-          emit(UserInfoState.failed(
-              ErrorConst.getErrorBody(text: failure.message)));
-        }
+      (failure) {
+        emit(UserInfoState.failed(
+            ErrorConst.getErrorBody(text: failure.message)));
       },
       (user) {
         emit(UserInfoState.success(user: user));
@@ -64,23 +47,16 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
   _editUserInfoEvent(event, emit) async {
     String name = event.name;
-    String gender = event.gender;
-    String email = event.productId;
-    String workplace = event.workplace;
-    int workAtId = event.workPlaceId;
-    String birthday = event.birthday;
-    DateTime date = DateTime.parse(birthday);
+    String email = event.email;
 
-    // state.whenOrNull(success: (user) {
-    //   User userInfo = user;
-    //   userInfo = userInfo.copyWith(
-    //       email: email,
-    //       username: name,
-    //       gender: gender,
-    //       birthdate: date,
-    //       workplace: WorkspaceModel(id: workAtId, workplace: workplace));
-    //
-    //   emit(UserInfoState.success(user: userInfo));
-    // });
+    state.whenOrNull(success: (user) {
+      User userInfo = user;
+      userInfo = userInfo.copyWith(
+        email: email,
+        name: name,
+      );
+
+      emit(UserInfoState.success(user: userInfo));
+    });
   }
 }

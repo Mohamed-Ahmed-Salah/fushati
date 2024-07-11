@@ -88,7 +88,13 @@
 "cardDeleted":"Card deleted",
 "noWorries":"No worries! we got everything tide up!",
 "balanceRS":"{balance} R.S",
-"balance":"Balance"
+"balance":"Balance",
+
+"profileDetails":"Profile details",
+"completeProfile":"Please enter your name and email to complete your profile setup",
+"nameReq":"Name (Required)",
+"emailOption":"Email (Optional)",
+"discard":"Discard"
 
 
 

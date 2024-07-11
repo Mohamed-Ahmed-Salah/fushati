@@ -15,18 +15,39 @@ import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
 import '../../../../core/utils/constants/size_constatnts.dart';
+import '../../../splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
 import '../widgets/cards_list.dart';
 import '../widgets/empty_card_list.dart';
 import '../widgets/error_sliver.dart';
 import '../widgets/home_appbar.dart';
 import '../widgets/loading_sliver.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeView extends StatefulWidget {
+  final bool shouldGetAppData;
+
+  const HomeView({super.key, this.shouldGetAppData = false});
+  static const param = "shouldGetAppData";
 
   static String path = "/home";
   static String name = "/home";
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+
+@override
+  void initState() {
+
+  print("shouldGetAppData ${widget.shouldGetAppData}");
+  if (widget.shouldGetAppData) {
+    context.read<AppRedirectionBloc>().add(
+      GetAppData(context: context),
+    );
+  }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

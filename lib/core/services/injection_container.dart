@@ -14,11 +14,17 @@ import '../../src/auth/data/repos/auth_repo_impl.dart';
 import '../../src/auth/domain/repos/auth_repo.dart';
 import '../../src/auth/domain/usecases/auth_usecases.dart';
 import '../../src/auth/presentation/app/blocs/auth_bloc/authenticator_bloc.dart';
+import '../../src/edit_profile/domain/usecases/edit_user_info.dart';
 import '../../src/home/data/datasources/cards_remote_data_src.dart';
 import '../../src/home/domain/repos/card_repo.dart';
 import '../../src/moyasar_transfer/data/repos/deposit_repo_impl.dart';
 import '../../src/moyasar_transfer/domain/repo/deposit_repo.dart';
 import '../../src/moyasar_transfer/domain/usecases/transfer_to_card.dart';
+import '../../src/profile/data/datasources/user_info_remote_data_src.dart';
+import '../../src/profile/data/repos/user_info_repo_impl.dart';
+import '../../src/profile/domain/repos/user_info_repo.dart';
+import '../../src/profile/domain/usecases/delete_user.dart';
+import '../../src/profile/domain/usecases/get_user_info.dart';
 import '../common/app/cache_helper.dart';
 
 part 'injection_container.main.dart';

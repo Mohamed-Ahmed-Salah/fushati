@@ -63,8 +63,8 @@ class SuccessAlertDialog extends StatelessWidget {
                                 .textTheme
                                 .titleLarge
                                 ?.copyWith(
-                                color: Colours.greenSuccess,
-                                fontWeight: FontWeight.w500),
+                                    color: Colours.greenSuccess,
+                                    fontWeight: FontWeight.w500),
                           ),
                           SizedBox(
                             height: 1.h,
@@ -75,19 +75,21 @@ class SuccessAlertDialog extends StatelessWidget {
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
-                                fontWeight: FontWeight.w400,
-                                color: Colours.textBlackColor
-                                    .withOpacity(0.7)),
+                                    fontWeight: FontWeight.w400,
+                                    color: Colours.textBlackColor
+                                        .withOpacity(0.7)),
                           ),
                           SizedBox(
                             height: SizeConst.verticalPadding,
                           ),
                           ElevatedButton(
-                            onPressed: onPressed,
+                            onPressed: () {
+                              context.pop();
+                            },
                             child: Text(
                               "${AppLocalizations.of(context)?.done}",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w400),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w400),
                             ),
                           ),
                         ],

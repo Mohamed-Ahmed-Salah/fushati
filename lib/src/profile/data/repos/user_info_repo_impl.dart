@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utils/typedefs.dart';
-import '../../../auth/domain/entities/user.dart';
+import '../../domain/entities/user.dart';
 import '../../domain/repos/user_info_repo.dart';
 import '../datasources/user_info_remote_data_src.dart';
 
@@ -34,7 +34,7 @@ class UserInfoRepoImpl implements UserInfoRepo {
 
   @override
   ResultFuture<void> editUserInfo({
-    required String email,
+     String? email,
 
     required String name,
 

@@ -84,9 +84,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
           await _cacheHelper.cacheUserId(response.user.id);
           await _cacheHelper.cacheUsername(response.user.name ?? "");
           SchedulerBinding.instance.addPostFrameCallback((_) {
-            router.go(
-              HomeView.name,
-            );
+            router.go(HomeView.name, extra: true);
           });
           // await Future.delayed(Duration(seconds: 1));
           //0 means user is first time and didnt complete his data info

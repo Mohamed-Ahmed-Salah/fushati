@@ -25,39 +25,33 @@ class CustomAppBar extends StatelessWidget {
               context.pop();
             },
             child: Container(
-              padding: EdgeInsets.all(2.w),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 2, color: Colours.blackColor.withOpacity(0.1)),
-                  borderRadius: BorderRadius.all(Radius.circular(2.w))),
-              child: AppLocalizations.of(context)?.localeName == "en"
-                  ? Icon(
-                Media.backIOSIcon,
-                size: SizeConst.iconSize,
-              )
-                  : Icon(
-                Media.backIOSARIcon,
-                size: SizeConst.iconSize,
-              ),
-            ),
+                padding: EdgeInsets.all(2.w),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 2, color: Colours.blackColor.withOpacity(0.1)),
+                    borderRadius: BorderRadius.all(Radius.circular(2.w))),
+                child: Icon(
+                  Media.backIOSIcon,
+                  size: SizeConst.iconSize,
+                )),
           ),
         SizedBox(
           width: SizeConst.horizontalPaddingFour,
         ),
-        if(text==null)
-        SvgPicture.asset(
-          Media.logoSvg,
-          height: 5.h,
-          // width: SizeConst.iconSize,
-        ),
-        if(text!=null)
-          Text(text!,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.w500,
-            color: Colours.textBlackColor,
+        if (text == null)
+          SvgPicture.asset(
+            Media.logoSvg,
+            height: 5.h,
+            // width: SizeConst.iconSize,
           ),
+        if (text != null)
+          Text(
+            text!,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colours.textBlackColor,
+                ),
           ),
-
       ],
     );
   }
