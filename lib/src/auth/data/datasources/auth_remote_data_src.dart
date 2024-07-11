@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/auth/domain/entities/login_response.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -38,6 +39,8 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
       if (isSuccess) {
         print("-------------------------------------------");
         print(response.data["verification_code"]);
+        CoreUtils.showSnackBar(
+            message: response.data["verification_code"] ?? 'NOT FOUND');
         return LoginResponseModel.fromJson(response.data);
       } else {
         if (response.statusCode == 401) {
