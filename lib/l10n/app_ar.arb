@@ -79,6 +79,7 @@
 "appLanguage":"لغة التطبيق",
 "transHistory":"تاريخ المعاملات",
 "profile":"الحساب الشخصي",
+"completeProfileButton": "أكمل الملف الشخصي",
 "addNewCard":"إضافة بطاقة جديدة",
 "tryAgian":"اعاده المحاوله",
 "connectionLost":"انقطع الاتصال :(",

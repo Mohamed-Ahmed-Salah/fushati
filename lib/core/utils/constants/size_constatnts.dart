@@ -7,6 +7,7 @@ abstract class SizeConst{
   static final double verticalPaddingFour=4.h;
   static final double horizontalPaddingFour=4.w;
   static final double borderRadius=4.w;
+  static final double borderDoubleRadius=8.w;
 
 
 

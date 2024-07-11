@@ -13,6 +13,7 @@ import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/utils/constants/size_constatnts.dart';
 import '../../../edit_profile/presentation/views/edit_profile_view.dart';
+import '../../../home/presentation/widgets/empty_card_list.dart';
 import '../app/user_info_bloc/user_info_bloc.dart';
 
 class ProfileView extends StatelessWidget {
@@ -100,14 +101,12 @@ class ProfileBody extends StatelessWidget {
                     text: "${AppLocalizations.of(context)?.profile}",
                   ),
                   SizedBox(height: 5.h),
-                  Container(
-                    padding: EdgeInsets.all(SizeConst.verticalPadding),
-                    decoration: BoxDecoration(
-                      color: Colours.whiteColor,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colours.borderGreyColor),
-                    ),
-                    child: Container(
+                  CardContainerDesign(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: SizeConst.verticalPadding,
+                        horizontal: SizeConst.horizontalPadding
+                      ),
                       child: Row(
                         children: [
                           SvgPicture.asset(

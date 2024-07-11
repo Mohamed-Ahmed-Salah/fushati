@@ -17,46 +17,48 @@ class AppLanguageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(7.w),
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  SizedBox(height: SizeConst.verticalPadding),
-                  CustomAppBar(
-                    text: "${AppLocalizations.of(context)?.appLanguage}",
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    "${AppLocalizations.of(context)?.selectLanguage}",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w400,
-                        color: Colours.textBlackColor.withOpacity(0.7)),
-                  ),
-                  LanguageRow(
-                      language: "English",
-                      isCurrentLanguage:
-                          AppLocalizations.of(context)!.localeName == "en",
-                      onTap: () {
-                        context
-                            .read<AppLanguageCubit>()
-                            .changeLanguage(newLanguage: "en");
-                      }),
-                  LanguageRow(
-                      language: "العربية",
-                      isCurrentLanguage:
-                          AppLocalizations.of(context)!.localeName == "ar",
-                      onTap: () {
-                        context
-                            .read<AppLanguageCubit>()
-                            .changeLanguage(newLanguage: "ar");
-                      }),
-                ],
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(7.w),
+          child: CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    SizedBox(height: SizeConst.verticalPadding),
+                    CustomAppBar(
+                      text: "${AppLocalizations.of(context)?.appLanguage}",
+                    ),
+                    SizedBox(height: 4.h),
+                    Text(
+                      "${AppLocalizations.of(context)?.selectLanguage}",
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: Colours.textBlackColor.withOpacity(0.7)),
+                    ),
+                    LanguageRow(
+                        language: "English",
+                        isCurrentLanguage:
+                            AppLocalizations.of(context)!.localeName == "en",
+                        onTap: () {
+                          context
+                              .read<AppLanguageCubit>()
+                              .changeLanguage(newLanguage: "en");
+                        }),
+                    LanguageRow(
+                        language: "العربية",
+                        isCurrentLanguage:
+                            AppLocalizations.of(context)!.localeName == "ar",
+                        onTap: () {
+                          context
+                              .read<AppLanguageCubit>()
+                              .changeLanguage(newLanguage: "ar");
+                        }),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

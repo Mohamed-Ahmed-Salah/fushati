@@ -74,6 +74,7 @@
 "appLanguage":"App Language",
 "transHistory":"Trans History",
 "profile":"Profile",
+"completeProfileButton":"Complete profile",
 "addNewCard":"Add new card",
 "tryAgian":"Try again",
 "connectionLost":"Connection lost :(",

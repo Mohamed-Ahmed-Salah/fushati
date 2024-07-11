@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -42,13 +43,68 @@ class CustomDrawer extends StatelessWidget {
               SizedBox(
                 height: SizeConst.verticalPaddingFour,
               ),
-              CustomListTile(
-                onTap: () {
-                  context.push(ProfileView.path);
-                },
-                leading: SvgPicture.asset(Media.profileSvg),
-                title: AppLocalizations.of(context)!.profile,
-              ),
+              BlocBuilder<UserInfoBloc, UserInfoState>(
+                  builder: (context, state) {
+                bool showComplete = false;
+                bool showAlert = false;
+                state.whenOrNull(success: (user) {
+                  showComplete = user.name == null &&
+                      AppLocalizations.of(context)?.localeName == "en";
+                  showAlert = user.name == null;
+                });
+
+                return CustomListTile(
+                  leading: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      SvgPicture.asset(Media.profileSvg),
+                      if (showAlert)
+                        Positioned(
+                          top: -0.8.h,
+                          left: AppLocalizations.of(context)?.localeName == "en"
+                              ? -10
+                              : 0,
+                          right:
+                              AppLocalizations.of(context)?.localeName != "en"
+                                  ? -10
+                                  : 0,
+                          child: Container(
+                            width: 1.1.h,
+                            height: 1.1.h,
+                            decoration: const BoxDecoration(
+                              color: Colours.primaryGreenColor,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  title: "${AppLocalizations.of(context)?.profile}",
+                  onTap: () {
+                    context.push(ProfileView.path);
+                  },
+                  widget: showComplete
+                      ? Container(
+                          padding: EdgeInsets.symmetric(vertical: 1.h),
+                          decoration: BoxDecoration(
+                            color: Colours.primaryGreenColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(SizeConst.borderDoubleRadius),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "${AppLocalizations.of(context)?.completeProfileButton}",
+                              style: TextStyle(
+                                  color: Colours.textBlackColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15.sp),
+                            ),
+                          ),
+                        )
+                      : null,
+                );
+              }),
               CustomListTile(
                 onTap: () async {
                   final phoneNumberCode =
@@ -90,23 +146,35 @@ class CustomListTile extends StatelessWidget {
   final String title;
   final Widget leading;
   final Function() onTap;
+  final Widget? widget;
 
   const CustomListTile(
       {super.key,
       required this.title,
       required this.leading,
-      required this.onTap});
+      required this.onTap,
+      this.widget});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
       leading: leading,
-      title: Text(
-        title,
-        style: const TextStyle(fontWeight: FontWeight.w500),
-        overflow: TextOverflow.ellipsis,
-        maxLines: 2,
+      title: Row(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+          ),
+          Padding(
+              padding: EdgeInsets.only(
+            right: AppLocalizations.of(context)?.localeName == "en" ? 1.h : 0,
+            left: AppLocalizations.of(context)?.localeName == "en" ? 0 : 1.h,
+          )),
+          if (widget != null) Expanded(child: widget!)
+        ],
       ),
     );
   }
