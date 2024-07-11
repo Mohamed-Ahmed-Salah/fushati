@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/src/card_details/presentation/views/card_details_view.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/home/presentation/widgets/cards_list.dart';
 import 'package:fushati/src/manage_card/presentation/app/bloc/delete_card_bloc.dart';

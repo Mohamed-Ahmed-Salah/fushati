@@ -21,6 +21,7 @@ abstract class Media {
   static const logoutSvg = "$_baseSvg/logout.svg";
   static const contactSvg = "$_baseSvg/support_agent.svg";
   static const profileSvg = "$_baseSvg/person.svg";
+  static const profileEditSvg = "$_baseSvg/person_edit.svg";
   static const languageSvg = "$_baseSvg/language.svg";
 
   static const successSvg = "$_baseSvg/card_success.svg";

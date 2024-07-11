@@ -6,13 +6,13 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../core/common/widgets/animated_button_circular_loader.dart';
+import '../../../../core/common/widgets/custome_appbar.dart';
 import '../../../../core/common/widgets/error_view.dart';
 import '../../../../core/common/widgets/loading_view.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
+import '../../../../core/utils/constants/size_constatnts.dart';
 import '../../../edit_profile/presentation/views/edit_profile_view.dart';
-import '../app/delete_user_bloc/delete_user_bloc.dart';
 import '../app/user_info_bloc/user_info_bloc.dart';
 
 class ProfileView extends StatelessWidget {
@@ -59,25 +59,23 @@ class ProfileView extends StatelessWidget {
       //         ));
       //   }),
       // ),
-      body: Padding(
-        padding: EdgeInsets.all(4.w),
-        child:
-            BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state) {
-          return state.when(
-              loading: () => const LoadingWidget(),
-              failed: (error) => ErrorView(
-                    onPressed: () {
-                      context
-                          .read<UserInfoBloc>()
-                          .add(const UserInfoEvent.getUserInfo());
-                    },
-                    message: error,
-                  ),
-              success: (user) => user.name == null
-                  ? const EditProfileView()
-                  : ProfileBody(user: user));
-        }),
-      ),
+      body: BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state) {
+        return state.when(
+            loading: () => const LoadingWidget(),
+            failed: (error) => ErrorView(
+                  onPressed: () {
+                    context
+                        .read<UserInfoBloc>()
+                        .add(const UserInfoEvent.getUserInfo());
+                  },
+                  message: error,
+                ),
+            success: (user) => user.name == null
+                ? EditProfileView(
+                    user: user,
+                  )
+                : ProfileBody(user: user));
+      }),
     );
   }
 }
@@ -89,7 +87,113 @@ class ProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(SizeConst.horizontalPaddingFour),
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  SizedBox(height: SizeConst.verticalPadding),
+                  CustomAppBar(
+                    text: "${AppLocalizations.of(context)?.profile}",
+                  ),
+                  SizedBox(height: 5.h),
+                  Container(
+                    padding: EdgeInsets.all(SizeConst.verticalPadding),
+                    decoration: BoxDecoration(
+                      color: Colours.whiteColor,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colours.borderGreyColor),
+                    ),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            Media.profileSvg,
+                            height: 5.h,
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: SizeConst.horizontalPadding),
+                              child: Column(
+                                crossAxisAlignment: user.userPhone.isNotEmpty ||
+                                        user.email != null
+                                    ? CrossAxisAlignment.start
+                                    : CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${user.name}",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(fontWeight: FontWeight.w600),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(
+                                    height: 0.5.h,
+                                  ),
+                                  if (user.userPhone.isNotEmpty)
+                                    Text(
+                                      user.userPhone,
+                                      textDirection: TextDirection.ltr,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: Colours.textBlackColor
+                                                .withOpacity(0.72),
+                                          ),
+                                    ),
+                                  SizedBox(
+                                    height: 0.5.h,
+                                  ),
+                                  if (user.email != null)
+                                    Container(
+                                      color: Colours.greyLightColor,
+                                      child: Text(
+                                        "${user.email}",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.clip,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w100,
+                                              color: Colours.greyLightColor
+                                                  .withOpacity(0.72),
+                                            ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                context.pushNamed(EditProfileView.name,
+                                    extra: user);
+                              },
+                              child: SvgPicture.asset(Media.profileEditSvg)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -151,7 +255,7 @@ class ProfileBody extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.pushNamed(EditProfileView.name);
+            context.pushNamed(EditProfileView.name, extra: user);
           },
           child: SizedBox(
             width: double.infinity,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fushati/src/auth/presentation/views/auth_success.dart';
 import 'package:fushati/src/edit_profile/presentation/views/edit_profile_view.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/views/profile_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,7 +11,6 @@ import '../../src/auth/presentation/views/login_view.dart';
 import '../../src/auth/presentation/views/resend_otp_after_failure.dart';
 import '../../src/auth/presentation/views/update_user_info_view.dart';
 import '../../src/auth/presentation/views/verify_otp_view.dart';
-import '../../src/card_details/presentation/views/card_details_view.dart';
 import '../../src/home/presentation/views/home_view.dart';
 import '../../src/manage_card/presentation/views/card_deleted_success_view.dart';
 import '../../src/manage_card/presentation/views/manage_card_view.dart';
@@ -89,24 +89,21 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-        path: NewCardView.path,
-        name: NewCardView.name,
-        builder: (context, state) => const NewCardView(),
-        routes: [
-          GoRoute(
-            path: AddCardLoaderView.path,
-            name: AddCardLoaderView.name,
-            builder: (context, state) => const AddCardLoaderView(),
-          ),
-          GoRoute(
-            path: AddCardSuccessView.path,
-            name: AddCardSuccessView.name,
-            builder: (context, state) => const AddCardSuccessView(),
-          ),
-        ]),
-    GoRoute(
-      path: CardDetailsView.path,
-      builder: (context, state) => const CardDetailsView(),
+      path: NewCardView.path,
+      name: NewCardView.name,
+      builder: (context, state) => const NewCardView(),
+      routes: [
+        GoRoute(
+          path: AddCardLoaderView.path,
+          name: AddCardLoaderView.name,
+          builder: (context, state) => const AddCardLoaderView(),
+        ),
+        GoRoute(
+          path: AddCardSuccessView.path,
+          name: AddCardSuccessView.name,
+          builder: (context, state) => const AddCardSuccessView(),
+        ),
+      ],
     ),
     GoRoute(
       path: AuthenticatedSuccessfully.path,
@@ -147,7 +144,9 @@ final router = GoRouter(
     GoRoute(
       path: EditProfileView.path,
       name: EditProfileView.name,
-      builder: (context, state) => const EditProfileView(),
+      builder: (context, state) => EditProfileView(
+        user: state.extra as User,
+      ),
     ),
   ],
 );

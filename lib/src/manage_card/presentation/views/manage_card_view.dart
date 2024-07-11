@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/common/widgets/close_button.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/src/card_details/presentation/views/card_details_view.dart';
 import 'package:fushati/src/home/presentation/widgets/cards_list.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -104,7 +103,6 @@ class _ManageCardViewState extends State<ManageCardView> {
                     children: [
                       ElevatedButton(
                           onPressed: () {
-                            context.push(CardDetailsView.path);
                             // bool filledFormCorrectly =
                             //     _formKey.currentState?.validate();
                             // if (filledFormCorrectly) {
