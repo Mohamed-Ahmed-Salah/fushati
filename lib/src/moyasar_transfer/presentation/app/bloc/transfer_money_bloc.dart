@@ -28,35 +28,23 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
     on<AddingAmountEvent>(_addingAmountEvent);
   }
 
-  // _addToWalletEvent(event, emit) {
-  //   // TODO: implement event handler
-  // }
+  _addingAmountEvent(event, emit) async {
+    final BuildContext context = event.context;
+    final String cardNumber = event.cardNumber;
+    final int amount = event.amount;
+    final moyasarResult = event.result;
 
-  _addingAmountEvent(event, emit) {
-    onPaymentResult(event.result, event.context, emit, event.cardNumber);
-    // emit(TransferMoneyState.initial(amount: event.amount));
-    // TODO: implement event handler
-  }
-
-  void onPaymentResult(
-      moyasarResult, BuildContext context, emit, String cardNumber) async {
     if (moyasarResult is PaymentResponse) {
       // emit(TransferMoneyState.loading());
 
-      String status = await getPaymentStatus(moyasarResult.status);
-      String refunded = await moyasarResult.refunded.toString();
-      int fee = await moyasarResult.fee;
-      int amount = await moyasarResult.amount ~/ 100;
+      // int amount = await moyasarResult.amount ~/ 100;
 
       ///made this because the backage The smallest currency unit.
       ///For example, to charge SAR 257.58 you will have the amount as 25758.
       ///In other words, 10 SAR = 10 * 100 Halalas.
 
-      String paymentId = await moyasarResult.id;
-      String currency = await moyasarResult.currency;
-      String capturedAt = await moyasarResult.createdAt;
-      String ip = moyasarResult.ip = "empty";
-      String invoiceId = await moyasarResult.invoiceId ?? "empty";
+      String paymentId = moyasarResult.id;
+      String status = getPaymentStatus(moyasarResult.status);
 
       showDialog(
         barrierDismissible: false,
@@ -65,45 +53,44 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
           return const AlertLoadingWidget();
         },
       );
-      final result = await _depositWallet(DepositToWalletParam(
-          paymentId: paymentId,
-          paymentStatus: status,
-          amount: amount,
-          fee: fee,
-          currency: currency,
-          capturedAt: capturedAt,
-          invoiceId: invoiceId,
-          ip: ip,
-          cardNumber: cardNumber));
+      final result = await _depositWallet(DepositToCardParam(
+          paymentId: paymentId, amount: amount, cardNumber: cardNumber));
 
       Navigator.pop(context);
 
+      bool success = false;
+      String message = ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR);
       result.fold(
         (failure) {
+          print("FAILEEEEEEEEEED");
+          message = ErrorConst.getErrorBody(text: failure.message);
           CoreUtils.showMyDialog(
-            title: ErrorConst.getErrorTitle(title: ErrorConst.errorAr),
-            subTitle: failure.message,
-            //ErrorConst.getErrorBody(text: failure.message)
+            title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
+            subTitle: message,
             onPressed: () {
               Navigator.pop(context);
             },
           );
         },
         (newAmount) {
-          print("SUCEEEEEEEESSSSSSSSS");
-          // Navigator.pop(context);
-
+          success = true;
+          print("SUCEEEEEEEEEEE");
           //todo
-          CoreUtils.showSuccess(
-            title: TextConstants.getText(text: TextConstants.successPaymentEn),
-            subTitle:
-                TextConstants.getText(text: TextConstants.successPaymentEn),
-            onPressed: () {
-              Navigator.pop(rootNavigatorKey.currentState?.context ?? context);
-            },
-          );
+          // CoreUtils.showSuccess(
+          //   title: TextConstants.getText(text: TextConstants.successPaymentEn),
+          //   subTitle:
+          //       TextConstants.getText(text: TextConstants.successPaymentEn),
+          //   onPressed: () {
+          //     Navigator.pop(rootNavigatorKey.currentState?.context ?? context);
+          //   },
+          // );
         },
       );
+      if (success) {
+        emit(const TransferMoneyState.successState());
+      } else {
+        emit(TransferMoneyState.failed(message));
+      }
     } else {
       CoreUtils.showMyDialog(
         title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
@@ -114,7 +101,13 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
         },
       );
     }
+
+    // onPaymentResult(
+    //     event.result, event.context, emit, event.cardNumber, event.amount);
   }
+
+  void onPaymentResult(moyasarResult, BuildContext context, emit,
+      String cardNumber, int amount) async {}
 
   String getPaymentStatus(PaymentStatus status) {
     switch (status) {

@@ -16,25 +16,28 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TransferMoneyEvent {
+  int get amount => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int amount) addWallet,
     required TResult Function(
-            dynamic result, BuildContext context, String cardNumber)
+            dynamic result, BuildContext context, String cardNumber, int amount)
         addingAmount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int amount)? addWallet,
-    TResult? Function(dynamic result, BuildContext context, String cardNumber)?
+    TResult? Function(dynamic result, BuildContext context, String cardNumber,
+            int amount)?
         addingAmount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int amount)? addWallet,
-    TResult Function(dynamic result, BuildContext context, String cardNumber)?
+    TResult Function(dynamic result, BuildContext context, String cardNumber,
+            int amount)?
         addingAmount,
     required TResult orElse(),
   }) =>
@@ -58,6 +61,10 @@ mixin _$TransferMoneyEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TransferMoneyEventCopyWith<TransferMoneyEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -65,6 +72,8 @@ abstract class $TransferMoneyEventCopyWith<$Res> {
   factory $TransferMoneyEventCopyWith(
           TransferMoneyEvent value, $Res Function(TransferMoneyEvent) then) =
       _$TransferMoneyEventCopyWithImpl<$Res, TransferMoneyEvent>;
+  @useResult
+  $Res call({int amount});
 }
 
 /// @nodoc
@@ -76,13 +85,28 @@ class _$TransferMoneyEventCopyWithImpl<$Res, $Val extends TransferMoneyEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amount = null,
+  }) {
+    return _then(_value.copyWith(
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$AddWalletEventImplCopyWith<$Res> {
+abstract class _$$AddWalletEventImplCopyWith<$Res>
+    implements $TransferMoneyEventCopyWith<$Res> {
   factory _$$AddWalletEventImplCopyWith(_$AddWalletEventImpl value,
           $Res Function(_$AddWalletEventImpl) then) =
       __$$AddWalletEventImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({int amount});
 }
@@ -145,7 +169,7 @@ class _$AddWalletEventImpl implements AddWalletEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int amount) addWallet,
     required TResult Function(
-            dynamic result, BuildContext context, String cardNumber)
+            dynamic result, BuildContext context, String cardNumber, int amount)
         addingAmount,
   }) {
     return addWallet(amount);
@@ -155,7 +179,8 @@ class _$AddWalletEventImpl implements AddWalletEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int amount)? addWallet,
-    TResult? Function(dynamic result, BuildContext context, String cardNumber)?
+    TResult? Function(dynamic result, BuildContext context, String cardNumber,
+            int amount)?
         addingAmount,
   }) {
     return addWallet?.call(amount);
@@ -165,7 +190,8 @@ class _$AddWalletEventImpl implements AddWalletEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int amount)? addWallet,
-    TResult Function(dynamic result, BuildContext context, String cardNumber)?
+    TResult Function(dynamic result, BuildContext context, String cardNumber,
+            int amount)?
         addingAmount,
     required TResult orElse(),
   }) {
@@ -211,19 +237,24 @@ abstract class AddWalletEvent implements TransferMoneyEvent {
   const factory AddWalletEvent({required final int amount}) =
       _$AddWalletEventImpl;
 
+  @override
   int get amount;
+  @override
   @JsonKey(ignore: true)
   _$$AddWalletEventImplCopyWith<_$AddWalletEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AddingAmountEventImplCopyWith<$Res> {
+abstract class _$$AddingAmountEventImplCopyWith<$Res>
+    implements $TransferMoneyEventCopyWith<$Res> {
   factory _$$AddingAmountEventImplCopyWith(_$AddingAmountEventImpl value,
           $Res Function(_$AddingAmountEventImpl) then) =
       __$$AddingAmountEventImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({dynamic result, BuildContext context, String cardNumber});
+  $Res call(
+      {dynamic result, BuildContext context, String cardNumber, int amount});
 }
 
 /// @nodoc
@@ -240,6 +271,7 @@ class __$$AddingAmountEventImplCopyWithImpl<$Res>
     Object? result = freezed,
     Object? context = null,
     Object? cardNumber = null,
+    Object? amount = null,
   }) {
     return _then(_$AddingAmountEventImpl(
       result: freezed == result
@@ -254,6 +286,10 @@ class __$$AddingAmountEventImplCopyWithImpl<$Res>
           ? _value.cardNumber
           : cardNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -262,7 +298,10 @@ class __$$AddingAmountEventImplCopyWithImpl<$Res>
 
 class _$AddingAmountEventImpl implements AddingAmountEvent {
   const _$AddingAmountEventImpl(
-      {required this.result, required this.context, required this.cardNumber});
+      {required this.result,
+      required this.context,
+      required this.cardNumber,
+      required this.amount});
 
   @override
   final dynamic result;
@@ -270,10 +309,12 @@ class _$AddingAmountEventImpl implements AddingAmountEvent {
   final BuildContext context;
   @override
   final String cardNumber;
+  @override
+  final int amount;
 
   @override
   String toString() {
-    return 'TransferMoneyEvent.addingAmount(result: $result, context: $context, cardNumber: $cardNumber)';
+    return 'TransferMoneyEvent.addingAmount(result: $result, context: $context, cardNumber: $cardNumber, amount: $amount)';
   }
 
   @override
@@ -284,12 +325,13 @@ class _$AddingAmountEventImpl implements AddingAmountEvent {
             const DeepCollectionEquality().equals(other.result, result) &&
             (identical(other.context, context) || other.context == context) &&
             (identical(other.cardNumber, cardNumber) ||
-                other.cardNumber == cardNumber));
+                other.cardNumber == cardNumber) &&
+            (identical(other.amount, amount) || other.amount == amount));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(result), context, cardNumber);
+      const DeepCollectionEquality().hash(result), context, cardNumber, amount);
 
   @JsonKey(ignore: true)
   @override
@@ -303,32 +345,34 @@ class _$AddingAmountEventImpl implements AddingAmountEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int amount) addWallet,
     required TResult Function(
-            dynamic result, BuildContext context, String cardNumber)
+            dynamic result, BuildContext context, String cardNumber, int amount)
         addingAmount,
   }) {
-    return addingAmount(result, context, cardNumber);
+    return addingAmount(result, context, cardNumber, amount);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int amount)? addWallet,
-    TResult? Function(dynamic result, BuildContext context, String cardNumber)?
+    TResult? Function(dynamic result, BuildContext context, String cardNumber,
+            int amount)?
         addingAmount,
   }) {
-    return addingAmount?.call(result, context, cardNumber);
+    return addingAmount?.call(result, context, cardNumber, amount);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int amount)? addWallet,
-    TResult Function(dynamic result, BuildContext context, String cardNumber)?
+    TResult Function(dynamic result, BuildContext context, String cardNumber,
+            int amount)?
         addingAmount,
     required TResult orElse(),
   }) {
     if (addingAmount != null) {
-      return addingAmount(result, context, cardNumber);
+      return addingAmount(result, context, cardNumber, amount);
     }
     return orElse();
   }
@@ -369,11 +413,15 @@ abstract class AddingAmountEvent implements TransferMoneyEvent {
   const factory AddingAmountEvent(
       {required final dynamic result,
       required final BuildContext context,
-      required final String cardNumber}) = _$AddingAmountEventImpl;
+      required final String cardNumber,
+      required final int amount}) = _$AddingAmountEventImpl;
 
   dynamic get result;
   BuildContext get context;
   String get cardNumber;
+  @override
+  int get amount;
+  @override
   @JsonKey(ignore: true)
   _$$AddingAmountEventImplCopyWith<_$AddingAmountEventImpl> get copyWith =>
       throw _privateConstructorUsedError;

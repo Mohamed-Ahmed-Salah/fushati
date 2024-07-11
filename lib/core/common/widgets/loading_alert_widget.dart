@@ -29,8 +29,8 @@ class AlertLoadingWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                      height: 7.h,
-                      child: const IntrinsicWidth(child: CircularProgressIndicator())),
+                      height: 8.h,
+                      child: Lottie.asset(Media.loadingLottie)),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 1.h),
                     child: Text(

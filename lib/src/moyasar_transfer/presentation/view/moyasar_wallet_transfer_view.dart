@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/common/widgets/card_box.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
+import 'package:fushati/src/moyasar_transfer/presentation/view/success_transaction.dart';
+import 'package:go_router/go_router.dart';
 
 import 'dart:io' show Platform;
 import 'package:moyasar/moyasar.dart';
@@ -29,99 +32,114 @@ class MoyasarWalletTransferView extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(SizeConst.horizontalPadding),
-          child: CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    SizedBox(height: SizeConst.verticalPadding),
-                    CustomAppBar(
-                      text: "${AppLocalizations.of(context)?.topUpBalance}",
+          child: BlocBuilder<AmountToTransferCubit, AmountToTransferState>(
+              builder: (context, state) {
+            return state.when(
+              initial: (amount) =>
+                  BlocListener<TransferMoneyBloc, TransferMoneyState>(
+                listener: (BuildContext context, TransferMoneyState state) {
+                  state.whenOrNull(successState: () {
+                    print(
+                        "SUCESS AND SHOWUDL GO H+TO CardTransactionSuccessView");
+                    context.read<CardsBloc>().add(const CardsEvent.getCards());
+                    context.pushNamed(CardTransactionSuccessView.name,
+                        queryParameters: {
+                          CardTransactionSuccessView.cardNumberParam:
+                              card.userCard,
+                          CardTransactionSuccessView.amountParam:
+                              amount.toString(),
+                        });
+                  });
+                },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverList(
+                      delegate: SliverChildListDelegate(
+                        [
+                          SizedBox(height: SizeConst.verticalPadding),
+                          CustomAppBar(
+                            text:
+                                "${AppLocalizations.of(context)?.topUpBalance}",
+                          ),
+                          SizedBox(height: 5.h),
+                          CardBox(card: card),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 5.h),
-                    CardBox(card: card),
-                  ],
-                ),
-              ),
-              BlocBuilder<AmountToTransferCubit, AmountToTransferState>(
-                  builder: (context, state) {
-                return state.when(
-                    initial: (amount) => SliverToBoxAdapter(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5.w),
-                            child: Column(
-                              children: [
-                                ApplePay(
-                                  config: MoyasarConfig.config(
-                                      amount, card.userCard),
-                                  onPaymentResult: (result) {
-                                    print(
-                                        "RESULT++++++++ ${result.toString()}");
-                                    context.read<TransferMoneyBloc>().add(
-                                        TransferMoneyEvent.addingAmount(
-                                            result: result,
-                                            context: context,
-                                            cardNumber: card.userCard));
-                                  },
-                                ),
-                                if (Platform.isIOS)
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Divider(
-                                            color: Colours.textBlackColor
-                                                .withOpacity(0.12)),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          "${AppLocalizations.of(context)?.or}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleSmall
-                                              ?.copyWith(
-                                                  color: Colours.textBlackColor
-                                                      .withOpacity(0.52)),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Divider(
-                                            color: Colours.textBlackColor
-                                                .withOpacity(0.12)),
-                                      ),
-                                    ],
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: Column(
+                          children: [
+                            ApplePay(
+                              config:
+                                  MoyasarConfig.config(amount, card.userCard),
+                              onPaymentResult: (result) {
+                                context.read<TransferMoneyBloc>().add(
+                                    TransferMoneyEvent.addingAmount(
+                                        amount: amount,
+                                        result: result,
+                                        context: context,
+                                        cardNumber: card.userCard));
+                              },
+                            ),
+                            if (Platform.isIOS)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Divider(
+                                        color: Colours.textBlackColor
+                                            .withOpacity(0.12)),
                                   ),
-                                CreditCard(
-                                  config: MoyasarConfig.config(
-                                      amount, card.userCard),
-                                  onPaymentResult: (result) {
-                                    if(result is PaymentResponse){
-                                      print(
-                                          "RESULT++++++++ ${result.status}");
-                                    }
-
-
-                                    context.read<TransferMoneyBloc>().add(
-                                        TransferMoneyEvent.addingAmount(
-                                            result: result,
-                                            context: context,
-                                            cardNumber: card.userCard));
-                                  },
-                                  locale: AppLocalizations.of(context)
-                                              ?.localeName ==
+                                  Expanded(
+                                    child: Text(
+                                      "${AppLocalizations.of(context)?.or}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall
+                                          ?.copyWith(
+                                              color: Colours.textBlackColor
+                                                  .withOpacity(0.52)),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Divider(
+                                        color: Colours.textBlackColor
+                                            .withOpacity(0.12)),
+                                  ),
+                                ],
+                              ),
+                            CreditCard(
+                              config:
+                                  MoyasarConfig.config(amount, card.userCard),
+                              onPaymentResult: (result) {
+                                if (result is PaymentResponse) {
+                                  context.read<TransferMoneyBloc>().add(
+                                      TransferMoneyEvent.addingAmount(
+                                          result: result,
+                                          context: context,
+                                          cardNumber: card.userCard,
+                                          amount: amount));
+                                }
+                              },
+                              locale:
+                                  AppLocalizations.of(context)?.localeName ==
                                           "ar"
                                       ? const Localization.ar()
                                       : const Localization.en(),
-                                  buttonColor: Colours.primaryGreenColor,
-                                )
-                              ],
-                            ),
-                          ),
-                        ));
-              }),
-            ],
-          ),
+                              buttonColor: Colours.primaryGreenColor,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
         ),
       ),
     );

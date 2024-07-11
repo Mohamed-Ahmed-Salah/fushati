@@ -15,7 +15,8 @@ class AddCardSuccessView extends StatelessWidget {
   static String path = "card-new-added";
   static String name = "card-new-added";
 
-  const AddCardSuccessView({super.key});
+
+  const AddCardSuccessView({super.key,});
 
   @override
   Widget build(BuildContext context) {

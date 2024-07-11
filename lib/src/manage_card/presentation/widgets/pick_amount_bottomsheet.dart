@@ -8,12 +8,12 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
-import '../../../src/moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
-import '../../res/styles/colours.dart';
-import '../../res/theme/app_theme.dart';
-import '../singletons/form_validation.dart';
-import 'close_button.dart';
+import '../../../../core/common/singletons/form_validation.dart';
+import '../../../../core/common/widgets/close_button.dart';
+import '../../../../core/res/styles/colours.dart';
+import '../../../../core/res/theme/app_theme.dart';
+import '../../../moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
+import '../../../moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
 
 class PickAmountBottomSheet extends StatefulWidget {
   final CardEntity card;

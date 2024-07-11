@@ -16,24 +16,15 @@ class DepositRepoImpl implements DepositRepo {
   ResultFuture<void> deposit(
       {required String cardNumber,
       required String paymentId,
-      required String paymentStatus,
+
       required int amount,
-      required int fee,
-      required String currency,
-      required String capturedAt,
-      required String invoiceId,
-      required String ip}) async {
+      }) async {
     try {
       final result = await _remoteDataSource.deposit(
           cardNumber: cardNumber,
           paymentId: paymentId,
-          paymentStatus: paymentStatus,
           amount: amount,
-          fee: fee,
-          currency: currency,
-          capturedAt: capturedAt,
-          invoiceId: invoiceId,
-          ip: ip);
+         );
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

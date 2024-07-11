@@ -15,6 +15,7 @@ import '../../src/home/presentation/views/home_view.dart';
 import '../../src/manage_card/presentation/views/card_deleted_success_view.dart';
 import '../../src/manage_card/presentation/views/manage_card_view.dart';
 import '../../src/moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
+import '../../src/moyasar_transfer/presentation/view/success_transaction.dart';
 import '../../src/new_card/presentation/views/add_card_loader.dart';
 import '../../src/new_card/presentation/views/add_card_success.dart';
 import '../../src/new_card/presentation/views/new_card_view.dart';
@@ -101,7 +102,7 @@ final router = GoRouter(
         GoRoute(
           path: AddCardSuccessView.path,
           name: AddCardSuccessView.name,
-          builder: (context, state) => const AddCardSuccessView(),
+          builder: (context, state) => AddCardSuccessView(),
         ),
       ],
     ),
@@ -125,12 +126,23 @@ final router = GoRouter(
             ),
         routes: [
           GoRoute(
-            path: MoyasarWalletTransferView.path,
-            name: MoyasarWalletTransferView.name,
-            builder: (context, state) => MoyasarWalletTransferView(
-              card: state.extra as CardEntity,
-            ),
-          ),
+              path: MoyasarWalletTransferView.path,
+              name: MoyasarWalletTransferView.name,
+              builder: (context, state) => MoyasarWalletTransferView(
+                    card: state.extra as CardEntity,
+                  ),
+              routes: [
+                GoRoute(
+                  path: CardTransactionSuccessView.path,
+                  name: CardTransactionSuccessView.name,
+                  builder: (context, state) => CardTransactionSuccessView(
+                    amount: state.uri.queryParameters[
+                        CardTransactionSuccessView.amountParam]!,
+                    cardNumber: state.uri.queryParameters[
+                        CardTransactionSuccessView.cardNumberParam]!,
+                  ),
+                )
+              ]),
           GoRoute(
             path: CardDeletedSuccessView.path,
             name: CardDeletedSuccessView.name,

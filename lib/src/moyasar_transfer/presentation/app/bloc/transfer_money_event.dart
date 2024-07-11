@@ -5,6 +5,10 @@ sealed class TransferMoneyEvent with _$TransferMoneyEvent {
   const factory TransferMoneyEvent.addWallet({required int amount}) =
       AddWalletEvent;
 
-  const factory TransferMoneyEvent.addingAmount({required dynamic result,required BuildContext context, required String cardNumber}) =
-  AddingAmountEvent;
+  const factory TransferMoneyEvent.addingAmount(
+      {required dynamic result,
+      required BuildContext context,
+      required String cardNumber,
+      required int amount,
+      }) = AddingAmountEvent;
 }

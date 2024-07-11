@@ -104,7 +104,10 @@
 "completeProfile": "يرجى إدخال اسمك وبريدك الإلكتروني لإكمال إعداد ملفك الشخصي",
 "nameReq": "الاسم (مطلوب)",
 "emailOption": "البريد الإلكتروني (اختياري)",
-"discard": "تجاهل"
+"discard": "تجاهل",
+ "transferSuccess": "تم التحويل بنجاح",
+  "amountTransferred": "لقد قمت بتحويل مبلغ {amount} بنجاح إلى رقم البطاقة {number}"
+
 
 
 

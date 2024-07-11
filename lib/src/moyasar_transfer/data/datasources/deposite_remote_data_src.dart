@@ -12,42 +12,36 @@ import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/network_constants.dart';
 
 class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
-  static const studentCardsEndpoint = '/parent/students';
-  static const addCardEndpoint = '/parent-student';
-  static const deleteCardEndpoint = '/parent-student';
-  static const getCardDetailsEndpoint = '/parent-student';
+  static const rechargeEndpoint = '/recharge';
 
   const DepositRemoteDataSrcImpl(this._dio);
 
   final Dio _dio;
 
   @override
-  Future<void> deposit(
-      {required String cardNumber,
-      required String paymentId,
-      required String paymentStatus,
-      required int amount,
-      required int fee,
-      required String currency,
-      required String capturedAt,
-      required String invoiceId,
-      required String ip}) async {
+  Future<void> deposit({
+    required String cardNumber,
+    required String paymentId,
+    required int amount,
+  }) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
-      final response = await _dio
-          .get('${NetworkConstants.parentsUrl}$studentCardsEndpoint',
-              options: Options(
-                headers: header,
-              ))
-          .timeout(const Duration(seconds: 10));
+      final response = await _dio.post(
+        '${NetworkConstants.parentsUrl}$rechargeEndpoint',
+        options: Options(
+          headers: header,
+        ),
+        data: {"user_card": cardNumber, "amount": amount, "payment_id": paymentId},
+      ).timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
+      print("RESPOSE-------- ${response.data} {${response.statusCode}");
       if (isSuccess) {
         return;
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
-              message: ErrorConst.OTP_NOT_FOUND,
+              message: ErrorConst.NO_TOKEN,
               statusCode: response.statusCode ?? 0);
         }
         throw ServerException(
@@ -57,6 +51,8 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
 
       // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
+      print("RESPOSE-------- ${e.response}");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -95,14 +91,9 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
 abstract class DepositRemoteDataSrc {
   const DepositRemoteDataSrc();
 
-  Future<void> deposit(
-      {required String cardNumber,
-      required String paymentId,
-      required String paymentStatus,
-      required int amount,
-      required int fee,
-      required String currency,
-      required String capturedAt,
-      required String invoiceId,
-      required String ip});
+  Future<void> deposit({
+    required String cardNumber,
+    required String paymentId,
+    required int amount,
+  });
 }
