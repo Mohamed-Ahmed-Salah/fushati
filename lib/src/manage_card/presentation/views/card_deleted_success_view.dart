@@ -19,51 +19,54 @@ class CardDeletedSuccessView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GreenBackground(
-        child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: SizeConst.horizontalPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Spacer(),
-              SvgPicture.asset(
-                Media.okaySvg,
-                height: 12.h,
-              ),
-              SizedBox(
-                height: SizeConst.verticalPadding,
-              ),
-              Text(
-                "${AppLocalizations.of(context)?.cardDeleted}",
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontWeight: FontWeight.w700, color: Colours.textBlackColor),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: SizeConst.verticalPadding,
-              ),
-              Text(
-                "${AppLocalizations.of(context)?.noWorries}",
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w400,
-                    color: Colours.textBlackColor.withOpacity(0.7)),
-                textAlign: TextAlign.center,
-              ),
-              const Spacer(),
-              Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: SizeConst.verticalPadding),
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.go(HomeView.path);
-                  },
-                  child: Text("${AppLocalizations.of(context)?.done}"),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: GreenBackground(
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: SizeConst.horizontalPadding),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Spacer(),
+                SvgPicture.asset(
+                  Media.okaySvg,
+                  height: 12.h,
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: SizeConst.verticalPadding,
+                ),
+                Text(
+                  "${AppLocalizations.of(context)?.cardDeleted}",
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      fontWeight: FontWeight.w700, color: Colours.textBlackColor),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: SizeConst.verticalPadding,
+                ),
+                Text(
+                  "${AppLocalizations.of(context)?.noWorries}",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Colours.textBlackColor.withOpacity(0.7)),
+                  textAlign: TextAlign.center,
+                ),
+                const Spacer(),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: SizeConst.verticalPadding),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.go(HomeView.path);
+                    },
+                    child: Text("${AppLocalizations.of(context)?.done}"),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

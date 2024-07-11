@@ -35,7 +35,6 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
-      print(response.data);
       if (isSuccess) {
         print("-------------------------------------------");
         print(response.data["verification_code"]);
@@ -94,6 +93,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
   }) async {
     try {
       final header = await NetworkConstants.getHeaders();
+
       final response = await _dio
           .post('${NetworkConstants.parentUrl}$loginEndpoint',
               data: {"phone": phone, "code": otp},
@@ -102,7 +102,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: 10));
 
-      if (response.statusCode == 200 || response.statusCode==201) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return OtpResponseModel.fromJson(response.data);
       }
       if (response.statusCode == 401) {
@@ -110,10 +110,22 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
             message: ErrorConst.OTP_NOT_FOUND,
             statusCode: response.statusCode ?? 0);
       }
+      if (response.data['message']
+          .toString()
+          .toLowerCase()
+          .contains("invalid code")) {
+        throw const AuthenticationException(
+            message: ErrorConst.invalidOtpEn, statusCode: 0);
+      }
+
       throw AuthenticationException(
           message: ErrorConst.getError(statusCode: response.statusCode ?? 500),
           statusCode: 0);
     } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
+        throw const AuthenticationException(
+            message: ErrorConst.invalidOtpEn, statusCode: 0);
+      }
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(

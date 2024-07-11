@@ -86,7 +86,9 @@
 "dateCreated":"Date created:",
 "cardNo":"Card No.:",
 "cardDeleted":"Card deleted",
-"noWorries":"No worries! we got everything tide up!"
+"noWorries":"No worries! we got everything tide up!",
+"balanceRS":"{balance} R.S",
+"balance":"Balance"
 
 
 

@@ -4,6 +4,7 @@ import '../../services/injection_container.dart';
 abstract class NetworkConstants {
   static const baseUrl = 'http://52.233.82.20/api';
   static const String parentUrl = '$baseUrl/parent';
+  static const String usersUrl = '$baseUrl/users';
   static const String parentsUrl = '$baseUrl/parents';
 
 
@@ -12,7 +13,7 @@ abstract class NetworkConstants {
       "https://ourvend-image.oss-cn-qingdao.aliyuncs.com/Regular/";
   static const String packageImgUrl = "https://dev.app.saladbar.sa/storage/";
   static const String MoyasarAPIKey =
-      "asdfghjkl12334";
+      "pk_test_TzNwxV5x7e1oofUcPGwQHHcP4HFUN8zUgrMx2ycL";
 
   static const apiUrl = '/api/v1';
   static const headers = {'Content-Type': 'application/json; charset=UTF-8'};

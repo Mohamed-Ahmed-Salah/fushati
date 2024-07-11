@@ -12,6 +12,7 @@ import '../../src/auth/presentation/views/update_user_info_view.dart';
 import '../../src/auth/presentation/views/verify_otp_view.dart';
 import '../../src/card_details/presentation/views/card_details_view.dart';
 import '../../src/home/presentation/views/home_view.dart';
+import '../../src/manage_card/presentation/views/card_deleted_success_view.dart';
 import '../../src/manage_card/presentation/views/manage_card_view.dart';
 import '../../src/moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
 import '../../src/new_card/presentation/views/add_card_loader.dart';
@@ -118,19 +119,25 @@ final router = GoRouter(
       builder: (context, state) => const AppLanguageView(),
     ),
     GoRoute(
-      path: ManageCardView.path,
-      name: ManageCardView.name,
-      builder: (context, state) => ManageCardView(
-        card: state.extra as CardEntity,
-      ),
-    ),
-    GoRoute(
-      path: MoyasarWalletTransferView.path,
-      name: MoyasarWalletTransferView.name,
-      builder: (context, state) => MoyasarWalletTransferView(
-        card: state.extra as CardEntity,
-      ),
-    ),
+        path: ManageCardView.path,
+        name: ManageCardView.name,
+        builder: (context, state) => ManageCardView(
+              card: state.extra as CardEntity,
+            ),
+        routes: [
+          GoRoute(
+            path: MoyasarWalletTransferView.path,
+            name: MoyasarWalletTransferView.name,
+            builder: (context, state) => MoyasarWalletTransferView(
+              card: state.extra as CardEntity,
+            ),
+          ),
+          GoRoute(
+            path: CardDeletedSuccessView.path,
+            name: CardDeletedSuccessView.name,
+            builder: (context, state) => CardDeletedSuccessView(),
+          ),
+        ]),
     GoRoute(
       path: ProfileView.path,
       builder: (context, state) => const ProfileView(),

@@ -60,9 +60,9 @@ class UserInfoRepoImpl implements UserInfoRepo {
   }
 
   @override
-  ResultFuture<void> deleteProfile() async {
+  ResultFuture<void> deleteProfile({required int id}) async {
     try {
-      final result = await _remoteDataSource.deleteProfile();
+      final result = await _remoteDataSource.deleteProfile(id: id);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

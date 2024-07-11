@@ -28,9 +28,9 @@ class AlertLoadingWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                       height: 7.h,
-                      child: CircularProgressIndicator()),
+                      child: const IntrinsicWidth(child: CircularProgressIndicator())),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 1.h),
                     child: Text(
@@ -46,7 +46,6 @@ class AlertLoadingWidget extends StatelessWidget {
                     child: Text(
                       " ...نقوم الآن بمعالجة طلبك ",
                       textDirection: TextDirection.ltr,
-
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: Colours.textBlackColor.withOpacity(0.72)),

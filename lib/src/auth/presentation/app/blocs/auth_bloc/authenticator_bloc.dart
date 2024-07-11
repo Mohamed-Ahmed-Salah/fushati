@@ -60,8 +60,7 @@ class AuthenticatorBloc extends Bloc<AuthenticatorEvent, AuthenticatorState> {
             onPressed: () {
               Navigator.pop(context);
             },
-            buttonText: TextConstants.getText(text: TextConstants.closeEn),
-            icon: Icons.info);
+            );
       },
       (user) {
         emit(AuthenticatorState.loggedInSuccessfully(phone: phone));
@@ -101,8 +100,7 @@ class AuthenticatorBloc extends Bloc<AuthenticatorEvent, AuthenticatorState> {
             onPressed: () {
               Navigator.pop(context);
             },
-            buttonText: TextConstants.getText(text: TextConstants.closeEn),
-            icon: Icons.info);
+           );
       },
           (user) {
         emit(AuthenticatorState.loggedInSuccessfully(phone: phone));

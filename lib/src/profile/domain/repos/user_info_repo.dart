@@ -5,7 +5,7 @@ import '../../../../core/utils/typedefs.dart';
 
 abstract class UserInfoRepo {
   ResultFuture<User> getUserInfo();
-  ResultFuture<void> deleteProfile();
+  ResultFuture<void> deleteProfile({required int id});
 
   ResultFuture<void> editUserInfo({
     required String email,

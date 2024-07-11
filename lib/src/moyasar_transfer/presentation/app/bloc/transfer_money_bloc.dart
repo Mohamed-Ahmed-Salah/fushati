@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:moyasar/moyasar.dart';
 
 import '../../../../../core/common/widgets/loading_alert_widget.dart';
+import '../../../../../core/services/router.dart';
 import '../../../../../core/utils/constants/error_consts.dart';
 import '../../../../../core/utils/constants/text_constants.dart';
 import '../../../../../core/utils/core_utils.dart';
@@ -32,12 +33,13 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
   // }
 
   _addingAmountEvent(event, emit) {
-    onPaymentResult(event.result, event.context, emit,event.cardNumber);
+    onPaymentResult(event.result, event.context, emit, event.cardNumber);
     // emit(TransferMoneyState.initial(amount: event.amount));
     // TODO: implement event handler
   }
 
-  void onPaymentResult(moyasarResult, BuildContext context, emit, String cardNumber) async {
+  void onPaymentResult(
+      moyasarResult, BuildContext context, emit, String cardNumber) async {
     if (moyasarResult is PaymentResponse) {
       // emit(TransferMoneyState.loading());
 
@@ -60,7 +62,7 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
         barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return AlertLoadingWidget();
+          return const AlertLoadingWidget();
         },
       );
       final result = await _depositWallet(DepositToWalletParam(
@@ -71,50 +73,35 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
           currency: currency,
           capturedAt: capturedAt,
           invoiceId: invoiceId,
-          ip: ip, cardNumber: cardNumber));
+          ip: ip,
+          cardNumber: cardNumber));
 
       Navigator.pop(context);
 
       result.fold(
         (failure) {
           CoreUtils.showMyDialog(
-            title:
-                ErrorConst.getErrorTitle(title: ErrorConst.couldNotSubscribeEn),
+            title: ErrorConst.getErrorTitle(title: ErrorConst.errorAr),
             subTitle: failure.message,
             //ErrorConst.getErrorBody(text: failure.message)
             onPressed: () {
               Navigator.pop(context);
             },
-            buttonText: TextConstants.getText(text: TextConstants.closeEn),
-            icon: CupertinoIcons.clear_circled_solid,
           );
         },
         (newAmount) {
-          Navigator.pop(context);
+          print("SUCEEEEEEEESSSSSSSSS");
+          // Navigator.pop(context);
 
           //todo
-          // CoreUtils.showMyDialog(
-          //   title: TextConstants.getText(text: TextConstants.successPaymentEn),
-          //   subTitle: TextConstants.getText(
-          //       text: TextConstants.thanksForPatronizingUsEn),
-          //   onPressed: () {
-          //     Navigator.pop(rootNavigatorKey.currentState?.context ?? context);
-          //   },
-          //   state: StateEnum.success,
-          //   buttonText: TextConstants.getText(text: TextConstants.closeEn),
-          //   icon: Icons.check_circle_rounded,
-          // );
-          // context
-          //     .read<WalletBalanceBloc>()
-          //     .add(WalletEvent.addNewBalanceWallet(newBalance: newAmount));
-          // context.read<WalletHistoryBloc>().add(
-          //     WalletHistoryEvent.addSingleTransaction(
-          //         walletSingleTransaction: WalletTransactionHistory(
-          //             id: 0,
-          //             processType: "DEPOSITE",
-          //             amount: amount.toString(),
-          //             date: DateTime.now())));
-          // emit(TransferMoneyState.successState());
+          CoreUtils.showSuccess(
+            title: TextConstants.getText(text: TextConstants.successPaymentEn),
+            subTitle:
+                TextConstants.getText(text: TextConstants.successPaymentEn),
+            onPressed: () {
+              Navigator.pop(rootNavigatorKey.currentState?.context ?? context);
+            },
+          );
         },
       );
     } else {
@@ -125,8 +112,6 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
         onPressed: () {
           Navigator.pop(context);
         },
-        buttonText: TextConstants.getText(text: TextConstants.closeEn),
-        icon: CupertinoIcons.clear_circled_solid,
       );
     }
   }

@@ -15,12 +15,14 @@ class CardEntity {
   final String? identityId;
   final String? role;
   final String? type;
+  final String balance;
 
   CardEntity({
     required this.id,
     required this.name,
     required this.email,
-     this.emailVerifiedAt,
+    required this.balance,
+    this.emailVerifiedAt,
     required this.createdAt,
     required this.updatedAt,
     required this.userNumber,

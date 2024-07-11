@@ -7,8 +7,8 @@ import '../../../../core/utils/typedefs.dart';
 import '../../domain/repo/deposit_repo.dart';
 import '../datasources/deposite_remote_data_src.dart';
 
-class CardRepoImpl implements DepositRepo {
-  const CardRepoImpl(this._remoteDataSource);
+class DepositRepoImpl implements DepositRepo {
+  const DepositRepoImpl(this._remoteDataSource);
 
   final DepositRemoteDataSrc _remoteDataSource;
 

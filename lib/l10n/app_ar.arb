@@ -91,7 +91,9 @@
 "dateCreated": "تاريخ الإنشاء:",
 "cardNo": "رقم البطاقة:",
 "cardDeleted": "تم حذف البطاقة",
-"noWorries": "لا تقلق! لقد رتبنا كل شيء!"
+"noWorries": "لا تقلق! لقد رتبنا كل شيء!",
+"balanceRS":"ر.س {balance}",
+"balance":"رصيد"
 
 
 

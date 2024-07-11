@@ -71,11 +71,9 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
               title: ErrorConst.getErrorTitle(title: ErrorConst.otpErrorEn),
               subTitle: failure.message,
               // ErrorConst.getErrorBody(text: failure.message),
-              buttonText: TextConstants.getText(text: TextConstants.closeEn),
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Media.infoIcon,
             );
           }
         },
@@ -85,18 +83,19 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
           await _cacheHelper.cacheSessionToken(response.token);
           await _cacheHelper.cacheUserId(response.user.id);
           await _cacheHelper.cacheUsername(response.user.name ?? "");
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            router.go(
+              HomeView.name,
+            );
+          });
           // await Future.delayed(Duration(seconds: 1));
           //0 means user is first time and didnt complete his data info
-          if (response.user.name == null) {
-            router.push(UpdateUserInfoView.path);
-          } else {
-            //used to not push until home loading is completed
-            SchedulerBinding.instance.addPostFrameCallback((_) {
-              router.go(
-                HomeView.name,
-              );
-            });
-          }
+          // if (response.user.name == null) {
+          //   router.push(UpdateUserInfoView.path);
+          // } else {
+          //   //used to not push until home loading is completed
+          //
+          // }
         },
       );
     } catch (e) {
@@ -106,10 +105,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         onPressed: () {
           Navigator.pop(context);
         },
-        buttonText: TextConstants.getText(text: TextConstants.closeEn),
-        icon: Media.infoIcon,
       );
     }
   }
-
 }

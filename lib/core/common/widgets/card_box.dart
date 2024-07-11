@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:fushati/core/utils/core_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -77,8 +77,8 @@ class CardBox extends StatelessWidget {
                             .textTheme
                             .titleMedium
                             ?.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: Colours.brandColorOne),
+                                fontWeight: FontWeight.w400,
+                                color: Colours.brandColorOne),
                       ),
                     ],
                   ),
@@ -97,7 +97,7 @@ class CardBox extends StatelessWidget {
                     height: 1.h,
                   ),
                   Text(
-                    "065  55  210  37",
+                    CoreUtils.formatNumberString(card.userPhone),
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge
@@ -107,7 +107,7 @@ class CardBox extends StatelessWidget {
                     height: 1.5.h,
                   ),
                   Text(
-                    "Balance",
+                    "${AppLocalizations.of(context)?.balance}",
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium
@@ -117,11 +117,11 @@ class CardBox extends StatelessWidget {
                     height: 0.5.h,
                   ),
                   Text(
-                    "60.00 R.S",
+                    "${AppLocalizations.of(context)?.balanceRS(card.balance)}",
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colours.brandColorOne,
-                    ),
+                          fontWeight: FontWeight.w700,
+                          color: Colours.brandColorOne,
+                        ),
                   ),
                 ],
               ),

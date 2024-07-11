@@ -19,6 +19,7 @@ class CardModel extends CardEntity {
     super.identityId,
     super.role,
     super.type,
+    required super.balance,
   });
 
   factory CardModel.fromJson(Map<String, dynamic> json) => CardModel(
@@ -39,6 +40,7 @@ class CardModel extends CardEntity {
         identityId: json["identity_id"],
         role: json["role"],
         type: json["type"],
+        balance: json["balance"],
       );
 
   Map<String, dynamic> toJson() => {

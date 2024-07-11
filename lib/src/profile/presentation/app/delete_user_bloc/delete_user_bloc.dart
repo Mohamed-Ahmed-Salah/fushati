@@ -27,31 +27,31 @@ class DeleteUserBloc extends Bloc<DeleteUserEvent, DeleteUserState> {
   }
 
   _deleteUserEvent(event, emit) async {
-    BuildContext context = event.context;
-    emit(const DeleteUserState.loading());
-
-    final result = await _deleteUserInfo();
-    result.fold(
-      (failure) async {
-        CoreUtils.showMyDialog(
-            title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
-            subTitle: ErrorConst.getErrorBody(text: failure.message),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            buttonText: TextConstants.getText(text: TextConstants.okayEn),
-            icon: Icons.info);
-        emit(DeleteUserState.failed(
-            ErrorConst.getErrorBody(text: failure.message)));
-      },
-      (_) async {
-        emit(const DeleteUserState.success());
-        final cacheHelper = sl<CacheHelper>();
-        await cacheHelper.logout();
-        Navigator.pop(context);
-
-        router.go(LoginView.path);
-      },
-    );
+    //todo delete
+    // BuildContext context = event.context;
+    // emit(const DeleteUserState.loading());
+    //
+    // final result = await _deleteUserInfo();
+    // result.fold(
+    //   (failure) async {
+    //     CoreUtils.showMyDialog(
+    //         title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
+    //         subTitle: ErrorConst.getErrorBody(text: failure.message),
+    //         onPressed: () {
+    //           Navigator.pop(context);
+    //         },
+    //        );
+    //     emit(DeleteUserState.failed(
+    //         ErrorConst.getErrorBody(text: failure.message)));
+    //   },
+    //   (_) async {
+    //     emit(const DeleteUserState.success());
+    //     final cacheHelper = sl<CacheHelper>();
+    //     await cacheHelper.logout();
+    //     Navigator.pop(context);
+    //
+    //     router.go(LoginView.path);
+    //   },
+    // );
   }
 }

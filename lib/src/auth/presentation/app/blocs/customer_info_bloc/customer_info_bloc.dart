@@ -56,8 +56,7 @@ class CustomerInfoBloc extends Bloc<CustomerInfoEvent, CustomerInfoState> {
           onPressed: () {
             Navigator.pop(context);
           },
-          buttonText: TextConstants.getText(text: TextConstants.closeEn),
-          icon: Media.infoIcon,
+
         );
         emit(CustomerInfoState.failed(failure.message));
       },

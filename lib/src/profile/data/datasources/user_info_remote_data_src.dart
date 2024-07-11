@@ -10,13 +10,12 @@ import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/network_constants.dart';
 import '../../../auth/domain/entities/user.dart';
 
-
-
-
 class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
   const UserInfoRemoteDataSrcImpl(this._dio);
 
   final Dio _dio;
+  static const String getUser = "/user";
+  static const String deleteUser = "/user";
 
   @override
   Future<User> getUserInfo() async {
@@ -25,31 +24,17 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       final header = await NetworkConstants.getHeadersWithAuth();
 
       final response = await _dio
-          .get(NetworkConstants.parentUrl,
+          .get("${NetworkConstants.usersUrl}$getUser",
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
-        String status = response.data["status"] ??
-            response.data["message"] ??
-            ErrorConst.getError(statusCode: response.statusCode ?? 0);
-        bool isSuccess = response.data["success"] ?? false;
-        if (isSuccess) {
-          return UserModel.fromJson(response.data);
-        }
-        if (status == ErrorConst.PROFILE_NOT_COMPLETED_MESSAGE) {
-          throw const ServerException(
-              message: ErrorConst.PROFILE_NOT_COMPLETED_MESSAGE,
-              statusCode: 500);
-        }
-        
+        return UserModel.fromJson(response.data);
       } else {
         throw ServerException(
-            message: response.data.toString(), statusCode: 500);
+            message: response.data["message"], statusCode: 500);
       }
-      throw const ServerException(message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
-      
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
@@ -77,15 +62,12 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       rethrow;
     } on TimeOutException {
       rethrow;
-    }
-
-    on TimeoutException {
+    } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
-    }
-    catch (e, s) {
-      
-      throw const ServerException(message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
+    } catch (e, s) {
+      throw const ServerException(
+          message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
   }
 
@@ -97,41 +79,26 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
     // TODO: implement fetchPlans
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
-      final userId = Cache.instance.userId ?? 0;
-      if (userId == 0) {
-        throw const ServerException(
-            message: ErrorConst.CACHE_NOT_FOUND_MESSAGE, statusCode: 500);
-      }
+
       final response = await _dio
           .post(NetworkConstants.parentUrl,
               data: {
                 "name": name,
                 "email": email,
-
               },
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: 10));
 
-      String status = response.data["status"] ??
-          response.data["message"] ??
-          ErrorConst.UNKNOWN_ERROR;
-      bool isSuccess = response.data["success"] ?? false;
-      if (response.statusCode == 200) {
-        if (status == ErrorConst.PROFILE_NOT_COMPLETED_MESSAGE) {
-          throw const ServerException(
-              message: ErrorConst.PROFILE_NOT_COMPLETED_MESSAGE,
-              statusCode: 500);
-        }
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return;
         // return UserInfoModel.fromJson(response.data[0]);
       } else {
         throw ServerException(
-            message: response.data.toString(), statusCode: 500);
+            message: response.data["message"], statusCode: 500);
       }
-      
     } on DioException catch (e) {
-
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -158,52 +125,40 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       rethrow;
     } on TimeOutException {
       rethrow;
-    }
-    on TimeoutException {
+    } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
-    }
-    catch (e, s) {
-     
-      throw const ServerException(message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
+    } catch (e, s) {
+      throw const ServerException(
+          message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
   }
 
   @override
-  Future<void> deleteProfile() async {
+  Future<void> deleteProfile({required int id}) async {
 // TODO: implement fetchPlans
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final token = Cache.instance.sessionToken ?? 0;
 
       final response = await _dio
-          .delete('${NetworkConstants.parentUrl}',
+          .delete('${NetworkConstants.usersUrl}$deleteUser/$id',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: 10));
 
-      if(response.statusCode==204){
+      if (response.statusCode == 204 || response.statusCode == 200) {
         return;
       }
-      String status =
-          response.data["message"] ??response.data["status"] ??
-          ErrorConst.UNKNOWN_ERROR;
-      bool isSuccess = response.data["success"] ?? false;
+
       if (response.statusCode == 200) {
-        if (status == ErrorConst.PROFILE_NOT_COMPLETED_MESSAGE) {
-          throw const ServerException(
-              message: ErrorConst.PROFILE_NOT_COMPLETED_MESSAGE,
-              statusCode: 500);
-        }
-// return UserInfoModel.fromJson(response.data[0]);
+        return;
       } else {
         throw ServerException(
-            message: response.data.toString(), statusCode: 500);
+            message: response.data["message"].toString(), statusCode: 500);
       }
-      
     } on DioException catch (e) {
-
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -230,11 +185,12 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       rethrow;
     } on TimeOutException {
       rethrow;
-    }on TimeoutException {
+    } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
-      throw const ServerException(message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
+      throw const ServerException(
+          message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
   }
 }
@@ -244,11 +200,10 @@ abstract class UserInfoRemoteDataSrc {
 
   Future<User> getUserInfo();
 
-  Future<void> deleteProfile();
+  Future<void> deleteProfile({required int id});
 
   Future<void> editUserInfo({
     required String email,
-
     required String name,
   });
 }

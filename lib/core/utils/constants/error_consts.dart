@@ -87,10 +87,9 @@ abstract class ErrorConst {
   static const String cannotRecieveOTPnowAr =
       "لا يمكن تلقي رسالة OTP الآن الرجاء المحاوله لاحقا";
 
-  static const String otpErrorEn = "OTP Error";
-  static const String otpErrorAr = "OTP Error";
-  static const String couldNotSubscribeEn = "Could not Subscribe";
-  static const String couldNotSubscribeAr = "حدث خطأ عند الاشتراك";
+  static const String otpErrorEn = "Not Verified";
+  static const String otpErrorAr = "غير مصرح لك بالدخول";
+
   static const String couldNotConnectToMoyasarEn =
       "Couldn't connect to payment gateway";
   static const String couldNotConnectToMoyasarAr = "تعذر الاتصال ببوابة الدفع ";
@@ -275,8 +274,7 @@ abstract class ErrorConst {
         return otpErrorAr;
       case errorEn:
         return errorAr;
-      case couldNotSubscribeEn:
-        return couldNotSubscribeAr;
+
 
       case couldNotConnectToMoyasarEn:
         return couldNotConnectToMoyasarAr;
@@ -291,8 +289,7 @@ abstract class ErrorConst {
         return otpErrorEn;
       case errorEn:
         return errorEn;
-      case couldNotSubscribeEn:
-        return couldNotSubscribeEn;
+     
 
       case couldNotConnectToMoyasarEn:
         return couldNotConnectToMoyasarEn;

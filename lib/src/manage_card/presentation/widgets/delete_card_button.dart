@@ -99,7 +99,7 @@ class DeleteConfirmationCardBox extends StatelessWidget {
       listener: (BuildContext context, DeleteCardState state) {
         state.whenOrNull(success: () {
           context.read<CardsBloc>().add(const CardsEvent.getCards());
-          context.go(CardDeletedSuccessView.path);
+          context.pushNamed(CardDeletedSuccessView.path);
         });
       },
       builder: (context, state) {

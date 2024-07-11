@@ -43,8 +43,7 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
             onPressed: () {
               Navigator.pop(context);
             },
-            buttonText: TextConstants.getText(text: TextConstants.closeEn),
-            icon: Icons.info,
+
           );
           final cacheHelper = sl<CacheHelper>();
           await cacheHelper.logout();
