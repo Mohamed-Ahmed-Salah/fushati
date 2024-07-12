@@ -5,7 +5,6 @@ abstract class Colours {
   static const Color primaryGreenTintColor =  Color(0xFFd1fae6);
   static const Color brandColorOne = Color(0xFF255F6D);
   static const Color brandColorTwo = Color(0xFF0EC4B6);
-  static const Color greenSuccess = Color(0xFF24CE9F);
   static const Color lightPrimaryBlackColor = Color(0xFF212529);
   static Color borderGreyColor = Colors.black.withOpacity(0.1);
 
@@ -13,6 +12,8 @@ abstract class Colours {
   static const Color blueButtonColor = Color(0xFF2A83F2);
   static const Color errorColor = Color(0xFFF54135);
   static const Color redColor = Color(0xFFF44336);
+  static const Color withdrawColor = Color(0xFFF22A41);
+  static const Color greenSuccess = Color(0xFF24CE9F);
   static const Color yellowWarningColor = Color(0xFFF2B325);
 
   static const Color whiteColor = Color(0xFFFFFFFF);

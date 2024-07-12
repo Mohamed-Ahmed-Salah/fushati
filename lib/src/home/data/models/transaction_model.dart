@@ -34,9 +34,9 @@ class Transaction {
   static TransactionEnum getTransactionType(String type) {
     switch (type.toLowerCase()) {
       case "recharge":
-        return TransactionEnum.withdraw;
-      case "withdrawal":
         return TransactionEnum.recharge;
+      case "withdrawal":
+        return TransactionEnum.withdraw;
     }
     return TransactionEnum.undefined;
   }

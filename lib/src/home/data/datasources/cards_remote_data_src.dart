@@ -234,7 +234,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
-      print("AAAAAAAAAAAAA ${response.statusCode}");
       print(response.data);
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data)) as List)
