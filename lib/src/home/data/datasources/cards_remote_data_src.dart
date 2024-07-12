@@ -158,6 +158,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   Future<CardEntity> getCard({required String cardNumber}) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
+
       final response = await _dio
           .get(
               '${NetworkConstants.parentsUrl}$getCardDetailsEndpoint/$cardNumber',
@@ -166,7 +167,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
-
       if (response.data["id"] == null) {
         throw const CardNotFoundException(statusCode: 422);
       }
@@ -216,6 +216,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
+      print("SERRRR ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
