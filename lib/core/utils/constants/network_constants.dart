@@ -2,7 +2,7 @@ import '../../common/app/cache_helper.dart';
 import '../../services/injection_container.dart';
 
 abstract class NetworkConstants {
-  static const baseUrl = 'http://52.233.82.20/api';
+  static const baseUrl = 'http://66.42.54.81:8080/api';
   static const String parentUrl = '$baseUrl/parent';
   static const String usersUrl = '$baseUrl/users';
   static const String parentsUrl = '$baseUrl/parents';

@@ -35,12 +35,13 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
+      print(response.data.toString());
 
       if (isSuccess) {
         print("-------------------------------------------");
-        print(response.data["verification_code"]);
-        CoreUtils.showSnackBar(
-            message: response.data["verification_code"] ?? 'NOT FOUND');
+        print(response.data["verification_code"]??"");
+        // CoreUtils.showSnackBar(
+        //     message: response.data["verification_code"] ?? 'NOT FOUND');
         return LoginResponseModel.fromJson(response.data);
       } else {
         if (response.statusCode == 401) {

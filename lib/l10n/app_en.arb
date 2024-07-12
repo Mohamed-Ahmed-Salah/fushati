@@ -99,7 +99,13 @@
 "emailOption":"Email (Optional)",
 "discard":"Discard",
 "transferSuccess":"Transfer Successful",
-"amountTransferred":"You have successfully transferred {amount} to card number {number}"
+"amountTransferred":"You have successfully transferred {amount} to card number {number}",
+"onBoardTitle1":"Enhanced Parental Control",
+"onBoardTitle2":"Comprehensive Service System",
+"onBoardTitle3":"Secure and Effortless Payments",
+"onBoardSub1":"We empower parents with advanced features to monitor their children's daily expenses and set personalized spending limits.",
+"onBoardSub2":"Our system includes an app for parents, a payment tool for students, a point of sale system, a POS and a control panel for canteen owners.",
+"onBoardSub3":"Fasahati guarantees secure, hassle-free payments, safeguarding students from theft and ensuring peace of mind for parents."
 
 
 

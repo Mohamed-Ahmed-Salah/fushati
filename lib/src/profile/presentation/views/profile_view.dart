@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
+import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -13,7 +14,12 @@ import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/utils/constants/size_constatnts.dart';
 import '../../../edit_profile/presentation/views/edit_profile_view.dart';
+import '../../../home/data/models/transaction_model.dart';
+import '../../../home/domain/entity/card.dart';
 import '../../../home/presentation/widgets/empty_card_list.dart';
+import '../../../home/presentation/widgets/error_sliver.dart';
+import '../../../home/presentation/widgets/loading_sliver.dart';
+import '../../../manage_card/presentation/widgets/transaction_box.dart';
 import '../app/user_info_bloc/user_info_bloc.dart';
 
 class ProfileView extends StatelessWidget {
@@ -104,9 +110,8 @@ class ProfileBody extends StatelessWidget {
                   CardContainerDesign(
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                        vertical: SizeConst.verticalPadding,
-                        horizontal: SizeConst.horizontalPadding
-                      ),
+                          vertical: SizeConst.verticalPadding,
+                          horizontal: SizeConst.horizontalPadding),
                       child: Row(
                         children: [
                           SvgPicture.asset(
@@ -187,6 +192,43 @@ class ProfileBody extends StatelessWidget {
                 ],
               ),
             ),
+            BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
+              return state.when(
+                loading: () => const LoadingSliver(),
+                emptyList: () => Container(),
+                failed: (message) => ErrorSliver(
+                  onPressed: () {
+                    context.read<CardsBloc>().add(const CardsEvent.getCards());
+                  },
+                  message: message,
+                ),
+                success: (cards) => SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      CardEntity card = cards[index];
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: card.transactions.length,
+                        itemBuilder: (context, index) {
+                          Transaction transaction = card.transactions[index];
+                          return TransactionBox(transaction: transaction);
+                        },
+                      );
+                    },
+                    childCount: cards.length,
+                  ),
+                ),
+              );
+              // return SliverList.builder(
+              //   itemCount: widget.card.transactions.length,
+              //   itemBuilder: (BuildContext context, int index) {
+              //     final Transaction transaction = widget.card
+              //         .transactions[index];
+              //     return TransactionBox(transaction: transaction,);
+              //   },
+              // );
+            }),
           ],
         ),
       ),

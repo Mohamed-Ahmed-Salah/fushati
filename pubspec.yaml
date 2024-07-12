@@ -56,7 +56,8 @@ dependencies:
   lottie: ^3.1.2
   uuid: ^4.4.0
   url_launcher: ^6.2.6
-
+  dots_indicator: ^3.0.0
+  smooth_page_indicator: ^1.2.0
   moyasar:
     path: packages/moyasar-2.0.8
 

@@ -9,6 +9,7 @@ import 'package:fushati/src/moyasar_transfer/presentation/app/bloc/transfer_mone
 import 'package:fushati/src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
+import 'package:fushati/src/on_boarding/presentation/app/bloc/cubit/page_cubit.dart';
 import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_user_bloc.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import 'package:fushati/src/splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
@@ -104,6 +105,10 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => EditProfileBloc(
               editUserInfo: sl(),
             ),
+          ),
+          BlocProvider<OnBoardingPageCubit>(
+            create: (BuildContext context) =>
+                OnBoardingPageCubit(cacheHelper: sl()),
           ),
         ],
         child: BlocBuilder<AppLanguageCubit, AppLanguageState>(

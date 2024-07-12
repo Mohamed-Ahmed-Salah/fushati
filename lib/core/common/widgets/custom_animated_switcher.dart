@@ -11,7 +11,6 @@ class CustomAnimatedSwitcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       transitionBuilder: (child, animation) {
-        print("animation: ${animation.value}");
         return FadeTransition(
           opacity: animation,
           child: SlideTransition(
