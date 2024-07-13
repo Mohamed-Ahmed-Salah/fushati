@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -14,6 +13,7 @@ import '../app/bloc/delete_card_bloc.dart';
 import '../widgets/delete_card_button.dart';
 import '../widgets/top_up_button.dart';
 import '../widgets/transaction_box.dart';
+import '../widgets/transaction_history_text_row.dart';
 
 class ManageCardView extends StatefulWidget {
   static String path = "/manage-new";
@@ -90,32 +90,7 @@ class _ManageCardViewState extends State<ManageCardView> {
                       SizedBox(
                         height: SizeConst.verticalPadding,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "${AppLocalizations
-                                .of(context)
-                                ?.transactionHistory}",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                fontWeight: FontWeight.w400,
-                                color: Colours.textBlackColor
-                                    .withOpacity(0.7)),
-                          ),
-                          SizedBox(
-                            width: SizeConst.horizontalPadding,
-                          ),
-                          Expanded(
-                            child: Divider(
-                              color: Colours.borderGreyColor,
-                              height: 5,
-                            ),
-                          ),
-                        ],
-                      )
+                      const TransactionHistoryRowText(),
                     ],
                   ),
                 ),

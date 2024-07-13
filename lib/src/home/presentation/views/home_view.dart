@@ -27,8 +27,6 @@ class _HomeViewState extends State<HomeView> {
 
 @override
   void initState() {
-
-  print("shouldGetAppData ${widget.shouldGetAppData}");
   if (widget.shouldGetAppData) {
     context.read<AppRedirectionBloc>().add(
       GetAppData(context: context),
@@ -50,7 +48,6 @@ class _HomeViewState extends State<HomeView> {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: SizeConst.horizontalPadding,
-            // vertical: SizeConst.verticalPadding
           ),
           child: CustomScrollView(
             slivers: [

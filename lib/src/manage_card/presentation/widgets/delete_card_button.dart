@@ -22,6 +22,7 @@ class DeleteCardButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           showDialog(
+            barrierDismissible:false,
             context: context,
             builder: (context) =>
                 DeleteConfirmationCardBox(

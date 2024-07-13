@@ -109,6 +109,7 @@ class _NewCardViewState extends State<NewCardView> {
 
                             if (filledFormCorrectly) {
                               showDialog(
+                                barrierDismissible:false,
                                 context: context,
                                 builder: (context) => CardDetailsDialog(
                                   cardNumber: controller.text,

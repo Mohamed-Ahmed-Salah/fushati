@@ -20,6 +20,7 @@ import '../../../home/presentation/widgets/empty_card_list.dart';
 import '../../../home/presentation/widgets/error_sliver.dart';
 import '../../../home/presentation/widgets/loading_sliver.dart';
 import '../../../manage_card/presentation/widgets/transaction_box.dart';
+import '../../../manage_card/presentation/widgets/transaction_history_text_row.dart';
 import '../app/user_info_bloc/user_info_bloc.dart';
 
 class ProfileView extends StatelessWidget {
@@ -189,6 +190,10 @@ class ProfileBody extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: SizeConst.verticalPaddingFour,),
+                  const TransactionHistoryRowText(),
+                  SizedBox(height: SizeConst.verticalPadding,),
+
                 ],
               ),
             ),
