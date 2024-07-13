@@ -27,6 +27,8 @@ class _HomeViewState extends State<HomeView> {
 
 @override
   void initState() {
+
+  print("shouldGetAppData ${widget.shouldGetAppData}");
   if (widget.shouldGetAppData) {
     context.read<AppRedirectionBloc>().add(
       GetAppData(context: context),
