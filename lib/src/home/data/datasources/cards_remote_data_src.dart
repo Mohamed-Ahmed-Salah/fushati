@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:fushati/src/auth/domain/entities/login_response.dart';
 import 'package:fushati/src/home/data/models/card_model.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
 

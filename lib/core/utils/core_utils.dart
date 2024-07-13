@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:intl/intl.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../common/widgets/close_button.dart';
 import '../common/widgets/error_alert_dialog.dart';
 import '../common/widgets/success_alert_dialog.dart';
-import '../res/media.dart';
 import '../res/styles/colours.dart';
 import '../services/router.dart';
-import 'constants/size_constatnts.dart';
 
 abstract class CoreUtils {
   const CoreUtils();
@@ -165,7 +161,7 @@ abstract class CoreUtils {
   static void showLoadingDialog() {
     showDialog(
         context: rootNavigatorKey.currentContext!,
-        builder: (context) => const CircularProgressIndicator());
+        builder: (context) => const CustomCircularProgressIndicator());
   }
 
   static String todayDate() {
@@ -226,18 +222,6 @@ abstract class CoreUtils {
             ));
   }
 
-  // static String formatDateTime(String dateTimeString) {
-  //    // Parse the string into a DateTime object
-  //    DateTime dateTime = DateTime.parse(dateTimeString);
-  //
-  //    // Define the output format
-  //    DateFormat outputFormat = DateFormat('dd MMM yyyy hh:mm:ss a');
-  //
-  //    // Format the DateTime object into the desired string format
-  //    String formattedDate = outputFormat.format(dateTime);
-  //
-  //    return formattedDate;
-  //  }
 
 // Function to format the complete date and time
   static String formatDateTime(DateTime dateTime) {

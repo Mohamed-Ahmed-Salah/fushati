@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fushati/core/res/theme/app_theme.dart';
 
-import '../../res/styles/colours.dart';
 
 class GreenBackground extends StatelessWidget {
   final Widget child;

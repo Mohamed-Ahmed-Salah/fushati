@@ -3,18 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
-import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../../core/common/singletons/form_validation.dart';
-import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../core/res/theme/app_theme.dart';
 import '../views/add_card_loader.dart';
 
 class CardDetail extends StatelessWidget {

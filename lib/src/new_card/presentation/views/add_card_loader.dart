@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/common/widgets/green_background.dart';
+import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/core/utils/constants/text_constants.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -47,7 +47,7 @@ class AddCardLoaderView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircularProgressIndicator(),
+                  const CustomCircularProgressIndicator(),
                   SizedBox(
                     height: SizeConst.verticalPadding,
                   ),

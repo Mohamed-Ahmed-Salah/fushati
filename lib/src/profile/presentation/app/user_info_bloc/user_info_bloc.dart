@@ -5,13 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 
-import '../../../../../core/common/app/cache_helper.dart';
-import '../../../../../core/services/injection_container.dart';
-import '../../../../../core/services/router.dart';
 import '../../../../../core/utils/constants/error_consts.dart';
-import '../../../../../core/utils/constants/text_constants.dart';
-import '../../../../../core/utils/core_utils.dart';
-import '../../../../auth/presentation/views/login_view.dart';
 import '../../../domain/usecases/get_user_info.dart';
 
 part 'user_info_event.dart';

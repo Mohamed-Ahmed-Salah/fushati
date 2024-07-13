@@ -6,7 +6,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/common/widgets/card_box.dart';
-import '../../../manage_card/presentation/views/manage_card_view.dart';
 import '../../../new_card/presentation/views/new_card_view.dart';
 import '../../domain/entity/card.dart';
 import 'empty_card_list.dart';

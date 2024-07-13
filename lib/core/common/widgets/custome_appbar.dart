@@ -6,7 +6,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../res/media.dart';
 import '../../res/styles/colours.dart';
 import '../../utils/constants/size_constatnts.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String? text;

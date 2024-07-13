@@ -2,28 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
-import 'package:fushati/src/home/presentation/widgets/cards_list.dart';
 import 'package:fushati/src/manage_card/presentation/app/bloc/delete_card_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../../core/common/singletons/form_validation.dart';
-import '../../../../core/common/widgets/card_box.dart';
 import '../../../../core/common/widgets/close_button.dart';
 import '../../../../core/common/widgets/custom_animated_switcher.dart';
-import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'pick_amount_bottomsheet.dart';
 import '../../../../core/res/media.dart';
-import '../../../../core/res/theme/app_theme.dart';
-import '../../../home/domain/entity/card.dart';
 import '../views/card_deleted_success_view.dart';
-import '../widgets/delete_card_button.dart';
-import '../widgets/top_up_button.dart';
 
 class DeleteConfirmationCardBox extends StatelessWidget {
   final int id;
@@ -166,7 +158,7 @@ class DeleteConfirmationCardBox extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                          loading: () => const CircularProgressIndicator(),
+                          loading: () => const CustomCircularProgressIndicator(),
                           failed: (failed) => Padding(
                             padding: EdgeInsets.all(
                                 SizeConst.horizontalPadding),

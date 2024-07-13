@@ -195,7 +195,15 @@ class ProfileBody extends StatelessWidget {
             BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
               return state.when(
                 loading: () => const LoadingSliver(),
-                emptyList: () => Container(),
+                emptyList: () => SliverList(
+
+                  delegate: SliverChildBuilderDelegate(
+                    childCount:1,
+                    (BuildContext context, int index) {
+                      return Container();
+                    },
+                  ),
+                ),
                 failed: (message) => ErrorSliver(
                   onPressed: () {
                     context.read<CardsBloc>().add(const CardsEvent.getCards());

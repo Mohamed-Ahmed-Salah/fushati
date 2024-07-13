@@ -3,17 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/common/widgets/green_background.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/src/auth/presentation/views/login_view.dart';
-import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../core/common/app/cache_helper.dart';
 import '../../../../core/common/widgets/custom_animated_switcher.dart';
 import '../../../../core/common/widgets/custome_appbar.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
-import '../../../../core/services/injection_container.dart';
 import '../app/bloc/cubit/page_cubit.dart';
 import '../widgets/bottom_page_indicator.dart';
 

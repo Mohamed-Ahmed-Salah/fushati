@@ -6,7 +6,6 @@ import '../../../../core/utils/typedefs.dart';
 import '../../domain/entities/otp_response.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../datasources/auth_remote_data_src.dart';
-import '../../../profile/data/models/user_model.dart';
 
 class AuthRepoImpl implements AuthRepo {
   const AuthRepoImpl(this._remoteDataSource);

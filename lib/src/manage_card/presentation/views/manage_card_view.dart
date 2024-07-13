@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fushati/core/common/widgets/close_button.dart';
-import 'package:fushati/core/common/widgets/green_background.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
-import 'package:fushati/src/home/presentation/widgets/cards_list.dart';
-import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../../core/common/singletons/form_validation.dart';
 import '../../../../core/common/widgets/card_box.dart';
 import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../widgets/pick_amount_bottomsheet.dart';
-import '../../../../core/res/media.dart';
-import '../../../../core/res/theme/app_theme.dart';
 import '../../../home/domain/entity/card.dart';
 import '../app/bloc/delete_card_bloc.dart';
 import '../widgets/delete_card_button.dart';

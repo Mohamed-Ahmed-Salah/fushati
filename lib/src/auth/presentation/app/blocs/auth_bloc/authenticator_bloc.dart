@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/app/cache_helper.dart';
 import '../../../../../../core/utils/constants/error_consts.dart';
-import '../../../../../../core/utils/constants/text_constants.dart';
 import '../../../../../../core/utils/core_utils.dart';
 import '../../../../domain/usecases/auth_usecases.dart';
 import '../../../views/verify_otp_view.dart';

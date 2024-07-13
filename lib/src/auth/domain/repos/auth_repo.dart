@@ -1,6 +1,5 @@
 
 import '../../../../core/utils/typedefs.dart';
-import '../../../profile/data/models/user_model.dart';
 import '../entities/otp_response.dart';
 
 abstract class AuthRepo {

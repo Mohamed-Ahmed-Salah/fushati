@@ -3,20 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:fushati/core/res/media.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/app/cache_helper.dart';
 import '../../../../../../core/services/router.dart';
 import '../../../../../../core/utils/constants/error_consts.dart';
-import '../../../../../../core/utils/constants/text_constants.dart';
 import '../../../../../../core/utils/core_utils.dart';
 import '../../../../../home/presentation/views/home_view.dart';
 import '../../../../domain/usecases/auth_usecases.dart';
 import '../../../views/login_view.dart';
-import '../../../views/resend_otp_after_failure.dart';
-import '../../../views/update_user_info_view.dart';
-import '../../../views/verify_otp_view.dart';
 
 part 'otp_bloc.freezed.dart';
 

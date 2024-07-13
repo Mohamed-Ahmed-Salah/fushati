@@ -1,12 +1,8 @@
-import 'dart:async';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:fushati/src/auth/presentation/views/update_user_info_view.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -16,10 +12,8 @@ import '../../../../core/common/widgets/animated_button_circular_loader.dart';
 import '../../../../core/common/widgets/custome_appbar.dart';
 import '../../../../core/common/widgets/green_background.dart';
 import '../../../../core/res/styles/colours.dart';
-import '../app/blocs/auth_bloc/authenticator_bloc.dart';
 import '../app/blocs/otp_bloc/otp_bloc.dart';
 import '../widgets/resend_otp_widget.dart';
-import 'login_view.dart';
 
 class VerifyOTPView extends StatelessWidget {
   static const path = '/verify-otp';

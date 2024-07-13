@@ -135,5 +135,4 @@ class MyApp extends StatelessWidget {
 }
 
 //todo delete user
-//todo animation for when user delete card
 //todo animation splash

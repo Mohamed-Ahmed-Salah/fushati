@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -6,15 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/res/media.dart';
-import 'package:fushati/src/auth/presentation/views/login_view.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mesh_gradient/mesh_gradient.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../core/common/widgets/green_background.dart';
-import '../../../../core/res/styles/colours.dart';
 import '../app/app_redirection_bloc/app_redirection_bloc.dart';
 
 class SplashView extends StatefulWidget {
@@ -37,87 +29,10 @@ class _SplashViewState extends State<SplashView>
     super.initState();
     context
         .read<AppRedirectionBloc>()
-        .add(GetAppDataAndRedirect(context: context));    // animated = false;
-    // _controller = MeshGradientController(points: [
-    //   MeshGradientPoint(
-    //     position: const Offset(
-    //       0.5,
-    //       -0.2,
-    //     ),
-    //     color: Colours.primaryGreenColor.withOpacity(0.2),
-    //   ),
-    //   MeshGradientPoint(
-    //     position: const Offset(
-    //       0.5,
-    //       1.3,
-    //     ),
-    //     color: Colours.primaryGreenColor.withOpacity(0.2),
-    //   ),
-    //   MeshGradientPoint(
-    //     position: const Offset(
-    //       0.5,
-    //       0.5,
-    //     ),
-    //     color: Colours.whiteColor,
-    //   ),
-    //   MeshGradientPoint(
-    //     position: const Offset(
-    //       0.5,
-    //       0.5,
-    //     ),
-    //     color: Colours.whiteColor,
-    //   ),
-    // ], vsync: this);
-    // animate();
-    // TODO: implement initState
+        .add(GetAppDataAndRedirect(context: context));
   }
 
-  //
-  // animate() async {
-  //   await _controller.animateSequence(
-  //     duration: const Duration(seconds: 5),
-  //     sequences: [
-  //       AnimationSequence(
-  //         pointIndex: 0,
-  //         newPoint: MeshGradientPoint(
-  //           position: const Offset(
-  //             0.5,
-  //             0.2,
-  //           ),
-  //           color: _controller.points.value[0].color,
-  //         ),
-  //         interval: const Interval(
-  //           0.5,
-  //           0.8,
-  //           curve: Curves.easeInOut,
-  //         ),
-  //       ),
-  //       AnimationSequence(
-  //         pointIndex: 1,
-  //         newPoint: MeshGradientPoint(
-  //           position: const Offset(
-  //             1.8,
-  //             -0.5,
-  //           ),
-  //           color: _controller.points.value[1].color,
-  //         ),
-  //         interval: const Interval(
-  //           0.0,
-  //           0.7,
-  //           curve: Curves.easeInBack,
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  //
-  //   setState(() {
-  //     animated = true;
-  //   });
-  //
-  //   context
-  //       .read<AppRedirectionBloc>()
-  //       .add(GetAppDataAndRedirect(context: context));
-  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -125,25 +40,7 @@ class _SplashViewState extends State<SplashView>
     return Scaffold(
       body: Stack(
         children: [
-          // AnimatedPositioned(
-          //   duration: animatedDuration,
-          //
-          //   top: animated ? -5.h : 0,
-          //   // key: Key(animated.toString()),
-          //   child: AnimatedOpacity(
-          //     curve: Curves.easeInOut,
-          //     opacity: 0,
-          //     duration: animatedDuration,
-          //     child: SizedBox(
-          //       height: 100.h,
-          //       width: 100.w,
-          //       child: MeshGradient(
-          //         controller: _controller,
-          //         options: MeshGradientOptions(),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+
           Positioned.fill(
             child: Lottie.asset(
               Media.splashLottie,

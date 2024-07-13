@@ -6,9 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:moyasar/moyasar.dart';
 
 import '../../../../../core/common/widgets/loading_alert_widget.dart';
-import '../../../../../core/services/router.dart';
 import '../../../../../core/utils/constants/error_consts.dart';
-import '../../../../../core/utils/constants/text_constants.dart';
 import '../../../../../core/utils/core_utils.dart';
 import '../../../domain/usecases/transfer_to_card.dart';
 

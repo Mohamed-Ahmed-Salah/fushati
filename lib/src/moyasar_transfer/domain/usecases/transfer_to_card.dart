@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:fushati/src/home/domain/repos/card_repo.dart';
 
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/typedefs.dart';

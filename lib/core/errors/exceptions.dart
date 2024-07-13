@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:fushati/core/utils/constants/error_consts.dart';
-import 'package:fushati/core/utils/constants/text_constants.dart';
 
 class ServerException extends Equatable implements Exception {
   const ServerException({required this.message, required this.statusCode});

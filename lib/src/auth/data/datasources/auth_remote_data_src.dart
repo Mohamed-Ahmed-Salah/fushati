@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/auth/domain/entities/login_response.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -11,7 +10,6 @@ import '../../../../core/utils/constants/network_constants.dart';
 import '../../domain/entities/otp_response.dart';
 import '../models/login_response_model.dart';
 import '../models/otp_response_model.dart';
-import '../../../profile/data/models/user_model.dart';
 
 const loginEndpoint = '/login';
 const addUserInfoEndpoint = '/login';

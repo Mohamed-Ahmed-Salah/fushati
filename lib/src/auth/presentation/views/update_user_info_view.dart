@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/common/widgets/custome_appbar.dart';
 import '../../../../core/common/widgets/green_background.dart';
-import '../../../../core/res/styles/colours.dart';
-import '../../../home/presentation/views/home_view.dart';
 import 'auth_success.dart';
 
 class UpdateUserInfoView extends StatefulWidget {

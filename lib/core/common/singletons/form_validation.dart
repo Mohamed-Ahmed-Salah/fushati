@@ -6,7 +6,8 @@ abstract class TextFormValidation {
 
   static String? phoneValidation(String? value,
       {required BuildContext context}) {
-    if (value!.length == 0) return requiredField(value, context: context);
+    if (value == null) return requiredField("", context: context);
+    if (value.isEmpty) return requiredField(value, context: context);
     if (!RegExp(r"^[0-9]+$|[.][0-9]+$").hasMatch(value!)) {
       return "${AppLocalizations.of(context)?.fieldOnlyNumbers}";
     }
@@ -38,6 +39,7 @@ abstract class TextFormValidation {
     }
     return null;
   }
+
   static String? optionalEmailValidation(String? value,
       {required BuildContext context}) {
     if (value!.isEmpty) return null;
@@ -89,17 +91,13 @@ abstract class TextFormValidation {
     return null;
   }
 
-
-
-  static String? otpValidation(String? value,
-      {required BuildContext context}) {
+  static String? otpValidation(String? value, {required BuildContext context}) {
     if (value!.length == 0) return requiredField(value, context: context);
     if (!RegExp(r"^[0-9]+$|[.][0-9]+$").hasMatch(value!)) {
       return "${AppLocalizations.of(context)?.fieldOnlyNumbers}";
     }
-    if (value.length <4) {
+    if (value.length < 4) {
       return "${AppLocalizations.of(context)?.onlyFourNumber}";
     }
-
   }
 }

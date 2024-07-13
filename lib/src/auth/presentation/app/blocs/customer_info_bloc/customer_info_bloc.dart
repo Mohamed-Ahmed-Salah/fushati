@@ -1,14 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:fushati/core/res/media.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/common/app/cache_helper.dart';
 import '../../../../../../core/utils/constants/error_consts.dart';
-import '../../../../../../core/utils/constants/text_constants.dart';
 import '../../../../../../core/utils/core_utils.dart';
 import '../../../../domain/usecases/add_customer_info.dart';
 

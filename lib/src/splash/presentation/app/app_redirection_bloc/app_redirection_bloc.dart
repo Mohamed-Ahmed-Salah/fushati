@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/home/presentation/views/home_view.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
-import 'package:mesh_gradient/mesh_gradient.dart';
 
 import '../../../../../core/common/app/cache_helper.dart';
 import '../../../../../core/common/singletons/cache.dart';
@@ -66,7 +65,6 @@ class AppRedirectionBloc
 
   redirect(BuildContext context) {
     final isFirstTime = Cache.instance.firstTime;
-    print(isFirstTime);
 
     if (isFirstTime) {
       //todo go onboarding
@@ -87,7 +85,6 @@ class AppRedirectionBloc
   }
 
   getData(BuildContext context) {
-    print("CALLED GETDATA");
     context.read<CardsBloc>().add(const CardsEvent.getCards());
     context.read<UserInfoBloc>().add(const UserInfoEvent.getUserInfo());
   }
