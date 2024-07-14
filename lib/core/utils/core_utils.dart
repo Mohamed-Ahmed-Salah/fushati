@@ -225,7 +225,6 @@ abstract class CoreUtils {
 
 // Function to format the complete date and time
   static String formatDateTime(String date) {
-    print("formatDateTime $date");
     DateFormat inputFormat = DateFormat("yyyy/M/d HH:mm:ss");
     final dateTime= inputFormat.parse(date);
 
@@ -236,7 +235,6 @@ abstract class CoreUtils {
 
 // Function to get the date part only
   static String getFormattedDate(String date) {
-    print("getFormattedDate $date");
     DateFormat inputFormat = DateFormat("yyyy/M/d HH:mm:ss");
 
     final dateTime= inputFormat.parse(date);
@@ -249,7 +247,7 @@ abstract class CoreUtils {
 
 // Function to get the time part only
   static String getFormattedTime(String date) {
-    print("getFormattedTime $date");
+
     DateFormat inputFormat = DateFormat("yyyy/M/d HH:mm:ss");
 
     final dateTime= inputFormat.parse(date);
@@ -261,9 +259,7 @@ abstract class CoreUtils {
 
   static String getAmOrPm(String date) {
     DateFormat inputFormat = DateFormat("yyyy/M/d HH:mm:ss");
-
-    print("getAmOrPm $date");
-   final dateTime= inputFormat.parse(date);
+    final dateTime= inputFormat.parse(date);
     // Define the output format to get only the AM or PM part
     DateFormat amPmFormat = DateFormat('a');
 

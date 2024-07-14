@@ -42,20 +42,15 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       }
 
 
-      print("-----------------------------");
-      print(formattedDate);
-      print(
-        '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=$createdAt&endTime=$formattedDate 00:00:00&parent_id=$userId',
-      );
+
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=$createdAt&endTime=$formattedDate 00:00:00&parent_id=$userId',
+              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=${dateFormat.format(createdAt)} 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
-      print(response.data);
-      print(response.statusCode);
+
 
       bool isSuccess = response.statusCode == 200;
 
@@ -108,7 +103,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-      print("E#### ${e.toString()}");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
@@ -175,7 +170,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-      print("E#### ${e.toString()}");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
