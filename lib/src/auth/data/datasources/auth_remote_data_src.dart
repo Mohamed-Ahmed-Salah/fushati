@@ -29,7 +29,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200 ||
           response.statusCode == 201 ||
           response.statusCode == 202;
@@ -97,7 +97,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return OtpResponseModel.fromJson(response.data);
@@ -174,7 +174,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
       String status = response.data["status"] ??
           response.data["message"] ??
           ErrorConst.UNKNOWN_ERROR;

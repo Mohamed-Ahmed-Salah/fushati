@@ -30,7 +30,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
 
       if (isSuccess) {
@@ -97,7 +97,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
@@ -162,7 +162,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
       if (response.data["id"] == null) {
         throw const CardNotFoundException(statusCode: 422);
@@ -229,7 +229,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {

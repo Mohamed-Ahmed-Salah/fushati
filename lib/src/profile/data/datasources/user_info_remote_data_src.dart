@@ -29,8 +29,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
-      print("response: ${response.statusCode} \n ${response.data["user"]}");
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
 
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data["user"]);
@@ -95,11 +94,10 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return;
-        // return UserInfoModel.fromJson(response.data[0]);
       } else {
         throw ServerException(
             message: response.data["message"], statusCode: 500);
@@ -142,17 +140,15 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
 
   @override
   Future<void> deleteProfile({required int id}) async {
-// TODO: implement fetchPlans
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
-      final token = Cache.instance.sessionToken ?? 0;
 
       final response = await _dio
           .delete('${NetworkConstants.usersUrl}$deleteUser/$id',
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
 
       if (response.statusCode == 204 || response.statusCode == 200) {
         return;
