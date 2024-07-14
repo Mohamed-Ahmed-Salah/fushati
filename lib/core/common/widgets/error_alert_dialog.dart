@@ -77,6 +77,7 @@ class ErrorAlertDialog extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                     color: Colours.textBlackColor
                                         .withOpacity(0.7)),
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(
                             height: SizeConst.verticalPadding,

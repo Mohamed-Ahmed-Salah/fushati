@@ -60,10 +60,10 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
       String message = ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR);
       result.fold(
         (failure) {
-          print("FAILEEEEEEEEEED");
           message = ErrorConst.getErrorBody(text: failure.message);
           CoreUtils.showMyDialog(
-            title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
+            title: ErrorConst.getErrorTitle(
+                title: ErrorConst.paymentFailedTitleEn),
             subTitle: message,
             onPressed: () {
               Navigator.pop(context);
@@ -72,16 +72,6 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
         },
         (newAmount) {
           success = true;
-          print("SUCEEEEEEEEEEE");
-          //todo
-          // CoreUtils.showSuccess(
-          //   title: TextConstants.getText(text: TextConstants.successPaymentEn),
-          //   subTitle:
-          //       TextConstants.getText(text: TextConstants.successPaymentEn),
-          //   onPressed: () {
-          //     Navigator.pop(rootNavigatorKey.currentState?.context ?? context);
-          //   },
-          // );
         },
       );
       if (success) {

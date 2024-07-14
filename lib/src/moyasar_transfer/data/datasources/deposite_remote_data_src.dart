@@ -56,13 +56,12 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
 
       // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
-
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
             message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 0);
       }
-      if (e.response?.statusCode == 400) {
+      if (e.response?.statusCode == 400 || e.response?.statusCode == 402) {
         throw PaymentException(
             message: ErrorConst.paymentFailedEn,
             statusCode: e.response?.statusCode ?? 0);
@@ -93,6 +92,7 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
+      print("### ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

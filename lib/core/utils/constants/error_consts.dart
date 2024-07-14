@@ -73,9 +73,6 @@ abstract class ErrorConst {
   static const String servererrorAr = "خطأ في الخادم";
   static const String servererrorEn = "Server Erorr";
 
-  static const String paymentIsNotSuccessfullEn =
-      "Payment status is not successful";
-  static const String paymentIsNotSuccessfullAr = "حالة الدفع ليست ناجحة";
   static const String failedToFecthMoyayasarDetailsEn =
       "Failed to fetch payment details from Moyasa";
   static const String failedToFecthMoyayasarDetailsAr =
@@ -110,6 +107,11 @@ abstract class ErrorConst {
       "We were unable to process your transaction at this time. Please check your account details and try again later.";
   static const String paymentFailedAr =
       "فشل التحويل: لم نتمكن من معالجة المعاملة في هذا الوقت. يرجى التحقق من تفاصيل الحساب والمحاولة مرة أخرى لاحقًا.";
+  static const String paymentIsNotSuccessfullEn =
+      "Payment status is not successful";
+  static const String paymentIsNotSuccessfullAr = "التحويل لم يتم بنجاح";
+  static const String paymentFailedTitleEn = "Payment Failed";
+  static const String paymentFailedTitleAr = "التحويل لم يتم بنجاح";
 
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
@@ -286,6 +288,8 @@ abstract class ErrorConst {
 
   static String getErrorArabicTile({required String title}) {
     switch (title) {
+      case paymentFailedTitleEn:
+        return paymentFailedTitleAr;
       case otpErrorEn:
         return otpErrorAr;
       case errorEn:
@@ -300,6 +304,8 @@ abstract class ErrorConst {
 
   static String getErrorEnglishTile({required String title}) {
     switch (title) {
+      case paymentFailedTitleEn:
+        return paymentFailedTitleEn;
       case otpErrorEn:
         return otpErrorEn;
       case errorEn:
