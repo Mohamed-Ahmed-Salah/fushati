@@ -20,6 +20,12 @@ class ServerFailure extends Failure {
   ServerFailure.fromException(ServerException e)
       : this(message: e.message, statusCode: e.statusCode);
 }
+class PaymentFailure extends Failure {
+  const PaymentFailure({required super.message, required super.statusCode});
+
+  PaymentFailure.fromException(PaymentException e)
+      : this(message: e.message, statusCode: e.statusCode);
+}
 
 class CacheFailure extends Failure {
   // 3 - Data not found in cache --> Just custom code I made up

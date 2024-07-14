@@ -43,7 +43,6 @@ abstract class ErrorConst {
   static const String OTP_NOT_SENT_EN = 'Failed To Send OTP. Please try again.';
   static const String OTP_NOT_SENT_AR = 'حدث خطأ في إرسال OTP. حاول مرة اخرى';
 
-
   static const String OTP_NOT_FOUND = 'Invalid OTP. Please try again.';
   static const String OTP_NOT_FOUND_AR = 'Invalid OTP. Please try again.';
 
@@ -107,6 +106,11 @@ abstract class ErrorConst {
   static const String CANNOT_FIND_CARD_AR =
       "لا يمكن العثور على البطاقة، يرجى التأكد من إدخال رقم البطاقة الصحيح";
 
+  static const String paymentFailedEn =
+      "We were unable to process your transaction at this time. Please check your account details and try again later.";
+  static const String paymentFailedAr =
+      "فشل التحويل: لم نتمكن من معالجة المعاملة في هذا الوقت. يرجى التحقق من تفاصيل الحساب والمحاولة مرة أخرى لاحقًا.";
+
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
     return isArabic
@@ -117,9 +121,11 @@ abstract class ErrorConst {
   //21
   static String getErrorArabicBody({required String text}) {
     switch (text) {
+      case paymentFailedEn:
+        return paymentFailedAr;
       case OTP_NOT_SENT_EN:
         return OTP_NOT_SENT_AR;
-  case CANNOT_FIND_CARD_EN:
+      case CANNOT_FIND_CARD_EN:
         return CANNOT_FIND_CARD_AR;
 
       case cannotRecieveOTPnowEnWithWrongSpelling:
@@ -199,6 +205,8 @@ abstract class ErrorConst {
 
   static String getErrorEnglishBody({required String text}) {
     switch (text) {
+      case paymentFailedEn:
+        return paymentFailedEn;
       case OTP_NOT_SENT_EN:
         return OTP_NOT_SENT_EN;
       case CANNOT_FIND_CARD_EN:

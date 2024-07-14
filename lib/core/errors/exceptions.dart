@@ -67,3 +67,15 @@ class TimeOutException extends Equatable implements Exception {
   @override
   List<Object?> get props => [message, statusCode];
 }
+
+class PaymentException extends Equatable implements Exception {
+  final String message;
+
+  final int statusCode;
+
+  const PaymentException({required this.message, required this.statusCode});
+
+  // TODO: implement props
+  @override
+  List<Object?> get props => [message, statusCode];
+}

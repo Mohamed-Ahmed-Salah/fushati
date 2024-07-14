@@ -27,14 +27,23 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
         options: Options(
           headers: header,
         ),
-        data: {"user_card": cardNumber, "amount": amount, "payment_id": paymentId},
+        data: {
+          "user_card": cardNumber,
+          "amount": amount,
+          "payment_id": paymentId
+        },
       ).timeout(const Duration(seconds: 10));
-      bool isSuccess = response.statusCode == 200;
+      bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
 
       print("RESPOSE-------- ${response.data} {${response.statusCode}");
       if (isSuccess) {
         return;
       } else {
+        if (response.statusCode == 400) {
+          throw PaymentException(
+              message: ErrorConst.paymentFailedEn,
+              statusCode: response.statusCode ?? 0);
+        }
         if (response.statusCode == 401) {
           throw AuthenticationException(
               message: ErrorConst.NO_TOKEN,
@@ -47,12 +56,16 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
 
       // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
-      print("RESPOSE-------- ${e.response}");
 
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
             message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 0);
+      }
+      if (e.response?.statusCode == 400) {
+        throw PaymentException(
+            message: ErrorConst.paymentFailedEn,
+            statusCode: e.response?.statusCode ?? 0);
       }
       if (e.response == null) {
         if (e.error.runtimeType == SocketException) {
@@ -65,6 +78,8 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
           ErrorConst.getError(statusCode: e.response?.statusCode ?? 0);
       throw ServerException(message: status, statusCode: 500);
     } on ServerException {
+      rethrow;
+    } on PaymentException {
       rethrow;
     } on AuthenticationException {
       rethrow;

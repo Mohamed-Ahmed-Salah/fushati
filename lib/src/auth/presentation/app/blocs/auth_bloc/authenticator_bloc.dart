@@ -61,9 +61,8 @@ class AuthenticatorBloc extends Bloc<AuthenticatorEvent, AuthenticatorState> {
             },
             );
       },
-      (user) {
+      (_) {
         emit(AuthenticatorState.loggedInSuccessfully(phone: phone));
-        // getCartCount(Cache.instance.userId!);
         BuildContext context = event.context;
         context.pushNamed(
           VerifyOTPView.name,

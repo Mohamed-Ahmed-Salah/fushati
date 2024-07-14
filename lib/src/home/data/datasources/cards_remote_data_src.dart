@@ -23,7 +23,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   @override
   Future<void> addCard({required String cardNumber}) async {
     try {
-      print("NEW CARD ADDING $cardNumber");
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
           .post('${NetworkConstants.parentsUrl}$addCardEndpoint',
@@ -33,7 +32,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
-      print("responseeeeeeee------ ${response.data}");
 
       if (isSuccess) {
         return;
@@ -169,6 +167,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       if (response.data["id"] == null) {
         throw const CardNotFoundException(statusCode: 422);
       }
+
       if (isSuccess) {
         return CardModel.fromJson(response.data);
       } else {
@@ -233,7 +232,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           .timeout(const Duration(seconds: 10));
       bool isSuccess = response.statusCode == 200;
 
-      print(response.data);
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data)) as List)
             .map((i) => CardModel.fromJson(i))

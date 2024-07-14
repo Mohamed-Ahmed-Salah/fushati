@@ -28,6 +28,8 @@ class DepositRepoImpl implements DepositRepo {
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));
+    }on PaymentException catch (e) {
+      return Left(PaymentFailure.fromException(e));
     } on AuthenticationException catch (e) {
       return Left(AuthenticationFailure.fromException(e));
     } on NoInternetException catch (e) {

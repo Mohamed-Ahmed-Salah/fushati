@@ -19,11 +19,11 @@ class CardModel extends CardEntity {
   factory CardModel.fromJson(Map<String, dynamic> json) => CardModel(
         id: json["id"],
         name: json["name"],
-        email: json["email"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        userNumber: json["user_number"],
-        userPhone: json["user_phone"],
+        email: json["email"]??"",
+        createdAt:json["created_at"]!=null? DateTime.parse(json["created_at"]): null,
+        updatedAt:json["updated_at"]!=null? DateTime.parse(json["updated_at"]):null,
+        userNumber: json["user_number"]??"",
+        userPhone: json["user_phone"]??"",
         userCard: json["user_card"],
         balance: json["balance"],
         transactions: json["transactions"] != null
@@ -32,14 +32,5 @@ class CardModel extends CardEntity {
             : [],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "email": email,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-        "user_number": userNumber,
-        "user_phone": userPhone,
-        "user_card": userCard,
-      };
+
 }
