@@ -38,7 +38,6 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
             message: response.data["message"], statusCode: 500);
       }
     } on DioException catch (e) {
-      print("EEEE ${e.message}");
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -69,7 +68,6 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
-      print("ccccccccc ${e.toString()}");
 
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
@@ -151,10 +149,6 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
       if (response.statusCode == 204 || response.statusCode == 200) {
-        return;
-      }
-
-      if (response.statusCode == 200) {
         return;
       } else {
         throw ServerException(

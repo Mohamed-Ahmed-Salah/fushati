@@ -33,7 +33,8 @@ abstract class Media {
 
 
 
-  static const splashLottie = "$_baseLottie/splash.json";
+  // static const splashLottie = "$_baseLottie/splash.json";
+  static const splashLottie = "$_baseLottie/Flow 1.json";
   static const loadingLottie = "$_baseLottie/loader.json";
 
 

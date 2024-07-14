@@ -12,6 +12,11 @@ abstract class MoyasarConfig {
     return PaymentConfig(
       publishableApiKey: NetworkConstants.MoyasarAPIKey,
       amount: amount * 100,
+      metadata: {
+        "card_number":card,
+        "amount":"$amount",
+        "uuid":uuid.v4(),
+      },
       // SAR 257.58
       description:
           'Transfer #${uuid.v4()} - for Student CARD NUMBER: $card with AMOUNT $amount SAR',
