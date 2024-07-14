@@ -1,10 +1,12 @@
-part of 'card_transaction_bloc_bloc.dart';
+part of 'card_transaction_bloc.dart';
+@freezed
 
-sealed class CardTransactionBlocState extends Equatable {
-  const CardTransactionBlocState();
-  
-  @override
-  List<Object> get props => [];
+sealed class CardTransactionBlocState with _$CardTransactionBlocState {
+
+  const factory CardTransactionBlocState.loading() = _loadingState;
+
+  const factory CardTransactionBlocState.failed(String message) = _failedState;
+
+  const factory CardTransactionBlocState.success({required List<Transaction> transactions}) = _successState;
 }
 
-final class CardTransactionBlocInitial extends CardTransactionBlocState {}

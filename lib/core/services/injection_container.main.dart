@@ -71,8 +71,8 @@ Future<void> _userInfo() async {
 Future<void> _transactions() async {
   sl
 
-    // ..registerLazySingleton(() => LoginOrRegister(sl()))
-    // ..registerLazySingleton(() => VerifyOTP(sl()))
+    ..registerLazySingleton(() => GetCardTransactions(sl()))
+    ..registerLazySingleton(() => GetUserTransactions(sl()))
     // ..registerLazySingleton(() => AddUserInfo(sl()))
     ..registerLazySingleton<TransactionsRepo>(() => TransactionsRepoImpl(sl()))
     ..registerLazySingleton<TransactionsRemoteDataSrc>(

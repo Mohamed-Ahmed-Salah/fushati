@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:fushati/src/home/data/models/card_model.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -26,18 +27,40 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       required DateTime createdAt}) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
+      DateTime currentDate = DateTime.now();
+
+      // Define the date format with fractional seconds
+      DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+
+      // Format the current date
+      String formattedDate = dateFormat.format(currentDate);
+
+      // Remove the fractional seconds by finding the last dot and taking the substring
+      int dotIndex = formattedDate.lastIndexOf('.');
+      if (dotIndex != -1) {
+        formattedDate = formattedDate.substring(0, dotIndex);
+      }
+
+
+      print("-----------------------------");
+      print(formattedDate);
+      print(
+        '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=$createdAt&endTime=$formattedDate 00:00:00&parent_id=$userId',
+      );
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=1000000000000000000000000000'
-              '&startTime=$createdAt&endTime=${DateTime.now()}&$userId',
+              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=$createdAt&endTime=$formattedDate 00:00:00&parent_id=$userId',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
+      print(response.data);
+      print(response.statusCode);
+
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
-        final list = (json.decode(jsonEncode(response.data)) as List)
+        final list = (json.decode(jsonEncode(response.data['data'])) as List)
             .map((i) => Transaction.fromJson(i))
             .toList();
         return list;
@@ -96,8 +119,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .get(
-              '${NetworkConstants.parentsUrl}$cardsHistoryEndpoint',
+          .get('${NetworkConstants.parentsUrl}$cardsHistoryEndpoint',
               options: Options(
                 headers: header,
               ))

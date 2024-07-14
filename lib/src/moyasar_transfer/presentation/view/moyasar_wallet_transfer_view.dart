@@ -62,7 +62,7 @@ class MoyasarWalletTransferView extends StatelessWidget {
                                 "${AppLocalizations.of(context)?.topUpBalance}",
                           ),
                           SizedBox(height: 5.h),
-                          CardBox(card: card),
+                          CardBox.withoutManage(card: card),
                         ],
                       ),
                     ),

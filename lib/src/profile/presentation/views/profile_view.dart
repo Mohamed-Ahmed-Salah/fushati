@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
+import 'package:fushati/src/profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,42 +32,6 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomSheet: Padding(
-      //   padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
-      //   child: BlocBuilder<DeleteUserBloc, DeleteUserState>(
-      //       builder: (context, state) {
-      //     return ElevatedButton(
-      //         onPressed: () {
-      //           // showDialog(
-      //           //     context: context,
-      //           //     builder: (builderContext) => AlertPopUpWidget(
-      //           //           isDeleteWidget: true,
-      //           //           title:
-      //           //               "${AppLocalizations.of(context)?.deleteAccount}",
-      //           //           subTitle:
-      //           //               "${AppLocalizations.of(context)?.areYouSureToDelete}",
-      //           //           buttonText: "${AppLocalizations.of(context)?.yes}",
-      //           //           state: StateEnum.error,
-      //           //           onPressed: () {
-      //           //             Navigator.pop(builderContext);
-      //           //             context.read<DeleteUserBloc>().add(
-      //           //                 DeleteUserEvent.deleteUser(context: context));
-      //           //           },
-      //           //           icon: Icons.delete,
-      //           //         ));
-      //         },
-      //         child: Row(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: [
-      //             const Text(
-      //               "DELETEEEE",
-      //             ),
-      //             AnimatedButtonCircularLoader(
-      //                 loading: state == const DeleteUserState.loading())
-      //           ],
-      //         ));
-      //   }),
-      // ),
       body: BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state) {
         return state.when(
             loading: () => const LoadingWidget(),
@@ -133,6 +98,7 @@ class ProfileBody extends StatelessWidget {
                                   Text(
                                     "${user.name}",
                                     overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleLarge
@@ -147,6 +113,7 @@ class ProfileBody extends StatelessWidget {
                                       user.userPhone,
                                       textDirection: TextDirection.ltr,
                                       overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleSmall
@@ -160,21 +127,18 @@ class ProfileBody extends StatelessWidget {
                                     height: 0.5.h,
                                   ),
                                   if (user.email != null)
-                                    Container(
-                                      color: Colours.greyLightColor,
-                                      child: Text(
-                                        "${user.email}",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.clip,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.w100,
-                                              color: Colours.greyLightColor
-                                                  .withOpacity(0.72),
-                                            ),
-                                      ),
+                                    Text(
+                                      "${user.email}",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.clip,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: Colours.textBlackColor
+                                                .withOpacity(0.7),
+                                          ),
                                     ),
                                 ],
                               ),
@@ -190,62 +154,41 @@ class ProfileBody extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: SizeConst.verticalPaddingFour,),
+                  SizedBox(
+                    height: SizeConst.verticalPaddingFour,
+                  ),
                   const TransactionHistoryRowText(),
-                  SizedBox(height: SizeConst.verticalPadding,),
-
+                  SizedBox(
+                    height: SizeConst.verticalPadding,
+                  ),
                 ],
               ),
             ),
-          /*  BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
+            BlocBuilder<ProfileTransactionBloc, ProfileTransactionState>(
+                builder: (context, state) {
               return state.when(
                 loading: () => const LoadingSliver(),
-                emptyList: () => SliverList(
-
-                  delegate: SliverChildBuilderDelegate(
-                    childCount:1,
-                    (BuildContext context, int index) {
-                      return Container();
-                    },
-                  ),
-                ),
                 failed: (message) => ErrorSliver(
                   onPressed: () {
-                    context.read<CardsBloc>().add(const CardsEvent.getCards());
+                    context.read<ProfileTransactionBloc>().add(
+                        const ProfileTransactionEvent.getUserTransactions());
                   },
                   message: message,
                 ),
-                success: (cards) => SliverList(
+                success: (transactions) => SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      CardEntity card = cards[index];
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: card.transactions.length,
-                        itemBuilder: (context, index) {
-                          Transaction transaction = card.transactions[index];
-                          return TransactionBox(transaction: transaction);
-                        },
-                      );
+                      Transaction transaction = transactions[index];
+                      return TransactionBox(transaction: transaction);
                     },
-                    childCount: cards.length,
+                    childCount: transactions.length,
                   ),
                 ),
               );
-              // return SliverList.builder(
-              //   itemCount: widget.card.transactions.length,
-              //   itemBuilder: (BuildContext context, int index) {
-              //     final Transaction transaction = widget.card
-              //         .transactions[index];
-              //     return TransactionBox(transaction: transaction,);
-              //   },
-              // );
-            }),*/
+            }),
           ],
         ),
       ),
     );
-
   }
 }

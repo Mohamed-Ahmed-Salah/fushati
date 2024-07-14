@@ -1,10 +1,13 @@
 part of 'profile_transaction_bloc.dart';
+@freezed
 
-sealed class ProfileTransactionState extends Equatable {
-  const ProfileTransactionState();
-  
-  @override
-  List<Object> get props => [];
+sealed class ProfileTransactionState with _$ProfileTransactionState {
+
+  const factory ProfileTransactionState.loading() = _loadingState;
+
+  const factory ProfileTransactionState.failed(String message) = _failedState;
+
+  const factory ProfileTransactionState.success({required List<Transaction> transactions}) = _successState;
 }
 
-final class ProfileTransactionInitial extends ProfileTransactionState {}
+

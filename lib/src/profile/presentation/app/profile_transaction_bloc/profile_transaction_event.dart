@@ -1,8 +1,6 @@
 part of 'profile_transaction_bloc.dart';
-
-sealed class ProfileTransactionEvent extends Equatable {
-  const ProfileTransactionEvent();
-
-  @override
-  List<Object> get props => [];
+@freezed
+sealed class ProfileTransactionEvent with _$ProfileTransactionEvent {
+  const factory ProfileTransactionEvent.getUserTransactions() =
+  GetUserTransactionsEvent;
 }

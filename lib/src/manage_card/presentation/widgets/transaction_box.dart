@@ -66,6 +66,7 @@ class TransactionBox extends StatelessWidget {
                               color: Colours.textBlackColor),
                         ),
                         RichText(
+                          maxLines: 2,
                           text: TextSpan(
                             text:
                                 "${AppLocalizations.of(context)?.transactionId}",
@@ -79,10 +80,13 @@ class TransactionBox extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                 text: transaction.ordernumber,
+
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
                                     ?.copyWith(
+                                  overflow: TextOverflow.fade,
+
                                         fontWeight: FontWeight.w400,
                                         color: Colours.textBlackColor
                                             .withOpacity(0.7)),

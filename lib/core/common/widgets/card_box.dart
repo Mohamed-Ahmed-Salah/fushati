@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/utils/core_utils.dart';
+import 'package:fushati/src/manage_card/presentation/app/bloc/card_transaction_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -13,8 +15,24 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CardBox extends StatelessWidget {
   final bool showManage;
   final CardEntity card;
+  final int? userId;
 
-  const CardBox({super.key, this.showManage = false, required this.card});
+  // const CardBox(
+  //     {super.key, this.showManage = false, required this.card, this.userId});
+
+  const CardBox.withoutManage({
+    super.key,
+    this.showManage = false,
+    required this.card,
+  }) : userId = null;
+
+  // Constructor that asserts userId is not null
+  const CardBox.withManage({
+    super.key,
+    this.showManage = true,
+    required this.card,
+    required this.userId,
+  }) : assert(userId != null);
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +50,11 @@ class CardBox extends StatelessWidget {
               right: 7.w,
               child: GestureDetector(
                 onTap: () {
+                  context.read<CardTransactionBlocBloc>().add(
+                      CardTransactionBlocEvent.getCardTransaction(
+                          id: userId!,
+                          cardNumber: card.userCard,
+                          createdAt: card.createdAt));
                   context.push(ManageCardView.path, extra: card);
                 },
                 child: Container(

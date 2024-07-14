@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
+import 'package:fushati/src/manage_card/presentation/app/bloc/card_transaction_bloc.dart';
+import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/common/widgets/card_box.dart';
@@ -9,6 +11,8 @@ import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../home/domain/entity/card.dart';
+import '../../../home/presentation/widgets/error_sliver.dart';
+import '../../../home/presentation/widgets/loading_sliver.dart';
 import '../app/delete_card_bloc/delete_card_bloc.dart';
 import '../widgets/delete_card_button.dart';
 import '../widgets/top_up_button.dart';
@@ -65,12 +69,10 @@ class _ManageCardViewState extends State<ManageCardView> {
                     [
                       SizedBox(height: SizeConst.verticalPadding),
                       CustomAppBar(
-                        text: "${AppLocalizations
-                            .of(context)
-                            ?.manageCard}",
+                        text: "${AppLocalizations.of(context)?.manageCard}",
                       ),
                       SizedBox(height: 5.h),
-                      CardBox(
+                      CardBox.withoutManage(
                         card: widget.card,
                       ),
                       SizedBox(height: SizeConst.verticalPadding),
@@ -94,14 +96,47 @@ class _ManageCardViewState extends State<ManageCardView> {
                     ],
                   ),
                 ),
-                // SliverList.builder(
-                //   itemCount: widget.card.transactions.length,
-                //   itemBuilder: (BuildContext context, int index) {
-                //     final Transaction transaction = widget.card
-                //         .transactions[index];
-                //     return TransactionBox(transaction: transaction,);
-                //   },
-                // ),
+                BlocBuilder<UserInfoBloc, UserInfoState>(
+                    builder: (context, state) {
+                  return state.when(
+                    loading: () => const LoadingSliver(),
+                    failed: (message) => ErrorSliver(
+                      onPressed: () {
+                        context
+                            .read<UserInfoBloc>()
+                            .add(const UserInfoEvent.getUserInfo());
+                      },
+                      message: message,
+                    ),
+                    success: (user) => BlocBuilder<CardTransactionBlocBloc,
+                        CardTransactionBlocState>(
+                      builder: (context, state) {
+                        return state.when(
+                          loading: () => const LoadingSliver(),
+                          failed: (message) => ErrorSliver(
+                            onPressed: () {
+                              context.read<CardTransactionBlocBloc>().add(
+                                  CardTransactionBlocEvent.getCardTransaction(
+                                      id: user.id,
+                                      cardNumber: widget.card.userCard,
+                                      createdAt: widget.card.createdAt));
+                            },
+                            message: message,
+                          ),
+                          success: (transactions) => SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (BuildContext context, int index) {
+                                Transaction transaction = transactions[index];
+                                return TransactionBox(transaction: transaction);
+                              },
+                              childCount: transactions.length,
+                            ),
+                          ),
+                        ); //
+                      },
+                    ),
+                  );
+                }),
               ],
             ),
           ),

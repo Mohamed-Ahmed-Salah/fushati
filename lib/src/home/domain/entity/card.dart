@@ -5,7 +5,7 @@ class CardEntity {
   final int id;
   final String name;
   final String email;
-  final DateTime? createdAt;
+  final DateTime createdAt;
   final DateTime? updatedAt;
   final String userNumber;
   final String userPhone;

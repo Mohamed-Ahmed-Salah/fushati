@@ -27,9 +27,10 @@ class EmptyCardList extends StatelessWidget {
 }
 
 class LoadedCardList extends StatelessWidget {
+  final int userId;
   final List<CardEntity> cards;
 
-  const LoadedCardList({super.key, required this.cards});
+  const LoadedCardList({super.key, required this.cards, required this.userId});
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +74,9 @@ class LoadedCardList extends StatelessWidget {
           }
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 1.h),
-            child: CardBox(
-              showManage: true,
+            child: CardBox.withManage(
               card: cards[index],
+              userId:userId
             ),
           );
         },

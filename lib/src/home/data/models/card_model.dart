@@ -18,9 +18,7 @@ class CardModel extends CardEntity {
         id: json["id"],
         name: json["name"],
         email: json["email"] ?? "",
-        createdAt: json["created_at"] != null
-            ? DateTime.parse(json["created_at"])
-            : null,
+        createdAt: DateTime.parse(json["created_at"]),
         updatedAt: json["updated_at"] != null
             ? DateTime.parse(json["updated_at"])
             : null,

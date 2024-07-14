@@ -1,8 +1,10 @@
-part of 'card_transaction_bloc_bloc.dart';
+part of 'card_transaction_bloc.dart';
 
-sealed class CardTransactionBlocEvent extends Equatable {
-  const CardTransactionBlocEvent();
-
-  @override
-  List<Object> get props => [];
+@freezed
+sealed class CardTransactionBlocEvent with _$CardTransactionBlocEvent {
+  const factory CardTransactionBlocEvent.getCardTransaction({
+    required int id,
+    required String cardNumber,
+    required DateTime createdAt,
+  }) = GetCardTransactionEvent;
 }

@@ -16,6 +16,7 @@ import '../../../../core/services/injection_container.dart';
 import '../../../../core/utils/constants/text_constants.dart';
 import '../../../app_language/presentation/views/app_language.dart';
 import '../../../auth/presentation/views/login_view.dart';
+import '../../../profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
 import '../../../profile/presentation/views/profile_view.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -81,6 +82,8 @@ class CustomDrawer extends StatelessWidget {
                   ),
                   title: "${AppLocalizations.of(context)?.profile}",
                   onTap: () {
+                    context.read<ProfileTransactionBloc>().add(
+                        const ProfileTransactionEvent.getUserTransactions());
                     context.push(ProfileView.path);
                   },
                   widget: showComplete

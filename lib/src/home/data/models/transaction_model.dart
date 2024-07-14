@@ -33,6 +33,8 @@ class Transaction {
         return TransactionEnum.recharge;
       case "withdrawal":
         return TransactionEnum.withdraw;
+      case "normal consumption":
+        return TransactionEnum.withdraw;
       case "加款机":
         return TransactionEnum.withdraw;
     }
