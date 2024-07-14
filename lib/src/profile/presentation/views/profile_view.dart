@@ -197,7 +197,7 @@ class ProfileBody extends StatelessWidget {
                 ],
               ),
             ),
-            BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
+          /*  BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
               return state.when(
                 loading: () => const LoadingSliver(),
                 emptyList: () => SliverList(
@@ -241,90 +241,11 @@ class ProfileBody extends StatelessWidget {
               //     return TransactionBox(transaction: transaction,);
               //   },
               // );
-            }),
+            }),*/
           ],
         ),
       ),
     );
 
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "He",
-          // "Hello ${user.username}",
-          style: Theme.of(context)
-              .textTheme
-              .displaySmall
-              ?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        Container(
-          padding: EdgeInsets.all(4.w),
-          decoration: BoxDecoration(
-            color: Colours.whiteColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colours.borderGreyColor),
-          ),
-          child: Row(
-            children: [
-              // SvgPicture.asset(
-              //   user.gender == "1" ? Media.manAvatar : Media.femaleAvatar,
-              // ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${user.name}",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        "+${user.userPhone}",
-                        textDirection: TextDirection.ltr,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w100,
-                              color: Colours.greyLightColor.withOpacity(0.72),
-                            ),
-                      ),
-                      Text(
-                        "${user.email}",
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w100,
-                              color: Colours.greyLightColor.withOpacity(0.72),
-                            ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            context.pushNamed(EditProfileView.name, extra: user);
-          },
-          child: SizedBox(
-            width: double.infinity,
-            child: Row(
-              children: [
-                // SvgPicture.asset(Media.accountSettingSvg),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 2.h,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
   }
 }

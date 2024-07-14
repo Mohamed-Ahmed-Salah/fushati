@@ -4,6 +4,7 @@ import '../../services/injection_container.dart';
 abstract class NetworkConstants {
   static const baseUrl = 'http://66.42.54.81:8080/api';
   static const String parentUrl = '$baseUrl/parent';
+  static const String reportsUrl = '$baseUrl/reports';
   static const String usersUrl = '$baseUrl/users';
   static const String parentsUrl = '$baseUrl/parents';
 
@@ -32,6 +33,7 @@ abstract class NetworkConstants {
     Map<String, String> headers = await getHeaders(contentType: contentType);
     CacheHelper cacheHelper = CacheHelper(sl());
     String token = cacheHelper.getSessionToken() ?? '';
+    print("TOKEN ${token}");
     headers["Authorization"] = 'Bearer ${token.replaceAll("\"", "")}';
     // log(headers.toString());
     return headers;

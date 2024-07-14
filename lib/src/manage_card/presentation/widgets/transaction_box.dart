@@ -44,13 +44,9 @@ class TransactionBox extends StatelessWidget {
                       gradient: CustomTheme.linearGradiantLarge),
                   child: Text(
                     CoreUtils.getAmOrPm(
-                      transaction.createdAt,
+                      transaction.consumeTime,
                     ),
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w500,
                         color: Colours.brandColorOne.withOpacity(0.5)),
                   ),
@@ -63,8 +59,7 @@ class TransactionBox extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${AppLocalizations.of(context)?.rs(transaction
-                              .amount)}",
+                          "${AppLocalizations.of(context)?.rs(transaction.amount)}",
                           style: TextStyle(
                               fontSize: 17.sp,
                               fontWeight: FontWeight.w600,
@@ -73,28 +68,24 @@ class TransactionBox extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                             text:
-                            "${AppLocalizations
-                                .of(context)
-                                ?.transactionId}",
-                            style: Theme
-                                .of(context)
+                                "${AppLocalizations.of(context)?.transactionId}",
+                            style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
-                                fontWeight: FontWeight.w400,
-                                color: Colours.textBlackColor
-                                    .withOpacity(0.5)),
+                                    fontWeight: FontWeight.w400,
+                                    color: Colours.textBlackColor
+                                        .withOpacity(0.5)),
                             children: <TextSpan>[
                               TextSpan(
-                                text: '${transaction.id}',
-                                style: Theme
-                                    .of(context)
+                                text: transaction.ordernumber,
+                                style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
                                     ?.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colours.textBlackColor
-                                        .withOpacity(0.7)),
+                                        fontWeight: FontWeight.w400,
+                                        color: Colours.textBlackColor
+                                            .withOpacity(0.7)),
                               ),
                             ],
                           ),
@@ -106,22 +97,14 @@ class TransactionBox extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      CoreUtils.getFormattedDate(transaction.createdAt),
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleSmall
-                          ?.copyWith(
+                      CoreUtils.getFormattedDate(transaction.consumeTime),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w400,
                           color: Colours.textBlackColor.withOpacity(0.5)),
                     ),
                     Text(
-                      CoreUtils.getFormattedTime(transaction.createdAt),
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleSmall
-                          ?.copyWith(
+                      CoreUtils.getFormattedTime(transaction.consumeTime),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w400,
                           color: Colours.textBlackColor.withOpacity(0.5)),
                     ),
@@ -133,35 +116,22 @@ class TransactionBox extends StatelessWidget {
         ),
         Positioned(
           top: 1.h,
-          left: AppLocalizations
-              .of(context)
-              ?.localeName == "en" ? 15.w : 0,
-          right: AppLocalizations
-              .of(context)
-              ?.localeName == "ar" ? 15.w : 0,
+          left: AppLocalizations.of(context)?.localeName == "en" ? 15.w : 0,
+          right: AppLocalizations.of(context)?.localeName == "ar" ? 15.w : 0,
           child: IntrinsicWidth(
             child: Align(
-              alignment: AppLocalizations
-                  .of(context)
-                  ?.localeName == "en" ? Alignment.centerLeft : Alignment.centerRight,
+              alignment: AppLocalizations.of(context)?.localeName == "en"
+                  ? Alignment.centerLeft
+                  : Alignment.centerRight,
               child: Container(
-
                   color: Colours.whiteColor,
                   child: Text(
-                    transaction.type == TransactionEnum.withdraw
-                        ? "${AppLocalizations
-                        .of(context)
-                        ?.debited}"
-                        : "${AppLocalizations
-                        .of(context)
-                        ?.credited}",
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(
+                    transaction.consumeType == TransactionEnum.withdraw
+                        ? "${AppLocalizations.of(context)?.debited}"
+                        : "${AppLocalizations.of(context)?.credited}",
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: transaction.type == TransactionEnum.withdraw
+                        color: transaction.consumeType == TransactionEnum.withdraw
                             ? Colours.withdrawColor
                             : Colours.greenSuccess),
                   )),

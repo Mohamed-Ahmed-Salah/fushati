@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/utils/constants/error_consts.dart';
-import '../../../../home/domain/usecases/delete_card.dart';
+import '../../../domain/usecases/delete_card.dart';
 
 part 'delete_card_event.dart';
 

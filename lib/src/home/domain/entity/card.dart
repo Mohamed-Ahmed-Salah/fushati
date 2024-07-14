@@ -11,7 +11,6 @@ class CardEntity {
   final String userPhone;
   final String userCard;
   final String balance;
-  final List<Transaction> transactions;
 
 
   CardEntity({
@@ -26,7 +25,6 @@ class CardEntity {
 
     required this.userCard,
 
-     required this.transactions,
   });
 
 }

@@ -9,7 +9,7 @@ import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../home/domain/entity/card.dart';
-import '../app/bloc/delete_card_bloc.dart';
+import '../app/delete_card_bloc/delete_card_bloc.dart';
 import '../widgets/delete_card_button.dart';
 import '../widgets/top_up_button.dart';
 import '../widgets/transaction_box.dart';
@@ -94,14 +94,14 @@ class _ManageCardViewState extends State<ManageCardView> {
                     ],
                   ),
                 ),
-                SliverList.builder(
-                  itemCount: widget.card.transactions.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final Transaction transaction = widget.card
-                        .transactions[index];
-                    return TransactionBox(transaction: transaction,);
-                  },
-                ),
+                // SliverList.builder(
+                //   itemCount: widget.card.transactions.length,
+                //   itemBuilder: (BuildContext context, int index) {
+                //     final Transaction transaction = widget.card
+                //         .transactions[index];
+                //     return TransactionBox(transaction: transaction,);
+                //   },
+                // ),
               ],
             ),
           ),

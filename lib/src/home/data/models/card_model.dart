@@ -1,4 +1,3 @@
-
 import '../../domain/entity/card.dart';
 import "transaction_model.dart";
 
@@ -13,24 +12,21 @@ class CardModel extends CardEntity {
     required super.userPhone,
     required super.userCard,
     required super.balance,
-    required super.transactions,
   });
 
   factory CardModel.fromJson(Map<String, dynamic> json) => CardModel(
         id: json["id"],
         name: json["name"],
-        email: json["email"]??"",
-        createdAt:json["created_at"]!=null? DateTime.parse(json["created_at"]): null,
-        updatedAt:json["updated_at"]!=null? DateTime.parse(json["updated_at"]):null,
-        userNumber: json["user_number"]??"",
-        userPhone: json["user_phone"]??"",
+        email: json["email"] ?? "",
+        createdAt: json["created_at"] != null
+            ? DateTime.parse(json["created_at"])
+            : null,
+        updatedAt: json["updated_at"] != null
+            ? DateTime.parse(json["updated_at"])
+            : null,
+        userNumber: json["user_number"] ?? "",
+        userPhone: json["user_phone"] ?? "",
         userCard: json["user_card"],
         balance: json["balance"],
-        transactions: json["transactions"] != null
-            ? List<Transaction>.from(
-                json["transactions"].map((x) => Transaction.fromJson(x)))
-            : [],
       );
-
-
 }
