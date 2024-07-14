@@ -2,13 +2,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:fushati/src/auth/domain/entities/login_response.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/network_constants.dart';
 import '../../domain/entities/otp_response.dart';
-import '../models/login_response_model.dart';
 import '../models/otp_response_model.dart';
 
 const loginEndpoint = '/login';
@@ -20,7 +18,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
   final Dio _dio;
 
   @override
-  Future<LoginResponse> loginOrRegister({
+  Future<void> loginOrRegister({
     required String phone,
   }) async {
     try {
@@ -35,18 +33,17 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
       bool isSuccess = response.statusCode == 200 ||
           response.statusCode == 201 ||
           response.statusCode == 202;
-      print(response.data.toString());
 
       if (isSuccess) {
-        return LoginResponseModel.fromJson(response.data);
+        return ;
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
-              message: ErrorConst.OTP_NOT_FOUND,
+              message: ErrorConst.OTP_NOT_SENT_EN,
               statusCode: response.statusCode ?? 0);
         }
         throw ServerException(
-            message: response.data['message'],
+            message: response.data['message']??'',
             statusCode: response.statusCode ?? 0);
       }
 
@@ -231,7 +228,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
 abstract class AuthRemoteDataSrc {
   const AuthRemoteDataSrc();
 
-  Future<LoginResponse> loginOrRegister({
+  Future<void> loginOrRegister({
     required String phone,
   });
 

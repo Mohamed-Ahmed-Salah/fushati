@@ -21,8 +21,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
-  // late final MeshGradientController _controller;
-  // late bool animated;
+
 
   @override
   void initState() {

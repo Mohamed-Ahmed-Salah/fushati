@@ -40,6 +40,10 @@ abstract class ErrorConst {
 
   static const String OTP_FAILURE_TRIES_ERROR = OTPWrongThreeTimeEn;
 
+  static const String OTP_NOT_SENT_EN = 'Failed To Send OTP. Please try again.';
+  static const String OTP_NOT_SENT_AR = 'حدث خطأ في إرسال OTP. حاول مرة اخرى';
+
+
   static const String OTP_NOT_FOUND = 'Invalid OTP. Please try again.';
   static const String OTP_NOT_FOUND_AR = 'Invalid OTP. Please try again.';
 
@@ -113,7 +117,9 @@ abstract class ErrorConst {
   //21
   static String getErrorArabicBody({required String text}) {
     switch (text) {
-      case CANNOT_FIND_CARD_EN:
+      case OTP_NOT_SENT_EN:
+        return OTP_NOT_SENT_AR;
+  case CANNOT_FIND_CARD_EN:
         return CANNOT_FIND_CARD_AR;
 
       case cannotRecieveOTPnowEnWithWrongSpelling:
@@ -193,6 +199,8 @@ abstract class ErrorConst {
 
   static String getErrorEnglishBody({required String text}) {
     switch (text) {
+      case OTP_NOT_SENT_EN:
+        return OTP_NOT_SENT_EN;
       case CANNOT_FIND_CARD_EN:
         return CANNOT_FIND_CARD_EN;
 
@@ -275,7 +283,6 @@ abstract class ErrorConst {
       case errorEn:
         return errorAr;
 
-
       case couldNotConnectToMoyasarEn:
         return couldNotConnectToMoyasarAr;
     }
@@ -289,7 +296,6 @@ abstract class ErrorConst {
         return otpErrorEn;
       case errorEn:
         return errorEn;
-     
 
       case couldNotConnectToMoyasarEn:
         return couldNotConnectToMoyasarEn;
