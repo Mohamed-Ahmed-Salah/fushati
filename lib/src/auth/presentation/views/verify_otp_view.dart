@@ -117,39 +117,43 @@ class VerifyOTPView extends StatelessWidget {
               ),
               SliverFillRemaining(
                 hasScrollBody: false,
-                child: Column(
-                  // mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ResendOtpWidget(
-                      phone: phone,
-                    ),
-                    BlocBuilder<OtpBloc, OtpState>(
-                      builder: (context, state) {
-                        return ElevatedButton(
-                          onPressed: state == const OtpState.loading() ||
-                                  otp.length < 6
-                              ? null
-                              : () => context.read<OtpBloc>().add(
-                                    OtpEvent.verifyOTP(
-                                        otp: otp,
-                                        context: context,
-                                        phone: phone),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ResendOtpWidget(
+                          phone: phone,
+                        ),
+                        BlocBuilder<OtpBloc, OtpState>(
+                          builder: (context, state) {
+                            return ElevatedButton(
+                              onPressed: state == const OtpState.loading() ||
+                                      otp.length < 6
+                                  ? null
+                                  : () => context.read<OtpBloc>().add(
+                                        OtpEvent.verifyOTP(
+                                            otp: otp,
+                                            context: context,
+                                            phone: phone),
+                                      ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${AppLocalizations.of(context)?.verify}",
                                   ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "${AppLocalizations.of(context)?.verify}",
+                                  AnimatedButtonCircularLoader(
+                                      loading: state == const OtpState.loading()),
+                                ],
                               ),
-                              AnimatedButtonCircularLoader(
-                                  loading: state == const OtpState.loading()),
-                            ],
-                          ),
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               )
               //todo make otp change to submit via button
