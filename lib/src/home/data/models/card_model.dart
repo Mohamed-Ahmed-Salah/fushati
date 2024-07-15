@@ -25,6 +25,6 @@ class CardModel extends CardEntity {
         userNumber: json["user_number"] ?? "",
         userPhone: json["user_phone"] ?? "",
         userCard: json["user_card"],
-        balance: json["balance"],
+        balance: (json["balance"]).toString(),
       );
 }
