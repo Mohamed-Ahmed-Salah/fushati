@@ -29,7 +29,7 @@ import 'src/auth/presentation/app/blocs/otp_bloc/otp_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
-  await WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await init();
 
@@ -146,4 +146,3 @@ class MyApp extends StatelessWidget {
 }
 
 //todo delete user
-//todo animation splash
