@@ -8,7 +8,9 @@
 "enterNameWithNoNumber":"Please enter valid full name with no numbers",
 "enterValidFullName":"Please enter valid full name",
 "selectLanguage":"Select the app language",
-
+"male":"Male",
+"female":"Female",
+"gender":"Gender",
 "getOTP":"Get OTP",
 "fieldOnlyNumbers":"This field must only contain numbers",
 "onlyNineNumber":"This field should contain 9 numbers",

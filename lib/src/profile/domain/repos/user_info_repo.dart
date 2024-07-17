@@ -9,6 +9,8 @@ abstract class UserInfoRepo {
 
   ResultFuture<void> editUserInfo({
     String? email,
+    String? gender,
+
     required String name,
   });
 }

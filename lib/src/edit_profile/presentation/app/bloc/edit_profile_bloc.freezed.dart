@@ -19,21 +19,25 @@ mixin _$EditProfileEvent {
   BuildContext get context => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, String name, String email)
+    required TResult Function(
+            BuildContext context, String name, String email, String? gender)
         editUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, String name, String email)?
+    TResult? Function(
+            BuildContext context, String name, String email, String? gender)?
         editUserProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, String name, String email)?
+    TResult Function(
+            BuildContext context, String name, String email, String? gender)?
         editUserProfile,
     required TResult orElse(),
   }) =>
@@ -67,7 +71,7 @@ abstract class $EditProfileEventCopyWith<$Res> {
           EditProfileEvent value, $Res Function(EditProfileEvent) then) =
       _$EditProfileEventCopyWithImpl<$Res, EditProfileEvent>;
   @useResult
-  $Res call({BuildContext context, String name, String email});
+  $Res call({BuildContext context, String name, String email, String? gender});
 }
 
 /// @nodoc
@@ -86,6 +90,7 @@ class _$EditProfileEventCopyWithImpl<$Res, $Val extends EditProfileEvent>
     Object? context = null,
     Object? name = null,
     Object? email = null,
+    Object? gender = freezed,
   }) {
     return _then(_value.copyWith(
       context: null == context
@@ -100,6 +105,10 @@ class _$EditProfileEventCopyWithImpl<$Res, $Val extends EditProfileEvent>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -113,7 +122,7 @@ abstract class _$$EditUserAccountProfileEventImplCopyWith<$Res>
       __$$EditUserAccountProfileEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BuildContext context, String name, String email});
+  $Res call({BuildContext context, String name, String email, String? gender});
 }
 
 /// @nodoc
@@ -132,6 +141,7 @@ class __$$EditUserAccountProfileEventImplCopyWithImpl<$Res>
     Object? context = null,
     Object? name = null,
     Object? email = null,
+    Object? gender = freezed,
   }) {
     return _then(_$EditUserAccountProfileEventImpl(
       context: null == context
@@ -146,6 +156,10 @@ class __$$EditUserAccountProfileEventImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -154,7 +168,10 @@ class __$$EditUserAccountProfileEventImplCopyWithImpl<$Res>
 
 class _$EditUserAccountProfileEventImpl implements EditUserAccountProfileEvent {
   const _$EditUserAccountProfileEventImpl(
-      {required this.context, required this.name, required this.email});
+      {required this.context,
+      required this.name,
+      required this.email,
+      this.gender});
 
   @override
   final BuildContext context;
@@ -162,10 +179,12 @@ class _$EditUserAccountProfileEventImpl implements EditUserAccountProfileEvent {
   final String name;
   @override
   final String email;
+  @override
+  final String? gender;
 
   @override
   String toString() {
-    return 'EditProfileEvent.editUserProfile(context: $context, name: $name, email: $email)';
+    return 'EditProfileEvent.editUserProfile(context: $context, name: $name, email: $email, gender: $gender)';
   }
 
   @override
@@ -175,11 +194,12 @@ class _$EditUserAccountProfileEventImpl implements EditUserAccountProfileEvent {
             other is _$EditUserAccountProfileEventImpl &&
             (identical(other.context, context) || other.context == context) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.gender, gender) || other.gender == gender));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, context, name, email);
+  int get hashCode => Object.hash(runtimeType, context, name, email, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -191,30 +211,33 @@ class _$EditUserAccountProfileEventImpl implements EditUserAccountProfileEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, String name, String email)
+    required TResult Function(
+            BuildContext context, String name, String email, String? gender)
         editUserProfile,
   }) {
-    return editUserProfile(context, name, email);
+    return editUserProfile(context, name, email, gender);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, String name, String email)?
+    TResult? Function(
+            BuildContext context, String name, String email, String? gender)?
         editUserProfile,
   }) {
-    return editUserProfile?.call(context, name, email);
+    return editUserProfile?.call(context, name, email, gender);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, String name, String email)?
+    TResult Function(
+            BuildContext context, String name, String email, String? gender)?
         editUserProfile,
     required TResult orElse(),
   }) {
     if (editUserProfile != null) {
-      return editUserProfile(context, name, email);
+      return editUserProfile(context, name, email, gender);
     }
     return orElse();
   }
@@ -253,7 +276,8 @@ abstract class EditUserAccountProfileEvent implements EditProfileEvent {
   const factory EditUserAccountProfileEvent(
       {required final BuildContext context,
       required final String name,
-      required final String email}) = _$EditUserAccountProfileEventImpl;
+      required final String email,
+      final String? gender}) = _$EditUserAccountProfileEventImpl;
 
   @override
   BuildContext get context;
@@ -261,6 +285,8 @@ abstract class EditUserAccountProfileEvent implements EditProfileEvent {
   String get name;
   @override
   String get email;
+  @override
+  String? get gender;
   @override
   @JsonKey(ignore: true)
   _$$EditUserAccountProfileEventImplCopyWith<_$EditUserAccountProfileEventImpl>

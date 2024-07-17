@@ -91,7 +91,7 @@ final router = GoRouter(
         GoRoute(
           path: AddCardSuccessView.path,
           name: AddCardSuccessView.name,
-          builder: (context, state) => AddCardSuccessView(),
+          builder: (context, state) => const AddCardSuccessView(),
         ),
       ],
     ),

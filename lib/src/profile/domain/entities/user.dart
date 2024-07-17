@@ -6,6 +6,7 @@ class User {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final String userPhone;
+  final String? gender;
 
   User({
     required this.id,
@@ -15,12 +16,15 @@ class User {
     this.createdAt,
     this.updatedAt,
     required this.userPhone,
+    this.gender,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory User.fromJson(Map<String, dynamic> json) =>
+      User(
         id: json["id"],
         name: json["name"],
         email: json["email"],
+        gender: json['gender'],
         emailVerifiedAt: json["email_verified_at"],
         createdAt: json["created_at"] != null
             ? DateTime.parse(json["created_at"])
@@ -31,7 +35,8 @@ class User {
         userPhone: json["user_phone"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "id": id,
         "name": name,
         "email": email,

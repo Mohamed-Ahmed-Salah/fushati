@@ -14,11 +14,11 @@ import '../../../profile/domain/entities/user.dart';
 import '../app/bloc/edit_profile_bloc.dart';
 
 class EditProfileView extends StatefulWidget {
-  final User user;
+  User user;
   static const name = '/edit-profile';
   static const path = '/edit-profile';
 
-  const EditProfileView({super.key, required this.user});
+  EditProfileView({super.key, required this.user});
 
   @override
   State<EditProfileView> createState() => _EditProfileViewState();
@@ -28,11 +28,12 @@ class _EditProfileViewState extends State<EditProfileView> {
   late final TextEditingController name;
   late final TextEditingController email;
   late final _formKey;
+  late String? gender;
 
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
-
+    gender = widget.user.gender;
     name = TextEditingController(text: widget.user.name);
     email = TextEditingController(text: widget.user.email);
     // TODO: implement initState
@@ -120,6 +121,42 @@ class _EditProfileViewState extends State<EditProfileView> {
                               "${AppLocalizations.of(context)?.emailOption}",
                         ),
                       ),
+                      SizedBox(
+                        height: SizeConst.verticalPadding,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)?.gender}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colours.textBlackColor
+                                        .withOpacity(0.7)),
+                          ),
+                          GenderRadioRow(
+                            onTap: () {
+                              setState(() {
+                                gender = "Male";
+                              });
+                            },
+                            gender: "${AppLocalizations.of(context)?.male}",
+                            isSelected: gender == "Male",
+                          ),
+                          GenderRadioRow(
+                            onTap: () {
+                              setState(() {
+                                gender = "Female";
+                              });
+                            },
+                            gender: "${AppLocalizations.of(context)?.female}",
+                            isSelected: gender == "Female",
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -156,6 +193,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                                     context: context,
                                     name: name.text,
                                     email: email.text,
+                                    gender: gender,
                                   ));
                             }
                           },
@@ -170,6 +208,60 @@ class _EditProfileViewState extends State<EditProfileView> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class GenderRadioRow extends StatelessWidget {
+  final bool isSelected;
+  final String gender;
+  final Function()? onTap;
+
+  const GenderRadioRow(
+      {super.key, required this.isSelected, required this.gender, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Text(
+            gender,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w400,
+                color: Colours.textBlackColor.withOpacity(0.5)),
+          ),
+          AnimatedContainer(
+            margin: EdgeInsets.symmetric(horizontal: 1.h),
+            height: 10.25.w,
+            width: 10.25.w,
+            duration: const Duration(milliseconds: 400),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(SizeConst.borderRadius),
+              ),
+              border: Border.all(
+                  color: isSelected
+                      ? Colours.blackColor
+                      : Colours.borderGreyColor),
+            ),
+            child: Center(
+              child: AnimatedContainer(
+                curve: Curves.fastLinearToSlowEaseIn,
+                height: 5.w,
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? Colours.primaryGreenColor
+                      : Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                duration: const Duration(milliseconds: 400),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

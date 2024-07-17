@@ -16,7 +16,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
   final Dio _dio;
   static const String getUser = "/user";
   static const String editUser = "/update-profile";
-  static const String deleteUser = "/user";
+  static const String deleteUser = "/delete/user/";
 
   @override
   Future<User> getUserInfo() async {
@@ -77,6 +77,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
   @override
   Future<void> editUserInfo({
     String? email,
+    String? gender,
     required String name,
   }) async {
     // TODO: implement fetchPlans
@@ -88,6 +89,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
               data: {
                 "name": name,
                 "email": email,
+                "gender":gender
               },
               options: Options(
                 headers: header,
@@ -200,6 +202,7 @@ abstract class UserInfoRemoteDataSrc {
 
   Future<void> editUserInfo({
     String? email,
+    String? gender,
     required String name,
   });
 }

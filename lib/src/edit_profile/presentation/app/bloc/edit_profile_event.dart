@@ -6,5 +6,6 @@ sealed class EditProfileEvent with _$EditProfileEvent {
     required BuildContext context,
     required String name,
     required String email,
+    String? gender,
   }) = EditUserAccountProfileEvent;
 }
