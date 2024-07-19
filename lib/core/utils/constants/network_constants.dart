@@ -33,7 +33,6 @@ abstract class NetworkConstants {
     Map<String, String> headers = await getHeaders(contentType: contentType);
     CacheHelper cacheHelper = CacheHelper(sl());
     String token = cacheHelper.getSessionToken() ?? '';
-    print("TOKEN ${token}");
     headers["Authorization"] = 'Bearer ${token.replaceAll("\"", "")}';
     // log(headers.toString());
     return headers;

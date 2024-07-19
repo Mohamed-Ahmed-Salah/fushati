@@ -140,20 +140,20 @@ class _EditProfileViewState extends State<EditProfileView> {
                           GenderRadioRow(
                             onTap: () {
                               setState(() {
-                                gender = "Male";
+                                gender = "male";
                               });
                             },
                             gender: "${AppLocalizations.of(context)?.male}",
-                            isSelected: gender == "Male",
+                            isSelected: gender == "male",
                           ),
                           GenderRadioRow(
                             onTap: () {
                               setState(() {
-                                gender = "Female";
+                                gender = "female";
                               });
                             },
                             gender: "${AppLocalizations.of(context)?.female}",
-                            isSelected: gender == "Female",
+                            isSelected: gender == "female",
                           ),
                         ],
                       ),

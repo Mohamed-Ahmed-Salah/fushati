@@ -18,6 +18,7 @@ import '../../src/new_card/presentation/views/add_card_loader.dart';
 import '../../src/new_card/presentation/views/add_card_success.dart';
 import '../../src/new_card/presentation/views/new_card_view.dart';
 import '../../src/on_boarding/presentation/views/onboarding_view.dart';
+import '../../src/policy/presentation/view/policy_view.dart';
 import '../../src/splash/presentation/views/splash_view.dart';
 
 /// For routes that should NOT have the bottom nav bar
@@ -141,6 +142,9 @@ final router = GoRouter(
     GoRoute(
       path: ProfileView.path,
       builder: (context, state) => const ProfileView(),
+    ), GoRoute(
+      path: PolicyView.path,
+      builder: (context, state) => const PolicyView(),
     ),
     GoRoute(
       path: EditProfileView.path,

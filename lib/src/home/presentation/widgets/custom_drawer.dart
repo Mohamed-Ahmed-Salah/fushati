@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/src/policy/presentation/view/policy_view.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 
 import 'package:go_router/go_router.dart';
@@ -123,6 +124,16 @@ class CustomDrawer extends StatelessWidget {
                 },
                 leading: SvgPicture.asset(Media.languageSvg),
                 title: AppLocalizations.of(context)!.appLanguage,
+              ),
+              CustomListTile(
+                onTap: () {
+                  context.push(PolicyView.path);
+                },
+                leading: const Icon(
+                  Icons.assignment_rounded,
+                  color: Colours.brandColorOne,
+                ),
+                title: AppLocalizations.of(context)!.termsAndCondition,
               ),
               const Spacer(
                 flex: 2,

@@ -43,7 +43,9 @@ class UserInfoRepoImpl implements UserInfoRepo {
     try {
       final result = await _remoteDataSource.editUserInfo(
           email: email,
-          name: name,);
+          name: name,
+        gender: gender,
+      );
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

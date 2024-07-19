@@ -61,38 +61,7 @@ class _SplashViewState extends State<SplashView>
               ],
             ),
           ),
-          // AnimatedPositioned(
-          //     duration: animatedDuration,
-          //     bottom: animated ? 7.h : 0,
-          //     curve: Curves.easeIn,
-          //     child: AnimatedOpacity(
-          //       curve: Curves.easeInOut,
-          //       opacity: animated ? 1 : 0,
-          //       duration: animatedDuration,
-          //       child: SizedBox(
-          //         width: 100.w,
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           crossAxisAlignment: CrossAxisAlignment.center,
-          //           children: [
-          //             Text(
-          //               "${AppLocalizations.of(context)?.newExperience}",
-          //               style: Theme.of(context)
-          //                   .textTheme
-          //                   .titleMedium
-          //                   ?.copyWith(fontWeight: FontWeight.w500),
-          //             ),
-          //             Text(
-          //               "${AppLocalizations.of(context)?.forSchool}",
-          //               style: Theme.of(context)
-          //                   .textTheme
-          //                   .titleMedium
-          //                   ?.copyWith(fontWeight: FontWeight.w500),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ))
+
         ],
       ),
     );

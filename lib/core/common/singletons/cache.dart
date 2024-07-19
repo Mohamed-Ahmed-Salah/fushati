@@ -24,8 +24,7 @@ class Cache {
   String? get name => _name;
 
   bool isLoggedOut() {
-    return ((Cache.instance.sessionToken == null ||
-            Cache.instance.userId == null) &&
+    return ((Cache.instance.sessionToken == null) &&
         !Cache.instance.firstTime);
   }
 

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 abstract class Media {
-  static const _baseImage = 'assets/images';
+  static const _baseImage = 'assets/img';
   static const _baseSvg = 'assets/svg';
   static const _baseLottie= 'assets/lottie';
-  static const temp = 'assets/temp';
 
 
+
+
+
+  static const policyImg = "$_baseImage/policy.png";
 
 
 
@@ -17,7 +20,6 @@ abstract class Media {
   static const bubbleSvg = "$_baseSvg/bubble.svg";
   static const boltSvg = "$_baseSvg/electric_bolt.svg";
   static const deleteSvg = "$_baseSvg/delete.svg";
-
   static const logoutSvg = "$_baseSvg/logout.svg";
   static const contactSvg = "$_baseSvg/support_agent.svg";
   static const profileSvg = "$_baseSvg/person.svg";
@@ -30,6 +32,10 @@ abstract class Media {
   static const successSvg = "$_baseSvg/card_success.svg";
   static const warningSvg = "$_baseSvg/card_warning.svg";
   static const deleteCardSvg = "$_baseSvg/delete_card.svg";
+
+
+  static const manAvatar = '$_baseSvg/male.svg';
+  static const femaleAvatar = '$_baseSvg/female.svg';
 
 
 

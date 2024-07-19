@@ -42,15 +42,17 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   _editUserInfoEvent(event, emit) async {
     String name = event.name;
     String email = event.email;
+    String? gender= event.gender;
 
     state.whenOrNull(success: (user) {
-      User userInfo = user;
-      userInfo = userInfo.copyWith(
+      User updatedUser = user;
+      updatedUser = updatedUser.copyWith(
+        gender:gender,
         email: email,
         name: name,
       );
 
-      emit(UserInfoState.success(user: userInfo));
+      emit(UserInfoState.success(user: updatedUser));
     });
   }
 }

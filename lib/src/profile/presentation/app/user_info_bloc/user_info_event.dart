@@ -8,6 +8,7 @@ sealed class UserInfoEvent with _$UserInfoEvent {
   const factory UserInfoEvent.EditUserInfo({
     required String name,
      String? email,
+    String? gender,
 
 
   }) = LocalUserInfoEvent;

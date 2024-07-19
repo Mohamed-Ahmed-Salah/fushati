@@ -41,17 +41,17 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
         formattedDate = formattedDate.substring(0, dotIndex);
       }
 
-
-
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=${dateFormat.format(createdAt)} 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
+              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=2024-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
-
+      print(
+          '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=${dateFormat.format(createdAt)} 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId');
+      print("AAAAAAAAAAAa ${response.data}");
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
@@ -103,7 +103,6 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
@@ -121,6 +120,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
 
+      print("${response.data}");
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data)) as List)
             .map((i) => Transaction.fromJson(i))
@@ -170,7 +170,6 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

@@ -41,7 +41,7 @@ class EmptyCardsList extends StatelessWidget {
                     const SizedBox(height: 16.0),
                     Column(
                       children: [
-                        AddCardButton(),
+                        const AddCardButton(),
                         const SizedBox(height: 8.0),
                         Text(
                           "${AppLocalizations.of(context)?.addFirstCard}",

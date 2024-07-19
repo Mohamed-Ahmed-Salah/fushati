@@ -6,6 +6,7 @@ class UserModel extends User {
     super.name,
     super.email,
     super.emailVerifiedAt,
+    super.gender,
     required super.createdAt,
     required super.updatedAt,
     required super.userPhone,
@@ -22,16 +23,9 @@ class UserModel extends User {
         updatedAt: json["updated_at"] != null
             ? DateTime.parse(json["updated_at"])
             : null,
-        userPhone: json["user_phone"],
+    gender: json['gender'],
+
+    userPhone: json["user_phone"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "email": email,
-        "email_verified_at": emailVerifiedAt,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "user_phone": userPhone,
-      };
 }

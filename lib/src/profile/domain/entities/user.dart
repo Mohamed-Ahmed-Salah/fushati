@@ -19,24 +19,7 @@ class User {
     this.gender,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) =>
-      User(
-        id: json["id"],
-        name: json["name"],
-        email: json["email"],
-        gender: json['gender'],
-        emailVerifiedAt: json["email_verified_at"],
-        createdAt: json["created_at"] != null
-            ? DateTime.parse(json["created_at"])
-            : null,
-        updatedAt: json["updated_at"] != null
-            ? DateTime.parse(json["updated_at"])
-            : null,
-        userPhone: json["user_phone"],
-      );
-
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "email": email,
@@ -49,6 +32,7 @@ class User {
   User copyWith({
     String? name,
     String? email,
+    String? gender,
   }) {
     return User(
       id: id,
@@ -57,6 +41,7 @@ class User {
       emailVerifiedAt: emailVerifiedAt,
       userPhone: userPhone,
       updatedAt: DateTime.now(),
+      gender: gender ?? this.gender,
       createdAt: createdAt,
     );
   }

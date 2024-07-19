@@ -29,6 +29,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     String name = event.name;
     String email = event.email;
 
+    String? gender = event.gender;
     BuildContext context = event.context;
 
     if (name.isEmpty) {
@@ -40,12 +41,12 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       EditUserInfoParams(
         name: name,
         email: email,
+        gender: gender,
       ),
     );
 
     result.fold(
       (failure) {
-        print(failure.message);
         emit(EditProfileState.failed(failure.message));
         CoreUtils.showMyDialog(
           title: ErrorConst.getErrorTitle(title: ErrorConst.errorOccuredEn),
@@ -60,6 +61,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
         context.read<UserInfoBloc>().add(UserInfoEvent.EditUserInfo(
               name: name,
               email: email,
+              gender: gender,
             ));
         CoreUtils.showSuccess(
           title: TextConstants.getText(text: TextConstants.successEn),

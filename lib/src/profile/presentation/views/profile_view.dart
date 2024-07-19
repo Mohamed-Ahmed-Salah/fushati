@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
+import 'package:fushati/core/common/widgets/green_background.dart';
+import 'package:fushati/core/res/theme/app_theme.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
@@ -80,10 +82,37 @@ class ProfileBody extends StatelessWidget {
                           horizontal: SizeConst.horizontalPadding),
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            Media.profileSvg,
-                            height: 5.h,
-                          ),
+                          if (user.gender != null)
+                            ClipRRect(
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(SizeConst.borderRadius)),
+                              child: SvgPicture.asset(
+                                user.gender == "male"
+                                    ? Media.manAvatar
+                                    : Media.femaleAvatar,
+                                height: 7.h,
+                              ),
+                            ),
+                          if (user.gender == null)
+                            Container(
+                              height: 7.h,
+                              width: 7.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(SizeConst.borderRadius)),
+                                gradient: CustomTheme.linearGradiantLargeBottom,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  user.name!.substring(0, 1).toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                          color: Colours.primaryGreenColor),
+                                ),
+                              ),
+                            ),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.symmetric(

@@ -55,7 +55,8 @@ class AppRedirectionBloc
   Future<void> getCache() async {
     ///singelton creation for session and setup or required data
     final cacheHelper = await sl<CacheHelper>()
-      // ..resetSession();
+    // ..cacheSessionToken("2|JQCRjFGfLeJwKCcSkJ36a7quj5Yu4XJBFIZgBwO13735601f");
+    // print(cacheHelper.getSessionToken());
       ..getSessionToken()
       ..getUserId()
       ..isFirstTime()

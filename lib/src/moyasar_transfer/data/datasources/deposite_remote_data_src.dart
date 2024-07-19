@@ -34,7 +34,8 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
         },
       ).timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
-
+      print("PAYMENT RESPONSE");
+      print(response.data);
       if (isSuccess) {
         return;
       } else {

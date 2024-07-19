@@ -19,19 +19,20 @@ mixin _$UserInfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
-    required TResult Function(String name, String? email) EditUserInfo,
+    required TResult Function(String name, String? email, String? gender)
+        EditUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
-    TResult? Function(String name, String? email)? EditUserInfo,
+    TResult? Function(String name, String? email, String? gender)? EditUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
-    TResult Function(String name, String? email)? EditUserInfo,
+    TResult Function(String name, String? email, String? gender)? EditUserInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +114,8 @@ class _$GetUserInfoEventImpl implements GetUserInfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
-    required TResult Function(String name, String? email) EditUserInfo,
+    required TResult Function(String name, String? email, String? gender)
+        EditUserInfo,
   }) {
     return getUserInfo();
   }
@@ -122,7 +124,7 @@ class _$GetUserInfoEventImpl implements GetUserInfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
-    TResult? Function(String name, String? email)? EditUserInfo,
+    TResult? Function(String name, String? email, String? gender)? EditUserInfo,
   }) {
     return getUserInfo?.call();
   }
@@ -131,7 +133,7 @@ class _$GetUserInfoEventImpl implements GetUserInfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
-    TResult Function(String name, String? email)? EditUserInfo,
+    TResult Function(String name, String? email, String? gender)? EditUserInfo,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -182,7 +184,7 @@ abstract class _$$LocalUserInfoEventImplCopyWith<$Res> {
           $Res Function(_$LocalUserInfoEventImpl) then) =
       __$$LocalUserInfoEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, String? email});
+  $Res call({String name, String? email, String? gender});
 }
 
 /// @nodoc
@@ -198,6 +200,7 @@ class __$$LocalUserInfoEventImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? email = freezed,
+    Object? gender = freezed,
   }) {
     return _then(_$LocalUserInfoEventImpl(
       name: null == name
@@ -208,6 +211,10 @@ class __$$LocalUserInfoEventImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -215,16 +222,18 @@ class __$$LocalUserInfoEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LocalUserInfoEventImpl implements LocalUserInfoEvent {
-  const _$LocalUserInfoEventImpl({required this.name, this.email});
+  const _$LocalUserInfoEventImpl({required this.name, this.email, this.gender});
 
   @override
   final String name;
   @override
   final String? email;
+  @override
+  final String? gender;
 
   @override
   String toString() {
-    return 'UserInfoEvent.EditUserInfo(name: $name, email: $email)';
+    return 'UserInfoEvent.EditUserInfo(name: $name, email: $email, gender: $gender)';
   }
 
   @override
@@ -233,11 +242,12 @@ class _$LocalUserInfoEventImpl implements LocalUserInfoEvent {
         (other.runtimeType == runtimeType &&
             other is _$LocalUserInfoEventImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.gender, gender) || other.gender == gender));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, email);
+  int get hashCode => Object.hash(runtimeType, name, email, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -250,29 +260,30 @@ class _$LocalUserInfoEventImpl implements LocalUserInfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
-    required TResult Function(String name, String? email) EditUserInfo,
+    required TResult Function(String name, String? email, String? gender)
+        EditUserInfo,
   }) {
-    return EditUserInfo(name, email);
+    return EditUserInfo(name, email, gender);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
-    TResult? Function(String name, String? email)? EditUserInfo,
+    TResult? Function(String name, String? email, String? gender)? EditUserInfo,
   }) {
-    return EditUserInfo?.call(name, email);
+    return EditUserInfo?.call(name, email, gender);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
-    TResult Function(String name, String? email)? EditUserInfo,
+    TResult Function(String name, String? email, String? gender)? EditUserInfo,
     required TResult orElse(),
   }) {
     if (EditUserInfo != null) {
-      return EditUserInfo(name, email);
+      return EditUserInfo(name, email, gender);
     }
     return orElse();
   }
@@ -312,10 +323,12 @@ class _$LocalUserInfoEventImpl implements LocalUserInfoEvent {
 abstract class LocalUserInfoEvent implements UserInfoEvent {
   const factory LocalUserInfoEvent(
       {required final String name,
-      final String? email}) = _$LocalUserInfoEventImpl;
+      final String? email,
+      final String? gender}) = _$LocalUserInfoEventImpl;
 
   String get name;
   String? get email;
+  String? get gender;
   @JsonKey(ignore: true)
   _$$LocalUserInfoEventImplCopyWith<_$LocalUserInfoEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
