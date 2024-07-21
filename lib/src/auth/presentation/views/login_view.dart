@@ -161,7 +161,7 @@ class _LoginViewState extends State<LoginView> {
                                                   AuthenticatorEvent
                                                       .loginOrRegister(
                                                           phone:
-                                                              "+966${_controller.text}",
+                                                              "966${_controller.text}",
                                                           context: context),
                                                 );
                                           }
@@ -266,7 +266,7 @@ class _LoginViewState extends State<LoginView> {
                                                   .add(AuthenticatorEvent
                                                       .loginOrRegister(
                                                           phone:
-                                                              "+966${_controller.text}",
+                                                              "966${_controller.text}",
                                                           context: context));
                                             }
                                           },
