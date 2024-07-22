@@ -34,8 +34,6 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
         },
       ).timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
-      print("PAYMENT RESPONSE");
-      print(response.data);
       if (isSuccess) {
         return;
       } else {
@@ -92,7 +90,6 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
-      print("### ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

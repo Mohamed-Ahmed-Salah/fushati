@@ -51,10 +51,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
-      print(
-          '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=${dateFormat.format(createdAt)} 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId');
-      print("AAAAAAAAAAAa ${response.data}");
-      bool isSuccess = response.statusCode == 200;
+        bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data['data'])) as List)
@@ -122,7 +119,6 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
 
-      print("${response.data}");
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data)) as List)
             .map((i) => Transaction.fromJson(i))
