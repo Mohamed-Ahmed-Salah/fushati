@@ -82,7 +82,7 @@ class _ResendOtpWidgetState extends State<ResendOtpWidget> {
         });
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 1.5.h),
-          child: Container(
+          child: SizedBox(
             height: 5.h,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

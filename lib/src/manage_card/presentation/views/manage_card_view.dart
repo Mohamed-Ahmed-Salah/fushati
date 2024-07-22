@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/manage_card/presentation/app/bloc/card_transaction_bloc.dart';
@@ -34,11 +35,14 @@ class ManageCardView extends StatefulWidget {
 class _ManageCardViewState extends State<ManageCardView> {
   late TextEditingController controller;
   late final _formKey;
+  static const _scrollThreshold = .70;
+  late final ScrollController _scrollController;
 
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
-
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
     controller = TextEditingController();
     // TODO: implement initState
     super.initState();
@@ -53,6 +57,25 @@ class _ManageCardViewState extends State<ManageCardView> {
   }
 
   @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent * _scrollThreshold &&
+        !_scrollController.position.outOfRange) {
+      context.read<CardTransactionBlocBloc>().add(GetMoreCardTransaction(
+            id: widget.card.id,
+            cardNumber: widget.card.userCard,
+            createdAt: widget.card.createdAt,
+          ));
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -63,6 +86,7 @@ class _ManageCardViewState extends State<ManageCardView> {
           child: Form(
             key: _formKey,
             child: CustomScrollView(
+              controller: _scrollController,
               slivers: [
                 SliverList(
                   delegate: SliverChildListDelegate(
@@ -112,18 +136,23 @@ class _ManageCardViewState extends State<ManageCardView> {
                         CardTransactionBlocState>(
                       builder: (context, state) {
                         return state.when(
-                          loading: () => const LoadingSliver(),
+                          loading: (transactions) => TransactionsLoading(
+                            transactions: transactions,
+                          ),
+
+                          // const LoadingSliver(),
                           failed: (message) => ErrorSliver(
                             onPressed: () {
                               context.read<CardTransactionBlocBloc>().add(
                                   CardTransactionBlocEvent.getCardTransaction(
                                       id: user.id,
                                       cardNumber: widget.card.userCard,
-                                      createdAt: widget.card.createdAt));
+                                      createdAt: widget.card.createdAt,
+                                      page: 1));
                             },
                             message: message,
                           ),
-                          success: (transactions) => SliverList(
+                          success: (transactions, hasMoreRecords) => SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (BuildContext context, int index) {
                                 Transaction transaction = transactions[index];
@@ -145,3 +174,49 @@ class _ManageCardViewState extends State<ManageCardView> {
     );
   }
 }
+
+class TransactionsLoading extends StatelessWidget {
+  final List<Transaction> transactions;
+
+  const TransactionsLoading({super.key, required this.transactions});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          int length = transactions.length;
+
+          if (index == length) {
+            return const Center(child: CustomCircularProgressIndicator());
+          } else {
+            Transaction transaction = transactions[index];
+            return TransactionBox(transaction: transaction);
+          }
+        },
+        childCount: transactions.length + 1,
+      ),
+    );
+  }
+}
+
+
+class TransactionList extends StatelessWidget {
+  final List<Transaction> transactions;
+
+  const TransactionList({super.key, required this.transactions});
+
+  @override
+  Widget build(BuildContext context) {
+    return  SliverList(
+      delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+          Transaction transaction = transactions[index];
+          return TransactionBox(transaction: transaction);
+        },
+        childCount: transactions.length,
+      ),
+    );
+  }
+}
+

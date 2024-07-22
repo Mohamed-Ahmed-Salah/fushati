@@ -16,13 +16,15 @@ class TransactionsRepoImpl implements TransactionsRepo {
   final TransactionsRemoteDataSrc _remoteDataSource;
 
   @override
-  ResultFuture<List<Transaction>> getTransactions(
-      {required int userId,
-      required String userCard,
-      required DateTime createdAt}) async {
+  ResultFuture<List<Transaction>> getTransactions({
+    required int userId,
+    required String userCard,
+    required DateTime createdAt,
+    required int page,
+  }) async {
     try {
       final result = await _remoteDataSource.getTransactions(
-          userId: userId, userCard: userCard, createdAt: createdAt);
+          page: page, userId: userId, userCard: userCard, createdAt: createdAt);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

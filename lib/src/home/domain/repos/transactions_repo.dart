@@ -7,7 +7,10 @@ abstract class TransactionsRepo {
   ResultFuture<List<Transaction>> getTransactions(
       {required int userId,
         required String userCard,
-        required DateTime createdAt});
+        required DateTime createdAt,
+        required int page,
+
+      });
 
   ResultFuture<List<Transaction>> getUserTransactions();
 }

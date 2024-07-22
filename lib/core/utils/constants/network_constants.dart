@@ -12,7 +12,7 @@ abstract class NetworkConstants {
       "pk_test_TzNwxV5x7e1oofUcPGwQHHcP4HFUN8zUgrMx2ycL";
 
   static const headers = {'Content-Type': 'application/json; charset=UTF-8'};
-  static const pageSize = 10;
+  static const pageSize = 5;
   static const timeout = 60;
 
   static Future<Map<String, String>> getHeaders(

@@ -21,36 +21,47 @@ mixin _$CardTransactionBlocEvent {
   DateTime get createdAt => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id, String cardNumber, DateTime createdAt)
+    required TResult Function(
+            int id, String cardNumber, DateTime createdAt, int page)
         getCardTransaction,
+    required TResult Function(int id, String cardNumber, DateTime createdAt)
+        getMoreCardTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String cardNumber, DateTime createdAt)?
+    TResult? Function(int id, String cardNumber, DateTime createdAt, int page)?
         getCardTransaction,
+    TResult? Function(int id, String cardNumber, DateTime createdAt)?
+        getMoreCardTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String cardNumber, DateTime createdAt)?
+    TResult Function(int id, String cardNumber, DateTime createdAt, int page)?
         getCardTransaction,
+    TResult Function(int id, String cardNumber, DateTime createdAt)?
+        getMoreCardTransaction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetCardTransactionEvent value) getCardTransaction,
+    required TResult Function(GetMoreCardTransaction value)
+        getMoreCardTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCardTransactionEvent value)? getCardTransaction,
+    TResult? Function(GetMoreCardTransaction value)? getMoreCardTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCardTransactionEvent value)? getCardTransaction,
+    TResult Function(GetMoreCardTransaction value)? getMoreCardTransaction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +124,7 @@ abstract class _$$GetCardTransactionEventImplCopyWith<$Res>
       __$$GetCardTransactionEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String cardNumber, DateTime createdAt});
+  $Res call({int id, String cardNumber, DateTime createdAt, int page});
 }
 
 /// @nodoc
@@ -132,8 +143,196 @@ class __$$GetCardTransactionEventImplCopyWithImpl<$Res>
     Object? id = null,
     Object? cardNumber = null,
     Object? createdAt = null,
+    Object? page = null,
   }) {
     return _then(_$GetCardTransactionEventImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      cardNumber: null == cardNumber
+          ? _value.cardNumber
+          : cardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
+  const _$GetCardTransactionEventImpl(
+      {required this.id,
+      required this.cardNumber,
+      required this.createdAt,
+      required this.page});
+
+  @override
+  final int id;
+  @override
+  final String cardNumber;
+  @override
+  final DateTime createdAt;
+  @override
+  final int page;
+
+  @override
+  String toString() {
+    return 'CardTransactionBlocEvent.getCardTransaction(id: $id, cardNumber: $cardNumber, createdAt: $createdAt, page: $page)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCardTransactionEventImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.cardNumber, cardNumber) ||
+                other.cardNumber == cardNumber) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.page, page) || other.page == page));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, cardNumber, createdAt, page);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCardTransactionEventImplCopyWith<_$GetCardTransactionEventImpl>
+      get copyWith => __$$GetCardTransactionEventImplCopyWithImpl<
+          _$GetCardTransactionEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int id, String cardNumber, DateTime createdAt, int page)
+        getCardTransaction,
+    required TResult Function(int id, String cardNumber, DateTime createdAt)
+        getMoreCardTransaction,
+  }) {
+    return getCardTransaction(id, cardNumber, createdAt, page);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int id, String cardNumber, DateTime createdAt, int page)?
+        getCardTransaction,
+    TResult? Function(int id, String cardNumber, DateTime createdAt)?
+        getMoreCardTransaction,
+  }) {
+    return getCardTransaction?.call(id, cardNumber, createdAt, page);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id, String cardNumber, DateTime createdAt, int page)?
+        getCardTransaction,
+    TResult Function(int id, String cardNumber, DateTime createdAt)?
+        getMoreCardTransaction,
+    required TResult orElse(),
+  }) {
+    if (getCardTransaction != null) {
+      return getCardTransaction(id, cardNumber, createdAt, page);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetCardTransactionEvent value) getCardTransaction,
+    required TResult Function(GetMoreCardTransaction value)
+        getMoreCardTransaction,
+  }) {
+    return getCardTransaction(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetCardTransactionEvent value)? getCardTransaction,
+    TResult? Function(GetMoreCardTransaction value)? getMoreCardTransaction,
+  }) {
+    return getCardTransaction?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetCardTransactionEvent value)? getCardTransaction,
+    TResult Function(GetMoreCardTransaction value)? getMoreCardTransaction,
+    required TResult orElse(),
+  }) {
+    if (getCardTransaction != null) {
+      return getCardTransaction(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCardTransactionEvent implements CardTransactionBlocEvent {
+  const factory GetCardTransactionEvent(
+      {required final int id,
+      required final String cardNumber,
+      required final DateTime createdAt,
+      required final int page}) = _$GetCardTransactionEventImpl;
+
+  @override
+  int get id;
+  @override
+  String get cardNumber;
+  @override
+  DateTime get createdAt;
+  int get page;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetCardTransactionEventImplCopyWith<_$GetCardTransactionEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetMoreCardTransactionImplCopyWith<$Res>
+    implements $CardTransactionBlocEventCopyWith<$Res> {
+  factory _$$GetMoreCardTransactionImplCopyWith(
+          _$GetMoreCardTransactionImpl value,
+          $Res Function(_$GetMoreCardTransactionImpl) then) =
+      __$$GetMoreCardTransactionImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String cardNumber, DateTime createdAt});
+}
+
+/// @nodoc
+class __$$GetMoreCardTransactionImplCopyWithImpl<$Res>
+    extends _$CardTransactionBlocEventCopyWithImpl<$Res,
+        _$GetMoreCardTransactionImpl>
+    implements _$$GetMoreCardTransactionImplCopyWith<$Res> {
+  __$$GetMoreCardTransactionImplCopyWithImpl(
+      _$GetMoreCardTransactionImpl _value,
+      $Res Function(_$GetMoreCardTransactionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? cardNumber = null,
+    Object? createdAt = null,
+  }) {
+    return _then(_$GetMoreCardTransactionImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -152,8 +351,8 @@ class __$$GetCardTransactionEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
-  const _$GetCardTransactionEventImpl(
+class _$GetMoreCardTransactionImpl implements GetMoreCardTransaction {
+  const _$GetMoreCardTransactionImpl(
       {required this.id, required this.cardNumber, required this.createdAt});
 
   @override
@@ -165,14 +364,14 @@ class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
 
   @override
   String toString() {
-    return 'CardTransactionBlocEvent.getCardTransaction(id: $id, cardNumber: $cardNumber, createdAt: $createdAt)';
+    return 'CardTransactionBlocEvent.getMoreCardTransaction(id: $id, cardNumber: $cardNumber, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetCardTransactionEventImpl &&
+            other is _$GetMoreCardTransactionImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.cardNumber, cardNumber) ||
                 other.cardNumber == cardNumber) &&
@@ -186,37 +385,44 @@ class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetCardTransactionEventImplCopyWith<_$GetCardTransactionEventImpl>
-      get copyWith => __$$GetCardTransactionEventImplCopyWithImpl<
-          _$GetCardTransactionEventImpl>(this, _$identity);
+  _$$GetMoreCardTransactionImplCopyWith<_$GetMoreCardTransactionImpl>
+      get copyWith => __$$GetMoreCardTransactionImplCopyWithImpl<
+          _$GetMoreCardTransactionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id, String cardNumber, DateTime createdAt)
+    required TResult Function(
+            int id, String cardNumber, DateTime createdAt, int page)
         getCardTransaction,
+    required TResult Function(int id, String cardNumber, DateTime createdAt)
+        getMoreCardTransaction,
   }) {
-    return getCardTransaction(id, cardNumber, createdAt);
+    return getMoreCardTransaction(id, cardNumber, createdAt);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String cardNumber, DateTime createdAt)?
+    TResult? Function(int id, String cardNumber, DateTime createdAt, int page)?
         getCardTransaction,
+    TResult? Function(int id, String cardNumber, DateTime createdAt)?
+        getMoreCardTransaction,
   }) {
-    return getCardTransaction?.call(id, cardNumber, createdAt);
+    return getMoreCardTransaction?.call(id, cardNumber, createdAt);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String cardNumber, DateTime createdAt)?
+    TResult Function(int id, String cardNumber, DateTime createdAt, int page)?
         getCardTransaction,
+    TResult Function(int id, String cardNumber, DateTime createdAt)?
+        getMoreCardTransaction,
     required TResult orElse(),
   }) {
-    if (getCardTransaction != null) {
-      return getCardTransaction(id, cardNumber, createdAt);
+    if (getMoreCardTransaction != null) {
+      return getMoreCardTransaction(id, cardNumber, createdAt);
     }
     return orElse();
   }
@@ -225,36 +431,40 @@ class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetCardTransactionEvent value) getCardTransaction,
+    required TResult Function(GetMoreCardTransaction value)
+        getMoreCardTransaction,
   }) {
-    return getCardTransaction(this);
+    return getMoreCardTransaction(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCardTransactionEvent value)? getCardTransaction,
+    TResult? Function(GetMoreCardTransaction value)? getMoreCardTransaction,
   }) {
-    return getCardTransaction?.call(this);
+    return getMoreCardTransaction?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCardTransactionEvent value)? getCardTransaction,
+    TResult Function(GetMoreCardTransaction value)? getMoreCardTransaction,
     required TResult orElse(),
   }) {
-    if (getCardTransaction != null) {
-      return getCardTransaction(this);
+    if (getMoreCardTransaction != null) {
+      return getMoreCardTransaction(this);
     }
     return orElse();
   }
 }
 
-abstract class GetCardTransactionEvent implements CardTransactionBlocEvent {
-  const factory GetCardTransactionEvent(
+abstract class GetMoreCardTransaction implements CardTransactionBlocEvent {
+  const factory GetMoreCardTransaction(
       {required final int id,
       required final String cardNumber,
-      required final DateTime createdAt}) = _$GetCardTransactionEventImpl;
+      required final DateTime createdAt}) = _$GetMoreCardTransactionImpl;
 
   @override
   int get id;
@@ -264,7 +474,7 @@ abstract class GetCardTransactionEvent implements CardTransactionBlocEvent {
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$GetCardTransactionEventImplCopyWith<_$GetCardTransactionEventImpl>
+  _$$GetMoreCardTransactionImplCopyWith<_$GetMoreCardTransactionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -272,23 +482,27 @@ abstract class GetCardTransactionEvent implements CardTransactionBlocEvent {
 mixin _$CardTransactionBlocState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<Transaction> transactions) loading,
     required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function(
+            List<Transaction> transactions, bool hasMoreRecords)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<Transaction> transactions)? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<Transaction> transactions)? loading,
     TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -340,6 +554,8 @@ abstract class _$$loadingStateImplCopyWith<$Res> {
   factory _$$loadingStateImplCopyWith(
           _$loadingStateImpl value, $Res Function(_$loadingStateImpl) then) =
       __$$loadingStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Transaction> transactions});
 }
 
 /// @nodoc
@@ -349,57 +565,94 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactions = null,
+  }) {
+    return _then(_$loadingStateImpl(
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$loadingStateImpl implements _loadingState {
-  const _$loadingStateImpl();
+  const _$loadingStateImpl({final List<Transaction> transactions = const []})
+      : _transactions = transactions;
+
+  final List<Transaction> _transactions;
+  @override
+  @JsonKey()
+  List<Transaction> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
 
   @override
   String toString() {
-    return 'CardTransactionBlocState.loading()';
+    return 'CardTransactionBlocState.loading(transactions: $transactions)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$loadingStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$loadingStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_transactions));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
+      __$$loadingStateImplCopyWithImpl<_$loadingStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<Transaction> transactions) loading,
     required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function(
+            List<Transaction> transactions, bool hasMoreRecords)
+        success,
   }) {
-    return loading();
+    return loading(transactions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<Transaction> transactions)? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
   }) {
-    return loading?.call();
+    return loading?.call(transactions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<Transaction> transactions)? loading,
     TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(transactions);
     }
     return orElse();
   }
@@ -440,7 +693,13 @@ class _$loadingStateImpl implements _loadingState {
 }
 
 abstract class _loadingState implements CardTransactionBlocState {
-  const factory _loadingState() = _$loadingStateImpl;
+  const factory _loadingState({final List<Transaction> transactions}) =
+      _$loadingStateImpl;
+
+  List<Transaction> get transactions;
+  @JsonKey(ignore: true)
+  _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -507,9 +766,11 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<Transaction> transactions) loading,
     required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function(
+            List<Transaction> transactions, bool hasMoreRecords)
+        success,
   }) {
     return failed(message);
   }
@@ -517,9 +778,10 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<Transaction> transactions)? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
   }) {
     return failed?.call(message);
   }
@@ -527,9 +789,10 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<Transaction> transactions)? loading,
     TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -588,7 +851,7 @@ abstract class _$$successStateImplCopyWith<$Res> {
           _$successStateImpl value, $Res Function(_$successStateImpl) then) =
       __$$successStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Transaction> transactions});
+  $Res call({List<Transaction> transactions, bool hasMoreRecords});
 }
 
 /// @nodoc
@@ -603,12 +866,17 @@ class __$$successStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transactions = null,
+    Object? hasMoreRecords = null,
   }) {
     return _then(_$successStateImpl(
       transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<Transaction>,
+      hasMoreRecords: null == hasMoreRecords
+          ? _value.hasMoreRecords
+          : hasMoreRecords // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -616,7 +884,9 @@ class __$$successStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$successStateImpl implements _successState {
-  const _$successStateImpl({required final List<Transaction> transactions})
+  const _$successStateImpl(
+      {required final List<Transaction> transactions,
+      required this.hasMoreRecords})
       : _transactions = transactions;
 
   final List<Transaction> _transactions;
@@ -628,8 +898,11 @@ class _$successStateImpl implements _successState {
   }
 
   @override
+  final bool hasMoreRecords;
+
+  @override
   String toString() {
-    return 'CardTransactionBlocState.success(transactions: $transactions)';
+    return 'CardTransactionBlocState.success(transactions: $transactions, hasMoreRecords: $hasMoreRecords)';
   }
 
   @override
@@ -638,12 +911,14 @@ class _$successStateImpl implements _successState {
         (other.runtimeType == runtimeType &&
             other is _$successStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._transactions, _transactions));
+                .equals(other._transactions, _transactions) &&
+            (identical(other.hasMoreRecords, hasMoreRecords) ||
+                other.hasMoreRecords == hasMoreRecords));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_transactions));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_transactions), hasMoreRecords);
 
   @JsonKey(ignore: true)
   @override
@@ -654,33 +929,37 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<Transaction> transactions) loading,
     required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function(
+            List<Transaction> transactions, bool hasMoreRecords)
+        success,
   }) {
-    return success(transactions);
+    return success(transactions, hasMoreRecords);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<Transaction> transactions)? loading,
     TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
   }) {
-    return success?.call(transactions);
+    return success?.call(transactions, hasMoreRecords);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<Transaction> transactions)? loading,
     TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function(List<Transaction> transactions, bool hasMoreRecords)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(transactions);
+      return success(transactions, hasMoreRecords);
     }
     return orElse();
   }
@@ -721,10 +1000,12 @@ class _$successStateImpl implements _successState {
 }
 
 abstract class _successState implements CardTransactionBlocState {
-  const factory _successState({required final List<Transaction> transactions}) =
-      _$successStateImpl;
+  const factory _successState(
+      {required final List<Transaction> transactions,
+      required final bool hasMoreRecords}) = _$successStateImpl;
 
   List<Transaction> get transactions;
+  bool get hasMoreRecords;
   @JsonKey(ignore: true)
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
       throw _privateConstructorUsedError;

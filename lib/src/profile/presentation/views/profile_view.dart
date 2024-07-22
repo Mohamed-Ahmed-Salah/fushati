@@ -22,6 +22,7 @@ import '../../../home/domain/entity/card.dart';
 import '../../../home/presentation/widgets/empty_card_list.dart';
 import '../../../home/presentation/widgets/error_sliver.dart';
 import '../../../home/presentation/widgets/loading_sliver.dart';
+import '../../../manage_card/presentation/views/manage_card_view.dart';
 import '../../../manage_card/presentation/widgets/transaction_box.dart';
 import '../../../manage_card/presentation/widgets/transaction_history_text_row.dart';
 import '../app/user_info_bloc/user_info_bloc.dart';
@@ -196,7 +197,7 @@ class ProfileBody extends StatelessWidget {
             BlocBuilder<ProfileTransactionBloc, ProfileTransactionState>(
                 builder: (context, state) {
               return state.when(
-                loading: () => const LoadingSliver(),
+                loading: () => const TransactionsLoading(transactions: []),
                 failed: (message) => ErrorSliver(
                   onPressed: () {
                     context.read<ProfileTransactionBloc>().add(
@@ -204,14 +205,8 @@ class ProfileBody extends StatelessWidget {
                   },
                   message: message,
                 ),
-                success: (transactions) => SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      Transaction transaction = transactions[index];
-                      return TransactionBox(transaction: transaction);
-                    },
-                    childCount: transactions.length,
-                  ),
+                success: (transactions) => TransactionList(
+                  transactions: transactions,
                 ),
               );
             }),

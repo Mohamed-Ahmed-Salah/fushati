@@ -21,10 +21,12 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
   final Dio _dio;
 
   @override
-  Future<List<Transaction>> getTransactions(
-      {required int userId,
-      required String userCard,
-      required DateTime createdAt}) async {
+  Future<List<Transaction>> getTransactions({
+    required int userId,
+    required String userCard,
+    required DateTime createdAt,
+    required int page,
+  }) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       DateTime currentDate = DateTime.now();
@@ -43,7 +45,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=5000&startTime=2024-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
+              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants.pageSize}&startTime=2024-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
               options: Options(
                 headers: header,
               ))
@@ -179,10 +181,12 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 abstract class TransactionsRemoteDataSrc {
   const TransactionsRemoteDataSrc();
 
-  Future<List<Transaction>> getTransactions(
-      {required int userId,
-      required String userCard,
-      required DateTime createdAt});
+  Future<List<Transaction>> getTransactions({
+    required int userId,
+    required String userCard,
+    required DateTime createdAt,
+    required int page,
+  });
 
   Future<List<Transaction>> getUserTransactions();
 }

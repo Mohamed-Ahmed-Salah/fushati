@@ -17,14 +17,19 @@ class GetCardTransactions
       _repo.getTransactions(
           userId: params.userId,
           userCard: params.userCard,
-          createdAt: params.createdAt);
+          createdAt: params.createdAt,
+          page: params.page);
 }
 
 class TransactionParam {
   final int userId;
+  final int page;
   final String userCard;
   final DateTime createdAt;
 
   TransactionParam(
-      {required this.userId, required this.userCard, required this.createdAt});
+      {required this.userId,
+      required this.page,
+      required this.userCard,
+      required this.createdAt});
 }
