@@ -1,3 +1,4 @@
+import 'package:fushati/core/utils/constants/network_constants.dart';
 
 import '../../utils/constants/text_constants.dart';
 
@@ -9,6 +10,7 @@ class Cache {
   String? _sessionToken;
   String? _name;
   String? _language;
+  String? _ipBaseUrl;
 
   int? _userId;
   bool? _firstTime;
@@ -23,9 +25,12 @@ class Cache {
 
   String? get name => _name;
 
+  String? get ipBaseUrl => _ipBaseUrl;
+
   bool isLoggedOut() {
     return ((Cache.instance.sessionToken == null) &&
-        !Cache.instance.firstTime);
+        !Cache.instance.firstTime &&
+        (Cache.instance.ipBaseUrl == null));
   }
 
   void setSessionToken(String? newToken) {
@@ -34,6 +39,12 @@ class Cache {
 
   void setLanguage(String? setLanguage) {
     if (_language != setLanguage) _language = setLanguage;
+  }
+
+  void setIpBaseUrl(String? setBaseUrl) {
+    if (_ipBaseUrl != setBaseUrl) _ipBaseUrl = setBaseUrl;
+    ///to Update base url used;
+    if(setBaseUrl!=null) NetworkConstants.baseUrl= setBaseUrl;
   }
 
   void setUserName(String? name) {
@@ -54,12 +65,13 @@ class Cache {
     setFirstTime(true);
     setUserName(null);
     setLanguage(null);
+    setIpBaseUrl(null);
   }
 
   void logout() {
     setSessionToken(null);
     setUserId(null);
-    // setFirstTime(true);
+    setIpBaseUrl(null);
     setUserName(null);
   }
 }

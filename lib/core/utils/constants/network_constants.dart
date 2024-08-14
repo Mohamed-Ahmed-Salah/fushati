@@ -2,13 +2,15 @@ import '../../common/app/cache_helper.dart';
 import '../../services/injection_container.dart';
 
 abstract class NetworkConstants {
-  static const baseUrl = 'http://66.42.54.81:8080/api';
-  static const String parentUrl = '$baseUrl/parent';
-  static const String reportsUrl = '$baseUrl/reports';
-  static const String usersUrl = '$baseUrl/users';
-  static const String parentsUrl = '$baseUrl/parents';
+  static const String topBaseUrl = 'http://66.42.54.81:8080/api';
+  ///updated from cache singleton depending on cached or chosen value in login
+  static String baseUrl = 'http://66.42.54.81:8080/api';
+  static String parentUrl = '$baseUrl/parent';
+  static String reportsUrl = '$baseUrl/reports';
+  static String usersUrl = '$baseUrl/users';
+  static String parentsUrl = '$baseUrl/parents';
 
-  static const String MoyasarAPIKey =
+  static const String moyasarAPIKey =
       "pk_test_TzNwxV5x7e1oofUcPGwQHHcP4HFUN8zUgrMx2ycL";
 
   static const headers = {'Content-Type': 'application/json; charset=UTF-8'};
@@ -21,7 +23,7 @@ abstract class NetworkConstants {
       "Cache-Control": "no-cache",
       "Content-Type": contentType,
       "x-api-key": "",
-      "Accept":contentType,
+      "Accept": contentType,
       "x-request-timestamp": "",
       "x-request-timezone": "",
     };

@@ -7,16 +7,27 @@ class CacheHelper {
   const CacheHelper(this._prefs);
 
   final SharedPreferences _prefs;
-  static const _sessionTokenKey = 'driver-session-token';
-  static const _userIdKey = 'driver-id';
-  static const _firstTimerKey = 'is-driver-first-timer';
-  static const _userNameKey = 'driver-name';
-  static const _language = 'language';
+  static const _sessionTokenKey = 'user-session-token';
+  static const _userIdKey = 'user-id';
+  static const _firstTimerKey = 'is-user-first-timer';
+  static const _userNameKey = 'user-name';
+  static const _ipBaseUrlKey = 'fushati-ip-base-url';
+  static const _language = 'fushati-language';
 
   Future<bool> setLanguage(String language) async {
     try {
       final result = await _prefs.setString(_language, language);
       Cache.instance.setLanguage(language);
+      return result;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> setBaseUrl(String baseUrl) async {
+    try {
+      final result = await _prefs.setString(_ipBaseUrlKey, baseUrl);
+      Cache.instance.setIpBaseUrl(baseUrl);
       return result;
     } catch (_) {
       return false;
@@ -59,9 +70,6 @@ class CacheHelper {
   }
 
   String? getSessionToken() {
-    // _prefs.remove(_sessionTokenKey);
-    // _prefs.remove(_userIdKey);
-    // _prefs.remove(_firstTimerKey);
     final sessionToken = _prefs.getString(_sessionTokenKey);
     if (sessionToken != null) {
       debugPrint('getSessionToken: Session Token exists');
@@ -70,6 +78,17 @@ class CacheHelper {
       debugPrint('getSessionToken: session does not exist');
     }
     return sessionToken;
+  }
+
+  String? getBaseUrl() {
+    final baseUrl = _prefs.getString(_ipBaseUrlKey);
+    if (baseUrl != null) {
+      debugPrint('_ipBaseUrlKey: Session _ipBaseUrlKey exists');
+      Cache.instance.setIpBaseUrl(baseUrl);
+    } else {
+      debugPrint('getBaseUrl: session does not exist');
+    }
+    return baseUrl;
   }
 
   String? getUserName() {
@@ -104,8 +123,7 @@ class CacheHelper {
     final userId = _prefs.getInt(_userIdKey);
     if (userId != null) {
       Cache.instance.setUserId(userId);
-    } else {
-    }
+    } else {}
     return userId;
   }
 

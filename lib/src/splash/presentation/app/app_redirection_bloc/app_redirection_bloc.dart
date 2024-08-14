@@ -60,6 +60,7 @@ class AppRedirectionBloc
       ..getUserId()
       ..isFirstTime()
       ..getUserName()
+      ..getBaseUrl()
       ..getLanguage();
   }
 

@@ -10,7 +10,7 @@ abstract class MoyasarConfig {
     var uuid = const Uuid();
 
     return PaymentConfig(
-      publishableApiKey: NetworkConstants.MoyasarAPIKey,
+      publishableApiKey: NetworkConstants.moyasarAPIKey,
       amount: amount * 100,
       metadata: {
         "card_number":card,

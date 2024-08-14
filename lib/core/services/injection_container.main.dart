@@ -12,6 +12,7 @@ Future<void> init() async {
     _moyasarInit(),
     _userInfo(),
     _transactions(),
+    _schools(),
   ]);
 }
 
@@ -30,6 +31,14 @@ Future<void> _authInit() async {
     ..registerLazySingleton<AuthRemoteDataSrc>(
         () => AuthRemoteDataSrcImpl(sl()))
     ..registerSingleton(Dio());
+}
+
+Future<void> _schools() async {
+  sl
+    ..registerLazySingleton(() => GetSchools(sl()))
+    ..registerLazySingleton<SchoolsRepo>(() => SchoolRepoImpl(sl()))
+    ..registerLazySingleton<SchoolsRemoteDataSrc>(
+        () => SchoolsRemoteDataSrcImpl(sl()));
 }
 
 Future<void> _cardsInit() async {
@@ -70,7 +79,6 @@ Future<void> _userInfo() async {
 
 Future<void> _transactions() async {
   sl
-
     ..registerLazySingleton(() => GetCardTransactions(sl()))
     ..registerLazySingleton(() => GetUserTransactions(sl()))
     // ..registerLazySingleton(() => AddUserInfo(sl()))

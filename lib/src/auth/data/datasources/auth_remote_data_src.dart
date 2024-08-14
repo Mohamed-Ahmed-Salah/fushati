@@ -46,8 +46,6 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
             message: response.data['message']??'',
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {

@@ -28,6 +28,8 @@ import 'src/auth/presentation/app/blocs/otp_bloc/otp_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'src/splash/presentation/app/get_schools_bloc/get_schools_bloc.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -120,6 +122,10 @@ class MyApp extends StatelessWidget {
           BlocProvider<ProfileTransactionBloc>(
             create: (BuildContext context) =>
                 ProfileTransactionBloc(getUserTransactions: sl()),
+          ),
+          BlocProvider<GetSchoolsBloc>(
+            create: (BuildContext context) => GetSchoolsBloc(getSchools: sl())
+              ..add(const GetSchoolsEvent.getSchools()),
           ),
         ],
         child: BlocBuilder<AppLanguageCubit, AppLanguageState>(

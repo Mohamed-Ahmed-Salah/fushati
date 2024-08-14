@@ -102,7 +102,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                               switchInCurve: Curves.easeInOutCubic,
                               switchOutCurve: Curves.easeInOut,
                               child: Text(
-                                key: Key(title[state.currentIndexPage]),
+                                  key: Key(title[state.currentIndexPage]),
                                 title[state.currentIndexPage],
                                 style: Theme.of(context)
                                     .textTheme
