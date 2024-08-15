@@ -82,6 +82,12 @@
   "deleteCard": "حذف البطاقة",
   "areYouSureDeleteCard":"هل أنت متأكد أنك تريد حذف البطاقة؟",
   "delete":"حذف",
+  "deleteProfile":"حذف الحساب",
+
+"areYouSureToDelete":"أكيد تبغا تحذف حسابك؟",
+"deleteAccountMeaning": "حذف الحساب يعني أنك راح تفقد  السجل المرتبط بهذا الحساب، وما راح تقدر تسترجعهم!",
+"yes":"تأكيد",
+"no":"لا",
   "or":"أو",
 
 

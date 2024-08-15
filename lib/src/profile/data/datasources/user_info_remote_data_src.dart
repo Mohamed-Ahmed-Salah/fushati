@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fushati/src/profile/data/models/user_model.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -143,12 +144,13 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       final header = await NetworkConstants.getHeadersWithAuth();
 
       final response = await _dio
-          .delete('${NetworkConstants.usersUrl}$deleteUser/$id',
+          .delete('${NetworkConstants.usersUrl}$deleteUser$id',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
+      debugPrint("response delete ${response.data}");
       if (response.statusCode == 204 || response.statusCode == 200) {
         return;
       } else {
@@ -156,6 +158,8 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
             message: response.data["message"].toString(), statusCode: 500);
       }
     } on DioException catch (e) {
+      debugPrint("DioException response delete ${e.response?.data}");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -186,6 +190,8 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
+      debugPrint("Catch response delete ${e.toString()}");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

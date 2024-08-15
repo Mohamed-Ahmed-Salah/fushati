@@ -28,6 +28,7 @@ abstract class Media {
   static const studentsSvg = "$_baseSvg/students.svg";
   static const blocksSvg = "$_baseSvg/blocks.svg";
   static const safeSvg = "$_baseSvg/safe.svg";
+  static const deleteProfileSvg = "$_baseSvg/delete_profile.svg";
 
   static const successSvg = "$_baseSvg/card_success.svg";
   static const warningSvg = "$_baseSvg/card_warning.svg";

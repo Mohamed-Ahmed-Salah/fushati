@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/core/res/styles/colours.dart';
+import 'package:fushati/core/services/router.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/policy/presentation/view/policy_view.dart';
+import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_user_bloc.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 
 import 'package:go_router/go_router.dart';
@@ -54,7 +56,6 @@ class CustomDrawer extends StatelessWidget {
                       AppLocalizations.of(context)?.localeName == "en";
                   showAlert = user.name == null;
                 });
-
                 return CustomListTile(
                   leading: Stack(
                     clipBehavior: Clip.none,
@@ -135,6 +136,41 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 title: AppLocalizations.of(context)!.termsAndCondition,
               ),
+              BlocBuilder<UserInfoBloc, UserInfoState>(
+                builder: (context, state) {
+                  return state.when(
+                    loading: () => const SizedBox(),
+                    failed: (_) => const SizedBox(),
+                    success: (user) => CustomListTile(
+                      leading: SvgPicture.asset(Media.deleteProfileSvg,
+                      // color: Colours.brandColorOne,
+                      height: 5.5.w,
+                      ),
+                      title: "${AppLocalizations.of(context)?.deleteProfile}",
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (builderContext) => AlertPopUpWidget(
+                                  isDeleteWidget: true,
+                                  title:
+                                      "${AppLocalizations.of(context)?.areYouSureToDelete}",
+                                  subTitle:
+                                      "${AppLocalizations.of(context)?.deleteAccountMeaning}",
+                                  buttonText:
+                                      "${AppLocalizations.of(context)?.yes}",
+                                  onPressed: () {
+                                    Navigator.pop(builderContext);
+                                    context.read<DeleteUserBloc>().add(
+                                        DeleteUserEvent.deleteUser(
+                                            context: context, id: user.id));
+                                  },
+                                  icon: Icons.delete,
+                                ));
+                      },
+                    ),
+                  );
+                },
+              ),
               const Spacer(
                 flex: 2,
               ),
@@ -142,8 +178,7 @@ class CustomDrawer extends StatelessWidget {
                 onTap: () async {
                   final cacheHelper = sl<CacheHelper>();
                   await cacheHelper.logout();
-                  // await resetAll();
-                  context.go(LoginView.path);
+                  router.go(LoginView.path);
                 },
                 leading: SvgPicture.asset(Media.logoutSvg),
                 title: (AppLocalizations.of(context)!.logOut),
@@ -189,6 +224,107 @@ class CustomListTile extends StatelessWidget {
           )),
           if (widget != null) Expanded(child: widget!)
         ],
+      ),
+    );
+  }
+}
+
+class AlertPopUpWidget extends StatelessWidget {
+  final String title;
+  final String subTitle;
+  final Function()? onPressed;
+  final String buttonText;
+  final IconData icon;
+  final bool isDeleteWidget;
+
+  const AlertPopUpWidget(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.onPressed,
+      required this.buttonText,
+      required this.icon,
+      this.isDeleteWidget = false});
+
+  @override
+  Widget build(BuildContext context) {
+    Color stateColor = Colours.yellowWarningColor;
+
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colours.whiteColor,
+            borderRadius: BorderRadius.circular(5.w),
+          ),
+          padding: EdgeInsets.all(5.w),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  color: stateColor,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                  child: Text(title,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: stateColor, fontWeight: FontWeight.w500)),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 1.5.h),
+                  child: Text(
+                    subTitle,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colours.textBlackColor,
+                    fontWeight: FontWeight.w400
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    if (isDeleteWidget)
+                      Expanded(
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                "${AppLocalizations.of(context)?.cancel}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                      color: Colours.redColor,
+                                    ),
+                              ))),
+                    Expanded(
+
+                      child: ElevatedButton(
+                        onPressed: onPressed,
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colours.greyLightColor),
+                        ),
+                        child: Text(
+                          buttonText,
+                          style: TextStyle(
+                              color: Colours.textBlackColor.withOpacity(0.72)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

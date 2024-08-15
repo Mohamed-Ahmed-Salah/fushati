@@ -29,6 +29,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state) {
         return state.when(
             loading: () => const LoadingWidget(),

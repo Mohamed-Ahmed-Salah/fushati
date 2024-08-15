@@ -78,6 +78,12 @@
 "manageCard":"Manage card",
 "topUpCard":"Top up card",
 "deleteCard":"Delete card",
+"deleteProfile":"Delete Profile",
+"areYouSureToDelete":"Are you sure you want to delete your account?",
+"deleteAccountMeaning": "Deleting the account means losing the history associated with this account, and it cannot be recovered permanently.",
+
+"yes":"Yes",
+"no":"No",
 "areYouSureDeleteCard":"Are you sure you want to delete card?",
 "delete":"Delete",
 "transactionHistory":"Transaction history",

@@ -17,19 +17,20 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DeleteUserEvent {
   BuildContext get context => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) deleteUser,
+    required TResult Function(BuildContext context, int id) deleteUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? deleteUser,
+    TResult? Function(BuildContext context, int id)? deleteUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? deleteUser,
+    TResult Function(BuildContext context, int id)? deleteUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +62,7 @@ abstract class $DeleteUserEventCopyWith<$Res> {
           DeleteUserEvent value, $Res Function(DeleteUserEvent) then) =
       _$DeleteUserEventCopyWithImpl<$Res, DeleteUserEvent>;
   @useResult
-  $Res call({BuildContext context});
+  $Res call({BuildContext context, int id});
 }
 
 /// @nodoc
@@ -78,12 +79,17 @@ class _$DeleteUserEventCopyWithImpl<$Res, $Val extends DeleteUserEvent>
   @override
   $Res call({
     Object? context = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       context: null == context
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -96,7 +102,7 @@ abstract class _$$DeleteUserInfoEventImplCopyWith<$Res>
       __$$DeleteUserInfoEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BuildContext context});
+  $Res call({BuildContext context, int id});
 }
 
 /// @nodoc
@@ -111,12 +117,17 @@ class __$$DeleteUserInfoEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? context = null,
+    Object? id = null,
   }) {
     return _then(_$DeleteUserInfoEventImpl(
       context: null == context
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -124,14 +135,16 @@ class __$$DeleteUserInfoEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
-  const _$DeleteUserInfoEventImpl({required this.context});
+  const _$DeleteUserInfoEventImpl({required this.context, required this.id});
 
   @override
   final BuildContext context;
+  @override
+  final int id;
 
   @override
   String toString() {
-    return 'DeleteUserEvent.deleteUser(context: $context)';
+    return 'DeleteUserEvent.deleteUser(context: $context, id: $id)';
   }
 
   @override
@@ -139,11 +152,12 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeleteUserInfoEventImpl &&
-            (identical(other.context, context) || other.context == context));
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, context);
+  int get hashCode => Object.hash(runtimeType, context, id);
 
   @JsonKey(ignore: true)
   @override
@@ -155,27 +169,27 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) deleteUser,
+    required TResult Function(BuildContext context, int id) deleteUser,
   }) {
-    return deleteUser(context);
+    return deleteUser(context, id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? deleteUser,
+    TResult? Function(BuildContext context, int id)? deleteUser,
   }) {
-    return deleteUser?.call(context);
+    return deleteUser?.call(context, id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? deleteUser,
+    TResult Function(BuildContext context, int id)? deleteUser,
     required TResult orElse(),
   }) {
     if (deleteUser != null) {
-      return deleteUser(context);
+      return deleteUser(context, id);
     }
     return orElse();
   }
@@ -210,11 +224,14 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
 }
 
 abstract class DeleteUserInfoEvent implements DeleteUserEvent {
-  const factory DeleteUserInfoEvent({required final BuildContext context}) =
-      _$DeleteUserInfoEventImpl;
+  const factory DeleteUserInfoEvent(
+      {required final BuildContext context,
+      required final int id}) = _$DeleteUserInfoEventImpl;
 
   @override
   BuildContext get context;
+  @override
+  int get id;
   @override
   @JsonKey(ignore: true)
   _$$DeleteUserInfoEventImplCopyWith<_$DeleteUserInfoEventImpl> get copyWith =>
