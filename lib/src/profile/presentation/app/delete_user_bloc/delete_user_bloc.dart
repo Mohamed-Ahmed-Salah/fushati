@@ -23,6 +23,7 @@ class DeleteUserBloc extends Bloc<DeleteUserEvent, DeleteUserState> {
       : _deleteUserInfo = deleteUserInfo,
         super(const DeleteUserState.initial()) {
     on<DeleteUserInfoEvent>(_deleteUserEvent);
+    on<ResetUserStateEvent>(_resetUserEvent);
   }
 
   _deleteUserEvent(event, emit) async {
@@ -32,18 +33,10 @@ class DeleteUserBloc extends Bloc<DeleteUserEvent, DeleteUserState> {
 
     final result = await _deleteUserInfo(id);
     result.fold(
-          (failure) async {
-        CoreUtils.showMyDialog(
-          title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
-          subTitle: ErrorConst.getErrorBody(text: failure.message),
-          onPressed: () {
-            router.pop();
-          },
-        );
-        emit(DeleteUserState.failed(
-            ErrorConst.getErrorBody(text: failure.message)));
+      (failure) {
+        emit(DeleteUserState.failed(failure.message));
       },
-          (_) async {
+      (_) async {
         emit(const DeleteUserState.success());
         final cacheHelper = sl<CacheHelper>();
         await cacheHelper.logout();
@@ -51,5 +44,9 @@ class DeleteUserBloc extends Bloc<DeleteUserEvent, DeleteUserState> {
         router.go(LoginView.path);
       },
     );
+  }
+
+  _resetUserEvent(event, emit) {
+    emit(const DeleteUserState.initial());
   }
 }

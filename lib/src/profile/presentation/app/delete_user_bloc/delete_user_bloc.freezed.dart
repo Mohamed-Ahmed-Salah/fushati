@@ -16,43 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DeleteUserEvent {
-  BuildContext get context => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int id) deleteUser,
+    required TResult Function() reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(BuildContext context, int id)? deleteUser,
+    TResult? Function()? reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int id)? deleteUser,
+    TResult Function()? reset,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(DeleteUserInfoEvent value) deleteUser,
+    required TResult Function(ResetUserStateEvent value) reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(DeleteUserInfoEvent value)? deleteUser,
+    TResult? Function(ResetUserStateEvent value)? reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DeleteUserInfoEvent value)? deleteUser,
+    TResult Function(ResetUserStateEvent value)? reset,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DeleteUserEventCopyWith<DeleteUserEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,8 +61,6 @@ abstract class $DeleteUserEventCopyWith<$Res> {
   factory $DeleteUserEventCopyWith(
           DeleteUserEvent value, $Res Function(DeleteUserEvent) then) =
       _$DeleteUserEventCopyWithImpl<$Res, DeleteUserEvent>;
-  @useResult
-  $Res call({BuildContext context, int id});
 }
 
 /// @nodoc
@@ -74,33 +72,13 @@ class _$DeleteUserEventCopyWithImpl<$Res, $Val extends DeleteUserEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? context = null,
-    Object? id = null,
-  }) {
-    return _then(_value.copyWith(
-      context: null == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$DeleteUserInfoEventImplCopyWith<$Res>
-    implements $DeleteUserEventCopyWith<$Res> {
+abstract class _$$DeleteUserInfoEventImplCopyWith<$Res> {
   factory _$$DeleteUserInfoEventImplCopyWith(_$DeleteUserInfoEventImpl value,
           $Res Function(_$DeleteUserInfoEventImpl) then) =
       __$$DeleteUserInfoEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({BuildContext context, int id});
 }
@@ -170,6 +148,7 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int id) deleteUser,
+    required TResult Function() reset,
   }) {
     return deleteUser(context, id);
   }
@@ -178,6 +157,7 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(BuildContext context, int id)? deleteUser,
+    TResult? Function()? reset,
   }) {
     return deleteUser?.call(context, id);
   }
@@ -186,6 +166,7 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int id)? deleteUser,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (deleteUser != null) {
@@ -198,6 +179,7 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(DeleteUserInfoEvent value) deleteUser,
+    required TResult Function(ResetUserStateEvent value) reset,
   }) {
     return deleteUser(this);
   }
@@ -206,6 +188,7 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(DeleteUserInfoEvent value)? deleteUser,
+    TResult? Function(ResetUserStateEvent value)? reset,
   }) {
     return deleteUser?.call(this);
   }
@@ -214,6 +197,7 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DeleteUserInfoEvent value)? deleteUser,
+    TResult Function(ResetUserStateEvent value)? reset,
     required TResult orElse(),
   }) {
     if (deleteUser != null) {
@@ -228,14 +212,114 @@ abstract class DeleteUserInfoEvent implements DeleteUserEvent {
       {required final BuildContext context,
       required final int id}) = _$DeleteUserInfoEventImpl;
 
-  @override
   BuildContext get context;
-  @override
   int get id;
-  @override
   @JsonKey(ignore: true)
   _$$DeleteUserInfoEventImplCopyWith<_$DeleteUserInfoEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetUserStateEventImplCopyWith<$Res> {
+  factory _$$ResetUserStateEventImplCopyWith(_$ResetUserStateEventImpl value,
+          $Res Function(_$ResetUserStateEventImpl) then) =
+      __$$ResetUserStateEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetUserStateEventImplCopyWithImpl<$Res>
+    extends _$DeleteUserEventCopyWithImpl<$Res, _$ResetUserStateEventImpl>
+    implements _$$ResetUserStateEventImplCopyWith<$Res> {
+  __$$ResetUserStateEventImplCopyWithImpl(_$ResetUserStateEventImpl _value,
+      $Res Function(_$ResetUserStateEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ResetUserStateEventImpl implements ResetUserStateEvent {
+  const _$ResetUserStateEventImpl();
+
+  @override
+  String toString() {
+    return 'DeleteUserEvent.reset()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResetUserStateEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context, int id) deleteUser,
+    required TResult Function() reset,
+  }) {
+    return reset();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context, int id)? deleteUser,
+    TResult? Function()? reset,
+  }) {
+    return reset?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context, int id)? deleteUser,
+    TResult Function()? reset,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeleteUserInfoEvent value) deleteUser,
+    required TResult Function(ResetUserStateEvent value) reset,
+  }) {
+    return reset(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DeleteUserInfoEvent value)? deleteUser,
+    TResult? Function(ResetUserStateEvent value)? reset,
+  }) {
+    return reset?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeleteUserInfoEvent value)? deleteUser,
+    TResult Function(ResetUserStateEvent value)? reset,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetUserStateEvent implements DeleteUserEvent {
+  const factory ResetUserStateEvent() = _$ResetUserStateEventImpl;
 }
 
 /// @nodoc

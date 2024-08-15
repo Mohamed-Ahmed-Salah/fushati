@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
+import 'package:fushati/core/common/widgets/custom_animated_switcher.dart';
+import 'package:fushati/core/common/widgets/error_alert_dialog.dart';
+import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/services/router.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/src/home/presentation/widgets/delete_alert_dialog.dart';
 import 'package:fushati/src/policy/presentation/view/policy_view.dart';
 import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_user_bloc.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
@@ -16,6 +20,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../../../core/common/app/cache_helper.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/services/injection_container.dart';
+import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/text_constants.dart';
 import '../../../app_language/presentation/views/app_language.dart';
 import '../../../auth/presentation/views/login_view.dart';
@@ -142,15 +147,19 @@ class CustomDrawer extends StatelessWidget {
                     loading: () => const SizedBox(),
                     failed: (_) => const SizedBox(),
                     success: (user) => CustomListTile(
-                      leading: SvgPicture.asset(Media.deleteProfileSvg,
-                      // color: Colours.brandColorOne,
-                      height: 5.5.w,
+                      leading: SvgPicture.asset(
+                        Media.deleteProfileSvg,
+                        // color: Colours.brandColorOne,
+                        height: 5.5.w,
                       ),
                       title: "${AppLocalizations.of(context)?.deleteProfile}",
                       onTap: () {
+                        context
+                            .read<DeleteUserBloc>()
+                            .add(const DeleteUserEvent.reset());
                         showDialog(
                             context: context,
-                            builder: (builderContext) => AlertPopUpWidget(
+                            builder: (builderContext) => AlertDeleteAccount(
                                   isDeleteWidget: true,
                                   title:
                                       "${AppLocalizations.of(context)?.areYouSureToDelete}",
@@ -159,7 +168,7 @@ class CustomDrawer extends StatelessWidget {
                                   buttonText:
                                       "${AppLocalizations.of(context)?.yes}",
                                   onPressed: () {
-                                    Navigator.pop(builderContext);
+                                    // Navigator.pop(builderContext);
                                     context.read<DeleteUserBloc>().add(
                                         DeleteUserEvent.deleteUser(
                                             context: context, id: user.id));
@@ -224,107 +233,6 @@ class CustomListTile extends StatelessWidget {
           )),
           if (widget != null) Expanded(child: widget!)
         ],
-      ),
-    );
-  }
-}
-
-class AlertPopUpWidget extends StatelessWidget {
-  final String title;
-  final String subTitle;
-  final Function()? onPressed;
-  final String buttonText;
-  final IconData icon;
-  final bool isDeleteWidget;
-
-  const AlertPopUpWidget(
-      {super.key,
-      required this.title,
-      required this.subTitle,
-      required this.onPressed,
-      required this.buttonText,
-      required this.icon,
-      this.isDeleteWidget = false});
-
-  @override
-  Widget build(BuildContext context) {
-    Color stateColor = Colours.yellowWarningColor;
-
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5.w),
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colours.whiteColor,
-            borderRadius: BorderRadius.circular(5.w),
-          ),
-          padding: EdgeInsets.all(5.w),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  icon,
-                  color: stateColor,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                  child: Text(title,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: stateColor, fontWeight: FontWeight.w500)),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 1.5.h),
-                  child: Text(
-                    subTitle,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colours.textBlackColor,
-                    fontWeight: FontWeight.w400
-                    ),
-                  ),
-                ),
-                Row(
-                  children: [
-                    if (isDeleteWidget)
-                      Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                "${AppLocalizations.of(context)?.cancel}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                  fontWeight: FontWeight.w400,
-                                      color: Colours.redColor,
-                                    ),
-                              ))),
-                    Expanded(
-
-                      child: ElevatedButton(
-                        onPressed: onPressed,
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colours.greyLightColor),
-                        ),
-                        child: Text(
-                          buttonText,
-                          style: TextStyle(
-                              color: Colours.textBlackColor.withOpacity(0.72)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

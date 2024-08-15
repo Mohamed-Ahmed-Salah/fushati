@@ -6,4 +6,7 @@ sealed class DeleteUserEvent with _$DeleteUserEvent {
     required int id
   }) =
       DeleteUserInfoEvent;
+
+  const factory DeleteUserEvent.reset() =
+  ResetUserStateEvent;
 }
