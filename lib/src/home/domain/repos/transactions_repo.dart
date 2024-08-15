@@ -1,6 +1,5 @@
 import '../../../../core/utils/typedefs.dart';
 import '../../data/models/transaction_model.dart';
-import '../entity/card.dart';
 
 abstract class TransactionsRepo {
 

@@ -1,7 +1,5 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/src/splash/domain/entities/school.dart';
 import 'package:fushati/src/splash/domain/usecases/get_schools.dart';
 

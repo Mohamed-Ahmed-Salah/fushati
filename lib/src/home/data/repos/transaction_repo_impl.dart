@@ -4,9 +4,6 @@ import 'package:fushati/src/home/domain/repos/transactions_repo.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utils/typedefs.dart';
-import '../../domain/entity/card.dart';
-import '../../domain/repos/card_repo.dart';
-import '../datasources/cards_remote_data_src.dart';
 import '../datasources/transaction_remote_data_src.dart';
 import '../models/transaction_model.dart';
 

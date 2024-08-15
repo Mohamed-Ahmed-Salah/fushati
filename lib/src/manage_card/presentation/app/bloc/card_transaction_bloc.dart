@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:fushati/core/utils/constants/network_constants.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
 

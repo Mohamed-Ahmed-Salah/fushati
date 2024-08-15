@@ -8,7 +8,6 @@ import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/splash/presentation/app/get_schools_bloc/get_schools_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 import '../app/app_redirection_bloc/app_redirection_bloc.dart';

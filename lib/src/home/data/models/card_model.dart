@@ -1,5 +1,4 @@
 import '../../domain/entity/card.dart';
-import "transaction_model.dart";
 
 class CardModel extends CardEntity {
   CardModel({

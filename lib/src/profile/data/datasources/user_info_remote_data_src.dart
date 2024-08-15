@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:fushati/src/profile/data/models/user_model.dart';
 
-import '../../../../core/common/singletons/cache.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/network_constants.dart';

@@ -1,5 +1,4 @@
 
-import '../../data/models/transaction_model.dart';
 
 class CardEntity {
   final int id;

@@ -3,9 +3,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:fushati/src/home/data/models/card_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
-import 'package:fushati/src/home/domain/entity/card.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -51,6 +50,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
+      debugPrint("getTransactions cards ${response.data}");
         bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
@@ -68,9 +68,9 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
+      debugPrint("DioException getTransactions cards ${e.response?.data}");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -102,6 +102,8 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
+      debugPrint("catch getTransactions cards ${e.toString()}");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

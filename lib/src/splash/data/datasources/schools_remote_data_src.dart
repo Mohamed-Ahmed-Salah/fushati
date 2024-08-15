@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:fushati/src/home/data/models/card_model.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
-import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fushati/src/splash/data/model/school_model.dart';
 import 'package:fushati/src/splash/domain/entities/school.dart';
 
@@ -21,15 +19,17 @@ class SchoolsRemoteDataSrcImpl implements SchoolsRemoteDataSrc {
   @override
   Future<List<School>> getSchools() async {
     try {
+      debugPrint("GET SCHOOLS");
       final header = await NetworkConstants.getHeaders();
       final response = await _dio
           .get(NetworkConstants.topBaseUrl,
               options: Options(
                 headers: header,
               ))
-          .timeout(const Duration(seconds: 5));
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
 
+      debugPrint("getSchools ${response.statusCode} date: ${response.data} ");
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data)) as List)
             .map((i) => SchoolModel.fromJson(i))
@@ -45,9 +45,10 @@ class SchoolsRemoteDataSrcImpl implements SchoolsRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
+      debugPrint(
+          "getSchools DioException ${e.response?.statusCode} date: ${e.response?.data} ");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -79,6 +80,8 @@ class SchoolsRemoteDataSrcImpl implements SchoolsRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
+      debugPrint("getSchools catch ${e.toString()} ");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

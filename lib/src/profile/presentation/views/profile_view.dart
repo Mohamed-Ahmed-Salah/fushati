@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
-import 'package:fushati/core/common/widgets/green_background.dart';
 import 'package:fushati/core/res/theme/app_theme.dart';
-import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -17,13 +15,9 @@ import '../../../../core/res/media.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/utils/constants/size_constatnts.dart';
 import '../../../edit_profile/presentation/views/edit_profile_view.dart';
-import '../../../home/data/models/transaction_model.dart';
-import '../../../home/domain/entity/card.dart';
 import '../../../home/presentation/widgets/empty_card_list.dart';
 import '../../../home/presentation/widgets/error_sliver.dart';
-import '../../../home/presentation/widgets/loading_sliver.dart';
 import '../../../manage_card/presentation/views/manage_card_view.dart';
-import '../../../manage_card/presentation/widgets/transaction_box.dart';
 import '../../../manage_card/presentation/widgets/transaction_history_text_row.dart';
 import '../app/user_info_bloc/user_info_bloc.dart';
 

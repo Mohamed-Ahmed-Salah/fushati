@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../../common/app/cache_helper.dart';
 import '../../services/injection_container.dart';
 
@@ -36,7 +38,7 @@ abstract class NetworkConstants {
     CacheHelper cacheHelper = CacheHelper(sl());
     String token = cacheHelper.getSessionToken() ?? '';
     headers["Authorization"] = 'Bearer ${token.replaceAll("\"", "")}';
-    // log(headers.toString());
+    debugPrint("token: $token");
     return headers;
   }
 }

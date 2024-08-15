@@ -1,5 +1,3 @@
-import 'package:fushati/src/home/domain/entity/card.dart';
-import 'package:fushati/src/home/domain/repos/card_repo.dart';
 import 'package:fushati/src/splash/domain/entities/school.dart';
 import 'package:fushati/src/splash/domain/repo/schools_repo.dart';
 

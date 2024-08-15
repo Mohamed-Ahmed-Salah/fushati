@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/core/common/widgets/animated_button_circular_loader.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -182,23 +183,35 @@ class _EditProfileViewState extends State<EditProfileView> {
                         width: SizeConst.horizontalPadding,
                       ),
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            bool filledFormCorrectly =
-                                _formKey.currentState?.validate();
-                            if (filledFormCorrectly) {
-                              context
-                                  .read<EditProfileBloc>()
-                                  .add(EditProfileEvent.editUserProfile(
-                                    context: context,
-                                    name: name.text,
-                                    email: email.text,
-                                    gender: gender,
-                                  ));
-                            }
-                          },
-                          child:
-                              Text("${AppLocalizations.of(context)?.confirm}"),
+                        child: BlocBuilder<EditProfileBloc,EditProfileState>(
+                          builder: (context,state) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                bool filledFormCorrectly =
+                                    _formKey.currentState?.validate();
+                                if (filledFormCorrectly) {
+                                  context
+                                      .read<EditProfileBloc>()
+                                      .add(EditProfileEvent.editUserProfile(
+                                        context: context,
+                                        name: name.text,
+                                        email: email.text,
+                                        gender: gender,
+                                      ));
+                                }
+                              },
+                              child:
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("${AppLocalizations.of(context)?.confirm}"),
+                                      AnimatedButtonCircularLoader(
+                                          loading:
+                                          state == const EditProfileState.loading()),
+                                    ],
+                                  ),
+                            );
+                          }
                         ),
                       ),
                     ],
