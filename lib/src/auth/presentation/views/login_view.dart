@@ -74,80 +74,79 @@ class _LoginViewState extends State<LoginView> {
                 width: double.infinity,
                 padding: EdgeInsets.all(5.w),
                 child: SafeArea(
-                  child: FormField<String>(
-                      validator: (value) => TextFormValidation.phoneValidation(
-                          value,
-                          context: context),
-                      builder: (FormFieldState<String> fieldState) {
-                        return  FormField<String>(
-                            validator: (value) => TextFormValidation.requiredField(
-                                value,
-                                context: context),
-                            builder: (FormFieldState<String> requiredFieldState) {
-                            return CustomScrollView(
-                              slivers: [
-                                SliverList(
-                                  delegate: SliverChildListDelegate(
-                                    [
-                                      SizedBox(height: 2.h),
-                                      const CustomAppBar(showBackButton: false),
-                                      SizedBox(height: 7.h),
-                                      Text(
-                                        "${AppLocalizations.of(context)?.login}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineLarge
-                                            ?.copyWith(fontWeight: FontWeight.w700),
-                                      ),
-                                      SizedBox(height: 1.h),
-                                      Text(
-                                        "${AppLocalizations.of(context)?.enterPhone}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.w400,
-                                              color: Colours.textBlackColor
-                                                  .withOpacity(0.7),
-                                            ),
-                                      ),
-                                      SizedBox(height: 1.h),
-                                      Divider(
-                                        height: 2,
-                                        color: Colours.borderGreyColor,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: SizeConst.horizontalPadding),
-                                        width: 100.h,
-                                        height: 7.h,
-                                        child: Row(
-                                          children: [
-                                            SvgPicture.asset(
-                                              Media.saSvg,
-                                              height: 4.h,
-                                              width: 4.5.h,
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                            SizedBox(
-                                              width: 3.w,
-                                            ),
-                                            Text(
-                                              "${AppLocalizations.of(context)?.ksa}",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .titleMedium
-                                                  ?.copyWith(
-                                                      fontWeight: FontWeight.w500,
-                                                      color: Colours.blackColor),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Divider(
-                                        height: 2,
-                                        color: Colours.borderGreyColor,
-                                      ),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            SizedBox(height: 2.h),
+                            const CustomAppBar(showBackButton: false),
+                            SizedBox(height: 7.h),
+                            Text(
+                              "${AppLocalizations.of(context)?.login}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineLarge
+                                  ?.copyWith(fontWeight: FontWeight.w700),
+                            ),
+                            SizedBox(height: 1.h),
+                            Text(
+                              "${AppLocalizations.of(context)?.enterPhone}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color:
+                                        Colours.textBlackColor.withOpacity(0.7),
+                                  ),
+                            ),
+                            SizedBox(height: 1.h),
+                            Divider(
+                              height: 2,
+                              color: Colours.borderGreyColor,
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: SizeConst.horizontalPadding),
+                              width: 100.h,
+                              height: 7.h,
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    Media.saSvg,
+                                    height: 4.h,
+                                    width: 4.5.h,
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  SizedBox(
+                                    width: 3.w,
+                                  ),
+                                  Text(
+                                    "${AppLocalizations.of(context)?.ksa}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w500,
+                                            color: Colours.blackColor),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Divider(
+                              height: 2,
+                              color: Colours.borderGreyColor,
+                            ),
+                            FormField<String>(
+                                validator: (value) =>
+                                    TextFormValidation.phoneValidation(value,
+                                        context: context),
+                                builder: (FormFieldState<String> fieldState) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
                                       SizedBox(
                                         width: 100.w,
                                         height: 7.h,
@@ -159,12 +158,15 @@ class _LoginViewState extends State<LoginView> {
                                                   .textTheme
                                                   .titleMedium
                                                   ?.copyWith(
-                                                      fontWeight: FontWeight.w500,
-                                                      color: Colours.blackColor),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color:
+                                                          Colours.blackColor),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 2.5.w, vertical: 2.h),
+                                                  horizontal: 2.5.w,
+                                                  vertical: 2.h),
                                               child: const VerticalDivider(
                                                 width: 4,
                                                 color: Colours.dividerGreyColor,
@@ -172,32 +174,36 @@ class _LoginViewState extends State<LoginView> {
                                             ),
                                             Expanded(
                                               child: TextFormField(
-                                                style:
-                                                    CustomTheme.textFieldTextStyle,
+                                                style: CustomTheme
+                                                    .textFieldTextStyle,
                                                 onFieldSubmitted: (_) {
                                                   bool filledFormCorrectly =
                                                       _formKey.currentState
                                                           ?.validate();
                                                   if (filledFormCorrectly) {
                                                     context
-                                                        .read<AuthenticatorBloc>()
+                                                        .read<
+                                                            AuthenticatorBloc>()
                                                         .add(
                                                           AuthenticatorEvent
                                                               .loginOrRegister(
                                                                   phone:
                                                                       "966${_controller.text}",
-                                                                  context: context),
+                                                                  context:
+                                                                      context),
                                                         );
                                                   }
                                                 },
                                                 onTapOutside: (_) =>
                                                     FocusScope.of(context)
-                                                        .requestFocus(FocusNode()),
+                                                        .requestFocus(
+                                                            FocusNode()),
                                                 controller: _controller,
                                                 onChanged: (value) {
                                                   fieldState.didChange(value);
                                                 },
-                                                keyboardType: TextInputType.phone,
+                                                keyboardType:
+                                                    TextInputType.phone,
                                                 autofillHints: const [
                                                   AutofillHints.telephoneNumber,
                                                 ],
@@ -207,35 +213,43 @@ class _LoginViewState extends State<LoginView> {
                                                   LengthLimitingTextInputFormatter(
                                                       9),
                                                 ],
-                                                decoration: const InputDecoration(
+                                                decoration:
+                                                    const InputDecoration(
                                                   hintText: "500000000",
                                                   border: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(0)),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(0)),
                                                     borderSide: BorderSide(
                                                       width: 1.5,
                                                       color: Colors.transparent,
                                                     ),
                                                   ),
-                                                  enabledBorder: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(0)),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(0)),
                                                     borderSide: BorderSide(
                                                       width: 1.5,
                                                       color: Colors.transparent,
                                                     ),
                                                   ),
-                                                  focusedBorder: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(0)),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(0)),
                                                     borderSide: BorderSide(
                                                       width: 1.5,
                                                       color: Colors.transparent,
                                                     ),
                                                   ),
-                                                  errorBorder: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(0)),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(0)),
                                                     borderSide: BorderSide(
                                                       width: 1.5,
                                                       color: Colors.transparent,
@@ -253,7 +267,8 @@ class _LoginViewState extends State<LoginView> {
                                       ),
                                       if (fieldState.hasError)
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 8.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 8.0),
                                           child: Text(
                                             fieldState.errorText ?? '',
                                             style: TextStyle(
@@ -263,171 +278,330 @@ class _LoginViewState extends State<LoginView> {
                                                 fontFamily: TextConstants.font),
                                           ),
                                         ),
-                                      SizedBox(height: 1.h),
-                                      DropDownTextField(
+                                    ],
+                                  );
+                                }),
 
-                                        dropdownRadius: 0,
-                                        padding: const EdgeInsets.all(0),
-                                        clearOption: false,
-                                        dropdownColor: Colours.redColor,
-                                        listTextStyle:
-                                            Theme.of(context).textTheme.titleMedium,
-                                        textStyle:
-                                            Theme.of(context).textTheme.titleMedium,
-                                        controller: schoolController,
-                                        hintText:
-                                            "${AppLocalizations.of(context)?.school}",
-                                        searchDecoration: InputDecoration(
-                                          labelText:
-                                              "${AppLocalizations.of(context)?.school}",
-                                          helperText:
-                                              "${AppLocalizations.of(context)?.school}",
-                                          prefixText:
-                                              "${AppLocalizations.of(context)?.school}",
-                                          hintText:
-                                              "${AppLocalizations.of(context)?.school}",
-                                          focusColor: Colors.white,
+                            SizedBox(height: 1.h),
+                            FormField<String>(validator: (value) {
+                              if (schoolController.dropDownValue == null ||
+                                  schoolController
+                                      .dropDownValue?.value.isEmpty) {
+                                return "${AppLocalizations.of(context)?.requiredField}";
+                              }
+                              return null;
+                            }, builder: (FormFieldState<String> fieldState) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  DropDownTextField(
+                                    dropdownRadius: 0,
+                                    padding: const EdgeInsets.all(0),
+                                    clearOption: false,
+                                    dropdownColor: Colours.whiteColor,
+                                    listTextStyle: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(fontWeight: FontWeight.w400),
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(fontWeight: FontWeight.w400),
+                                    controller: schoolController,
+                                    hintText:
+                                        "${AppLocalizations.of(context)?.school}",
+                                    searchDecoration: InputDecoration(
+                                      hintStyle: const TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      labelText:
+                                          "${AppLocalizations.of(context)?.school}",
+                                      helperText:
+                                          "${AppLocalizations.of(context)?.school}",
+                                      prefixText:
+                                          "${AppLocalizations.of(context)?.school}",
+                                      hintText:
+                                          "${AppLocalizations.of(context)?.school}",
+                                      focusColor: Colors.white,
+                                    ),
+                                    textFieldDecoration: InputDecoration(
+                                      hintText:
+                                          "${AppLocalizations.of(context)?.school}",
+                                      border: const OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(0)),
+                                        borderSide: BorderSide(
+                                          width: 1.5,
+                                          color: Colors.transparent,
                                         ),
-                                        textFieldDecoration: InputDecoration(
-                                          hintText:
-                                              "${AppLocalizations.of(context)?.school}",
-                                          border: const OutlineInputBorder(
-                                            gapPadding: 0,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(0)),
-                                            borderSide: BorderSide(
-                                              width: 1.5,
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                          enabledBorder: const OutlineInputBorder(
-                                            gapPadding: 0,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(0)),
-                                            borderSide: BorderSide(
-                                              width: 1.5,
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                          focusedBorder: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(0)),
-                                            borderSide: BorderSide(
-                                              width: 1.5,
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                          errorBorder: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(0)),
-                                            borderSide: BorderSide(
-                                              width: 1.5,
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                          focusedErrorBorder:
-                                              const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(0)),
-                                            borderSide: BorderSide(
-                                              width: 1.5,
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
+                                      ),
+                                      enabledBorder: const OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(0)),
+                                        borderSide: BorderSide(
+                                          width: 1.5,
+                                          color: Colors.transparent,
                                         ),
-                                        // validator: (value) =>
-                                        //     TextFormValidation.requiredField(value,
-                                        //         context: context),
-                                        dropDownItemCount: 7,
-                                        dropDownList: schools
-                                            .map((e) => DropDownValueModel(
-                                                name: e.id.toString(), value: e.id))
-                                            .toList(),
-                                        onChanged: (val) async {
-                                          if (val.runtimeType.toString() !=
-                                              "String") {
-                                            // final id = val as DropDownValueModel;
-                                            // workSpaceId = id.value;
-                                            CacheHelper cache = sl();
-                                            cache.setBaseUrl(val);
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(0)),
+                                        borderSide: BorderSide(
+                                          width: 1.5,
+                                          color: Colors.transparent,
+                                        ),
+                                      ),
+                                      errorBorder: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(0)),
+                                        borderSide: BorderSide(
+                                          width: 1.5,
+                                          color: Colors.transparent,
+                                        ),
+                                      ),
+                                      focusedErrorBorder:
+                                          const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(0)),
+                                        borderSide: BorderSide(
+                                          width: 1.5,
+                                          color: Colors.transparent,
+                                        ),
+                                      ),
+                                    ),
+                                    dropDownItemCount: 7,
+                                    dropDownList: schools
+                                        .map((e) => DropDownValueModel(
+                                            name: e.name, value: e.apiEndpoint))
+                                        .toList(),
+                                    onChanged: (val) async {
+                                      if (val.runtimeType.toString() !=
+                                          "String") {
+                                        final model = val as DropDownValueModel;
+                                        var url = model.value;
+                                        CacheHelper cache = sl();
+
+                                        ///url already ends with /
+                                        cache.setBaseUrl("${url}api");
+                                      }
+                                    },
+                                  ),
+                                  Divider(
+                                    height: 2,
+                                    color: Colours.borderGreyColor,
+                                  ),
+                                  if (fieldState.hasError)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Text(
+                                        fieldState.errorText ?? '',
+                                        style: TextStyle(
+                                            color: Colours.errorColor,
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: TextConstants.font),
+                                      ),
+                                    ),
+                                ],
+                              );
+                            }),
+
+                            // FormField<String>(
+                            //     validator: (value) =>
+                            //         TextFormValidation.requiredField(
+                            //             value,
+                            //             context: context),
+                            //     builder:
+                            //         (FormFieldState<String> dropdownFieldState) {
+                            //       return Column(
+                            //         crossAxisAlignment:
+                            //             CrossAxisAlignment.start,
+                            //         children: [
+                            //           DropDownTextField(
+                            //             validator: (value) =>
+                            //                 TextFormValidation.requiredField(
+                            //                     value,
+                            //                     context: context),
+                            //             dropdownRadius: 0,
+                            //             padding: const EdgeInsets.all(0),
+                            //             clearOption: false,
+                            //             dropdownColor: Colours.whiteColor,
+                            //             listTextStyle: Theme.of(context)
+                            //                 .textTheme
+                            //                 .titleMedium?.copyWith(fontWeight: FontWeight.w400),
+                            //             textStyle: Theme.of(context)
+                            //                 .textTheme
+                            //                 .titleMedium?.copyWith(fontWeight: FontWeight.w400),
+                            //             controller: schoolController,
+                            //             hintText:
+                            //                 "${AppLocalizations.of(context)?.school}",
+                            //             searchDecoration: InputDecoration(
+                            //               hintStyle: const TextStyle(
+                            //                 fontWeight: FontWeight.w400,
+                            //               ),
+                            //               labelText:
+                            //                   "${AppLocalizations.of(context)?.school}",
+                            //               helperText:
+                            //                   "${AppLocalizations.of(context)?.school}",
+                            //               prefixText:
+                            //                   "${AppLocalizations.of(context)?.school}",
+                            //               hintText:
+                            //                   "${AppLocalizations.of(context)?.school}",
+                            //               focusColor: Colors.white,
+                            //             ),
+                            //             textFieldDecoration:
+                            //                 InputDecoration(
+                            //               hintText:
+                            //                   "${AppLocalizations.of(context)?.school}",
+                            //               border:
+                            //                   const OutlineInputBorder(
+                            //                 gapPadding: 0,
+                            //                 borderRadius:
+                            //                     BorderRadius.all(
+                            //                         Radius.circular(0)),
+                            //                 borderSide: BorderSide(
+                            //                   width: 1.5,
+                            //                   color: Colors.transparent,
+                            //                 ),
+                            //               ),
+                            //               enabledBorder:
+                            //                   const OutlineInputBorder(
+                            //                 gapPadding: 0,
+                            //                 borderRadius:
+                            //                     BorderRadius.all(
+                            //                         Radius.circular(0)),
+                            //                 borderSide: BorderSide(
+                            //                   width: 1.5,
+                            //                   color: Colors.transparent,
+                            //                 ),
+                            //               ),
+                            //               focusedBorder:
+                            //                   const OutlineInputBorder(
+                            //                 borderRadius:
+                            //                     BorderRadius.all(
+                            //                         Radius.circular(0)),
+                            //                 borderSide: BorderSide(
+                            //                   width: 1.5,
+                            //                   color: Colors.transparent,
+                            //                 ),
+                            //               ),
+                            //               errorBorder:
+                            //                   const OutlineInputBorder(
+                            //                 borderRadius:
+                            //                     BorderRadius.all(
+                            //                         Radius.circular(0)),
+                            //                 borderSide: BorderSide(
+                            //                   width: 1.5,
+                            //                   color: Colors.transparent,
+                            //                 ),
+                            //               ),
+                            //               focusedErrorBorder:
+                            //                   const OutlineInputBorder(
+                            //                 borderRadius:
+                            //                     BorderRadius.all(
+                            //                         Radius.circular(0)),
+                            //                 borderSide: BorderSide(
+                            //                   width: 1.5,
+                            //                   color: Colors.transparent,
+                            //                 ),
+                            //               ),
+                            //             ),
+                            //             dropDownItemCount: 7,
+                            //             dropDownList: schools
+                            //                 .map((e) =>
+                            //                     DropDownValueModel(
+                            //                         name: e.name,
+                            //                         value: e.apiEndpoint))
+                            //                 .toList(),
+                            //             onChanged: (val) async {
+                            //               if (val.runtimeType
+                            //                       .toString() !=
+                            //                   "String") {
+                            //                 final model =
+                            //                     val as DropDownValueModel;
+                            //                 var url = model.value;
+                            //                 CacheHelper cache = sl();
+                            //
+                            //                 ///url already ends with /
+                            //                 cache.setBaseUrl("${url}api");
+                            //               }
+                            //             },
+                            //           ),
+                            //           Divider(
+                            //             height: 2,
+                            //             color: Colours.borderGreyColor,
+                            //           ),
+                            //           if (dropdownFieldState.hasError)
+                            //             Padding(
+                            //               padding: const EdgeInsets.only(
+                            //                   top: 8.0),
+                            //               child: Text(
+                            //                 dropdownFieldState.errorText ?? '',
+                            //                 style: TextStyle(
+                            //                     color: Colours.errorColor,
+                            //                     fontSize: 14.sp,
+                            //                     fontWeight:
+                            //                         FontWeight.w500,
+                            //                     fontFamily:
+                            //                         TextConstants.font),
+                            //               ),
+                            //             ),
+                            //           SizedBox(height: 1.h),
+                            //         ],
+                            //       );
+                            //     }),
+                          ],
+                        ),
+                      ),
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        fillOverscroll: true,
+                        child:
+                            BlocBuilder<AuthenticatorBloc, AuthenticatorState>(
+                          builder: (context, state) {
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: state ==
+                                          const AuthenticatorState.loading()
+                                      ? null
+                                      : () {
+                                          bool filledFormCorrectly =
+                                              _formKey.currentState?.validate();
+                                          if (filledFormCorrectly) {
+                                            context
+                                                .read<AuthenticatorBloc>()
+                                                .add(AuthenticatorEvent
+                                                    .loginOrRegister(
+                                                        phone:
+                                                            "966${_controller.text}",
+                                                        context: context));
                                           }
                                         },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "${AppLocalizations.of(context)?.cont}",
                                       ),
-                                      Divider(
-                                        height: 2,
-                                        color: Colours.borderGreyColor,
-                                      ),
-
-                                      if (requiredFieldState.hasError)
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 8.0),
-                                          child: Text(
-                                            requiredFieldState.errorText ?? '',
-                                            style: TextStyle(
-                                                color: Colours.errorColor,
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: TextConstants.font),
-                                          ),
-                                        ),
-                                      SizedBox(height: 1.h),
+                                      AnimatedButtonCircularLoader(
+                                          loading: state ==
+                                              const AuthenticatorState
+                                                  .loading())
                                     ],
-                                  ),
-                                ),
-                                SliverFillRemaining(
-                                  hasScrollBody: false,
-                                  fillOverscroll: true,
-                                  child: BlocBuilder<AuthenticatorBloc,
-                                      AuthenticatorState>(
-                                    builder: (context, state) {
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          ElevatedButton(
-                                            onPressed: state ==
-                                                    const AuthenticatorState
-                                                        .loading()
-                                                ? null
-                                                : () {
-                                                    bool filledFormCorrectly =
-                                                        _formKey.currentState
-                                                            ?.validate();
-                                                    if (filledFormCorrectly) {
-                                                      context
-                                                          .read<AuthenticatorBloc>()
-                                                          .add(AuthenticatorEvent
-                                                              .loginOrRegister(
-                                                                  phone:
-                                                                      "966${_controller.text}",
-                                                                  context:
-                                                                      context));
-                                                    }
-                                                  },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${AppLocalizations.of(context)?.cont}",
-                                                ),
-                                                AnimatedButtonCircularLoader(
-                                                    loading: state ==
-                                                        const AuthenticatorState
-                                                            .loading())
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
                                   ),
                                 ),
                               ],
                             );
-                          }
-                        );
-                      }),
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

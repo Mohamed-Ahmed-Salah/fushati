@@ -25,14 +25,13 @@ class AddNewCardBloc extends Bloc<AddNewCardEvent, AddNewCardState> {
     final result = await _addCard(cardNumber);
     result.fold(
       (failure) {
-        print("result------ ${failure.toString()}");
 
         emit(AddNewCardState.failed(
             ErrorConst.getErrorBody(text: failure.message)));
       },
       (_) {
 
-        emit(AddNewCardState.success());
+        emit(const AddNewCardState.success());
       },
     );
   }

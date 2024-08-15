@@ -39,8 +39,7 @@ class MoyasarWalletTransferView extends StatelessWidget {
                   BlocListener<TransferMoneyBloc, TransferMoneyState>(
                 listener: (BuildContext context, TransferMoneyState state) {
                   state.whenOrNull(successState: () {
-                    print(
-                        "SUCESS AND SHOWUDL GO H+TO CardTransactionSuccessView");
+
                     context.read<CardsBloc>().add(const CardsEvent.getCards());
                     context.pushNamed(CardTransactionSuccessView.name,
                         queryParameters: {

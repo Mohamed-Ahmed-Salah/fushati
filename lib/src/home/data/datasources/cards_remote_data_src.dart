@@ -216,7 +216,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-      print("SERRRR ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
@@ -283,20 +282,21 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-      print("E#### ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
   }
 
   Future<List<Transaction>> getTransaction(
-      {required int userId,required String userCard, required DateTime createdAt}) async {
+      {required int userId,
+      required String userCard,
+      required DateTime createdAt}) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
           .get(
               '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=1000000000000000000000000000'
-                  '&startTime=$createdAt&endTime=${DateTime.now()}&$userId',
+              '&startTime=$createdAt&endTime=${DateTime.now()}&$userId',
               options: Options(
                 headers: header,
               ))
@@ -352,8 +352,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-      print("E#### ${e.toString()}");
-      throw const ServerException(
+        throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
   }

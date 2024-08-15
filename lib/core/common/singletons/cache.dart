@@ -29,7 +29,7 @@ class Cache {
 
   bool isLoggedOut() {
     return ((Cache.instance.sessionToken == null) &&
-        !Cache.instance.firstTime &&
+        !Cache.instance.firstTime ||
         (Cache.instance.ipBaseUrl == null));
   }
 

@@ -84,9 +84,19 @@ class _NewCardViewState extends State<NewCardView> {
                             context: context),
                         onFieldSubmitted: (_) {
                           bool filledFormCorrectly =
-                              _formKey.currentState?.validate();
+                          _formKey.currentState?.validate();
+
                           if (filledFormCorrectly) {
-                            ///todo call  function
+                            showDialog(
+                              barrierDismissible:false,
+                              context: context,
+                              builder: (context) => CardDetailsDialog(
+                                cardNumber: controller.text,
+                              ),
+                            );
+                            context.read<GetCardDetailsBloc>().add(
+                                GetCardDetailsEvent.getCard(
+                                    cardNumber: controller.text));
                           }
                         },
                         onTapOutside: (_) =>
@@ -103,7 +113,6 @@ class _NewCardViewState extends State<NewCardView> {
                     children: [
                       ElevatedButton(
                           onPressed: () {
-                            // context.push(CardDetailsView.path);
                             bool filledFormCorrectly =
                                 _formKey.currentState?.validate();
 

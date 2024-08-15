@@ -47,7 +47,7 @@ class CardDetailError extends StatelessWidget {
             onPressed: () {
               context.pop();
             },
-            child: Text("${AppLocalizations.of(context)?.tryAgian}")),
+            child: Text("${AppLocalizations.of(context)?.confirm}")),
         SizedBox(
           height: SizeConst.verticalPadding,
         ),

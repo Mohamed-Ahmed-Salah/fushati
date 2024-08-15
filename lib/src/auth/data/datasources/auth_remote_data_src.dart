@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -34,6 +35,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
           response.statusCode == 201 ||
           response.statusCode == 202;
 
+      debugPrint("RESPONSE ${response.data}");
       if (isSuccess) {
         return ;
       } else {
@@ -47,6 +49,8 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
     } on DioException catch (e) {
+      debugPrint("ERROR ${e.response?.data}");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -76,6 +80,8 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
+      debugPrint("ERROR CATCH ${e.toString()}");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

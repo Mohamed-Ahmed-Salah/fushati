@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:fushati/src/home/data/models/card_model.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:fushati/src/splash/data/model/school_model.dart';
 import 'package:fushati/src/splash/domain/entities/school.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -30,10 +31,10 @@ class SchoolsRemoteDataSrcImpl implements SchoolsRemoteDataSrc {
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
-        // final list = (json.decode(jsonEncode(response.data)) as List)
-        //     .map((i) => CardModel.fromJson(i))
-        //     .toList();
-        return [];
+        final list = (json.decode(jsonEncode(response.data)) as List)
+            .map((i) => SchoolModel.fromJson(i))
+            .toList();
+        return list;
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
@@ -78,7 +79,6 @@ class SchoolsRemoteDataSrcImpl implements SchoolsRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-      print("E#### ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
