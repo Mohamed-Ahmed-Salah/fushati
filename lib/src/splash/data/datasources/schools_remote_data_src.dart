@@ -13,8 +13,6 @@ import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/network_constants.dart';
 
 class SchoolsRemoteDataSrcImpl implements SchoolsRemoteDataSrc {
-  static const schoolsEndpoint = '/schools';
-
   const SchoolsRemoteDataSrcImpl(this._dio);
 
   final Dio _dio;
@@ -24,7 +22,7 @@ class SchoolsRemoteDataSrcImpl implements SchoolsRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeaders();
       final response = await _dio
-          .get('${NetworkConstants.topBaseUrl}$schoolsEndpoint',
+          .get(NetworkConstants.topBaseUrl,
               options: Options(
                 headers: header,
               ))

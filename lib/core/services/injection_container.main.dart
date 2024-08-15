@@ -81,7 +81,6 @@ Future<void> _transactions() async {
   sl
     ..registerLazySingleton(() => GetCardTransactions(sl()))
     ..registerLazySingleton(() => GetUserTransactions(sl()))
-    // ..registerLazySingleton(() => AddUserInfo(sl()))
     ..registerLazySingleton<TransactionsRepo>(() => TransactionsRepoImpl(sl()))
     ..registerLazySingleton<TransactionsRemoteDataSrc>(
         () => TransactionsRemoteDataSrcImpl(sl()));

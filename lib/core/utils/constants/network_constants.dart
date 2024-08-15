@@ -2,9 +2,9 @@ import '../../common/app/cache_helper.dart';
 import '../../services/injection_container.dart';
 
 abstract class NetworkConstants {
-  static const String topBaseUrl = 'http://66.42.54.81:8080/api';
+  static const String topBaseUrl = 'https://schools.fushati.com/api/v1/schools';
   ///updated from cache singleton depending on cached or chosen value in login
-  static String baseUrl = 'http://66.42.54.81:8080/api';
+  static String baseUrl = '';
   static String parentUrl = '$baseUrl/parent';
   static String reportsUrl = '$baseUrl/reports';
   static String usersUrl = '$baseUrl/users';
