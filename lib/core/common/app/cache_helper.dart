@@ -139,8 +139,7 @@ class CacheHelper {
   Future<void> logout() async {
     await _prefs.remove(_sessionTokenKey);
     await _prefs.remove(_userIdKey);
-    // await _prefs.remove(_firstTimerKey);
-    // getUserId();
+    await _prefs.remove(_ipBaseUrlKey);
     Cache.instance.logout();
   }
 
