@@ -51,7 +51,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
       debugPrint("getTransactions cards ${response.data}");
-        bool isSuccess = response.statusCode == 200;
+      bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data['data'])) as List)
@@ -101,7 +101,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } on CardNotFoundException {
       rethrow;
-    } catch (e, s) {
+    } catch (e) {
       debugPrint("catch getTransactions cards ${e.toString()}");
 
       throw const ServerException(
@@ -120,6 +120,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
+      debugPrint("getUserTransactions ${response.data}");
 
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data)) as List)
@@ -136,9 +137,10 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
+      debugPrint(
+          "DioException getUserTransactions transactions ${e.response?.data}");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -169,7 +171,9 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } on CardNotFoundException {
       rethrow;
-    } catch (e, s) {
+    } catch (e) {
+      debugPrint("catch getUserTransactions transactions ${e.toString()}");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
