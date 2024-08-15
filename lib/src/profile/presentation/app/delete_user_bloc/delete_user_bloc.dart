@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fushati/core/common/app/cache_helper.dart';
 import 'package:fushati/core/services/router.dart';
-import 'package:fushati/core/utils/constants/error_consts.dart';
-import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/auth/presentation/views/login_view.dart';
 
 import '../../../../../core/services/injection_container.dart';
@@ -27,7 +25,6 @@ class DeleteUserBloc extends Bloc<DeleteUserEvent, DeleteUserState> {
   }
 
   _deleteUserEvent(event, emit) async {
-    BuildContext context = event.context;
     int id = event.id;
     emit(const DeleteUserState.loading());
 

@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/core/common/widgets/custom_animated_switcher.dart';
 import 'package:fushati/core/common/widgets/error_alert_dialog.dart';
 import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
-import 'package:fushati/core/services/router.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/src/policy/presentation/view/policy_view.dart';
 import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_user_bloc.dart';
-import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../../../core/common/app/cache_helper.dart';
-import '../../../../core/res/media.dart';
-import '../../../../core/services/injection_container.dart';
 import '../../../../core/utils/constants/error_consts.dart';
-import '../../../../core/utils/constants/text_constants.dart';
-import '../../../app_language/presentation/views/app_language.dart';
-import '../../../auth/presentation/views/login_view.dart';
-import '../../../profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
-import '../../../profile/presentation/views/profile_view.dart';
 
 class AlertDeleteAccount extends StatefulWidget {
   final String title;

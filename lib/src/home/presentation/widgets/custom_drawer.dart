@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
-import 'package:fushati/core/common/widgets/custom_animated_switcher.dart';
-import 'package:fushati/core/common/widgets/error_alert_dialog.dart';
-import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/services/router.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
@@ -20,7 +17,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../../../core/common/app/cache_helper.dart';
 import '../../../../core/res/media.dart';
 import '../../../../core/services/injection_container.dart';
-import '../../../../core/utils/constants/error_consts.dart';
 import '../../../../core/utils/constants/text_constants.dart';
 import '../../../app_language/presentation/views/app_language.dart';
 import '../../../auth/presentation/views/login_view.dart';
