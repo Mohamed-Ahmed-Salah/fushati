@@ -101,35 +101,45 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                               duration: const Duration(milliseconds: 400),
                               switchInCurve: Curves.easeInOutCubic,
                               switchOutCurve: Curves.easeInOut,
-                              child: Text(
+                              child: Align(
+                                alignment: Alignment.topCenter,
+                                key: Key(title[state.currentIndexPage]),
+                                child: Text(
                                   key: Key(title[state.currentIndexPage]),
-                                title[state.currentIndexPage],
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colours.brandColorOne,
-                                    ),
-                                textAlign: TextAlign.center,
+                                  title[state.currentIndexPage],
+
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+
+                                        fontWeight: FontWeight.w700,
+                                        color: Colours.brandColorOne,
+                                      ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: SizeConst.verticalPadding,
                             ),
                             CustomAnimatedSwitcher(
-                              child: Text(
+                              child: Align(
+                                alignment: Alignment.topCenter,
                                 key: Key(subTitle[state.currentIndexPage]),
-                                subTitle[state.currentIndexPage],
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                      color: Colours.textBlackColor
-                                          .withOpacity(0.5),
-                                    ),
-                                textAlign: TextAlign.center,
+                                child: Text(
+                                  key: Key(subTitle[state.currentIndexPage]),
+                                  subTitle[state.currentIndexPage],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colours.textBlackColor
+                                            .withOpacity(0.5),
+                                      ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
                             SizedBox(

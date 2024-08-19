@@ -13,7 +13,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
-import '../../../../core/utils/core_utils.dart';
 import '../widgets/card_detail_dialog.dart';
 
 class NewCardView extends StatefulWidget {
