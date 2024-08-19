@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/src/new_card/presentation/app/cubit/nfc_scanner_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -9,7 +11,9 @@ import '../../../../core/common/singletons/form_validation.dart';
 import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
+import '../../../../core/utils/core_utils.dart';
 import '../widgets/card_detail_dialog.dart';
 
 class NewCardView extends StatefulWidget {
@@ -31,7 +35,7 @@ class _NewCardViewState extends State<NewCardView> {
     _formKey = GlobalKey<FormState>();
 
     controller = TextEditingController();
-    // TODO: implement initState
+
     super.initState();
   }
 
@@ -75,6 +79,26 @@ class _NewCardViewState extends State<NewCardView> {
                           LengthLimitingTextInputFormatter(14),
                         ],
                         decoration: InputDecoration(
+                          suffixIcon:
+                              BlocBuilder<NfcScannerCubit, NfcScannerState>(
+                                  builder: (context, state) {
+                            return state.when(
+                              initial: (isNfcSupported) => isNfcSupported
+                                  ? IconButton(
+                                      onPressed: () {
+                                        context
+                                            .read<NfcScannerCubit>()
+                                            .readNfc(context, controller);
+                                      },
+                                      icon: Icon(
+                                        Media.nfcIcon,
+                                        size: 4.h,
+                                        color: Colours.primaryGreenColor,
+                                      ),
+                                    )
+                                  : const SizedBox.shrink(),
+                            );
+                          }),
                           hintText:
                               "${AppLocalizations.of(context)?.cardNumber}",
                         ),
@@ -84,11 +108,11 @@ class _NewCardViewState extends State<NewCardView> {
                             context: context),
                         onFieldSubmitted: (_) {
                           bool filledFormCorrectly =
-                          _formKey.currentState?.validate();
+                              _formKey.currentState?.validate();
 
                           if (filledFormCorrectly) {
                             showDialog(
-                              barrierDismissible:false,
+                              barrierDismissible: false,
                               context: context,
                               builder: (context) => CardDetailsDialog(
                                 cardNumber: controller.text,
@@ -115,10 +139,9 @@ class _NewCardViewState extends State<NewCardView> {
                           onPressed: () {
                             bool filledFormCorrectly =
                                 _formKey.currentState?.validate();
-
                             if (filledFormCorrectly) {
                               showDialog(
-                                barrierDismissible:false,
+                                barrierDismissible: false,
                                 context: context,
                                 builder: (context) => CardDetailsDialog(
                                   cardNumber: controller.text,

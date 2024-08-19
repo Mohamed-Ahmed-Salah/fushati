@@ -9,6 +9,7 @@ import 'package:fushati/src/manage_card/presentation/app/delete_card_bloc/delete
 import 'package:fushati/src/moyasar_transfer/presentation/app/bloc/transfer_money_bloc.dart';
 import 'package:fushati/src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
+import 'package:fushati/src/new_card/presentation/app/cubit/nfc_scanner_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:fushati/src/on_boarding/presentation/app/bloc/cubit/page_cubit.dart';
 import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_user_bloc.dart';
@@ -122,6 +123,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<ProfileTransactionBloc>(
             create: (BuildContext context) =>
                 ProfileTransactionBloc(getUserTransactions: sl()),
+          ), BlocProvider<NfcScannerCubit>(
+            create: (BuildContext context) =>
+                NfcScannerCubit(),
           ),
           BlocProvider<GetSchoolsBloc>(
             create: (BuildContext context) => GetSchoolsBloc(getSchools: sl())

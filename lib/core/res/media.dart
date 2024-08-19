@@ -43,8 +43,10 @@ abstract class Media {
   // static const splashLottie = "$_baseLottie/splash.json";
   static const splashLottie = "$_baseLottie/Flow 1.json";
   static const loadingLottie = "$_baseLottie/loader.json";
+  static const nfcLottie = "$_baseLottie/nfc_scan.json";
 
 
+  static const nfcIcon = Icons.contactless;
   static const backIcon = Icons.arrow_back_rounded;
   static const backIOSIcon = Icons.arrow_back_ios_new_rounded;
   static const backIOSARIcon = Icons.arrow_forward_ios;

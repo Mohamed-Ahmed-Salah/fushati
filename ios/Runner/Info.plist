@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSUserNFCReaderUsageDescription</key>
+    <string>We need access to NFC to scan tags.</string>
 </dict>
 </plist>

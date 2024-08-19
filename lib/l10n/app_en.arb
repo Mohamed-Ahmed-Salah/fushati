@@ -114,7 +114,8 @@
 "rs":"{balance} R.s",
 "balance":"Balance",
 "transactionId":"Trx ID ",
-
+"readingNfc":"Hold your card near the NFC reader to scan it.",
+"failedReadingNfc":"Failed to Read Nfc please try again",
 "profileDetails":"Profile details",
 "completeProfile":"Please enter your name and email to complete your profile setup",
 "nameReq":"Name (Required)",
