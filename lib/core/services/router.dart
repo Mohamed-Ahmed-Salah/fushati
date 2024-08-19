@@ -41,7 +41,7 @@ GlobalKey<NavigatorState> get shellNavigatorKey => _shellNavigatorKey;
 final router = GoRouter(
   debugLogDiagnostics: true,
   navigatorKey: _rootNavigatorKey,
-  initialLocation: SplashView.path,
+  initialLocation: NewCardView.path,
   routes: [
     GoRoute(
       path: SplashView.path,

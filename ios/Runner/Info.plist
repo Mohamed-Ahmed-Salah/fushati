@@ -45,6 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>com.apple.developer.nfc.readersession.formats</key>
+    <array>
+        <string>ISO7816</string>
+        <string>NDEF</string>
+    </array>
 	<key>NSUserNFCReaderUsageDescription</key>
 	<string>This app requires access to NFC to scan NFC tags.</string>
 	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>

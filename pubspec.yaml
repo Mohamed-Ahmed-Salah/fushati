@@ -56,6 +56,8 @@ dependencies:
   dots_indicator: ^3.0.0
   smooth_page_indicator: ^1.2.0
   nfc_manager: ^3.5.0
+  flutter_nfc_kit:
+    path: packages/flutter_nfc_kit-3.5.2
   dropdown_textfield:
     path: packages/dropdown_textfield-1.0.8
   moyasar:
@@ -76,6 +78,7 @@ dev_dependencies:
   freezed_annotation: ^2.4.1
   build_runner: ^2.4.9
   freezed: ^2.4.7
+  flutter_gen_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
