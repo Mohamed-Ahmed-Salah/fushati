@@ -116,7 +116,7 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
 
         // Poll for NFC tag
         NFCTag tag = await FlutterNfcKit.poll();
-        log("NFC tag discovered: ${tag.id}");
+        log("NFC tag discovered: ${tag.id} ${tag.toJson.toString()}");
 
         String rfidData = '';
 
