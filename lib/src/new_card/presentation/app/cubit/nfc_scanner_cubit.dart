@@ -20,56 +20,71 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
     bool isAvailable = await NfcManager.instance.isAvailable();
 
     if (isAvailable) {
-      await showDialog(
-          context: context,
-          builder: (_) {
-            return const NfcLoader();
-          });
-      NfcManager.instance.startSession(onError: (error) async {
-        Navigator.pop(context);
+      try{
+        await showDialog(
+            context: context,
+            builder: (_) {
+              return const NfcLoader();
+            });
+        NfcManager.instance.startSession(onError: (error) async {
+          Navigator.pop(context);
 
-        CoreUtils.showSnackBar(
-            message: "${AppLocalizations.of(context)?.failedReadingNfc}");
+          CoreUtils.showSnackBar(
+              message: "${AppLocalizations.of(context)?.failedReadingNfc}");
 
-        NfcManager.instance.stopSession();
+          NfcManager.instance.stopSession();
 
-        return;
-      }, onDiscovered: (NfcTag tag) async {
-        // var date = tag.data;
-        // Assuming the RFID tag is ISO7816
-        final ndef = Ndef.from(tag);
+          return;
+        }, onDiscovered: (NfcTag tag) async {
+          // var date = tag.data;
+          // Assuming the RFID tag is ISO7816
+          final ndef = Ndef.from(tag);
 
-        String rfidData = '';
-        if (ndef != null) {
-          /// Reading the NDEF message
-          NdefMessage message = ndef.cachedMessage!;
-          final payload = message.records.first.payload;
-          final data = String.fromCharCodes(payload);
-          rfidData = "RFID Data: $data";
-        } else {
-          /// Handling for non-NDEF tags
-          final iso7816 = Iso7816.from(tag);
-          if (iso7816 != null) {
-            /// Perform ISO7816 command and response processing here
+          String rfidData = '';
+          if (ndef != null) {
+            debugPrint("IS NDEF");
+            /// Reading the NDEF message
+            NdefMessage message = ndef.cachedMessage!;
+            debugPrint("message ${message}");
 
-            rfidData =
-                "ISO7816 RFID Tag Detected ${iso7816.toString()} ${iso7816.identifier.toString()}";
+            final payload = message.records.first.payload;
+            debugPrint("payload ${payload}");
+
+            final data = String.fromCharCodes(payload);
+            debugPrint("data ${data}");
+
+            rfidData = "RFID Data: $data";
           } else {
-            rfidData = "Unknown tag detected";
+            debugPrint("Handling for non-NDEF tags");
+
+            /// Handling for non-NDEF tags
+            final iso7816 = Iso7816.from(tag);
+            if (iso7816 != null) {
+              /// Perform ISO7816 command and response processing here
+              debugPrint("Perform ISO7816 command and response processing here");
+
+              rfidData =
+              "ISO7816 RFID Tag Detected ${iso7816.toString()} ${iso7816.identifier.toString()}";
+              debugPrint("$rfidData");
+
+            } else {
+              rfidData = "Unknown tag detected";
+            }
           }
-        }
 
-        /// to remove loader
-        Navigator.pop(context);
-        debugPrint("NfcTag data: $rfidData");
+          /// to remove loader
+          Navigator.pop(context);
+          debugPrint("NfcTag data: $rfidData");
 
-        CoreUtils.showSuccess(
-            title: "TAG READ",
-            subTitle: "TAG DATA $rfidData",
-            onPressed: () {});
-        // End the NFC session after reading
-        NfcManager.instance.stopSession();
-      });
+          CoreUtils.showSuccess(
+              title: "TAG READ",
+              subTitle: "TAG DATA $rfidData",
+              onPressed: () {});
+          // End the NFC session after reading
+          NfcManager.instance.stopSession();
+        });
+      }catch(e){debugPrint("ERROR CARCT ${e.toString()}");}
+
     } else {
       debugPrint("no NFC READER Available");
     }
