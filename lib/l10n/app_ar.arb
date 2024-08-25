@@ -132,6 +132,7 @@
 "discard": "تجاهل",
  "transferSuccess": "تم التحويل بنجاح",
   "amountTransferred": "لقد قمت بتحويل مبلغ {amount} بنجاح إلى رقم البطاقة {number}",
+"nfcIsNotAvailable":"NFC غير متوفر في هذا الجهاز",
 
     "onBoardTitle1": "تعزيز التحكم الأبوي",
     "onBoardTitle2": "نظام خدمة متكامل",

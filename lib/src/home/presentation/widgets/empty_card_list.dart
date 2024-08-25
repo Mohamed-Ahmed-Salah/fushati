@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fushati/src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,6 +18,7 @@ class EmptyCardsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        context.read<NfcReaderBloc>().add(const resetCardNfcEvent());
         context.push(NewCardView.path);
       },
       child: CardContainerDesign(
@@ -70,7 +73,7 @@ class AddCardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Container(
+    return Container(
       decoration: const BoxDecoration(
         color: Colours.brandColorOne,
         shape: BoxShape.circle,

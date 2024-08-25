@@ -61,7 +61,9 @@ mixin _$CustomerInfoEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CustomerInfoEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CustomerInfoEventCopyWith<CustomerInfoEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -91,6 +93,8 @@ class _$CustomerInfoEventCopyWithImpl<$Res, $Val extends CustomerInfoEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CustomerInfoEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,6 +159,8 @@ class __$$AuthAddUserInfoImplCopyWithImpl<$Res>
       _$AuthAddUserInfoImpl _value, $Res Function(_$AuthAddUserInfoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CustomerInfoEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -242,7 +248,9 @@ class _$AuthAddUserInfoImpl implements AuthAddUserInfo {
   int get hashCode => Object.hash(
       runtimeType, email, context, name, birthdate, workAtId, gender);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CustomerInfoEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthAddUserInfoImplCopyWith<_$AuthAddUserInfoImpl> get copyWith =>
@@ -334,8 +342,11 @@ abstract class AuthAddUserInfo implements CustomerInfoEvent {
   int get workAtId;
   @override
   int get gender;
+
+  /// Create a copy of CustomerInfoEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthAddUserInfoImplCopyWith<_$AuthAddUserInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -410,6 +421,9 @@ class _$CustomerInfoStateCopyWithImpl<$Res, $Val extends CustomerInfoState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CustomerInfoState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -426,6 +440,9 @@ class __$$initialStateImplCopyWithImpl<$Res>
   __$$initialStateImplCopyWithImpl(
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CustomerInfoState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -540,6 +557,9 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CustomerInfoState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -657,6 +677,8 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CustomerInfoState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -695,7 +717,9 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CustomerInfoState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -780,7 +804,10 @@ abstract class _failedState implements CustomerInfoState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CustomerInfoState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -799,6 +826,9 @@ class __$$successStateImplCopyWithImpl<$Res>
   __$$successStateImplCopyWithImpl(
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CustomerInfoState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

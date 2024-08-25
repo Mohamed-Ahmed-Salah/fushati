@@ -66,7 +66,9 @@ mixin _$CardTransactionBlocEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CardTransactionBlocEventCopyWith<CardTransactionBlocEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -91,6 +93,8 @@ class _$CardTransactionBlocEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,6 +141,8 @@ class __$$GetCardTransactionEventImplCopyWithImpl<$Res>
       $Res Function(_$GetCardTransactionEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -205,7 +211,9 @@ class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
   @override
   int get hashCode => Object.hash(runtimeType, id, cardNumber, createdAt, page);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetCardTransactionEventImplCopyWith<_$GetCardTransactionEventImpl>
@@ -297,8 +305,11 @@ abstract class GetCardTransactionEvent implements CardTransactionBlocEvent {
   @override
   DateTime get createdAt;
   int get page;
+
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetCardTransactionEventImplCopyWith<_$GetCardTransactionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -325,6 +336,8 @@ class __$$GetMoreCardTransactionImplCopyWithImpl<$Res>
       $Res Function(_$GetMoreCardTransactionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -382,7 +395,9 @@ class _$GetMoreCardTransactionImpl implements GetMoreCardTransaction {
   @override
   int get hashCode => Object.hash(runtimeType, id, cardNumber, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetMoreCardTransactionImplCopyWith<_$GetMoreCardTransactionImpl>
@@ -472,8 +487,11 @@ abstract class GetMoreCardTransaction implements CardTransactionBlocEvent {
   String get cardNumber;
   @override
   DateTime get createdAt;
+
+  /// Create a copy of CardTransactionBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetMoreCardTransactionImplCopyWith<_$GetMoreCardTransactionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -547,6 +565,9 @@ class _$CardTransactionBlocStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -566,6 +587,8 @@ class __$$loadingStateImplCopyWithImpl<$Res>
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -613,7 +636,9 @@ class _$loadingStateImpl implements _loadingState {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_transactions));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
@@ -697,7 +722,10 @@ abstract class _loadingState implements CardTransactionBlocState {
       _$loadingStateImpl;
 
   List<Transaction> get transactions;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -719,6 +747,8 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -757,7 +787,9 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -840,7 +872,10 @@ abstract class _failedState implements CardTransactionBlocState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -862,6 +897,8 @@ class __$$successStateImplCopyWithImpl<$Res>
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -920,7 +957,9 @@ class _$successStateImpl implements _successState {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_transactions), hasMoreRecords);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
@@ -1006,7 +1045,10 @@ abstract class _successState implements CardTransactionBlocState {
 
   List<Transaction> get transactions;
   bool get hasMoreRecords;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CardTransactionBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

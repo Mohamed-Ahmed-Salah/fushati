@@ -101,14 +101,14 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
 //   }
   Future<String?> readNfc(BuildContext context,
       TextEditingController controller) async {
-    NFCAvailability value = await FlutterNfcKit.nfcAvailability;
+    ///we already checked isNfcAvailable access from previous checkNfcSupported that is called from splash
     log("Checking NFC availability");
-    bool isAvailable = value == NFCAvailability.available;
+    bool isAvailable = state.isNfcAvailable;
 
     if (isAvailable) {
       try {
         log("NFC is available");
-        await showDialog(
+        showDialog(
           context: context,
           builder: (_) {
             return const NfcLoader();
@@ -122,63 +122,15 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
         log("${tag
             .protocolInfo} tag.protocolInfo and tag.systemCode= ${ tag
             .systemCode
-        }")
+        }");
         String physicalCardNumber = tag.id;
         String softwareCardNumber = convertCardNumber(physicalCardNumber);
         print(
-            "Software Card Number: $softwareCardNumber"); // Output: 1813872899
-        String rfidData = '';
-
-        // Check if the tag contains NDEF records
-        if (tag.ndefAvailable ?? false) {
-          log("NDEF tag detected");
-
-          if (tag.ndefType != null) {
-            // Read the NDEF message
-            var ndef = await FlutterNfcKit.readNDEFRecords();
-            var record = ndef[0];
-            final payload = record.payload;
-            log("Payload: $payload");
-
-            // final data = String.fromCharCodes(payload);
-            final data = payload?.toString();
-            log("Data: $data");
-
-            rfidData = "RFID Data: $data";
-          } else {
-            log("No NDEF records found");
-            rfidData = "NDEF tag detected but no records found.";
-          }
-        } else if (tag.type == NFCTagType.iso7816) {
-          log("ISO7816 tag detected");
-// Send APDU command to select the application (example, replace with actual command)
-
-          // Read Record to get PAN (Example APDU command)
-
-          log(tag.toJson().toString());
-          final selectCommand = '00A4040007A0000002471001'; // Example command, modify as needed
-          final selectResponse = await FlutterNfcKit.transceive(selectCommand);
-          log("Select Command Response: $selectResponse");
-// Extract the PAN from the response (this will vary depending on card)
-          // Note: This is a simplified example; real parsing depends on the card's response structure
-          String cardNumber = extractPAN(selectResponse);
-          // Handling for ISO7816 tags
-          rfidData = "ISO7816 RFID Tag Detected: ${tag.toJson().toString()}";
-          log("$rfidData");
-        } else {
-          rfidData = "Unknown tag detected";
-          log("Unknown tag type detected");
-        }
+            "Software Card Number: $softwareCardNumber");
 
         // Remove loader
-        Navigator.pop(context);
-        log("NFC tag data: $rfidData");
+        Navigator.pop(context,softwareCardNumber);
 
-        CoreUtils.showSuccess(
-          title: "TAG READ",
-          subTitle: "TAG DATA $rfidData",
-          onPressed: () {},
-        );
         // End the NFC session after reading
         await FlutterNfcKit.finish(iosAlertMessage: "NFC Session Ended");
       } catch (e) {
@@ -189,7 +141,7 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
     } else {
       log("No NFC reader available");
       CoreUtils.showSnackBar(
-        message: "NFC is not available on this device or is turned off",
+        message: "${AppLocalizations.of(context)?.nfcIsNotAvailable}",
       );
     }
   }

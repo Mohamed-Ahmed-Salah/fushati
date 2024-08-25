@@ -121,6 +121,7 @@
 "nameReq":"Name (Required)",
 "emailOption":"Email (Optional)",
 "discard":"Discard",
+"nfcIsNotAvailable":"NFC is not available on this device or is turned off",
 "transferSuccess":"Transfer Successful",
 "amountTransferred":"You have successfully transferred {amount} to card number {number}",
 "onBoardTitle1":"Enhanced Parental Control",

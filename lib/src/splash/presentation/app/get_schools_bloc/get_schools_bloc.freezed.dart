@@ -66,6 +66,9 @@ class _$GetSchoolsEventCopyWithImpl<$Res, $Val extends GetSchoolsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetSchoolsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +85,9 @@ class __$$GetSchoolsListEventImplCopyWithImpl<$Res>
   __$$GetSchoolsListEventImplCopyWithImpl(_$GetSchoolsListEventImpl _value,
       $Res Function(_$GetSchoolsListEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetSchoolsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -229,6 +235,9 @@ class _$GetSchoolsStateCopyWithImpl<$Res, $Val extends GetSchoolsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -245,6 +254,9 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -356,6 +368,8 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -394,7 +408,9 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -474,7 +490,10 @@ abstract class _failedState implements GetSchoolsState {
       _$failedStateImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -496,6 +515,8 @@ class __$$successStateImplCopyWithImpl<$Res>
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -541,7 +562,9 @@ class _$successStateImpl implements _successState {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_schools));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
@@ -621,7 +644,10 @@ abstract class _successState implements GetSchoolsState {
       _$successStateImpl;
 
   List<School> get schools;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetSchoolsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
