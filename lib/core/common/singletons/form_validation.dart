@@ -19,6 +19,24 @@ abstract class TextFormValidation {
     }
   }
 
+  static String? saudiPhoneValidation(String? value,
+      {required BuildContext context}) {
+    if (value == null) return requiredField("", context: context);
+    if (value.isEmpty) return requiredField(value, context: context);
+    if (!RegExp(r"^[0-9]+$|[.][0-9]+$").hasMatch(value!)) {
+      return "${AppLocalizations.of(context)?.fieldOnlyNumbers}";
+    }
+    if (value.length < 12) {
+      return "${AppLocalizations.of(context)?.onlyTwelveNumber}";
+    }
+    if (value.startsWith("0")) {
+      return "${AppLocalizations.of(context)?.fieldDontStartWithZero}";
+    }
+    if (!value.startsWith("966")) {
+      return "${AppLocalizations.of(context)?.fieldShouldStartWithKsa}";
+    }
+  }
+
   static String? requiredField(String? value, {required BuildContext context}) {
     if (value == null ||
         value == false ||

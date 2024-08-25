@@ -11,7 +11,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/utils/constants/error_consts.dart';
-import '../../../new_card/presentation/widgets/card_detail_error.dart';
 
 class AlertDeleteAccount extends StatefulWidget {
   final String title;

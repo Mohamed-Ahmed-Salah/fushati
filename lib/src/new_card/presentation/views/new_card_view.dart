@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,6 @@ import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/cubit/nfc_scanner_cubit.dart';
-import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:fushati/src/new_card/presentation/views/add_card_loader.dart';
 import 'package:fushati/src/new_card/presentation/widgets/nfc_loader.dart';
 import 'package:go_router/go_router.dart';
@@ -21,7 +19,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
-import '../widgets/card_detail_dialog.dart';
 
 class NewCardView extends StatefulWidget {
   static String path = "/card-new";
@@ -213,6 +210,8 @@ class _NewCardViewState extends State<NewCardView> {
                           keyboardType: TextInputType.number,
                           style: CustomTheme.textFieldTextStyle,
                           inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+
                             LengthLimitingTextInputFormatter(12),
                           ],
                           decoration: InputDecoration(
@@ -221,7 +220,7 @@ class _NewCardViewState extends State<NewCardView> {
                           ),
                           controller: phoneNumberController,
                           validator: (value) =>
-                              TextFormValidation.phoneValidation(value,
+                              TextFormValidation.saudiPhoneValidation(value,
                                   context: context),
                           onTapOutside: (_) =>
                               FocusScope.of(context).requestFocus(FocusNode()),

@@ -1,9 +1,11 @@
 {
 "fieldOnlyNumbers":"This field must only contain numbers",
 "onlyNineNumber":"This field should contain 9 numbers",
+"onlyTwelveNumber":"This field should contain 12 numbers",
 "fieldDontStartWithZero":"This field should not start with 0",
 "requiredField":"This field is required",
 "enterValidEmail":"Please enter a valid Email",
+"fieldShouldStartWithKsa":"This field should start with 966",
 "enterFullName":"Please enter full name",
 "enterNameWithNoNumber":"Please enter valid full name with no numbers",
 "enterValidFullName":"Please enter valid full name",

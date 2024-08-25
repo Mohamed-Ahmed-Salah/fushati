@@ -2,7 +2,11 @@
 
 "fieldOnlyNumbers":"يجب أن يحتوي هذا الحقل على أرقام فقط",
 "onlyNineNumber":"يجب أن يحتوي هذا الحقل على 9 أرقام",
+"onlyTwelveNumber":"يجب أن يحتوي هذا الحقل على 12 أرقام",
+
 "fieldDontStartWithZero":"يجب ألا يبدأ هذا الحقل بصفر",
+"fieldShouldStartWithKsa":"يجب ان يبدأ هذا الحقل ب966",
+
 "requiredField":"هذه الخانة مطلوبه",
 "enterValidEmail":"يرجى إدخال البريد الإلكتروني الصحيح",
 "enterFullName":"الرجاء إدخال الاسم الكامل",

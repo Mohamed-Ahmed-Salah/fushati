@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../core/utils/constants/error_consts.dart';
 import '../../../../home/domain/usecases/add_card.dart';
 
 part 'add_new_card_event.dart';
