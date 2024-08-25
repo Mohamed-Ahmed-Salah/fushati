@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,6 +34,8 @@ class _NewCardViewState extends State<NewCardView> {
 
   @override
   void initState() {
+    context.read<NfcScannerCubit>().checkNfcSupported();
+
     _formKey = GlobalKey<FormState>();
 
     controller = TextEditingController();
@@ -85,6 +90,8 @@ class _NewCardViewState extends State<NewCardView> {
                               initial: (isNfcSupported) => isNfcSupported
                                   ? IconButton(
                                       onPressed: () {
+                                        log("EEEE ");
+
                                         context
                                             .read<NfcScannerCubit>()
                                             .readNfc(context, controller);

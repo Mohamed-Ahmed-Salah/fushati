@@ -39,7 +39,8 @@ void main() async {
   runApp(
     BlocProvider<AppLanguageCubit>(
         create: (BuildContext context) =>
-            AppLanguageCubit(cacheHelper: sl())..getLanguage(),
+        AppLanguageCubit(cacheHelper: sl())
+          ..getLanguage(),
         child: const MyApp()),
   );
 }
@@ -59,31 +60,36 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => AddNewCardBloc(addCard: sl()),
           ),
           BlocProvider<CustomerInfoBloc>(
-            create: (BuildContext context) => CustomerInfoBloc(
-              addUserInfo: sl(),
-              cacheHelper: sl(),
-            ),
+            create: (BuildContext context) =>
+                CustomerInfoBloc(
+                  addUserInfo: sl(),
+                  cacheHelper: sl(),
+                ),
           ),
           BlocProvider<OtpBloc>(
-            create: (BuildContext context) => OtpBloc(
-              loginOrRegister: sl(),
-              verifyOTP: sl(),
-              cacheHelper: sl(),
-            ),
+            create: (BuildContext context) =>
+                OtpBloc(
+                  loginOrRegister: sl(),
+                  verifyOTP: sl(),
+                  cacheHelper: sl(),
+                ),
           ),
           BlocProvider<AuthenticatorBloc>(
-            create: (BuildContext context) => AuthenticatorBloc(
-              loginOrRegister: sl(),
-              cacheHelper: sl(),
-            ),
+            create: (BuildContext context) =>
+                AuthenticatorBloc(
+                  loginOrRegister: sl(),
+                  cacheHelper: sl(),
+                ),
           ),
           BlocProvider<GetCardDetailsBloc>(
-            create: (BuildContext context) => GetCardDetailsBloc(
-              getCardDetails: sl(),
-            ),
+            create: (BuildContext context) =>
+                GetCardDetailsBloc(
+                  getCardDetails: sl(),
+                ),
           ),
           BlocProvider<DeleteCardBloc>(
-              create: (BuildContext context) => DeleteCardBloc(
+              create: (BuildContext context) =>
+                  DeleteCardBloc(
                     deleteCard: sl(),
                   )),
           BlocProvider<TransferMoneyBloc>(
@@ -93,24 +99,28 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => AmountToTransferCubit(),
           ),
           BlocProvider<CardsBloc>(
-            create: (BuildContext context) => CardsBloc(
-              getCard: sl(),
-            ),
+            create: (BuildContext context) =>
+                CardsBloc(
+                  getCard: sl(),
+                ),
           ),
           BlocProvider<UserInfoBloc>(
-            create: (BuildContext context) => UserInfoBloc(
-              getUserInfo: sl(),
-            ),
+            create: (BuildContext context) =>
+                UserInfoBloc(
+                  getUserInfo: sl(),
+                ),
           ),
           BlocProvider<DeleteUserBloc>(
-            create: (BuildContext context) => DeleteUserBloc(
-              deleteUserInfo: sl(),
-            ),
+            create: (BuildContext context) =>
+                DeleteUserBloc(
+                  deleteUserInfo: sl(),
+                ),
           ),
           BlocProvider<EditProfileBloc>(
-            create: (BuildContext context) => EditProfileBloc(
-              editUserInfo: sl(),
-            ),
+            create: (BuildContext context) =>
+                EditProfileBloc(
+                  editUserInfo: sl(),
+                ),
           ),
           BlocProvider<OnBoardingPageCubit>(
             create: (BuildContext context) =>
@@ -128,28 +138,29 @@ class MyApp extends StatelessWidget {
                 NfcScannerCubit(),
           ),
           BlocProvider<GetSchoolsBloc>(
-            create: (BuildContext context) => GetSchoolsBloc(getSchools: sl())
+            create: (BuildContext context) =>
+            GetSchoolsBloc(getSchools: sl())
               ..add(const GetSchoolsEvent.getSchools()),
           ),
         ],
         child: BlocBuilder<AppLanguageCubit, AppLanguageState>(
             builder: (context, state) {
-          return MaterialApp.router(
-            routerConfig: router,
-            supportedLocales: L10n.all,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate
-            ],
-            scaffoldMessengerKey: scaffoldKey,
-            debugShowCheckedModeBanner: false,
-            title: 'Fushati',
-            locale: state.locale,
-            theme: CustomTheme.lightTheme(),
-          );
-        }),
+              return MaterialApp.router(
+                routerConfig: router,
+                supportedLocales: L10n.all,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate
+                ],
+                scaffoldMessengerKey: scaffoldKey,
+                debugShowCheckedModeBanner: false,
+                title: 'Fushati',
+                locale: state.locale,
+                theme: CustomTheme.lightTheme(),
+              );
+            }),
       );
     });
   }
