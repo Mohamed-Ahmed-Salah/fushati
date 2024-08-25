@@ -27,8 +27,12 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
       String physicalCardNumber = tag.id;
       String softwareCardNumber = convertCardNumber(physicalCardNumber);
       print("Software Card Number: $softwareCardNumber");
+      closeSession();
+
       emit(NfcReaderState.success(softwareCardNumber));
     } catch (e) {
+      closeSession();
+
       emit(NfcReaderState.failed(
           ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR)));
     }
@@ -53,7 +57,12 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
     return softwareCardNumber;
   }
 
-  _reset(event,emit){
+  closeSession() {
+    log("stop session");
+    FlutterNfcKit.finish();
+  }
+
+  _reset(event, emit) {
     emit(const NfcReaderState.initial());
   }
 }
