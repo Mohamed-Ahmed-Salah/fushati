@@ -27,19 +27,22 @@ class DeleteUserBloc extends Bloc<DeleteUserEvent, DeleteUserState> {
   _deleteUserEvent(event, emit) async {
     int id = event.id;
     emit(const DeleteUserState.loading());
-    final result = await _deleteUserInfo(id);
-    result.fold(
-      (failure) {
-        emit(DeleteUserState.failed(failure.message));
-      },
-      (_) async {
-        emit(const DeleteUserState.success());
-        final cacheHelper = sl<CacheHelper>();
-        await cacheHelper.logout();
 
-        router.go(LoginView.path);
-      },
-    );
+    await Future.delayed(Duration(seconds: 2));
+    emit(DeleteUserState.failed("message"));
+    // final result = await _deleteUserInfo(id);
+    // result.fold(
+    //   (failure) {
+    //     emit(DeleteUserState.failed(failure.message));
+    //   },
+    //   (_) async {
+    //     emit(const DeleteUserState.success());
+    //     final cacheHelper = sl<CacheHelper>();
+    //     await cacheHelper.logout();
+    //
+    //     router.go(LoginView.path);
+    //   },
+    // );
   }
 
   _resetUserEvent(event, emit) {
