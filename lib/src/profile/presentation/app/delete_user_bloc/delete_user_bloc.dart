@@ -27,7 +27,6 @@ class DeleteUserBloc extends Bloc<DeleteUserEvent, DeleteUserState> {
   _deleteUserEvent(event, emit) async {
     int id = event.id;
     emit(const DeleteUserState.loading());
-
     final result = await _deleteUserInfo(id);
     result.fold(
       (failure) {

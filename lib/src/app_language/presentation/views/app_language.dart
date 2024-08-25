@@ -80,7 +80,7 @@ class LanguageRow extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 2.h),
+        padding: EdgeInsets.symmetric(vertical: 1.3.h),
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(

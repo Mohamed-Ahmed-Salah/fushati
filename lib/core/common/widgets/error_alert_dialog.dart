@@ -12,35 +12,51 @@ import '../../utils/constants/size_constatnts.dart';
 class ErrorAlertDialog extends StatelessWidget {
   final String title;
   final String subtitle;
+  final bool disableColorAndPadding;
   final Function()? onPressed;
 
   const ErrorAlertDialog(
-      {super.key, required this.title, required this.subtitle, this.onPressed});
+      {super.key,
+      this.disableColorAndPadding = false,
+      required this.title,
+      required this.subtitle,
+      this.onPressed});
+
+  const ErrorAlertDialog.delete(
+      {super.key,
+      this.disableColorAndPadding = true,
+      required this.title,
+      required this.subtitle,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(SizeConst.horizontalPaddingFour),
+        padding: EdgeInsets.all(
+            disableColorAndPadding ? 0 : SizeConst.horizontalPaddingFour),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: Colours.whiteColor,
-                border: Border.all(color: Colours.borderGreyColor),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colours.blackColor.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-                borderRadius: BorderRadius.all(
-                  Radius.circular(SizeConst.borderRadius),
-                ),
-              ),
+              decoration: disableColorAndPadding
+                  ? null
+                  : BoxDecoration(
+                      color: Colours.whiteColor,
+                      border: Border.all(color: Colours.borderGreyColor),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colours.blackColor.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(SizeConst.borderRadius),
+                      ),
+                    ),
               child: Padding(
                 padding: EdgeInsets.all(SizeConst.horizontalPadding),
                 child: Material(
@@ -58,6 +74,7 @@ class ErrorAlertDialog extends StatelessWidget {
                           ),
                           Text(
                             title,
+                            textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge

@@ -16,20 +16,30 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AddNewCardEvent {
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
   String get cardNumber => throw _privateConstructorUsedError;
+  String get studentNumber => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String cardNumber) addCard,
+    required TResult Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)
+        addCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String cardNumber)? addCard,
+    TResult? Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)?
+        addCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String cardNumber)? addCard,
+    TResult Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)?
+        addCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +73,12 @@ abstract class $AddNewCardEventCopyWith<$Res> {
           AddNewCardEvent value, $Res Function(AddNewCardEvent) then) =
       _$AddNewCardEventCopyWithImpl<$Res, AddNewCardEvent>;
   @useResult
-  $Res call({String cardNumber});
+  $Res call(
+      {String name,
+      String email,
+      String phoneNumber,
+      String cardNumber,
+      String studentNumber});
 }
 
 /// @nodoc
@@ -81,12 +96,32 @@ class _$AddNewCardEventCopyWithImpl<$Res, $Val extends AddNewCardEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
+    Object? email = null,
+    Object? phoneNumber = null,
     Object? cardNumber = null,
+    Object? studentNumber = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       cardNumber: null == cardNumber
           ? _value.cardNumber
           : cardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      studentNumber: null == studentNumber
+          ? _value.studentNumber
+          : studentNumber // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -100,7 +135,12 @@ abstract class _$$AddCardEventImplCopyWith<$Res>
       __$$AddCardEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String cardNumber});
+  $Res call(
+      {String name,
+      String email,
+      String phoneNumber,
+      String cardNumber,
+      String studentNumber});
 }
 
 /// @nodoc
@@ -116,12 +156,32 @@ class __$$AddCardEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
+    Object? email = null,
+    Object? phoneNumber = null,
     Object? cardNumber = null,
+    Object? studentNumber = null,
   }) {
     return _then(_$AddCardEventImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       cardNumber: null == cardNumber
           ? _value.cardNumber
           : cardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      studentNumber: null == studentNumber
+          ? _value.studentNumber
+          : studentNumber // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -130,14 +190,27 @@ class __$$AddCardEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddCardEventImpl implements AddCardEvent {
-  const _$AddCardEventImpl({required this.cardNumber});
+  const _$AddCardEventImpl(
+      {required this.name,
+      required this.email,
+      required this.phoneNumber,
+      required this.cardNumber,
+      required this.studentNumber});
 
   @override
+  final String name;
+  @override
+  final String email;
+  @override
+  final String phoneNumber;
+  @override
   final String cardNumber;
+  @override
+  final String studentNumber;
 
   @override
   String toString() {
-    return 'AddNewCardEvent.addCard(cardNumber: $cardNumber)';
+    return 'AddNewCardEvent.addCard(name: $name, email: $email, phoneNumber: $phoneNumber, cardNumber: $cardNumber, studentNumber: $studentNumber)';
   }
 
   @override
@@ -145,12 +218,19 @@ class _$AddCardEventImpl implements AddCardEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddCardEventImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.cardNumber, cardNumber) ||
-                other.cardNumber == cardNumber));
+                other.cardNumber == cardNumber) &&
+            (identical(other.studentNumber, studentNumber) ||
+                other.studentNumber == studentNumber));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, cardNumber);
+  int get hashCode => Object.hash(
+      runtimeType, name, email, phoneNumber, cardNumber, studentNumber);
 
   /// Create a copy of AddNewCardEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -163,27 +243,33 @@ class _$AddCardEventImpl implements AddCardEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String cardNumber) addCard,
+    required TResult Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)
+        addCard,
   }) {
-    return addCard(cardNumber);
+    return addCard(name, email, phoneNumber, cardNumber, studentNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String cardNumber)? addCard,
+    TResult? Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)?
+        addCard,
   }) {
-    return addCard?.call(cardNumber);
+    return addCard?.call(name, email, phoneNumber, cardNumber, studentNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String cardNumber)? addCard,
+    TResult Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)?
+        addCard,
     required TResult orElse(),
   }) {
     if (addCard != null) {
-      return addCard(cardNumber);
+      return addCard(name, email, phoneNumber, cardNumber, studentNumber);
     }
     return orElse();
   }
@@ -218,11 +304,23 @@ class _$AddCardEventImpl implements AddCardEvent {
 }
 
 abstract class AddCardEvent implements AddNewCardEvent {
-  const factory AddCardEvent({required final String cardNumber}) =
-      _$AddCardEventImpl;
+  const factory AddCardEvent(
+      {required final String name,
+      required final String email,
+      required final String phoneNumber,
+      required final String cardNumber,
+      required final String studentNumber}) = _$AddCardEventImpl;
 
   @override
+  String get name;
+  @override
+  String get email;
+  @override
+  String get phoneNumber;
+  @override
   String get cardNumber;
+  @override
+  String get studentNumber;
 
   /// Create a copy of AddNewCardEvent
   /// with the given fields replaced by the non-null parameter values.

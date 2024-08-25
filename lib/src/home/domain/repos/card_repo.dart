@@ -11,7 +11,11 @@ abstract class CardRepo {
   });
 
   ResultFuture<void> addCard({
+    required String name,
+    required String email,
+    required String phoneNumber,
     required String cardNumber,
+    required String studentNumber,
   });
 
   ResultFuture<List<CardEntity>> getCards();

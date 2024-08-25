@@ -11,7 +11,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../views/add_card_loader.dart';
-
+///this widget is not used until we add new card instead of add new student card
 class CardDetail extends StatelessWidget {
   final CardEntity card;
 
@@ -77,9 +77,10 @@ class CardDetail extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                   onPressed: () {
-                    context.read<AddNewCardBloc>().add(
-                        AddNewCardEvent.addCard(cardNumber: card.userCard));
-                    context.pushNamed(AddCardLoaderView.path);
+                    ///removed until later
+                    // context.read<AddNewCardBloc>().add(
+                    //     AddNewCardEvent.addCard(cardNumber: card.userCard));
+                    // context.pushNamed(AddCardLoaderView.path);
                   },
                   child: Text("${AppLocalizations.of(context)?.confirm}")),
             )

@@ -60,10 +60,20 @@ class CardRepoImpl implements CardRepo {
   }
 
   @override
-  ResultFuture<void> addCard({required String cardNumber}) async {
+  ResultFuture<void> addCard({
+    required String name,
+    required String email,
+    required String phoneNumber,
+    required String cardNumber,
+    required String studentNumber,
+  }) async {
     try {
       final result = await _remoteDataSource.addCard(
         cardNumber: cardNumber,
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        studentNumber: studentNumber,
       );
       return Right(result);
     } on ServerException catch (e) {
@@ -74,9 +84,9 @@ class CardRepoImpl implements CardRepo {
       return Left(NoInternetFailure.fromException(e));
     } on TimeOutException catch (e) {
       return Left(TimeOutFailure.fromException(e));
-    }on CardNotFoundException catch (e) {
+    } on CardNotFoundException catch (e) {
       return Left(CardNotFoundFailure.fromException(e));
-    }  catch (e) {
+    } catch (e) {
       return Left(ServerFailure.fromException(
           ServerException(message: e.toString(), statusCode: 1)));
     }
