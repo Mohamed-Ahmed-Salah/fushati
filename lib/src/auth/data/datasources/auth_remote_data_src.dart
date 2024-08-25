@@ -35,7 +35,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
           response.statusCode == 201 ||
           response.statusCode == 202;
 
-      debugPrint("RESPONSE ${response.data}");
+      debugPrint("login ${response.data}");
       if (isSuccess) {
         return ;
       } else {
@@ -49,7 +49,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
     } on DioException catch (e) {
-      debugPrint("ERROR ${e.response?.data}");
+      debugPrint("login DioException ${e.response?.data}");
 
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
@@ -102,6 +102,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
+      debugPrint("verifyOTP ${response.data}");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return OtpResponseModel.fromJson(response.data);
@@ -123,6 +124,8 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
           message: ErrorConst.getError(statusCode: response.statusCode ?? 500),
           statusCode: 0);
     } on DioException catch (e) {
+      debugPrint("verifyOTP DioException ${e.response?.data}");
+
       if (e.response?.statusCode == 401) {
         throw const AuthenticationException(
             message: ErrorConst.invalidOtpEn, statusCode: 0);

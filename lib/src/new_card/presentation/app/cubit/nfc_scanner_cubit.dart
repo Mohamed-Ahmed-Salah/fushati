@@ -104,6 +104,9 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
      NFCAvailability value = await FlutterNfcKit.nfcAvailability;
     log("Checking NFC availability");
      bool isAvailable = value==NFCAvailability.available;
+     String physicalCardNumber = "03811D6C";
+     String softwareCardNumber = convertCardNumber(physicalCardNumber);
+     print("Software Card Number: $softwareCardNumber"); // Output: 1813872899
     if (isAvailable) {
       try {
         log("NFC is available");
@@ -205,5 +208,25 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
         "Calling checkNfcSupported from splash value supports NFC: $isAvailable");
 
     emit(NfcScannerState.initial(isNfcAvailable: isAvailable));
+  }
+
+
+  String convertCardNumber(String physicalCardNumber) {
+    // Extract parts of the physical card number
+    String part1 = physicalCardNumber.substring(0, 2); // "03"
+    String part2 = physicalCardNumber.substring(2, 4); // "81"
+    String part3 = physicalCardNumber.substring(4, 6); // "1D"
+    String part4 = physicalCardNumber.substring(6, 8); // "6C"
+
+    // Apply the conversion rule CDAB34 12
+    String rearranged = part4 + part3 + part2 + part1; // "6C1D8103"
+
+    // Convert hex to decimal
+    int decimalValue = int.parse(rearranged, radix: 16);
+
+    // Convert to string and pad with zeros if necessary to ensure 10 digits
+    String softwareCardNumber = decimalValue.toString().padLeft(10, '0');
+
+    return softwareCardNumber;
   }
 }
