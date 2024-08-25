@@ -50,7 +50,9 @@ mixin _$AmountToTransferState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AmountToTransferState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AmountToTransferStateCopyWith<AmountToTransferState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -75,6 +77,8 @@ class _$AmountToTransferStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AmountToTransferState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -108,6 +112,8 @@ class __$$initialStateImplCopyWithImpl<$Res>
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AmountToTransferState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,7 +153,9 @@ class _$initialStateImpl implements _initialState {
   @override
   int get hashCode => Object.hash(runtimeType, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AmountToTransferState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$initialStateImplCopyWith<_$initialStateImpl> get copyWith =>
@@ -215,8 +223,11 @@ abstract class _initialState implements AmountToTransferState {
 
   @override
   int get amount;
+
+  /// Create a copy of AmountToTransferState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$initialStateImplCopyWith<_$initialStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

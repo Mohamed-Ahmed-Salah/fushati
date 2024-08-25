@@ -60,7 +60,9 @@ mixin _$EditProfileEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EditProfileEventCopyWith<EditProfileEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -84,6 +86,8 @@ class _$EditProfileEventCopyWithImpl<$Res, $Val extends EditProfileEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EditProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,6 +139,8 @@ class __$$EditUserAccountProfileEventImplCopyWithImpl<$Res>
       $Res Function(_$EditUserAccountProfileEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -201,7 +207,9 @@ class _$EditUserAccountProfileEventImpl implements EditUserAccountProfileEvent {
   @override
   int get hashCode => Object.hash(runtimeType, context, name, email, gender);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EditUserAccountProfileEventImplCopyWith<_$EditUserAccountProfileEventImpl>
@@ -287,8 +295,11 @@ abstract class EditUserAccountProfileEvent implements EditProfileEvent {
   String get email;
   @override
   String? get gender;
+
+  /// Create a copy of EditProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditUserAccountProfileEventImplCopyWith<_$EditUserAccountProfileEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -363,6 +374,9 @@ class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -379,6 +393,9 @@ class __$$initialStateImplCopyWithImpl<$Res>
   __$$initialStateImplCopyWithImpl(
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -493,6 +510,9 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -610,6 +630,8 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -648,7 +670,9 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -733,7 +757,10 @@ abstract class _failedState implements EditProfileState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -752,6 +779,9 @@ class __$$successStateImplCopyWithImpl<$Res>
   __$$successStateImplCopyWithImpl(
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

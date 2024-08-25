@@ -72,6 +72,9 @@ class _$DeleteCardEventCopyWithImpl<$Res, $Val extends DeleteCardEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DeleteCardEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,6 +94,8 @@ class __$$DeleteCardEventClassImplCopyWithImpl<$Res>
       $Res Function(_$DeleteCardEventClassImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeleteCardEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,7 +134,9 @@ class _$DeleteCardEventClassImpl implements DeleteCardEventClass {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeleteCardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteCardEventClassImplCopyWith<_$DeleteCardEventClassImpl>
@@ -205,7 +212,10 @@ abstract class DeleteCardEventClass implements DeleteCardEvent {
       _$DeleteCardEventClassImpl;
 
   int get id;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeleteCardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeleteCardEventClassImplCopyWith<_$DeleteCardEventClassImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -224,6 +234,9 @@ class __$$DeleteCardResetEventImplCopyWithImpl<$Res>
   __$$DeleteCardResetEventImplCopyWithImpl(_$DeleteCardResetEventImpl _value,
       $Res Function(_$DeleteCardResetEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeleteCardEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -383,6 +396,9 @@ class _$DeleteCardStateCopyWithImpl<$Res, $Val extends DeleteCardState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DeleteCardState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -399,6 +415,9 @@ class __$$initialStateImplCopyWithImpl<$Res>
   __$$initialStateImplCopyWithImpl(
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeleteCardState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -513,6 +532,9 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeleteCardState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -630,6 +652,8 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeleteCardState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -668,7 +692,9 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeleteCardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -753,7 +779,10 @@ abstract class _failedState implements DeleteCardState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeleteCardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -772,6 +801,9 @@ class __$$successImplCopyWithImpl<$Res>
   __$$successImplCopyWithImpl(
       _$successImpl _value, $Res Function(_$successImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeleteCardState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

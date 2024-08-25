@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -9,7 +11,6 @@ import '../../../../core/common/widgets/card_box.dart';
 import '../../../new_card/presentation/views/new_card_view.dart';
 import '../../domain/entity/card.dart';
 import 'empty_card_list.dart';
-
 
 class EmptyCardList extends StatelessWidget {
   const EmptyCardList({super.key});
@@ -40,6 +41,7 @@ class LoadedCardList extends StatelessWidget {
           if (index == cards.length) {
             return GestureDetector(
               onTap: () {
+                context.read<NfcReaderBloc>().add(const resetCardNfcEvent());
                 context.push(NewCardView.path);
               },
               child: Padding(
@@ -74,10 +76,7 @@ class LoadedCardList extends StatelessWidget {
           }
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 1.h),
-            child: CardBox.withManage(
-              card: cards[index],
-              userId:userId
-            ),
+            child: CardBox.withManage(card: cards[index], userId: userId),
           );
         },
         childCount: cards.length + 1, // Example: 10 builders

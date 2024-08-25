@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'delete_user_bloc.dart';
+part of 'nfc_reader_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,254 +15,101 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$DeleteUserEvent {
+mixin _$NfcReaderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, int id) deleteUser,
-    required TResult Function() reset,
+    required TResult Function() readNfc,
+    required TResult Function() resetToScanNewCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, int id)? deleteUser,
-    TResult? Function()? reset,
+    TResult? Function()? readNfc,
+    TResult? Function()? resetToScanNewCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, int id)? deleteUser,
-    TResult Function()? reset,
+    TResult Function()? readNfc,
+    TResult Function()? resetToScanNewCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DeleteUserInfoEvent value) deleteUser,
-    required TResult Function(ResetUserStateEvent value) reset,
+    required TResult Function(readCardNfcEvent value) readNfc,
+    required TResult Function(resetCardNfcEvent value) resetToScanNewCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DeleteUserInfoEvent value)? deleteUser,
-    TResult? Function(ResetUserStateEvent value)? reset,
+    TResult? Function(readCardNfcEvent value)? readNfc,
+    TResult? Function(resetCardNfcEvent value)? resetToScanNewCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DeleteUserInfoEvent value)? deleteUser,
-    TResult Function(ResetUserStateEvent value)? reset,
+    TResult Function(readCardNfcEvent value)? readNfc,
+    TResult Function(resetCardNfcEvent value)? resetToScanNewCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeleteUserEventCopyWith<$Res> {
-  factory $DeleteUserEventCopyWith(
-          DeleteUserEvent value, $Res Function(DeleteUserEvent) then) =
-      _$DeleteUserEventCopyWithImpl<$Res, DeleteUserEvent>;
+abstract class $NfcReaderEventCopyWith<$Res> {
+  factory $NfcReaderEventCopyWith(
+          NfcReaderEvent value, $Res Function(NfcReaderEvent) then) =
+      _$NfcReaderEventCopyWithImpl<$Res, NfcReaderEvent>;
 }
 
 /// @nodoc
-class _$DeleteUserEventCopyWithImpl<$Res, $Val extends DeleteUserEvent>
-    implements $DeleteUserEventCopyWith<$Res> {
-  _$DeleteUserEventCopyWithImpl(this._value, this._then);
+class _$NfcReaderEventCopyWithImpl<$Res, $Val extends NfcReaderEvent>
+    implements $NfcReaderEventCopyWith<$Res> {
+  _$NfcReaderEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DeleteUserEvent
+  /// Create a copy of NfcReaderEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$DeleteUserInfoEventImplCopyWith<$Res> {
-  factory _$$DeleteUserInfoEventImplCopyWith(_$DeleteUserInfoEventImpl value,
-          $Res Function(_$DeleteUserInfoEventImpl) then) =
-      __$$DeleteUserInfoEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({BuildContext context, int id});
+abstract class _$$readCardNfcEventImplCopyWith<$Res> {
+  factory _$$readCardNfcEventImplCopyWith(_$readCardNfcEventImpl value,
+          $Res Function(_$readCardNfcEventImpl) then) =
+      __$$readCardNfcEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$DeleteUserInfoEventImplCopyWithImpl<$Res>
-    extends _$DeleteUserEventCopyWithImpl<$Res, _$DeleteUserInfoEventImpl>
-    implements _$$DeleteUserInfoEventImplCopyWith<$Res> {
-  __$$DeleteUserInfoEventImplCopyWithImpl(_$DeleteUserInfoEventImpl _value,
-      $Res Function(_$DeleteUserInfoEventImpl) _then)
+class __$$readCardNfcEventImplCopyWithImpl<$Res>
+    extends _$NfcReaderEventCopyWithImpl<$Res, _$readCardNfcEventImpl>
+    implements _$$readCardNfcEventImplCopyWith<$Res> {
+  __$$readCardNfcEventImplCopyWithImpl(_$readCardNfcEventImpl _value,
+      $Res Function(_$readCardNfcEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteUserEvent
+  /// Create a copy of NfcReaderEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? context = null,
-    Object? id = null,
-  }) {
-    return _then(_$DeleteUserInfoEventImpl(
-      context: null == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
-  const _$DeleteUserInfoEventImpl({required this.context, required this.id});
-
-  @override
-  final BuildContext context;
-  @override
-  final int id;
+class _$readCardNfcEventImpl implements readCardNfcEvent {
+  const _$readCardNfcEventImpl();
 
   @override
   String toString() {
-    return 'DeleteUserEvent.deleteUser(context: $context, id: $id)';
+    return 'NfcReaderEvent.readNfc()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DeleteUserInfoEventImpl &&
-            (identical(other.context, context) || other.context == context) &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, context, id);
-
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DeleteUserInfoEventImplCopyWith<_$DeleteUserInfoEventImpl> get copyWith =>
-      __$$DeleteUserInfoEventImplCopyWithImpl<_$DeleteUserInfoEventImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, int id) deleteUser,
-    required TResult Function() reset,
-  }) {
-    return deleteUser(context, id);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, int id)? deleteUser,
-    TResult? Function()? reset,
-  }) {
-    return deleteUser?.call(context, id);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, int id)? deleteUser,
-    TResult Function()? reset,
-    required TResult orElse(),
-  }) {
-    if (deleteUser != null) {
-      return deleteUser(context, id);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DeleteUserInfoEvent value) deleteUser,
-    required TResult Function(ResetUserStateEvent value) reset,
-  }) {
-    return deleteUser(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DeleteUserInfoEvent value)? deleteUser,
-    TResult? Function(ResetUserStateEvent value)? reset,
-  }) {
-    return deleteUser?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DeleteUserInfoEvent value)? deleteUser,
-    TResult Function(ResetUserStateEvent value)? reset,
-    required TResult orElse(),
-  }) {
-    if (deleteUser != null) {
-      return deleteUser(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DeleteUserInfoEvent implements DeleteUserEvent {
-  const factory DeleteUserInfoEvent(
-      {required final BuildContext context,
-      required final int id}) = _$DeleteUserInfoEventImpl;
-
-  BuildContext get context;
-  int get id;
-
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeleteUserInfoEventImplCopyWith<_$DeleteUserInfoEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ResetUserStateEventImplCopyWith<$Res> {
-  factory _$$ResetUserStateEventImplCopyWith(_$ResetUserStateEventImpl value,
-          $Res Function(_$ResetUserStateEventImpl) then) =
-      __$$ResetUserStateEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ResetUserStateEventImplCopyWithImpl<$Res>
-    extends _$DeleteUserEventCopyWithImpl<$Res, _$ResetUserStateEventImpl>
-    implements _$$ResetUserStateEventImplCopyWith<$Res> {
-  __$$ResetUserStateEventImplCopyWithImpl(_$ResetUserStateEventImpl _value,
-      $Res Function(_$ResetUserStateEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ResetUserStateEventImpl implements ResetUserStateEvent {
-  const _$ResetUserStateEventImpl();
-
-  @override
-  String toString() {
-    return 'DeleteUserEvent.reset()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResetUserStateEventImpl);
+        (other.runtimeType == runtimeType && other is _$readCardNfcEventImpl);
   }
 
   @override
@@ -271,30 +118,30 @@ class _$ResetUserStateEventImpl implements ResetUserStateEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context, int id) deleteUser,
-    required TResult Function() reset,
+    required TResult Function() readNfc,
+    required TResult Function() resetToScanNewCard,
   }) {
-    return reset();
+    return readNfc();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context, int id)? deleteUser,
-    TResult? Function()? reset,
+    TResult? Function()? readNfc,
+    TResult? Function()? resetToScanNewCard,
   }) {
-    return reset?.call();
+    return readNfc?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context, int id)? deleteUser,
-    TResult Function()? reset,
+    TResult Function()? readNfc,
+    TResult Function()? resetToScanNewCard,
     required TResult orElse(),
   }) {
-    if (reset != null) {
-      return reset();
+    if (readNfc != null) {
+      return readNfc();
     }
     return orElse();
   }
@@ -302,47 +149,152 @@ class _$ResetUserStateEventImpl implements ResetUserStateEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DeleteUserInfoEvent value) deleteUser,
-    required TResult Function(ResetUserStateEvent value) reset,
+    required TResult Function(readCardNfcEvent value) readNfc,
+    required TResult Function(resetCardNfcEvent value) resetToScanNewCard,
   }) {
-    return reset(this);
+    return readNfc(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DeleteUserInfoEvent value)? deleteUser,
-    TResult? Function(ResetUserStateEvent value)? reset,
+    TResult? Function(readCardNfcEvent value)? readNfc,
+    TResult? Function(resetCardNfcEvent value)? resetToScanNewCard,
   }) {
-    return reset?.call(this);
+    return readNfc?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DeleteUserInfoEvent value)? deleteUser,
-    TResult Function(ResetUserStateEvent value)? reset,
+    TResult Function(readCardNfcEvent value)? readNfc,
+    TResult Function(resetCardNfcEvent value)? resetToScanNewCard,
     required TResult orElse(),
   }) {
-    if (reset != null) {
-      return reset(this);
+    if (readNfc != null) {
+      return readNfc(this);
     }
     return orElse();
   }
 }
 
-abstract class ResetUserStateEvent implements DeleteUserEvent {
-  const factory ResetUserStateEvent() = _$ResetUserStateEventImpl;
+abstract class readCardNfcEvent implements NfcReaderEvent {
+  const factory readCardNfcEvent() = _$readCardNfcEventImpl;
 }
 
 /// @nodoc
-mixin _$DeleteUserState {
+abstract class _$$resetCardNfcEventImplCopyWith<$Res> {
+  factory _$$resetCardNfcEventImplCopyWith(_$resetCardNfcEventImpl value,
+          $Res Function(_$resetCardNfcEventImpl) then) =
+      __$$resetCardNfcEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$resetCardNfcEventImplCopyWithImpl<$Res>
+    extends _$NfcReaderEventCopyWithImpl<$Res, _$resetCardNfcEventImpl>
+    implements _$$resetCardNfcEventImplCopyWith<$Res> {
+  __$$resetCardNfcEventImplCopyWithImpl(_$resetCardNfcEventImpl _value,
+      $Res Function(_$resetCardNfcEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NfcReaderEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$resetCardNfcEventImpl implements resetCardNfcEvent {
+  const _$resetCardNfcEventImpl();
+
+  @override
+  String toString() {
+    return 'NfcReaderEvent.resetToScanNewCard()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$resetCardNfcEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() readNfc,
+    required TResult Function() resetToScanNewCard,
+  }) {
+    return resetToScanNewCard();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? readNfc,
+    TResult? Function()? resetToScanNewCard,
+  }) {
+    return resetToScanNewCard?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? readNfc,
+    TResult Function()? resetToScanNewCard,
+    required TResult orElse(),
+  }) {
+    if (resetToScanNewCard != null) {
+      return resetToScanNewCard();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(readCardNfcEvent value) readNfc,
+    required TResult Function(resetCardNfcEvent value) resetToScanNewCard,
+  }) {
+    return resetToScanNewCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(readCardNfcEvent value)? readNfc,
+    TResult? Function(resetCardNfcEvent value)? resetToScanNewCard,
+  }) {
+    return resetToScanNewCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(readCardNfcEvent value)? readNfc,
+    TResult Function(resetCardNfcEvent value)? resetToScanNewCard,
+    required TResult orElse(),
+  }) {
+    if (resetToScanNewCard != null) {
+      return resetToScanNewCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class resetCardNfcEvent implements NfcReaderEvent {
+  const factory resetCardNfcEvent() = _$resetCardNfcEventImpl;
+}
+
+/// @nodoc
+mixin _$NfcReaderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function() success,
+    required TResult Function(String card) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -350,7 +302,7 @@ mixin _$DeleteUserState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function()? success,
+    TResult? Function(String card)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -358,7 +310,7 @@ mixin _$DeleteUserState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function()? success,
+    TResult Function(String card)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -367,7 +319,7 @@ mixin _$DeleteUserState {
     required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
-    required TResult Function(_successState value) success,
+    required TResult Function(_success value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -375,7 +327,7 @@ mixin _$DeleteUserState {
     TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
-    TResult? Function(_successState value)? success,
+    TResult? Function(_success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -383,30 +335,30 @@ mixin _$DeleteUserState {
     TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
-    TResult Function(_successState value)? success,
+    TResult Function(_success value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeleteUserStateCopyWith<$Res> {
-  factory $DeleteUserStateCopyWith(
-          DeleteUserState value, $Res Function(DeleteUserState) then) =
-      _$DeleteUserStateCopyWithImpl<$Res, DeleteUserState>;
+abstract class $NfcReaderStateCopyWith<$Res> {
+  factory $NfcReaderStateCopyWith(
+          NfcReaderState value, $Res Function(NfcReaderState) then) =
+      _$NfcReaderStateCopyWithImpl<$Res, NfcReaderState>;
 }
 
 /// @nodoc
-class _$DeleteUserStateCopyWithImpl<$Res, $Val extends DeleteUserState>
-    implements $DeleteUserStateCopyWith<$Res> {
-  _$DeleteUserStateCopyWithImpl(this._value, this._then);
+class _$NfcReaderStateCopyWithImpl<$Res, $Val extends NfcReaderState>
+    implements $NfcReaderStateCopyWith<$Res> {
+  _$NfcReaderStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DeleteUserState
+  /// Create a copy of NfcReaderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -419,13 +371,13 @@ abstract class _$$initialStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$initialStateImplCopyWithImpl<$Res>
-    extends _$DeleteUserStateCopyWithImpl<$Res, _$initialStateImpl>
+    extends _$NfcReaderStateCopyWithImpl<$Res, _$initialStateImpl>
     implements _$$initialStateImplCopyWith<$Res> {
   __$$initialStateImplCopyWithImpl(
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteUserState
+  /// Create a copy of NfcReaderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -436,7 +388,7 @@ class _$initialStateImpl implements _initialState {
 
   @override
   String toString() {
-    return 'DeleteUserState.initial()';
+    return 'NfcReaderState.initial()';
   }
 
   @override
@@ -454,7 +406,7 @@ class _$initialStateImpl implements _initialState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function() success,
+    required TResult Function(String card) success,
   }) {
     return initial();
   }
@@ -465,7 +417,7 @@ class _$initialStateImpl implements _initialState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function()? success,
+    TResult? Function(String card)? success,
   }) {
     return initial?.call();
   }
@@ -476,7 +428,7 @@ class _$initialStateImpl implements _initialState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function()? success,
+    TResult Function(String card)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -491,7 +443,7 @@ class _$initialStateImpl implements _initialState {
     required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
-    required TResult Function(_successState value) success,
+    required TResult Function(_success value) success,
   }) {
     return initial(this);
   }
@@ -502,7 +454,7 @@ class _$initialStateImpl implements _initialState {
     TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
-    TResult? Function(_successState value)? success,
+    TResult? Function(_success value)? success,
   }) {
     return initial?.call(this);
   }
@@ -513,7 +465,7 @@ class _$initialStateImpl implements _initialState {
     TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
-    TResult Function(_successState value)? success,
+    TResult Function(_success value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -523,7 +475,7 @@ class _$initialStateImpl implements _initialState {
   }
 }
 
-abstract class _initialState implements DeleteUserState {
+abstract class _initialState implements NfcReaderState {
   const factory _initialState() = _$initialStateImpl;
 }
 
@@ -536,13 +488,13 @@ abstract class _$$loadingStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$loadingStateImplCopyWithImpl<$Res>
-    extends _$DeleteUserStateCopyWithImpl<$Res, _$loadingStateImpl>
+    extends _$NfcReaderStateCopyWithImpl<$Res, _$loadingStateImpl>
     implements _$$loadingStateImplCopyWith<$Res> {
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteUserState
+  /// Create a copy of NfcReaderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -553,7 +505,7 @@ class _$loadingStateImpl implements _loadingState {
 
   @override
   String toString() {
-    return 'DeleteUserState.loading()';
+    return 'NfcReaderState.loading()';
   }
 
   @override
@@ -571,7 +523,7 @@ class _$loadingStateImpl implements _loadingState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function() success,
+    required TResult Function(String card) success,
   }) {
     return loading();
   }
@@ -582,7 +534,7 @@ class _$loadingStateImpl implements _loadingState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function()? success,
+    TResult? Function(String card)? success,
   }) {
     return loading?.call();
   }
@@ -593,7 +545,7 @@ class _$loadingStateImpl implements _loadingState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function()? success,
+    TResult Function(String card)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -608,7 +560,7 @@ class _$loadingStateImpl implements _loadingState {
     required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
-    required TResult Function(_successState value) success,
+    required TResult Function(_success value) success,
   }) {
     return loading(this);
   }
@@ -619,7 +571,7 @@ class _$loadingStateImpl implements _loadingState {
     TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
-    TResult? Function(_successState value)? success,
+    TResult? Function(_success value)? success,
   }) {
     return loading?.call(this);
   }
@@ -630,7 +582,7 @@ class _$loadingStateImpl implements _loadingState {
     TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
-    TResult Function(_successState value)? success,
+    TResult Function(_success value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -640,7 +592,7 @@ class _$loadingStateImpl implements _loadingState {
   }
 }
 
-abstract class _loadingState implements DeleteUserState {
+abstract class _loadingState implements NfcReaderState {
   const factory _loadingState() = _$loadingStateImpl;
 }
 
@@ -655,13 +607,13 @@ abstract class _$$failedStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$failedStateImplCopyWithImpl<$Res>
-    extends _$DeleteUserStateCopyWithImpl<$Res, _$failedStateImpl>
+    extends _$NfcReaderStateCopyWithImpl<$Res, _$failedStateImpl>
     implements _$$failedStateImplCopyWith<$Res> {
   __$$failedStateImplCopyWithImpl(
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteUserState
+  /// Create a copy of NfcReaderState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -687,7 +639,7 @@ class _$failedStateImpl implements _failedState {
 
   @override
   String toString() {
-    return 'DeleteUserState.failed(message: $message)';
+    return 'NfcReaderState.failed(message: $message)';
   }
 
   @override
@@ -701,7 +653,7 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of DeleteUserState
+  /// Create a copy of NfcReaderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -715,7 +667,7 @@ class _$failedStateImpl implements _failedState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function() success,
+    required TResult Function(String card) success,
   }) {
     return failed(message);
   }
@@ -726,7 +678,7 @@ class _$failedStateImpl implements _failedState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function()? success,
+    TResult? Function(String card)? success,
   }) {
     return failed?.call(message);
   }
@@ -737,7 +689,7 @@ class _$failedStateImpl implements _failedState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function()? success,
+    TResult Function(String card)? success,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -752,7 +704,7 @@ class _$failedStateImpl implements _failedState {
     required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
-    required TResult Function(_successState value) success,
+    required TResult Function(_success value) success,
   }) {
     return failed(this);
   }
@@ -763,7 +715,7 @@ class _$failedStateImpl implements _failedState {
     TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
-    TResult? Function(_successState value)? success,
+    TResult? Function(_success value)? success,
   }) {
     return failed?.call(this);
   }
@@ -774,7 +726,7 @@ class _$failedStateImpl implements _failedState {
     TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
-    TResult Function(_successState value)? success,
+    TResult Function(_success value)? success,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -784,12 +736,12 @@ class _$failedStateImpl implements _failedState {
   }
 }
 
-abstract class _failedState implements DeleteUserState {
+abstract class _failedState implements NfcReaderState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
 
-  /// Create a copy of DeleteUserState
+  /// Create a copy of NfcReaderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -797,42 +749,69 @@ abstract class _failedState implements DeleteUserState {
 }
 
 /// @nodoc
-abstract class _$$successStateImplCopyWith<$Res> {
-  factory _$$successStateImplCopyWith(
-          _$successStateImpl value, $Res Function(_$successStateImpl) then) =
-      __$$successStateImplCopyWithImpl<$Res>;
+abstract class _$$successImplCopyWith<$Res> {
+  factory _$$successImplCopyWith(
+          _$successImpl value, $Res Function(_$successImpl) then) =
+      __$$successImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String card});
 }
 
 /// @nodoc
-class __$$successStateImplCopyWithImpl<$Res>
-    extends _$DeleteUserStateCopyWithImpl<$Res, _$successStateImpl>
-    implements _$$successStateImplCopyWith<$Res> {
-  __$$successStateImplCopyWithImpl(
-      _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
+class __$$successImplCopyWithImpl<$Res>
+    extends _$NfcReaderStateCopyWithImpl<$Res, _$successImpl>
+    implements _$$successImplCopyWith<$Res> {
+  __$$successImplCopyWithImpl(
+      _$successImpl _value, $Res Function(_$successImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteUserState
+  /// Create a copy of NfcReaderState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? card = null,
+  }) {
+    return _then(_$successImpl(
+      null == card
+          ? _value.card
+          : card // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$successStateImpl implements _successState {
-  const _$successStateImpl();
+class _$successImpl implements _success {
+  const _$successImpl(this.card);
+
+  @override
+  final String card;
 
   @override
   String toString() {
-    return 'DeleteUserState.success()';
+    return 'NfcReaderState.success(card: $card)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$successStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$successImpl &&
+            (identical(other.card, card) || other.card == card));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, card);
+
+  /// Create a copy of NfcReaderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$successImplCopyWith<_$successImpl> get copyWith =>
+      __$$successImplCopyWithImpl<_$successImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -840,9 +819,9 @@ class _$successStateImpl implements _successState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failed,
-    required TResult Function() success,
+    required TResult Function(String card) success,
   }) {
-    return success();
+    return success(card);
   }
 
   @override
@@ -851,9 +830,9 @@ class _$successStateImpl implements _successState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
-    TResult? Function()? success,
+    TResult? Function(String card)? success,
   }) {
-    return success?.call();
+    return success?.call(card);
   }
 
   @override
@@ -862,11 +841,11 @@ class _$successStateImpl implements _successState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failed,
-    TResult Function()? success,
+    TResult Function(String card)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(card);
     }
     return orElse();
   }
@@ -877,7 +856,7 @@ class _$successStateImpl implements _successState {
     required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
-    required TResult Function(_successState value) success,
+    required TResult Function(_success value) success,
   }) {
     return success(this);
   }
@@ -888,7 +867,7 @@ class _$successStateImpl implements _successState {
     TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
-    TResult? Function(_successState value)? success,
+    TResult? Function(_success value)? success,
   }) {
     return success?.call(this);
   }
@@ -899,7 +878,7 @@ class _$successStateImpl implements _successState {
     TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
-    TResult Function(_successState value)? success,
+    TResult Function(_success value)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -909,6 +888,14 @@ class _$successStateImpl implements _successState {
   }
 }
 
-abstract class _successState implements DeleteUserState {
-  const factory _successState() = _$successStateImpl;
+abstract class _success implements NfcReaderState {
+  const factory _success(final String card) = _$successImpl;
+
+  String get card;
+
+  /// Create a copy of NfcReaderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$successImplCopyWith<_$successImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
