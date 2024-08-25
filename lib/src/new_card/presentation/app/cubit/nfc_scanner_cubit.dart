@@ -99,14 +99,12 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
 //       log("no NFC READER Available");
 //     }
 //   }
-  Future<String?> readNfc(
-      BuildContext context, TextEditingController controller) async {
-     NFCAvailability value = await FlutterNfcKit.nfcAvailability;
+  Future<String?> readNfc(BuildContext context,
+      TextEditingController controller) async {
+    NFCAvailability value = await FlutterNfcKit.nfcAvailability;
     log("Checking NFC availability");
-     bool isAvailable = value==NFCAvailability.available;
-     String physicalCardNumber = "03811D6C";
-     String softwareCardNumber = convertCardNumber(physicalCardNumber);
-     print("Software Card Number: $softwareCardNumber"); // Output: 1813872899
+    bool isAvailable = value == NFCAvailability.available;
+
     if (isAvailable) {
       try {
         log("NFC is available");
@@ -119,15 +117,23 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
 
         // Poll for NFC tag
         NFCTag tag = await FlutterNfcKit.poll();
-        log("NFC tag discovered: ${tag.id} ${tag.toJson.toString()}");
-
+        log("NFC tag discovered: ${tag.id} applicationData ${tag
+            .applicationData} ${tag.toJson.toString()}");
+        log("${tag
+            .protocolInfo} tag.protocolInfo and tag.systemCode= ${ tag
+            .systemCode
+        }")
+        String physicalCardNumber = tag.id;
+        String softwareCardNumber = convertCardNumber(physicalCardNumber);
+        print(
+            "Software Card Number: $softwareCardNumber"); // Output: 1813872899
         String rfidData = '';
 
         // Check if the tag contains NDEF records
-        if (tag.ndefAvailable??false) {
+        if (tag.ndefAvailable ?? false) {
           log("NDEF tag detected");
 
-          if (tag.ndefType!=null ) {
+          if (tag.ndefType != null) {
             // Read the NDEF message
             var ndef = await FlutterNfcKit.readNDEFRecords();
             var record = ndef[0];
@@ -135,7 +141,7 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
             log("Payload: $payload");
 
             // final data = String.fromCharCodes(payload);
-            final data=payload?.toString();
+            final data = payload?.toString();
             log("Data: $data");
 
             rfidData = "RFID Data: $data";
@@ -143,7 +149,6 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
             log("No NDEF records found");
             rfidData = "NDEF tag detected but no records found.";
           }
-
         } else if (tag.type == NFCTagType.iso7816) {
           log("ISO7816 tag detected");
 // Send APDU command to select the application (example, replace with actual command)
@@ -178,7 +183,8 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
         await FlutterNfcKit.finish(iosAlertMessage: "NFC Session Ended");
       } catch (e) {
         log("Error occurred: ${e.toString()}");
-        Navigator.pop(context); // Ensure the dialog is dismissed in case of an error
+        Navigator.pop(
+            context); // Ensure the dialog is dismissed in case of an error
       }
     } else {
       log("No NFC reader available");
@@ -187,6 +193,7 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
       );
     }
   }
+
   String extractPAN(String apduResponse) {
     // Example logic to parse the APDU response and extract the PAN.
     // Actual implementation will depend on your card's specific data structure.
@@ -195,6 +202,7 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
     String pan = apduResponse; // This is just an example
     return pan;
   }
+
   closeSesion() {
     log("stop session");
     NfcManager.instance.stopSession();
@@ -203,7 +211,7 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
   checkNfcSupported() async {
     NFCAvailability value = await FlutterNfcKit.nfcAvailability;
     log("Checking NFC availability");
-    bool isAvailable = value==NFCAvailability.available;
+    bool isAvailable = value == NFCAvailability.available;
     log(
         "Calling checkNfcSupported from splash value supports NFC: $isAvailable");
 
