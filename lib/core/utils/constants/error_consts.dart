@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../common/singletons/cache.dart';
 
 abstract class ErrorConst {
@@ -342,6 +345,82 @@ abstract class ErrorConst {
 
       default:
         return UNKNOWN_ERROR;
+    }
+  }
+
+  static String? localErrorValidation(BuildContext context, String message){
+    final localization= AppLocalizations.of(context);
+    switch (message) {
+      case 'validation.name_required':
+        return localization?.validationNameRequired;
+      case 'validation.name_string':
+        return localization?.validationNameString;
+      case 'validation.name_max':
+        return localization?.validationNameMax;
+      case 'validation.email_invalid':
+        return localization?.validationEmailInvalid;
+      case 'validation.email_max':
+        return localization?.validationEmailMax;
+      case 'validation.email_unique':
+        return localization?.validationEmailUnique;
+      case 'validation.password_string':
+        return localization?.validationPasswordString;
+      case 'validation.password_min':
+        return localization?.validationPasswordMin;
+      case 'validation.user_phone_required':
+        return localization?.validationUserPhoneRequired;
+      case 'validation.user_phone_string':
+        return localization?.validationUserPhoneString;
+      case 'validation.user_phone_max':
+        return localization?.validationUserPhoneMax;
+      case 'validation.user_phone_unique':
+        return localization?.validationUserPhoneUnique;
+      case 'validation.user_phone_invalid':
+        return localization?.validationUserPhoneInvalid;
+      case 'validation.department_string':
+        return localization?.validationDepartmentString;
+      case 'validation.department_max':
+        return localization?.validationDepartmentMax;
+      case 'validation.position_string':
+        return localization?.validationPositionString;
+      case 'validation.position_max':
+        return localization?.validationPositionMax;
+      case 'validation.user_number_max':
+        return localization?.validationUserNumberMax;
+      case 'validation.user_number_unique':
+        return localization?.validationUserNumberUnique;
+      case 'validation.user_card_required':
+        return localization?.validationUserCardRequired;
+      case 'validation.user_card_max':
+        return localization?.validationUserCardMax;
+      case 'validation.user_card_unique':
+        return localization?.validationUserCardUnique;
+      case 'validation.equipment_string':
+        return localization?.validationEquipmentString;
+      case 'validation.equipment_max':
+        return localization?.validationEquipmentMax;
+      case 'validation.identity_id_string':
+        return localization?.validationIdentityIdString;
+      case 'validation.identity_id_max':
+        return localization?.validationIdentityIdMax;
+      case 'validation.identity_id_unique':
+        return localization?.validationIdentityIdUnique;
+      case 'validation.role_string':
+        return localization?.validationRoleString;
+      case 'validation.type_required':
+        return localization?.validationTypeRequired;
+      case 'validation.type_string':
+        return localization?.validationTypeString;
+      case 'validation.type_invalid':
+        return localization?.validationTypeInvalid;
+      case 'validation.face_images_image':
+        return localization?.validationFaceImagesImage;
+      case 'validation.face_images_mimes':
+        return localization?.validationFaceImagesMimes;
+      case 'validation.face_images_max':
+        return localization?.validationFaceImagesMax;
+      default:
+        return null;
     }
   }
 }

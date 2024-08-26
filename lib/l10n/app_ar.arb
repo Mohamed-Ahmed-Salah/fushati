@@ -5,7 +5,7 @@
 "onlyTwelveNumber":"يجب أن يحتوي هذا الحقل على 12 أرقام",
 
 "fieldDontStartWithZero":"يجب ألا يبدأ هذا الحقل بصفر",
-"fieldShouldStartWithKsa":"يجب ان يبدأ هذا الحقل ب966",
+"fieldShouldStartWithKsa":"يجب ان يبدأ هذا الحقل ب9665",
 
 "requiredField":"هذه الخانة مطلوبه",
 "enterValidEmail":"يرجى إدخال البريد الإلكتروني الصحيح",
@@ -149,10 +149,41 @@
     "onBoardTitle3": "دفع آمن وسلس",
     "onBoardSub1": "نوفر للآباء ميزات متقدمة لمراقبة نفقات أبنائهم اليومية وتحديد حدود الإنفاق بشكل شخصي.",
     "onBoardSub2": "يتضمن نظامنا تطبيقًا للآباء، وأداة دفع للطلاب، ونظام نقاط بيع، ولوحة تحكم لأصحاب المقاصف.",
-    "onBoardSub3": "تضمن فصحتي مدفوعات آمنة وسلسة، مما يحمي الطلاب من السرقة ويوفر راحة البال للآباء."
-
-
-
+    "onBoardSub3": "تضمن فصحتي مدفوعات آمنة وسلسة، مما يحمي الطلاب من السرقة ويوفر راحة البال للآباء.",
+"validationNameRequired": "حقل الاسم مطلوب.",
+"validationNameString": "يجب أن يكون الاسم نصًا.",
+"validationNameMax": "يجب ألا يتجاوز الاسم 255 حرفًا.",
+"validationEmailInvalid": "يجب أن يكون البريد الإلكتروني عنوان بريد إلكتروني صالح.",
+"validationEmailMax": "يجب ألا يتجاوز البريد الإلكتروني 255 حرفًا.",
+"validationEmailUnique": "تم استخدام هذا البريد الإلكتروني من قبل.",
+"validationPasswordString": "يجب أن تكون كلمة المرور نصًا.",
+"validationPasswordMin": "يجب ألا تقل كلمة المرور عن 6 أحرف.",
+"validationUserPhoneRequired": "رقم الهاتف مطلوب.",
+"validationUserPhoneString": "يجب أن يكون رقم الهاتف نصًا.",
+"validationUserPhoneMax": "يجب ألا يتجاوز رقم الهاتف 255 حرفًا.",
+"validationUserPhoneUnique": "تم استخدام رقم الهاتف من قبل.",
+"validationUserPhoneInvalid": "تنسيق رقم الهاتف غير صالح.",
+"validationDepartmentString": "يجب أن يكون القسم نصًا.",
+"validationDepartmentMax": "يجب ألا يتجاوز القسم 255 حرفًا.",
+"validationPositionString": "يجب أن تكون الوظيفة نصًا.",
+"validationPositionMax": "يجب ألا تتجاوز الوظيفة 255 حرفًا.",
+"validationUserNumberMax": "يجب ألا يتجاوز الرقم المستخدم 255 حرفًا.",
+"validationUserNumberUnique": "تم استخدام الرقم المستخدم من قبل.",
+"validationUserCardRequired": "بطاقة المستخدم مطلوبة.",
+"validationUserCardMax": "يجب ألا تتجاوز بطاقة المستخدم 255 حرفًا.",
+"validationUserCardUnique": "تم استخدام بطاقة المستخدم من قبل.",
+"validationEquipmentString": "يجب أن تكون المعدات نصًا.",
+"validationEquipmentMax": "يجب ألا تتجاوز المعدات 255 حرفًا.",
+"validationIdentityIdString": "يجب أن يكون رقم الهوية نصًا.",
+"validationIdentityIdMax": "يجب ألا يتجاوز رقم الهوية 255 حرفًا.",
+"validationIdentityIdUnique": "تم استخدام رقم الهوية من قبل.",
+"validationRoleString": "يجب أن تكون الوظيفة نصًا.",
+"validationTypeRequired": "حقل النوع مطلوب.",
+"validationTypeString": "يجب أن يكون النوع نصًا.",
+"validationTypeInvalid": "النوع المحدد غير صالح.",
+"validationFaceImagesImage": "يجب أن تكون كل صورة وجه ملف صورة.",
+"validationFaceImagesMimes": "يجب أن تكون كل صورة وجه من النوع: jpeg, png, jpg, gif.",
+"validationFaceImagesMax": "يجب ألا تتجاوز كل صورة وجه 2 ميغابايت."
 
 
 }

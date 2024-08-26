@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -28,8 +30,7 @@ class AddNewCardBloc extends Bloc<AddNewCardEvent, AddNewCardState> {
         phoneNumber: event.phoneNumber));
     result.fold(
       (failure) {
-        emit(AddNewCardState.failed(
-            failure.message));
+        emit(AddNewCardState.failed(failure.message));
       },
       (_) {
         emit(const AddNewCardState.success());

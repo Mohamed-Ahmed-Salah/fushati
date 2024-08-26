@@ -34,7 +34,8 @@ class AddCardLoaderView extends StatelessWidget {
             CoreUtils.showMyDialog(
               title: ErrorConst.getErrorBody(
                   text: ErrorConst.somethignWentWrongEn),
-              subTitle: ErrorConst.getErrorBody(text: message),
+              subTitle: ErrorConst.localErrorValidation(context, message) ??
+                  ErrorConst.getErrorBody(text: message),
               onPressed: () {
                 router.pop();
               },

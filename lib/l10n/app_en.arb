@@ -5,7 +5,7 @@
 "fieldDontStartWithZero":"This field should not start with 0",
 "requiredField":"This field is required",
 "enterValidEmail":"Please enter a valid Email",
-"fieldShouldStartWithKsa":"This field should start with 966",
+"fieldShouldStartWithKsa":"This field should start with 9665",
 "enterFullName":"Please enter full name",
 "enterNameWithNoNumber":"Please enter valid full name with no numbers",
 "enterValidFullName":"Please enter valid full name",
@@ -136,11 +136,41 @@
 "onBoardTitle3":"Secure and Effortless Payments",
 "onBoardSub1":"We empower parents with advanced features to monitor their children's daily expenses and set personalized spending limits.",
 "onBoardSub2":"Our system includes an app for parents, a payment tool for students, a point of sale system, a POS and a control panel for canteen owners.",
-"onBoardSub3":"Fasahati guarantees secure, hassle-free payments, safeguarding students from theft and ensuring peace of mind for parents."
-
-
-
-
+"onBoardSub3":"Fasahati guarantees secure, hassle-free payments, safeguarding students from theft and ensuring peace of mind for parents.",
+"validationNameRequired": "The name field is required.",
+"validationNameString": "The name must be a string.",
+"validationNameMax": "The name may not be greater than 255 characters.",
+"validationEmailInvalid": "The email must be a valid email address.",
+"validationEmailMax": "The email may not be greater than 255 characters.",
+"validationEmailUnique": "The email has already been taken.",
+"validationPasswordString": "The password must be a string.",
+"validationPasswordMin": "The password must be at least 6 characters.",
+"validationUserPhoneRequired": "The phone number is required.",
+"validationUserPhoneString": "The phone number must be a string.",
+"validationUserPhoneMax": "The phone number may not be greater than 255 characters.",
+"validationUserPhoneUnique": "The phone number has already been taken.",
+"validationUserPhoneInvalid": "The phone number format is invalid.",
+"validationDepartmentString": "The department must be a string.",
+"validationDepartmentMax": "The department may not be greater than 255 characters.",
+"validationPositionString": "The position must be a string.",
+"validationPositionMax": "The position may not be greater than 255 characters.",
+"validationUserNumberMax": "The user number may not be greater than 255 characters.",
+"validationUserNumberUnique": "The user number has already been taken.",
+"validationUserCardRequired": "The user card is required.",
+"validationUserCardMax": "The user card may not be greater than 255 characters.",
+"validationUserCardUnique": "The user card has already been taken.",
+"validationEquipmentString": "The equipment must be a string.",
+"validationEquipmentMax": "The equipment may not be greater than 255 characters.",
+"validationIdentityIdString": "The identity ID must be a string.",
+"validationIdentityIdMax": "The identity ID may not be greater than 255 characters.",
+"validationIdentityIdUnique": "The identity ID has already been taken.",
+"validationRoleString": "The role must be a string.",
+"validationTypeRequired": "The type field is required.",
+"validationTypeString": "The type must be a string.",
+"validationTypeInvalid": "The selected type is invalid.",
+"validationFaceImagesImage": "Each face image must be an image file.",
+"validationFaceImagesMimes": "Each face image must be a file of type: jpeg, png, jpg, gif.",
+"validationFaceImagesMax": "Each face image may not be greater than 2 MB."
 
 }
 

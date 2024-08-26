@@ -32,7 +32,7 @@ abstract class TextFormValidation {
     if (value.startsWith("0")) {
       return "${AppLocalizations.of(context)?.fieldDontStartWithZero}";
     }
-    if (!value.startsWith("966")) {
+    if (!value.startsWith("9665")) {
       return "${AppLocalizations.of(context)?.fieldShouldStartWithKsa}";
     }
   }
