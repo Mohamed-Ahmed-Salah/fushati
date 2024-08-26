@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/common/widgets/green_background.dart';
 import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
+import 'package:fushati/core/services/router.dart';
 import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
@@ -25,20 +26,21 @@ class AddCardLoaderView extends StatelessWidget {
       canPop: false,
       child: BlocConsumer<AddNewCardBloc, AddNewCardState>(
         listener: (BuildContext context, AddNewCardState state) {
-          state.whenOrNull(
-            success: () {
-              context.read<CardsBloc>().add(const CardsEvent.getCards());
-              context.pushNamed(AddCardSuccessView.name);
-              
-            },
-            failed: (message){
-              context.pop();
-              CoreUtils.showMyDialog(title: ErrorConst.CACHE_NOT_FOUND_MESSAGE_AR, subTitle: message, onPressed: (){
-                context.pop();
-              },);
-              
-            }
-          );
+          state.whenOrNull(success: () {
+            context.read<CardsBloc>().add(const CardsEvent.getCards());
+            context.pushNamed(AddCardSuccessView.name);
+          }, failed: (message) {
+            context.pop();
+            CoreUtils.showMyDialog(
+              title: ErrorConst.getErrorBody(
+                  text: ErrorConst.somethignWentWrongEn),
+              subTitle: ErrorConst.localErrorValidation(context, message) ??
+                  ErrorConst.getErrorBody(text: message),
+              onPressed: () {
+                router.pop();
+              },
+            );
+          });
         },
         builder: (context, state) {
           return Scaffold(

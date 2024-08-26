@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../core/utils/constants/error_consts.dart';
 import '../../../../home/domain/usecases/add_card.dart';
 
 part 'add_new_card_event.dart';
@@ -20,17 +21,18 @@ class AddNewCardBloc extends Bloc<AddNewCardEvent, AddNewCardState> {
   }
 
   _addCardEvent(event, emit) async {
-    String cardNumber = event.cardNumber;
     emit(const AddNewCardState.loading());
-    final result = await _addCard(cardNumber);
+    final result = await _addCard(AddNewCardParams(
+        email: event.email,
+        name: event.name,
+        cardNumber: event.cardNumber,
+        studentNumber: event.cardNumber,
+        phoneNumber: event.phoneNumber));
     result.fold(
       (failure) {
-
-        emit(AddNewCardState.failed(
-            ErrorConst.getErrorBody(text: failure.message)));
+        emit(AddNewCardState.failed(failure.message));
       },
       (_) {
-
         emit(const AddNewCardState.success());
       },
     );

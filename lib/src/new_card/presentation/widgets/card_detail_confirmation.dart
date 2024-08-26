@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
-import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../views/add_card_loader.dart';
-
+///this widget is not used until we add new card instead of add new student card
 class CardDetail extends StatelessWidget {
   final CardEntity card;
 
@@ -77,9 +74,10 @@ class CardDetail extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                   onPressed: () {
-                    context.read<AddNewCardBloc>().add(
-                        AddNewCardEvent.addCard(cardNumber: card.userCard));
-                    context.pushNamed(AddCardLoaderView.path);
+                    ///removed until later
+                    // context.read<AddNewCardBloc>().add(
+                    //     AddNewCardEvent.addCard(cardNumber: card.userCard));
+                    // context.pushNamed(AddCardLoaderView.path);
                   },
                   child: Text("${AppLocalizations.of(context)?.confirm}")),
             )

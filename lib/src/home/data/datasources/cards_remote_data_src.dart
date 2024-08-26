@@ -13,7 +13,7 @@ import '../../../../core/utils/constants/network_constants.dart';
 
 class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   static const studentCardsEndpoint = '/parent/students';
-  static const addCardEndpoint = '/parent-student';
+  static const addCardEndpoint = '/users/new/user';
   static const reportsEndpoint = '/reports';
   static const deleteCardEndpoint = '/parent-student';
   static const getCardDetailsEndpoint = '/student-card';
@@ -23,16 +23,30 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   final Dio _dio;
 
   @override
-  Future<void> addCard({required String cardNumber}) async {
+  Future<void> addCard({
+    required String name,
+    required String email,
+    required String phoneNumber,
+    required String cardNumber,
+    required String studentNumber,
+  }) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .post('${NetworkConstants.parentsUrl}$addCardEndpoint',
-              data: {"student_card": cardNumber},
+          .post('${NetworkConstants.baseUrl}$addCardEndpoint',
+              data: {
+                "user_card": cardNumber,
+                "name": name,
+                "email": email,
+                "user_number": phoneNumber,
+                "user_phone": phoneNumber,
+                "type": "student"
+              },
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
+      print("response ${response.data} ${response.statusCode}");
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
 
       if (isSuccess) {
@@ -50,9 +64,17 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
+      print(
+          "error Dioss  ${e.response?.data['errors']} ${e.response?.statusCode}");
+
+      String status = e.response?.data["message"] ??
+          e.response?.data['errors']["user_phone"][0] ??
+          e.response?.data['errors']["user_number"][0] ??
+          e.response?.data['errors']["email"][0] ??
+          ErrorConst.getError(statusCode: e.response?.statusCode ?? 0);
+      print("STATUS $status");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -65,8 +87,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               statusCode: e.response?.statusCode ?? 400);
         }
       }
-      String status = e.response?.data["message"] ??
-          ErrorConst.getError(statusCode: e.response?.statusCode ?? 0);
+
       throw ServerException(message: status, statusCode: 500);
     } on ServerException {
       rethrow;
@@ -352,7 +373,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
-        throw const ServerException(
+      throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
   }
@@ -370,7 +391,11 @@ abstract class CardRemoteDataSrc {
   });
 
   Future<void> addCard({
+    required String name,
+    required String email,
+    required String phoneNumber,
     required String cardNumber,
+    required String studentNumber,
   });
 
   Future<List<CardEntity>> getCards();
