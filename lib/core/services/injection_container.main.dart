@@ -13,6 +13,7 @@ Future<void> init() async {
     _userInfo(),
     _transactions(),
     _schools(),
+    _registrationFeesInit(),
   ]);
 }
 
@@ -50,6 +51,14 @@ Future<void> _cardsInit() async {
     ..registerLazySingleton<CardRepo>(() => CardRepoImpl(sl()))
     ..registerLazySingleton<CardRemoteDataSrc>(
         () => CardRemoteDataSrcImpl(sl()));
+}
+Future<void> _registrationFeesInit() async {
+  sl
+
+    ..registerLazySingleton(() => GetRegistrationFeesUseCase(sl()))
+    ..registerLazySingleton<RegistrationFeesRepo>(() => RegistrationFeesRepoImpl(sl()))
+    ..registerLazySingleton<RegistrationFeesRemoteDataSrc>(
+            () => RegistrationFeesRemoteDataSrcImpl(sl()));
 }
 
 Future<void> _moyasarInit() async {

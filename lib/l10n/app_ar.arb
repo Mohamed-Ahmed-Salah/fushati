@@ -75,7 +75,7 @@
         "creatingNewCard": "إنشاء بطاقة طالب جديدة",
         "newCardAdded": "تمت إضافة بطاقة جديدة!",
         "successCardAdded": "لقد نجحت في إنشاء بطاقة جديدة. انقر على إدارة لشحن بطاقتك",
-        "done": "تم",
+        "done": "تأكيد",
         "manage": "إدارة",
           "confirm": "تأكيد",
 
@@ -84,6 +84,8 @@
   "next":"التالي",
   "topUpBalance":"شحن الرصيد",
   "enterRechargeAmount":"أدخل المبلغ الذي تريد شحنه",
+"enterRechargeAmountWithFees": "ملاحظة هذه بطاقة جديدة تحتوي على رسوم قدرها {fees} تدفع عند أول مرة شحن",
+
   "manageCard":"إدارة البطاقة",
   "topUpCard": "شحن البطاقة",
   "deleteCard": "حذف البطاقة",
@@ -142,6 +144,7 @@
 "discard": "تجاهل",
  "transferSuccess": "تم التحويل بنجاح",
   "amountTransferred": "لقد قمت بتحويل مبلغ {amount} بنجاح إلى رقم البطاقة {number}",
+  "amountTransferredWithFees": "لقد قمت بتحويل مبلغ {amount} بنجاح إلى رقم البطاقة {number}",
 "nfcIsNotAvailable":"NFC غير متوفر في هذا الجهاز",
 
     "onBoardTitle1": "تعزيز التحكم الأبوي",

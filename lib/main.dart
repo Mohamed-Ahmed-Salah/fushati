@@ -29,6 +29,7 @@ import 'src/auth/presentation/app/blocs/otp_bloc/otp_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'src/home/presentation/apps/registration_fees_bloc/registration_fees_bloc.dart';
 import 'src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
 import 'src/splash/presentation/app/get_schools_bloc/get_schools_bloc.dart';
 
@@ -127,8 +128,13 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<NfcScannerCubit>(
             create: (BuildContext context) => NfcScannerCubit(),
-          ),BlocProvider<NfcReaderBloc>(
+          ),
+          BlocProvider<NfcReaderBloc>(
             create: (BuildContext context) => NfcReaderBloc(),
+          ),
+          BlocProvider<RegistrationFeesBloc>(
+            create: (BuildContext context) =>
+                RegistrationFeesBloc(getRegistrationFeesUseCase: sl()),
           ),
           BlocProvider<GetSchoolsBloc>(
             create: (BuildContext context) => GetSchoolsBloc(getSchools: sl())
@@ -157,5 +163,3 @@ class MyApp extends StatelessWidget {
     });
   }
 }
-
-//todo delete user

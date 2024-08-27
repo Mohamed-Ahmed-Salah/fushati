@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fushati/src/home/data/models/card_model.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
@@ -303,6 +304,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
+      debugPrint("${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

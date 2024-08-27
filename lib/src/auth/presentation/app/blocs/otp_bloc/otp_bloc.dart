@@ -54,12 +54,10 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
       result.fold(
         //to save phone and not be lost from state
         (failure) {
-          // if (failure.statusCode == 0) {}
           emit(OtpState.failed(failure.message));
           CoreUtils.showMyDialog(
             title: ErrorConst.getErrorTitle(title: ErrorConst.otpErrorEn),
-            subTitle: failure.message,
-            // ErrorConst.getErrorBody(text: failure.message),
+              subTitle:  ErrorConst.getErrorBody(text: failure.message),
             onPressed: () {
               Navigator.pop(context);
             },

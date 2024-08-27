@@ -11,6 +11,7 @@ class CardModel extends CardEntity {
     required super.userPhone,
     required super.userCard,
     required super.balance,
+    required super.isNewCard,
   });
 
   factory CardModel.fromJson(Map<String, dynamic> json) => CardModel(
@@ -23,6 +24,7 @@ class CardModel extends CardEntity {
             : null,
         userNumber: json["user_number"] ?? "",
         userPhone: json["user_phone"] ?? "",
+        isNewCard: json["new_user"],
         userCard: json["user_card"],
         balance: (json["balance"]).toString(),
       );
