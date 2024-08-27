@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:fushati/src/home/data/datasources/registration_fees_remote_data_src.dart';
 import 'package:fushati/src/home/data/datasources/transaction_remote_data_src.dart';
 import 'package:fushati/src/home/data/repos/card_repo_impl.dart';
+import 'package:fushati/src/home/data/repos/registration_fees_repo_impl.dart';
 import 'package:fushati/src/home/data/repos/transaction_repo_impl.dart';
+import 'package:fushati/src/home/domain/repos/registration_fees_repo.dart';
 import 'package:fushati/src/home/domain/usecases/add_card.dart';
+import 'package:fushati/src/home/domain/usecases/get_registration_fees.dart';
 import 'package:fushati/src/manage_card/domain/usecases/delete_card.dart';
 import 'package:fushati/src/home/domain/usecases/get_card.dart';
 import 'package:fushati/src/home/domain/usecases/get_cards.dart';

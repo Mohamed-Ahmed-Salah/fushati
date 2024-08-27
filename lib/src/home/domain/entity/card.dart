@@ -10,6 +10,7 @@ class CardEntity {
   final String userPhone;
   final String userCard;
   final String balance;
+  final bool isNewCard;
 
 
   CardEntity({
@@ -21,6 +22,7 @@ class CardEntity {
     required this.updatedAt,
     required this.userNumber,
     required this.userPhone,
+    required this.isNewCard,
 
     required this.userCard,
 

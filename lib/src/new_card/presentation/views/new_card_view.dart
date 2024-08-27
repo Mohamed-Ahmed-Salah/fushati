@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -56,7 +57,7 @@ class _NewCardViewState extends State<NewCardView> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NfcReaderBloc, NfcReaderState>(
-        listener: (BuildContext context, state) {
+        listener: (BuildContext _, state) {
       state.when(
           initial: () {},
           loading: () {
@@ -133,7 +134,8 @@ class _NewCardViewState extends State<NewCardView> {
                                 BlocBuilder<NfcScannerCubit, NfcScannerState>(
                                     builder: (context, state) {
                               return state.when(
-                                initial: (isNfcSupported) => isNfcSupported
+                                initial: (isNfcSupported) => isNfcSupported &&
+                                        Platform.isAndroid
                                     ? IconButton(
                                         onPressed: () {
                                           context
@@ -211,7 +213,6 @@ class _NewCardViewState extends State<NewCardView> {
                           style: CustomTheme.textFieldTextStyle,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
-
                             LengthLimitingTextInputFormatter(12),
                           ],
                           decoration: InputDecoration(
