@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -35,8 +32,8 @@ class RegistrationFeesRemoteDataSrcImpl
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
-        final String fees = response.data["registration_fees"];
-        return double.parse(fees);
+        final double fees = response.data["registration_fees"];
+        return fees;
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(

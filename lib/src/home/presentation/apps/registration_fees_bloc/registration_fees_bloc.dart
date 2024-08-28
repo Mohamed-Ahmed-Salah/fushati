@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/src/home/domain/usecases/get_registration_fees.dart';

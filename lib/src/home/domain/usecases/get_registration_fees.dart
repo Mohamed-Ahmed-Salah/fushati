@@ -1,7 +1,5 @@
 
 
-import 'package:fushati/src/home/domain/entity/card.dart';
-import 'package:fushati/src/home/domain/repos/card_repo.dart';
 import 'package:fushati/src/home/domain/repos/registration_fees_repo.dart';
 
 import '../../../../core/usecase/usecase.dart';

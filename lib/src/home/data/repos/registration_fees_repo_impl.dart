@@ -5,9 +5,6 @@ import 'package:fushati/src/home/domain/repos/registration_fees_repo.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utils/typedefs.dart';
-import '../../domain/entity/card.dart';
-import '../../domain/repos/card_repo.dart';
-import '../datasources/cards_remote_data_src.dart';
 
 class RegistrationFeesRepoImpl implements RegistrationFeesRepo {
   const RegistrationFeesRepoImpl(this._remoteDataSource);

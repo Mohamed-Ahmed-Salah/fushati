@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/common/app/cache_helper.dart';
 import '../../../../../core/utils/constants/text_constants.dart';
+
 part 'app_language_state.dart';
 
 part "app_language_cubit.freezed.dart";
@@ -14,7 +15,8 @@ class AppLanguageCubit extends Cubit<AppLanguageState> {
 
   AppLanguageCubit({required CacheHelper cacheHelper})
       : _cacheHelper = cacheHelper,
-        super(const AppLanguageState.initial(Locale("en")));
+        super(const AppLanguageState.initial(
+            Locale(TextConstants.starterLangCode)));
 
   void changeLanguage({required String newLanguage}) {
     if (Locale(newLanguage) == state.locale) return;
@@ -32,9 +34,7 @@ class AppLanguageCubit extends Cubit<AppLanguageState> {
   }
 
   Future<Locale> getLocale() async {
-    // Locale deviceLocale = window.locale; // or html.window.locale
     String langCode = TextConstants.starterLangCode;
-        // deviceLocale.languageCode;
     String? localType = await _cacheHelper.getLanguage();
     localType = localType ?? langCode;
     return Locale(localType);
