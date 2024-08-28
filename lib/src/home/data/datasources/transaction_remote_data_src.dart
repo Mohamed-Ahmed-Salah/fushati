@@ -59,7 +59,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
             .toList();
         return list;
       } else {
-        if (response.statusCode == 206) {
+        if (response.statusCode == 206 || response.statusCode == 502) {
           throw const ServerException(
               message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
         }
@@ -74,7 +74,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       }
     } on DioException catch (e) {
       debugPrint("DioException getTransactions cards ${e.response?.data}");
-      if (e.response?.statusCode == 206) {
+      if (e.response?.statusCode == 206|| e.response?.statusCode == 502) {
         throw const ServerException(
             message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
       }
@@ -135,7 +135,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
             .toList();
         return list;
       } else {
-        if (response.statusCode == 206) {
+        if (response.statusCode == 206 || response.statusCode == 502) {
           throw const ServerException(
               message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
         }
@@ -152,7 +152,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       debugPrint(
           "DioException getUserTransactions transactions ${e.response?.data}");
 
-      if (e.response?.statusCode == 206) {
+      if (e.response?.statusCode == 206|| e.response?.statusCode == 502) {
         throw const ServerException(
             message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
       }
