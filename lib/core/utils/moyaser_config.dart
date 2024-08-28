@@ -6,12 +6,12 @@ import 'constants/network_constants.dart';
 abstract class MoyasarConfig {
   const MoyasarConfig();
 
-  static PaymentConfig config(int amount, String card) {
+  static PaymentConfig config(double amount, String card) {
     var uuid = const Uuid();
 
     return PaymentConfig(
       publishableApiKey: NetworkConstants.moyasarAPIKey,
-      amount: amount * 100,
+      amount: (amount * 100).toInt(),
       metadata: {
         "card_number":card,
         "amount":"$amount",

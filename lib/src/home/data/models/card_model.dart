@@ -1,5 +1,6 @@
 import '../../domain/entity/card.dart';
 
+
 class CardModel extends CardEntity {
   CardModel({
     required super.id,

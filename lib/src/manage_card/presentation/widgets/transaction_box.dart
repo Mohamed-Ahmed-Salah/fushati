@@ -36,21 +36,21 @@ class TransactionBox extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: EdgeInsets.all(SizeConst.horizontalPadding),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(SizeConst.borderRadius)),
-                      gradient: CustomTheme.linearGradiantLarge),
-                  child: Text(
-                    CoreUtils.getAmOrPm(
-                      transaction.consumeTime,
-                    ),
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: Colours.brandColorOne.withOpacity(0.5)),
-                  ),
-                ),
+                // Container(
+                //   padding: EdgeInsets.all(SizeConst.horizontalPadding),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.all(
+                //           Radius.circular(SizeConst.borderRadius)),
+                //       gradient: CustomTheme.linearGradiantLarge),
+                //   child: Text(
+                //     CoreUtils.getAmOrPm(
+                //       transaction.consumeTime,
+                //     ),
+                //     style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                //         fontWeight: FontWeight.w500,
+                //         color: Colours.brandColorOne.withOpacity(0.5)),
+                //   ),
+                // ),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(

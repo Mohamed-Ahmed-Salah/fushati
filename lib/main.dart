@@ -28,7 +28,7 @@ import 'src/auth/presentation/app/blocs/customer_info_bloc/customer_info_bloc.da
 import 'src/auth/presentation/app/blocs/otp_bloc/otp_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:timezone/data/latest.dart' as tz;
 import 'src/home/presentation/apps/registration_fees_bloc/registration_fees_bloc.dart';
 import 'src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
 import 'src/splash/presentation/app/get_schools_bloc/get_schools_bloc.dart';
@@ -36,6 +36,8 @@ import 'src/splash/presentation/app/get_schools_bloc/get_schools_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  tz.initializeTimeZones();
+
   await init();
 
   runApp(

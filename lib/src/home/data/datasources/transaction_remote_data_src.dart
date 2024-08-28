@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/standalone.dart' as tz;
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
@@ -28,13 +29,16 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
   }) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
-      DateTime currentDate = DateTime.now();
+      final tz.Location ksaLocation = tz.getLocation('Asia/Riyadh');
+
+      // Get the current time in KSA
+      final tz.TZDateTime nowInKsa = tz.TZDateTime.now(ksaLocation);
 
       // Define the date format with fractional seconds
       DateFormat dateFormat = DateFormat('yyyy-MM-dd');
 
       // Format the current date
-      String formattedDate = dateFormat.format(currentDate);
+      String formattedDate = dateFormat.format(nowInKsa);
 
       // Remove the fractional seconds by finding the last dot and taking the substring
       int dotIndex = formattedDate.lastIndexOf('.');
@@ -44,7 +48,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants.pageSize}&startTime=2024-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
+              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants.pageSize}&startTime=${DateTime.now().year}-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
               options: Options(
                 headers: header,
               ))
@@ -126,7 +130,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
-      bool isSuccess = response.statusCode == 200;
+      bool isSuccess = response.statusCode == 200 ||response.statusCode == 206 ;
       debugPrint("getUserTransactions ${response.data}");
 
       if (isSuccess) {
@@ -135,7 +139,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
             .toList();
         return list;
       } else {
-        if (response.statusCode == 206 || response.statusCode == 502) {
+        if (response.statusCode == 502) {
           throw const ServerException(
               message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
         }

@@ -253,10 +253,11 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
-      bool isSuccess = response.statusCode == 200;
+      bool isSuccess = response.statusCode == 200 || response.statusCode == 206;
 
+      debugPrint("getCards ${response.statusCode} ${response.data}");
       if (isSuccess) {
-        final list = (json.decode(jsonEncode(response.data)) as List)
+        final list = (json.decode(jsonEncode(response.data["students"])) as List)
             .map((i) => CardModel.fromJson(i))
             .toList();
         return list;
@@ -271,8 +272,9 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
 
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
+      debugPrint("getCards DioException ${e.response?.data}");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(

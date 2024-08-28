@@ -83,8 +83,8 @@ class MoyasarWalletTransferView extends StatelessWidget {
                               ApplePay(
                                 config: MoyasarConfig.config(
                                     card.isNewCard
-                                        ? (amount + fees).toInt()
-                                        : amount,
+                                        ? (amount + fees)
+                                        : amount.toDouble(),
                                     card.userCard),
                                 onPaymentResult: (result) {
                                   context.read<TransferMoneyBloc>().add(
@@ -129,8 +129,8 @@ class MoyasarWalletTransferView extends StatelessWidget {
                               CreditCard(
                                 config: MoyasarConfig.config(
                                     card.isNewCard
-                                        ? (amount + fees).toInt()
-                                        : amount,
+                                        ? (amount + fees)
+                                        : amount.toDouble(),
                                     card.userCard),
                                 onPaymentResult: (result) {
                                   if (result is PaymentResponse) {
