@@ -74,7 +74,19 @@ abstract class ErrorConst {
       "فشل حذف العميل بسبب خطأ غير متوقع";
 
   static const String servererrorAr = "خطأ في الخادم";
-  static const String servererrorEn = "Server Erorr";
+  static const String servererrorEn = "Server Error";
+  static const String couldNotLoadStudentDataEn = "Could not retrieve student history records.";
+  static const String couldNotLoadStudentRecordsAr = "تعذر الحصول على سجلات تاريخ الطالب.";
+
+
+
+
+
+
+
+
+
+
 
   static const String failedToFecthMoyayasarDetailsEn =
       "Failed to fetch payment details from Moyasa";
@@ -126,6 +138,8 @@ abstract class ErrorConst {
   //21
   static String getErrorArabicBody({required String text}) {
     switch (text) {
+      case couldNotLoadStudentDataEn:
+        return couldNotLoadStudentRecordsAr;
       case paymentFailedEn:
         return paymentFailedAr;
       case OTP_NOT_SENT_EN:
@@ -210,6 +224,9 @@ abstract class ErrorConst {
 
   static String getErrorEnglishBody({required String text}) {
     switch (text) {
+
+      case couldNotLoadStudentDataEn:
+        return couldNotLoadStudentDataEn;
       case paymentFailedEn:
         return paymentFailedEn;
       case OTP_NOT_SENT_EN:

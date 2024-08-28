@@ -59,6 +59,10 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
             .toList();
         return list;
       } else {
+        if (response.statusCode == 206) {
+          throw const ServerException(
+              message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
+        }
         if (response.statusCode == 401) {
           throw AuthenticationException(
               message: ErrorConst.NO_TOKEN,
@@ -70,7 +74,10 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       }
     } on DioException catch (e) {
       debugPrint("DioException getTransactions cards ${e.response?.data}");
-
+      if (e.response?.statusCode == 206) {
+        throw const ServerException(
+            message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
+      }
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -128,6 +135,10 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
             .toList();
         return list;
       } else {
+        if (response.statusCode == 206) {
+          throw const ServerException(
+              message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
+        }
         if (response.statusCode == 401) {
           throw AuthenticationException(
               message: ErrorConst.NO_TOKEN,
@@ -141,6 +152,10 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       debugPrint(
           "DioException getUserTransactions transactions ${e.response?.data}");
 
+      if (e.response?.statusCode == 206) {
+        throw const ServerException(
+            message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
+      }
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
