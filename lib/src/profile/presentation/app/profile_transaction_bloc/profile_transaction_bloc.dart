@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
+import 'package:fushati/src/home/domain/entity/transaction.dart';
 import '../../../../../core/utils/constants/error_consts.dart';
 import '../../../domain/usecases/user_transactions.dart';
 

@@ -16,7 +16,7 @@ class UserModel extends User {
         id: json["id"],
         name: json["name"],
         email: json["email"],
-        emailVerifiedAt: json["email_verified_at"],
+        emailVerifiedAt: json["email_verified_at"]==null? null: DateTime.parse(json["email_verified_at"]),
         createdAt: json["created_at"] != null
             ? DateTime.parse(json["created_at"])
             : null,

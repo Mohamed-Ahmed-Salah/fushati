@@ -1,30 +1,19 @@
-import 'package:fushati/core/utils/enums/transaction_enum.dart';
-import 'package:intl/intl.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
-class Transaction {
-  final int amount;
-  final String consumeTime;
-  final String equipment;
-  final String userNumber;
-  final String userCard;
-  final String userMoney;
-  final String userPermoney;
-  final String userPersubmoney;
-  final TransactionEnum consumeType;
-  final String ordernumber;
+// To parse this JSON data, do
+//
+//     final welcome = welcomeFromJson(jsonString);
 
-  Transaction({
-    required this.amount,
-    required this.consumeTime,
-    required this.equipment,
-    required this.userNumber,
-    required this.userCard,
-    required this.userMoney,
-    required this.userPermoney,
-    required this.userPersubmoney,
-    required this.consumeType,
-    required this.ordernumber,
+import 'package:fushati/core/utils/enums/transaction_enum.dart';
+import 'package:fushati/src/home/domain/entity/transaction.dart';
+
+class TransactionModel extends Transaction {
+  TransactionModel({
+    required super.id,
+    required super.consumeType,
+    required super.amount,
+    required super.createdAt,
+    required super.orderId,
+    super.cardHolderName,
+    super.carNumber,
   });
 
   static TransactionEnum getTransactionType(String type) {
@@ -39,53 +28,20 @@ class Transaction {
         return TransactionEnum.withdraw;
       case "加款机":
         return TransactionEnum.withdraw;
+      case "registration_fees":
+        return TransactionEnum.registrationFees;
     }
     return TransactionEnum.undefined;
   }
 
-  factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
-        amount: json["amount"],
-        consumeTime: getTimeFormatted(json["consumeTime"]),
-        equipment: json["equipment"],
-        userNumber: json["user_number"],
-        userCard: json["user_card"],
-        userMoney: json["user_money"],
-        userPermoney: json["user_permoney"],
-        userPersubmoney: json["user_persubmoney"],
-        consumeType: getTransactionType(json["consumeType"]),
-        ordernumber: json["ordernumber"],
+  factory TransactionModel.fromJson(Map<String, dynamic> json) =>
+      TransactionModel(
+        id: json["id"],
+        consumeType: getTransactionType(json["type"]),
+        amount: double.parse(json["amount"].toString()),
+        createdAt: DateTime.parse(json["created_at"]),
+        orderId: json["order_id"] ?? "",
+        cardHolderName: json["user"]["name"] ?? "",
+        carNumber: json["user"]["user_card"] ?? "",
       );
-
-  static String getTimeFormatted(String time){
-    print("report $time");
-    // Step 1: Parse the input date string
-    DateTime parsedDateTime = DateFormat("yyyy/MM/dd HH:mm:ss").parse(time, true);
-
-    // Step 2: Convert the parsed DateTime to UTC
-    DateTime utcDateTime = parsedDateTime.toUtc();
-
-    return convertToKsaTimezone(utcDateTime);
-  }
-
-  static String convertToKsaTimezone(DateTime datetime) {
-    print("DATE ${datetime}");
-    // Define the source timezone (Asian Chinese)
-    final tz.Location asiaShanghai = tz.getLocation('Asia/Shanghai');
-
-    // Define the target timezone (KSA)
-    final tz.Location ksaLocation = tz.getLocation('Asia/Riyadh');
-
-    // Convert the UTC DateTime to the Asian Chinese timezone
-    final tz.TZDateTime shanghaiTime = tz.TZDateTime.from(datetime, asiaShanghai);
-    print("shanghaiTime $shanghaiTime");
-
-    // Convert the time to KSA timezone
-    final tz.TZDateTime ksaTime = tz.TZDateTime.from(shanghaiTime, ksaLocation);
-
-    print("ksa $ksaTime");
-    // Format the time
-    // final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
-    // return formatter.format(ksaTime);
-    return ksaTime.toString();
-  }
 }

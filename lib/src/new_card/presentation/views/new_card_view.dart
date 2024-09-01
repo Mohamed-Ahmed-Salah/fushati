@@ -41,7 +41,6 @@ class _NewCardViewState extends State<NewCardView> {
 
   @override
   void initState() {
-    context.read<NfcScannerCubit>().checkNfcSupported();
 
     _formKey = GlobalKey<FormState>();
 

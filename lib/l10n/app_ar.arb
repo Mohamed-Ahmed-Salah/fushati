@@ -85,6 +85,7 @@
   "topUpBalance":"شحن الرصيد",
   "enterRechargeAmount":"أدخل المبلغ الذي تريد شحنه",
 "enterRechargeAmountWithFees": "ملاحظة هذه بطاقة جديدة تحتوي على رسوم قدرها {fees} تدفع عند أول مرة شحن",
+"registrationFees": "رسوم التسجيل",
 
   "manageCard":"إدارة البطاقة",
   "topUpCard": "شحن البطاقة",
@@ -104,8 +105,8 @@
 
 
   "transactionHistory": "تاريخ المعاملات",
-  "credited": "ايداع" ,
-  "debited": "خصم" ,
+  "credited": "مـُـضــافة" ,
+  "debited": "مـخصـُـومة" ,
   "viewAll": "عرض الكل",
   "logOut":"تسجيل خروج",
   "contactUs":"اتصل بنا",
@@ -131,7 +132,7 @@
 "noWorries": "لا تقلق! لقد رتبنا كل شيء!",
 "balanceRS":"ر.س {balance}",
 "rs":"ر.س {balance}",
-"transactionId":"رقم التحويله ",
+"transactionId":"رقم المعاملة",
 "school":"مدرسة",
 
 

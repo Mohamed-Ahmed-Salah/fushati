@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:fushati/core/utils/constants/network_constants.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
+import 'package:fushati/src/home/domain/entity/transaction.dart';
 
 import '../../../../../core/utils/constants/error_consts.dart';
 import '../../../domain/usecases/get_transacrions.dart';

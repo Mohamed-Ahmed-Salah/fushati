@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fushati/src/home/domain/entity/transaction.dart';
 import 'package:fushati/src/home/domain/repos/transactions_repo.dart';
 
 import '../../../../core/errors/exceptions.dart';

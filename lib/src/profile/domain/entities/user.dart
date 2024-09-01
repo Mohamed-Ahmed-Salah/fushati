@@ -19,15 +19,7 @@ class User {
     this.gender,
   });
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "email": email,
-        "email_verified_at": emailVerifiedAt,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "user_phone": userPhone,
-      };
+
 
   User copyWith({
     String? name,

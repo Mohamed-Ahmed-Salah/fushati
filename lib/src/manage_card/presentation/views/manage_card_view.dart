@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/data/models/transaction_model.dart';
+import 'package:fushati/src/home/domain/entity/transaction.dart';
 import 'package:fushati/src/manage_card/presentation/app/bloc/card_transaction_bloc.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

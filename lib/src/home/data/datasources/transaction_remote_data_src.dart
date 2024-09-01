@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:fushati/src/home/domain/entity/transaction.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/standalone.dart' as tz;
 import 'package:dio/dio.dart';
@@ -45,13 +46,21 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       if (dotIndex != -1) {
         formattedDate = formattedDate.substring(0, dotIndex);
       }
-
+      print('?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants
+          .pageSize}&startTime=${DateTime
+          .now()
+          .year}-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId'
+      );
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants.pageSize}&startTime=${DateTime.now().year}-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
-              options: Options(
-                headers: header,
-              ))
+          '${NetworkConstants
+              .reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants
+              .pageSize}&startTime=${DateTime
+              .now()
+              .year}-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
+          options: Options(
+            headers: header,
+          ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
       debugPrint("getTransactions cards ${response.data}");
@@ -59,7 +68,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 
       if (isSuccess) {
         final list = (json.decode(jsonEncode(response.data['data'])) as List)
-            .map((i) => Transaction.fromJson(i))
+            .map((i) => TransactionModel.fromJson(i))
             .toList();
         return list;
       } else {
@@ -78,7 +87,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       }
     } on DioException catch (e) {
       debugPrint("DioException getTransactions cards ${e.response?.data}");
-      if (e.response?.statusCode == 206|| e.response?.statusCode == 502) {
+      if (e.response?.statusCode == 206 || e.response?.statusCode == 502) {
         throw const ServerException(
             message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
       }
@@ -126,16 +135,16 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
           .get('${NetworkConstants.parentsUrl}$cardsHistoryEndpoint',
-              options: Options(
-                headers: header,
-              ))
+          options: Options(
+            headers: header,
+          ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
-      bool isSuccess = response.statusCode == 200 ||response.statusCode == 206 ;
+      bool isSuccess = response.statusCode == 200 || response.statusCode == 206;
       debugPrint("getUserTransactions ${response.data}");
 
       if (isSuccess) {
-        final list = (json.decode(jsonEncode(response.data)) as List)
-            .map((i) => Transaction.fromJson(i))
+        final list = (json.decode(jsonEncode(response.data["data"])) as List)
+            .map((i) => TransactionModel.fromJson(i))
             .toList();
         return list;
       } else {
@@ -156,7 +165,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
       debugPrint(
           "DioException getUserTransactions transactions ${e.response?.data}");
 
-      if (e.response?.statusCode == 206|| e.response?.statusCode == 502) {
+      if (e.response?.statusCode == 206 || e.response?.statusCode == 502) {
         throw const ServerException(
             message: ErrorConst.couldNotLoadStudentDataEn, statusCode: 500);
       }

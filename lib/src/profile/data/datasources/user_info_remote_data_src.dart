@@ -31,6 +31,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
+      debugPrint("Success getUserInfo  ${response.data}");
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data["user"]);
       } else {
@@ -38,6 +39,8 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
             message: response.data["message"], statusCode: 500);
       }
     } on DioException catch (e) {
+      debugPrint("DioException getUserInfo  ${e.response?.data}");
+
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -68,6 +71,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
+      debugPrint("carch getUserInfo  ${e.toString()}");
 
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);

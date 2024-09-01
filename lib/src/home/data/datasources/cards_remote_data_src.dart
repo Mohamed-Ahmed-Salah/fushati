@@ -257,6 +257,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
 
       debugPrint("getCards ${response.statusCode} ${response.data}");
       if (isSuccess) {
+
         final list = (json.decode(jsonEncode(response.data["students"])) as List)
             .map((i) => CardModel.fromJson(i))
             .toList();
@@ -312,75 +313,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     }
   }
 
-  Future<List<Transaction>> getTransaction(
-      {required int userId,
-      required String userCard,
-      required DateTime createdAt}) async {
-    try {
-      final header = await NetworkConstants.getHeadersWithAuth();
-      final response = await _dio
-          .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=1&limit=1000000000000000000000000000'
-              '&startTime=$createdAt&endTime=${DateTime.now()}&$userId',
-              options: Options(
-                headers: header,
-              ))
-          .timeout(const Duration(seconds: NetworkConstants.timeout));
-      bool isSuccess = response.statusCode == 200;
-
-      if (isSuccess) {
-        final list = (json.decode(jsonEncode(response.data)) as List)
-            .map((i) => Transaction.fromJson(i))
-            .toList();
-        return list;
-      } else {
-        if (response.statusCode == 401) {
-          throw AuthenticationException(
-              message: ErrorConst.NO_TOKEN,
-              statusCode: response.statusCode ?? 0);
-        }
-        throw ServerException(
-            message: response.data['message'],
-            statusCode: response.statusCode ?? 0);
-      }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
-    } on DioException catch (e) {
-      if (e.type == DioExceptionType.connectionTimeout ||
-          e.type == DioExceptionType.connectionError) {
-        throw const TimeOutException(
-            message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 0);
-      }
-      if (e.response == null) {
-        if (e.error.runtimeType == SocketException) {
-          throw NoInternetException(
-              message: ErrorConst.NO_INTERNET_MESSAGE,
-              statusCode: e.response?.statusCode ?? 400);
-        }
-      }
-      String status = e.response?.data["message"] ??
-          ErrorConst.getError(statusCode: e.response?.statusCode ?? 0);
-      throw ServerException(message: status, statusCode: 500);
-    } on ServerException {
-      rethrow;
-    } on AuthenticationException {
-      rethrow;
-    } on CacheException {
-      rethrow;
-    } on NoInternetException {
-      rethrow;
-    } on TimeOutException {
-      rethrow;
-    } on TimeoutException {
-      throw throw const TimeOutException(
-          message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
-    } on CardNotFoundException {
-      rethrow;
-    } catch (e, s) {
-      throw const ServerException(
-          message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
-    }
-  }
 }
 
 abstract class CardRemoteDataSrc {

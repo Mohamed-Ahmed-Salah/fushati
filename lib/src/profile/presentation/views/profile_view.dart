@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/core/res/theme/app_theme.dart';
+import 'package:fushati/src/home/domain/entity/transaction.dart';
+import 'package:fushati/src/manage_card/presentation/widgets/transaction_box.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -29,7 +31,6 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state) {
         return state.when(
             loading: () => const LoadingWidget(),
@@ -200,8 +201,17 @@ class ProfileBody extends StatelessWidget {
                   },
                   message: message,
                 ),
-                success: (transactions) => TransactionList(
-                  transactions: transactions,
+                success: (transactions) => SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      Transaction transaction = transactions[index];
+                      return TransactionBox(
+                        transaction: transaction,
+                        isProfileTransaction: true,
+                      );
+                    },
+                    childCount: transactions.length,
+                  ),
                 ),
               );
             }),

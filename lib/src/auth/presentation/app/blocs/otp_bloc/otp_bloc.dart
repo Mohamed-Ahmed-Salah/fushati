@@ -65,10 +65,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         },
         (response) async {
           emit(const OtpState.success());
-
           await _cacheHelper.cacheSessionToken(response.token);
-          await _cacheHelper.cacheUserId(response.user.id);
-          await _cacheHelper.cacheUsername(response.user.name ?? "");
           SchedulerBinding.instance.addPostFrameCallback((_) {
             router.go(HomeView.name, extra: true);
           });

@@ -611,13 +611,3 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
-
-// extension on FormState {
-//   String? fieldErrorText(TextEditingController controller) {
-//     final field = widget.child as FormFieldState<String>;
-//     if (field.hasError) {
-//       return field.errorText;
-//     }
-//     return null;
-//   }
-// }

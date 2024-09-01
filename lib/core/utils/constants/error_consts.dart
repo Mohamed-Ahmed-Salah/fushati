@@ -78,7 +78,8 @@ abstract class ErrorConst {
   static const String couldNotLoadStudentDataEn = "Could not retrieve student history records.";
   static const String couldNotLoadStudentRecordsAr = "تعذر الحصول على سجلات تاريخ الطالب.";
 
-
+  static const String couldNotLoadAllStudentDataEn ="Failed to retrieve history data for all students.";
+  static const String couldNotLoadAllStudentRecordsAr = "تعذر الحصول على سجلات تاريخ الطلاب.";
 
 
 
@@ -138,6 +139,8 @@ abstract class ErrorConst {
   //21
   static String getErrorArabicBody({required String text}) {
     switch (text) {
+      case couldNotLoadAllStudentDataEn:
+        return couldNotLoadAllStudentRecordsAr;
       case couldNotLoadStudentDataEn:
         return couldNotLoadStudentRecordsAr;
       case paymentFailedEn:
@@ -225,6 +228,8 @@ abstract class ErrorConst {
   static String getErrorEnglishBody({required String text}) {
     switch (text) {
 
+      case couldNotLoadAllStudentDataEn:
+        return couldNotLoadAllStudentDataEn;
       case couldNotLoadStudentDataEn:
         return couldNotLoadStudentDataEn;
       case paymentFailedEn:

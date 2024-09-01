@@ -1,3 +1,5 @@
+import 'package:fushati/src/home/domain/entity/transaction.dart';
+
 import '../../../../core/utils/typedefs.dart';
 import '../../data/models/transaction_model.dart';
 

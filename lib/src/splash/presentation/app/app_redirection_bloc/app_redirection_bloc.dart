@@ -63,6 +63,8 @@ class AppRedirectionBloc
       ..getUserName()
       ..getBaseUrl()
       ..getLanguage();
+
+    await cacheHelper.cacheSessionToken("51|jmp2iEVVqvE65eMdOrhJXf8wYIcKAzyrgSOZDhMj26a5116f");
   }
 
   redirect(BuildContext context) {
