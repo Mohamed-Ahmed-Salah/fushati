@@ -26,6 +26,9 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  static const _scrollThreshold = .70;
+  late final ScrollController _scrollController;
+
   @override
   void initState() {
     if (widget.shouldGetAppData) {
@@ -33,7 +36,25 @@ class _HomeViewState extends State<HomeView> {
             GetAppData(context: context),
           );
     }
+
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent * _scrollThreshold &&
+        !_scrollController.position.outOfRange) {
+      context.read<CardsBloc>().add(const CardsEvent.getCards());
+    }
   }
 
   @override
@@ -52,6 +73,7 @@ class _HomeViewState extends State<HomeView> {
             horizontal: SizeConst.horizontalPadding,
           ),
           child: CustomScrollView(
+            controller: _scrollController,
             slivers: [
               BlocBuilder<UserInfoBloc, UserInfoState>(
                   builder: (context, state) {
@@ -68,9 +90,21 @@ class _HomeViewState extends State<HomeView> {
                   success: (user) => BlocBuilder<CardsBloc, CardsState>(
                       builder: (context, state) {
                     return state.when(
-                        loading: () => const LoadingSliver(),
+                        initial: () => const LoadingSliver(),
+                        loading: (cards, currentPage, maxPage) {
+                          if (cards.isEmpty) {
+                            return const LoadingSliver();
+                          } else {
+                            return LoadedCardList(
+                              isLoading: true,
+                              cards: cards,
+                              userId: user.id,
+                            );
+                          }
+                        },
                         emptyList: () => const EmptyCardList(),
-                        failed: (message) => ErrorSliver(
+                        failed: (message, cards, currentPage, maxPage) =>
+                            ErrorSliver(
                               onPressed: () {
                                 context
                                     .read<CardsBloc>()
@@ -78,7 +112,9 @@ class _HomeViewState extends State<HomeView> {
                               },
                               message: message,
                             ),
-                        success: (cards) => LoadedCardList(
+                        success: (cards, currentPage, maxPage) =>
+                            LoadedCardList(
+                              isLoading: false,
                               cards: cards,
                               userId: user.id,
                             ));

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/common/widgets/loading_view.dart';
+import 'package:fushati/core/common/widgets/pagination_error_text.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
 import 'package:fushati/src/manage_card/presentation/app/bloc/card_transaction_bloc.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
@@ -68,10 +68,9 @@ class _ManageCardViewState extends State<ManageCardView> {
     if (_scrollController.offset >=
             _scrollController.position.maxScrollExtent * _scrollThreshold &&
         !_scrollController.position.outOfRange) {
-      context.read<CardTransactionBlocBloc>().add(GetMoreCardTransaction(
+      context.read<CardTransactionBlocBloc>().add(GetCardTransactionEvent(
             id: widget.card.id,
             cardNumber: widget.card.userCard,
-            createdAt: widget.card.createdAt,
           ));
     }
   }
@@ -137,23 +136,32 @@ class _ManageCardViewState extends State<ManageCardView> {
                         CardTransactionBlocState>(
                       builder: (context, state) {
                         return state.when(
-                          loading: (transactions) => TransactionsLoading(
+                          initial: () {
+                            return const Center(
+                                child: CustomCircularProgressIndicator());
+                          },
+                          loading: (transactions, _, __) => TransactionsLoading(
                             transactions: transactions,
                           ),
-
-                          // const LoadingSliver(),
-                          failed: (message) => ErrorSliver(
-                            onPressed: () {
-                              context.read<CardTransactionBlocBloc>().add(
-                                  CardTransactionBlocEvent.getCardTransaction(
-                                      id: user.id,
-                                      cardNumber: widget.card.userCard,
-                                      createdAt: widget.card.createdAt,
-                                      page: 1));
-                            },
-                            message: message,
+                          failed: (message, transactions, currentPage, ___) =>
+                              SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (BuildContext context, int index) {
+                                if (index >= transactions.length) {
+                                  return PaginationErrorText(
+                                    message: message,
+                                  );
+                                }
+                                Transaction transaction = transactions[index];
+                                return TransactionBox(
+                                  transaction: transaction,
+                                  isProfileTransaction: true,
+                                );
+                              },
+                              childCount: transactions.length + 1,
+                            ),
                           ),
-                          success: (transactions, hasMoreRecords) => SliverList(
+                          success: (transactions, _, __) => SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (BuildContext context, int index) {
                                 Transaction transaction = transactions[index];
@@ -201,7 +209,6 @@ class TransactionsLoading extends StatelessWidget {
   }
 }
 
-
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
 
@@ -209,9 +216,9 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SliverList(
+    return SliverList(
       delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
+        (BuildContext context, int index) {
           Transaction transaction = transactions[index];
           return TransactionBox(transaction: transaction);
         },
@@ -220,4 +227,3 @@ class TransactionList extends StatelessWidget {
     );
   }
 }
-

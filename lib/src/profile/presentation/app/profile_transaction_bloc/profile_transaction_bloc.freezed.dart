@@ -181,28 +181,50 @@ abstract class GetUserTransactionsEvent implements ProfileTransactionEvent {
 mixin _$ProfileTransactionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function() initial,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        loading,
+    required TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)
+        failed,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function()? initial,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult? Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function()? initial,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -210,6 +232,7 @@ mixin _$ProfileTransactionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -217,6 +240,7 @@ mixin _$ProfileTransactionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -248,10 +272,147 @@ class _$ProfileTransactionStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
+abstract class _$$initialStateImplCopyWith<$Res> {
+  factory _$$initialStateImplCopyWith(
+          _$initialStateImpl value, $Res Function(_$initialStateImpl) then) =
+      __$$initialStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$initialStateImplCopyWithImpl<$Res>
+    extends _$ProfileTransactionStateCopyWithImpl<$Res, _$initialStateImpl>
+    implements _$$initialStateImplCopyWith<$Res> {
+  __$$initialStateImplCopyWithImpl(
+      _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$initialStateImpl implements _initialState {
+  const _$initialStateImpl();
+
+  @override
+  String toString() {
+    return 'ProfileTransactionState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$initialStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        loading,
+    required TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)
+        failed,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        success,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult? Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
+    required TResult Function(_loadingState value) loading,
+    required TResult Function(_failedState value) failed,
+    required TResult Function(_successState value) success,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
+    TResult? Function(_loadingState value)? loading,
+    TResult? Function(_failedState value)? failed,
+    TResult? Function(_successState value)? success,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
+    TResult Function(_loadingState value)? loading,
+    TResult Function(_failedState value)? failed,
+    TResult Function(_successState value)? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _initialState implements ProfileTransactionState {
+  const factory _initialState() = _$initialStateImpl;
+}
+
+/// @nodoc
 abstract class _$$loadingStateImplCopyWith<$Res> {
   factory _$$loadingStateImplCopyWith(
           _$loadingStateImpl value, $Res Function(_$loadingStateImpl) then) =
       __$$loadingStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Transaction> transactions, int currentPage, int maxPage});
 }
 
 /// @nodoc
@@ -264,57 +425,132 @@ class __$$loadingStateImplCopyWithImpl<$Res>
 
   /// Create a copy of ProfileTransactionState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactions = null,
+    Object? currentPage = null,
+    Object? maxPage = null,
+  }) {
+    return _then(_$loadingStateImpl(
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxPage: null == maxPage
+          ? _value.maxPage
+          : maxPage // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$loadingStateImpl implements _loadingState {
-  const _$loadingStateImpl();
+  const _$loadingStateImpl(
+      {required final List<Transaction> transactions,
+      required this.currentPage,
+      required this.maxPage})
+      : _transactions = transactions;
+
+  final List<Transaction> _transactions;
+  @override
+  List<Transaction> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
+
+  @override
+  final int currentPage;
+  @override
+  final int maxPage;
 
   @override
   String toString() {
-    return 'ProfileTransactionState.loading()';
+    return 'ProfileTransactionState.loading(transactions: $transactions, currentPage: $currentPage, maxPage: $maxPage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$loadingStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$loadingStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.maxPage, maxPage) || other.maxPage == maxPage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_transactions), currentPage, maxPage);
+
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
+      __$$loadingStateImplCopyWithImpl<_$loadingStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function() initial,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        loading,
+    required TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)
+        failed,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        success,
   }) {
-    return loading();
+    return loading(transactions, currentPage, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function()? initial,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult? Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
   }) {
-    return loading?.call();
+    return loading?.call(transactions, currentPage, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function()? initial,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(transactions, currentPage, maxPage);
     }
     return orElse();
   }
@@ -322,6 +558,7 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -332,6 +569,7 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -342,6 +580,7 @@ class _$loadingStateImpl implements _loadingState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -355,7 +594,20 @@ class _$loadingStateImpl implements _loadingState {
 }
 
 abstract class _loadingState implements ProfileTransactionState {
-  const factory _loadingState() = _$loadingStateImpl;
+  const factory _loadingState(
+      {required final List<Transaction> transactions,
+      required final int currentPage,
+      required final int maxPage}) = _$loadingStateImpl;
+
+  List<Transaction> get transactions;
+  int get currentPage;
+  int get maxPage;
+
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -364,7 +616,11 @@ abstract class _$$failedStateImplCopyWith<$Res> {
           _$failedStateImpl value, $Res Function(_$failedStateImpl) then) =
       __$$failedStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call(
+      {String message,
+      List<Transaction> transactions,
+      int currentPage,
+      int maxPage});
 }
 
 /// @nodoc
@@ -381,12 +637,27 @@ class __$$failedStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? transactions = null,
+    Object? currentPage = null,
+    Object? maxPage = null,
   }) {
     return _then(_$failedStateImpl(
-      null == message
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxPage: null == maxPage
+          ? _value.maxPage
+          : maxPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -394,14 +665,31 @@ class __$$failedStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$failedStateImpl implements _failedState {
-  const _$failedStateImpl(this.message);
+  const _$failedStateImpl(
+      {required this.message,
+      required final List<Transaction> transactions,
+      required this.currentPage,
+      required this.maxPage})
+      : _transactions = transactions;
 
   @override
   final String message;
+  final List<Transaction> _transactions;
+  @override
+  List<Transaction> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
+
+  @override
+  final int currentPage;
+  @override
+  final int maxPage;
 
   @override
   String toString() {
-    return 'ProfileTransactionState.failed(message: $message)';
+    return 'ProfileTransactionState.failed(message: $message, transactions: $transactions, currentPage: $currentPage, maxPage: $maxPage)';
   }
 
   @override
@@ -409,11 +697,17 @@ class _$failedStateImpl implements _failedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$failedStateImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.maxPage, maxPage) || other.maxPage == maxPage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message,
+      const DeepCollectionEquality().hash(_transactions), currentPage, maxPage);
 
   /// Create a copy of ProfileTransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -426,33 +720,54 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function() initial,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        loading,
+    required TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)
+        failed,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        success,
   }) {
-    return failed(message);
+    return failed(message, transactions, currentPage, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function()? initial,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult? Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
   }) {
-    return failed?.call(message);
+    return failed?.call(message, transactions, currentPage, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function()? initial,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
     required TResult orElse(),
   }) {
     if (failed != null) {
-      return failed(message);
+      return failed(message, transactions, currentPage, maxPage);
     }
     return orElse();
   }
@@ -460,6 +775,7 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -470,6 +786,7 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -480,6 +797,7 @@ class _$failedStateImpl implements _failedState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -493,9 +811,16 @@ class _$failedStateImpl implements _failedState {
 }
 
 abstract class _failedState implements ProfileTransactionState {
-  const factory _failedState(final String message) = _$failedStateImpl;
+  const factory _failedState(
+      {required final String message,
+      required final List<Transaction> transactions,
+      required final int currentPage,
+      required final int maxPage}) = _$failedStateImpl;
 
   String get message;
+  List<Transaction> get transactions;
+  int get currentPage;
+  int get maxPage;
 
   /// Create a copy of ProfileTransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -510,7 +835,7 @@ abstract class _$$successStateImplCopyWith<$Res> {
           _$successStateImpl value, $Res Function(_$successStateImpl) then) =
       __$$successStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Transaction> transactions});
+  $Res call({List<Transaction> transactions, int currentPage, int maxPage});
 }
 
 /// @nodoc
@@ -527,12 +852,22 @@ class __$$successStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transactions = null,
+    Object? currentPage = null,
+    Object? maxPage = null,
   }) {
     return _then(_$successStateImpl(
       transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<Transaction>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxPage: null == maxPage
+          ? _value.maxPage
+          : maxPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -540,7 +875,10 @@ class __$$successStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$successStateImpl implements _successState {
-  const _$successStateImpl({required final List<Transaction> transactions})
+  const _$successStateImpl(
+      {required final List<Transaction> transactions,
+      required this.currentPage,
+      required this.maxPage})
       : _transactions = transactions;
 
   final List<Transaction> _transactions;
@@ -552,8 +890,13 @@ class _$successStateImpl implements _successState {
   }
 
   @override
+  final int currentPage;
+  @override
+  final int maxPage;
+
+  @override
   String toString() {
-    return 'ProfileTransactionState.success(transactions: $transactions)';
+    return 'ProfileTransactionState.success(transactions: $transactions, currentPage: $currentPage, maxPage: $maxPage)';
   }
 
   @override
@@ -562,12 +905,15 @@ class _$successStateImpl implements _successState {
         (other.runtimeType == runtimeType &&
             other is _$successStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._transactions, _transactions));
+                .equals(other._transactions, _transactions) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.maxPage, maxPage) || other.maxPage == maxPage));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_transactions));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_transactions), currentPage, maxPage);
 
   /// Create a copy of ProfileTransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -580,33 +926,54 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String message) failed,
-    required TResult Function(List<Transaction> transactions) success,
+    required TResult Function() initial,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        loading,
+    required TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)
+        failed,
+    required TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)
+        success,
   }) {
-    return success(transactions);
+    return success(transactions, currentPage, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(String message)? failed,
-    TResult? Function(List<Transaction> transactions)? success,
+    TResult? Function()? initial,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult? Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult? Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
   }) {
-    return success?.call(transactions);
+    return success?.call(transactions, currentPage, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String message)? failed,
-    TResult Function(List<Transaction> transactions)? success,
+    TResult Function()? initial,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        loading,
+    TResult Function(String message, List<Transaction> transactions,
+            int currentPage, int maxPage)?
+        failed,
+    TResult Function(
+            List<Transaction> transactions, int currentPage, int maxPage)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(transactions);
+      return success(transactions, currentPage, maxPage);
     }
     return orElse();
   }
@@ -614,6 +981,7 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_initialState value) initial,
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
     required TResult Function(_successState value) success,
@@ -624,6 +992,7 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_initialState value)? initial,
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
     TResult? Function(_successState value)? success,
@@ -634,6 +1003,7 @@ class _$successStateImpl implements _successState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initialState value)? initial,
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
     TResult Function(_successState value)? success,
@@ -647,10 +1017,14 @@ class _$successStateImpl implements _successState {
 }
 
 abstract class _successState implements ProfileTransactionState {
-  const factory _successState({required final List<Transaction> transactions}) =
-      _$successStateImpl;
+  const factory _successState(
+      {required final List<Transaction> transactions,
+      required final int currentPage,
+      required final int maxPage}) = _$successStateImpl;
 
   List<Transaction> get transactions;
+  int get currentPage;
+  int get maxPage;
 
   /// Create a copy of ProfileTransactionState
   /// with the given fields replaced by the non-null parameter values.

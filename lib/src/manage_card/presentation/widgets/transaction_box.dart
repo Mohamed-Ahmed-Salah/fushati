@@ -3,7 +3,6 @@ import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/core/utils/enums/transaction_enum.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

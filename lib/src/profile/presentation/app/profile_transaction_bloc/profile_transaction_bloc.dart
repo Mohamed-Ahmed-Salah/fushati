@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
 import '../../../../../core/utils/constants/error_consts.dart';
 import '../../../domain/usecases/user_transactions.dart';
@@ -19,20 +18,59 @@ class ProfileTransactionBloc
 
   ProfileTransactionBloc({required GetUserTransactions getUserTransactions})
       : _getUserTransactions = getUserTransactions,
-        super(const ProfileTransactionState.loading()) {
+        super(const ProfileTransactionState.initial()) {
     on<GetUserTransactionsEvent>(_getTransactions);
   }
 
   _getTransactions(event, emit) async {
-    emit(const ProfileTransactionState.loading());
-    final result = await _getUserTransactions();
+    int currentPage = 0;
+    int maxPage = 1;
+    List<Transaction> previousTransactions = [];
+
+    state.when(
+        initial: () {},
+        loading: (list, page, max) {
+          previousTransactions = list;
+          currentPage = page;
+          maxPage = max;
+        },
+        failed: (error, list, page, max) {
+          previousTransactions = list;
+          currentPage = page;
+          maxPage = max;
+        },
+        success: (list, page, max) {
+          previousTransactions = list;
+          currentPage = page;
+          maxPage = max;
+        });
+
+    int nextPage = currentPage + 1;
+    if (nextPage > maxPage || state is _loadingState) {
+      debugPrint("nextPage > maxPage || state is loadingState");
+      debugPrint("$nextPage > $maxPage ${state is _loadingState}");
+      return;
+    }
+
+    emit(ProfileTransactionState.loading(
+        transactions: previousTransactions,
+        maxPage: maxPage,
+        currentPage: currentPage));
+    final result = await _getUserTransactions(nextPage);
     result.fold(
       (failure) async {
         emit(ProfileTransactionState.failed(
-            ErrorConst.getErrorBody(text: failure.message)));
+            message: ErrorConst.getErrorBody(text: failure.message),
+            transactions: previousTransactions,
+            maxPage: maxPage,
+            currentPage: currentPage));
       },
-      (transactions) async {
-        emit(ProfileTransactionState.success(transactions: transactions));
+      (response) async {
+        print("RESPONSE ${response.currentPage} ${response.lastPage}");
+        emit(ProfileTransactionState.success(
+            transactions: response.transactions,
+            currentPage: response.currentPage,
+            maxPage: response.lastPage));
       },
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,22 +17,68 @@ class CardsBloc extends Bloc<CardsEvent, CardsState> {
 
   CardsBloc({required GetCards getCard})
       : _getCards = getCard,
-        super(const CardsState.loading()) {
+        super(const CardsState.initial()) {
     on<GetCardsEvent>(_getCardEvent);
   }
 
   _getCardEvent(event, emit) async {
-    emit(const CardsState.loading());
-    final result = await _getCards();
+    int currentPage = 0;
+    int maxPage = 1;
+    List<CardEntity> cards = [];
+
+     state.when(
+        initial: () {},
+        loading: (list, page, max) {
+          cards = list;
+          currentPage = page;
+          maxPage = max;
+        },
+        emptyList: () {},
+        failed: (error, list, page, max) {
+          cards = list;
+          currentPage = page;
+          maxPage = max;
+        },
+        success: (list, page, max) {
+          cards = list;
+          currentPage = page;
+          maxPage = max;
+        });
+
+    int nextPage = currentPage + 1;
+    if (nextPage > maxPage || state is loadingState) {
+      debugPrint("nextPage > maxPage || state is loadingState");
+      debugPrint("$nextPage > $maxPage ${state is loadingState}");
+      return;
+    }
+    emit(CardsState.loading(
+      cards: cards,
+      maxPage: maxPage,
+      currentPage: currentPage,
+    ));
+    final result = await _getCards(nextPage);
     result.fold(
       (failure) {
-        emit(CardsState.failed(ErrorConst.getErrorBody(text: failure.message)));
+        emit(
+          CardsState.failed(
+            message: ErrorConst.getErrorBody(
+              text: failure.message,
+            ),
+            cards: cards,
+            maxPage: maxPage,
+            currentPage: currentPage,
+          ),
+        );
       },
-      (cards) {
-        if (cards.isEmpty) {
+      (response) {
+        debugPrint("current PAGE = ${response.currentPage}, ${response.lastPage}");
+        if (response.cards.isEmpty) {
           emit(const CardsState.emptyList());
         } else {
-          emit(CardsState.success(cards: cards));
+          emit(CardsState.success(cards: [
+            ...cards,
+            ...response.cards,
+          ], maxPage: response.lastPage, currentPage: response.currentPage));
         }
       },
     );

@@ -1,17 +1,15 @@
-import 'package:fushati/src/home/domain/entity/transaction.dart';
+import 'package:fushati/src/home/domain/entity/transactions_response.dart';
 
 import '../../../../core/utils/typedefs.dart';
-import '../../data/models/transaction_model.dart';
 
 abstract class TransactionsRepo {
 
-  ResultFuture<List<Transaction>> getTransactions(
+  ResultFuture<TransactionResponse> getTransactions(
       {required int userId,
         required String userCard,
-        required DateTime createdAt,
         required int page,
 
       });
 
-  ResultFuture<List<Transaction>> getUserTransactions();
+  ResultFuture<TransactionResponse> getUserTransactions(int page);
 }

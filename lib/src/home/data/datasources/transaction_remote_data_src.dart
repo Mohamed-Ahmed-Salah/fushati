@@ -1,13 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
-import 'package:fushati/src/home/domain/entity/transaction.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/standalone.dart' as tz;
+import 'package:fushati/src/home/data/models/transaction_response_model.dart';
+import 'package:fushati/src/home/domain/entity/transactions_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -22,55 +18,28 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
   final Dio _dio;
 
   @override
-  Future<List<Transaction>> getTransactions({
+  Future<TransactionResponse> getTransactions({
     required int userId,
     required String userCard,
-    required DateTime createdAt,
     required int page,
   }) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
-      final tz.Location ksaLocation = tz.getLocation('Asia/Riyadh');
 
-      // Get the current time in KSA
-      final tz.TZDateTime nowInKsa = tz.TZDateTime.now(ksaLocation);
-
-      // Define the date format with fractional seconds
-      DateFormat dateFormat = DateFormat('yyyy-MM-dd');
-
-      // Format the current date
-      String formattedDate = dateFormat.format(nowInKsa);
-
-      // Remove the fractional seconds by finding the last dot and taking the substring
-      int dotIndex = formattedDate.lastIndexOf('.');
-      if (dotIndex != -1) {
-        formattedDate = formattedDate.substring(0, dotIndex);
-      }
-      print('?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants
-          .pageSize}&startTime=${DateTime
-          .now()
-          .year}-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId'
-      );
       final response = await _dio
           .get(
-          '${NetworkConstants
-              .reportsUrl}?requestId=$userCard&fieldtype=rfkh&Type=1&page=$page&limit=${NetworkConstants
-              .pageSize}&startTime=${DateTime
-              .now()
-              .year}-01-01 00:00:00&endTime=$formattedDate 00:00:00&parent_id=$userId',
-          options: Options(
-            headers: header,
-          ))
+              '${NetworkConstants.reportsUrl}?requestId=$userCard&page=$page&limit=${NetworkConstants.pageSize}&parent_id=$userId',
+              options: Options(
+                headers: header,
+              ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
-      debugPrint("getTransactions cards ${response.data}");
+      debugPrint("getTransactions cards ${response.data["data"]["data"]}");
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
-        final list = (json.decode(jsonEncode(response.data['data'])) as List)
-            .map((i) => TransactionModel.fromJson(i))
-            .toList();
-        return list;
+        final data = TransactionResponseModel.fromJson(response.data["data"]);
+        return data;
       } else {
         if (response.statusCode == 206 || response.statusCode == 502) {
           throw const ServerException(
@@ -130,23 +99,21 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
   }
 
   @override
-  Future<List<Transaction>> getUserTransactions() async {
+  Future<TransactionResponse> getUserTransactions(int page) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .get('${NetworkConstants.parentsUrl}$cardsHistoryEndpoint',
-          options: Options(
-            headers: header,
-          ))
+          .get('${NetworkConstants.parentsUrl}$cardsHistoryEndpoint/?page=$page',
+              options: Options(
+                headers: header,
+              ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200 || response.statusCode == 206;
-      debugPrint("getUserTransactions ${response.data}");
+      debugPrint("getUserTransactions ${response.data['data']}");
 
       if (isSuccess) {
-        final list = (json.decode(jsonEncode(response.data["data"])) as List)
-            .map((i) => TransactionModel.fromJson(i))
-            .toList();
-        return list;
+        final data =TransactionResponseModel.fromJson(response.data['data']);
+        return data;
       } else {
         if (response.statusCode == 502) {
           throw const ServerException(
@@ -211,12 +178,11 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 abstract class TransactionsRemoteDataSrc {
   const TransactionsRemoteDataSrc();
 
-  Future<List<Transaction>> getTransactions({
+  Future<TransactionResponse> getTransactions({
     required int userId,
     required String userCard,
-    required DateTime createdAt,
     required int page,
   });
 
-  Future<List<Transaction>> getUserTransactions();
+  Future<TransactionResponse> getUserTransactions(int page);
 }

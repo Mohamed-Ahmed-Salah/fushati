@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fushati/src/home/domain/entity/home_response.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
@@ -93,9 +94,9 @@ class CardRepoImpl implements CardRepo {
   }
 
   @override
-  ResultFuture<List<CardEntity>> getCards() async {
+  ResultFuture<HomeResponse> getCards(int page) async {
     try {
-      final result = await _remoteDataSource.getCards();
+      final result = await _remoteDataSource.getCards(page);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

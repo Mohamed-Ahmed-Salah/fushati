@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:fushati/src/home/domain/entity/transaction.dart';
+import 'package:fushati/src/home/domain/entity/transactions_response.dart';
 import 'package:fushati/src/home/domain/repos/transactions_repo.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utils/typedefs.dart';
 import '../datasources/transaction_remote_data_src.dart';
-import '../models/transaction_model.dart';
 
 class TransactionsRepoImpl implements TransactionsRepo {
   const TransactionsRepoImpl(this._remoteDataSource);
@@ -14,15 +13,14 @@ class TransactionsRepoImpl implements TransactionsRepo {
   final TransactionsRemoteDataSrc _remoteDataSource;
 
   @override
-  ResultFuture<List<Transaction>> getTransactions({
+  ResultFuture<TransactionResponse> getTransactions({
     required int userId,
     required String userCard,
-    required DateTime createdAt,
     required int page,
   }) async {
     try {
       final result = await _remoteDataSource.getTransactions(
-          page: page, userId: userId, userCard: userCard, createdAt: createdAt);
+          page: page, userId: userId, userCard: userCard, );
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));
@@ -41,9 +39,9 @@ class TransactionsRepoImpl implements TransactionsRepo {
   }
 
   @override
-  ResultFuture<List<Transaction>> getUserTransactions() async {
+  ResultFuture<TransactionResponse> getUserTransactions(int page) async {
     try {
-      final result = await _remoteDataSource.getUserTransactions();
+      final result = await _remoteDataSource.getUserTransactions(page);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

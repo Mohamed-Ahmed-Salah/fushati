@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fushati/src/home/data/models/card_model.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
+import 'package:fushati/src/home/data/models/home_response_model.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:fushati/src/home/domain/entity/home_response.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -244,24 +244,22 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   }
 
   @override
-  Future<List<CardEntity>> getCards() async {
+  Future<HomeResponse> getCards(int page) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .get('${NetworkConstants.parentsUrl}$studentCardsEndpoint',
+          .get(
+              '${NetworkConstants.parentsUrl}$studentCardsEndpoint/?page=$page',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200 || response.statusCode == 206;
 
-      debugPrint("getCards ${response.statusCode} ${response.data}");
+      debugPrint("getCards page=$page ${response.statusCode}");
       if (isSuccess) {
-
-        final list = (json.decode(jsonEncode(response.data["students"])) as List)
-            .map((i) => CardModel.fromJson(i))
-            .toList();
-        return list;
+        final data = HomeResponseModel.fromJson(response.data["data"]);
+        return data;
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
@@ -272,7 +270,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
     } on DioException catch (e) {
       debugPrint("getCards DioException ${e.response?.data}");
 
@@ -312,7 +309,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
   }
-
 }
 
 abstract class CardRemoteDataSrc {
@@ -334,5 +330,5 @@ abstract class CardRemoteDataSrc {
     required String studentNumber,
   });
 
-  Future<List<CardEntity>> getCards();
+  Future<HomeResponse> getCards(int page);
 }

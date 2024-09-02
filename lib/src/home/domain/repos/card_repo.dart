@@ -1,3 +1,5 @@
+import 'package:fushati/src/home/domain/entity/home_response.dart';
+
 import '../../../../core/utils/typedefs.dart';
 import '../entity/card.dart';
 
@@ -18,5 +20,5 @@ abstract class CardRepo {
     required String studentNumber,
   });
 
-  ResultFuture<List<CardEntity>> getCards();
+  ResultFuture<HomeResponse> getCards(int page);
 }

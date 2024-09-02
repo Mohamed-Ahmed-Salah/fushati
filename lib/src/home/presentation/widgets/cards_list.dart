@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
@@ -31,7 +32,13 @@ class LoadedCardList extends StatelessWidget {
   final int userId;
   final List<CardEntity> cards;
 
-  const LoadedCardList({super.key, required this.cards, required this.userId});
+  final bool isLoading;
+
+  const LoadedCardList(
+      {super.key,
+      required this.cards,
+      required this.userId,
+      required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +81,17 @@ class LoadedCardList extends StatelessWidget {
               ),
             );
           }
+          if (index > cards.length) {
+            return CustomCircularProgressIndicator();
+          }
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 1.h),
             child: CardBox.withManage(card: cards[index], userId: userId),
           );
         },
-        childCount: cards.length + 1, // Example: 10 builders
+        childCount: isLoading
+            ? cards.length + 2
+            : cards.length + 1, // Example: 10 builders
       ),
     );
   }

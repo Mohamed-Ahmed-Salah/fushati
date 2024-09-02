@@ -24,6 +24,8 @@ class TransactionModel extends Transaction {
         return TransactionEnum.recharge;
       case "withdrawal":
         return TransactionEnum.withdraw;
+      case "deduction":
+        return TransactionEnum.withdraw;
       case "normal consumption":
         return TransactionEnum.withdraw;
       case "加款机":

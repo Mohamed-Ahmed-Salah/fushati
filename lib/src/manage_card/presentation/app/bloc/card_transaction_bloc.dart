@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:fushati/core/utils/constants/network_constants.dart';
-import 'package:fushati/src/home/data/models/transaction_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
 
 import '../../../../../core/utils/constants/error_consts.dart';
@@ -19,76 +18,72 @@ class CardTransactionBlocBloc
 
   CardTransactionBlocBloc({required GetCardTransactions getCardTransactions})
       : _getCardTransactions = getCardTransactions,
-        super(const CardTransactionBlocState.loading()) {
+        super(const CardTransactionBlocState.initial()) {
     on<GetCardTransactionEvent>(_getTransactions);
-    on<GetMoreCardTransaction>(_getMoreTransactions);
+    on<ResetRecievedCardTransactionsEvent>(_resetTransactions);
   }
 
   _getTransactions(event, emit) async {
+    int currentPage = 0;
+    int maxPage = 1;
+    List<Transaction> previousTransactions = [];
+
+    state.when(
+        initial: () {},
+        loading: (list, page, max) {
+          previousTransactions = list;
+          currentPage = page;
+          maxPage = max;
+        },
+        failed: (error, list, page, max) {
+          previousTransactions = list;
+          currentPage = page;
+          maxPage = max;
+        },
+        success: (list, page, max) {
+          previousTransactions = list;
+          currentPage = page;
+          maxPage = max;
+        });
+
+    int nextPage = currentPage + 1;
+    if (nextPage > maxPage || state is _loadingState) {
+      debugPrint("nextPage > maxPage || state is loadingState");
+      debugPrint("$nextPage > $maxPage ${state is _loadingState}");
+      return;
+    }
+
     final int id = event.id;
     String cardNumber = event.cardNumber;
-    final createdAt = event.createdAt;
-    final int page = event.page;
-    emit(const CardTransactionBlocState.loading());
+    emit(CardTransactionBlocState.loading(
+        transactions: previousTransactions,
+        maxPage: maxPage,
+        currentPage: currentPage));
     final result = await _getCardTransactions(TransactionParam(
       userId: id,
       userCard: cardNumber,
-      createdAt: createdAt,
-      page: page,
+      page: nextPage,
     ));
     result.fold(
       (failure) async {
         emit(CardTransactionBlocState.failed(
-            ErrorConst.getErrorBody(text: failure.message)));
+            message: ErrorConst.getErrorBody(text: failure.message),
+            transactions: previousTransactions,
+            maxPage: maxPage,
+            currentPage: currentPage));
       },
-      (transactions) async {
-        bool hasMoreRecords = transactions.length == NetworkConstants.pageSize;
+      (response) async {
+        debugPrint("max page ${response.lastPage} called page= ${response.currentPage} ");
+        final transactions = response.transactions;
         emit(CardTransactionBlocState.success(
-            transactions: transactions, hasMoreRecords: hasMoreRecords));
+            transactions: [...previousTransactions, ...transactions],
+            maxPage: response.lastPage,
+            currentPage: response.currentPage));
       },
     );
   }
 
-  _getMoreTransactions(event, emit) async {
-    final int id = event.id;
-    String cardNumber = event.cardNumber;
-    final createdAt = event.createdAt;
-    if (state is _loadingState) return;
-
-    bool isSuccess = false;
-    bool hasMoreTransactions = false;
-    List<Transaction> transactions = [];
-    state.whenOrNull(success: (data, hasMore) {
-      hasMoreTransactions = hasMore;
-      isSuccess = true;
-      transactions = data;
-    });
-
-    if (isSuccess) {
-      if (hasMoreTransactions) {
-        emit(CardTransactionBlocState.loading(transactions: transactions));
-        final result = await _getCardTransactions(TransactionParam(
-          userId: id,
-          userCard: cardNumber,
-          createdAt: createdAt,
-          page: (transactions.length / NetworkConstants.pageSize).floor() + 1,
-        ));
-        result.fold(
-          (failure) async {
-            emit(CardTransactionBlocState.failed(
-                ErrorConst.getErrorBody(text: failure.message)));
-          },
-          (newTransactions) async {
-            bool hasMoreRecords =
-                newTransactions.length == NetworkConstants.pageSize;
-            emit(CardTransactionBlocState.success(
-                transactions: [...transactions, ...newTransactions],
-                hasMoreRecords: hasMoreRecords));
-          },
-        );
-      } else {
-        return;
-      }
-    }
+  _resetTransactions(event, emit) {
+    emit(const CardTransactionBlocState.initial());
   }
 }

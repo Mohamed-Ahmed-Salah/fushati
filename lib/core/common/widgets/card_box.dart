@@ -51,11 +51,14 @@ class CardBox extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   context.read<CardTransactionBlocBloc>().add(
-                      CardTransactionBlocEvent.getCardTransaction(
-                          id: userId!,
-                          cardNumber: card.userCard,
-                          createdAt: card.createdAt,
-                          page: 1));
+                      const CardTransactionBlocEvent.resetCardTransaction());
+
+                  context
+                      .read<CardTransactionBlocBloc>()
+                      .add(CardTransactionBlocEvent.getCardTransaction(
+                        id: userId!,
+                        cardNumber: card.userCard,
+                      ));
                   context.push(ManageCardView.path, extra: card);
                 },
                 child: Container(
