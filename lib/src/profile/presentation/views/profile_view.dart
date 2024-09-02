@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart' hide Cache;
 import 'package:fushati/core/common/widgets/pagination_error_text.dart';
 import 'package:fushati/core/res/theme/app_theme.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
+import 'package:fushati/src/home/presentation/widgets/error_sliver.dart';
 import 'package:fushati/src/manage_card/presentation/widgets/transaction_box.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
@@ -247,23 +248,36 @@ class _ProfileBodyState extends State<ProfileBody> {
                     childCount: transactions.length + 1,
                   ),
                 ),
-                failed: (message, transactions, _, __) => SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      if (index >= transactions.length) {
-                        return PaginationErrorText(
-                          message: message,
-                        );
-                      }
-                      Transaction transaction = transactions[index];
-                      return TransactionBox(
-                        transaction: transaction,
-                        isProfileTransaction: true,
-                      );
-                    },
-                    childCount: transactions.length + 1,
-                  ),
-                ),
+                failed: (message, transactions, _, __) {
+                  if (transactions.isEmpty) {
+                   return ErrorSliver(
+                      onPressed: () {
+                        context
+                            .read<ProfileTransactionBloc>()
+                            .add(const ProfileTransactionEvent.getUserTransactions());
+                      },
+                      message: message,
+                    );
+                  } else {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          if (index >= transactions.length) {
+                            return PaginationErrorText(
+                              message: message,
+                            );
+                          }
+                          Transaction transaction = transactions[index];
+                          return TransactionBox(
+                            transaction: transaction,
+                            isProfileTransaction: true,
+                          );
+                        },
+                        childCount: transactions.length + 1,
+                      ),
+                    );
+                  }
+                },
                 success: (transactions, _, __) => SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {

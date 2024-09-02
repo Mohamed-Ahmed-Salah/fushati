@@ -143,24 +143,40 @@ class _ManageCardViewState extends State<ManageCardView> {
                           loading: (transactions, _, __) => TransactionsLoading(
                             transactions: transactions,
                           ),
-                          failed: (message, transactions, currentPage, ___) =>
-                              SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
-                                if (index >= transactions.length) {
-                                  return PaginationErrorText(
-                                    message: message,
-                                  );
-                                }
-                                Transaction transaction = transactions[index];
-                                return TransactionBox(
-                                  transaction: transaction,
-                                  isProfileTransaction: true,
-                                );
-                              },
-                              childCount: transactions.length + 1,
-                            ),
-                          ),
+                          failed: (message, transactions, currentPage, ___) {
+                            if (transactions.isEmpty) {
+                              return ErrorSliver(
+                                onPressed: () {
+                                  context.read<CardTransactionBlocBloc>().add(
+                                          CardTransactionBlocEvent
+                                              .getCardTransaction(
+                                        id: widget.card.id,
+                                        cardNumber: widget.card.userCard,
+                                      ));
+                                },
+                                message: message,
+                              );
+                            } else {
+                              return SliverList(
+                                delegate: SliverChildBuilderDelegate(
+                                  (BuildContext context, int index) {
+                                    if (index >= transactions.length) {
+                                      return PaginationErrorText(
+                                        message: message,
+                                      );
+                                    }
+                                    Transaction transaction =
+                                        transactions[index];
+                                    return TransactionBox(
+                                      transaction: transaction,
+                                      isProfileTransaction: true,
+                                    );
+                                  },
+                                  childCount: transactions.length + 1,
+                                ),
+                              );
+                            }
+                          },
                           success: (transactions, _, __) => SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (BuildContext context, int index) {
