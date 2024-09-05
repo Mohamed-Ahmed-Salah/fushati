@@ -73,6 +73,7 @@ class _HomeViewState extends State<HomeView> {
             horizontal: SizeConst.horizontalPadding,
           ),
           child: CustomScrollView(
+            key: const PageStorageKey<String>('home_scroll_position'),
             controller: _scrollController,
             slivers: [
               BlocBuilder<UserInfoBloc, UserInfoState>(

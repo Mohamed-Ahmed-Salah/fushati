@@ -82,7 +82,7 @@ class LoadedCardList extends StatelessWidget {
             );
           }
           if (index > cards.length) {
-            return CustomCircularProgressIndicator();
+            return const CustomCircularProgressIndicator();
           }
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 1.h),
