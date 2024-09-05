@@ -16,7 +16,7 @@ import '../../../../core/utils/constants/network_constants.dart';
 class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   static const studentCardsEndpoint = '/parent/students';
   static const addCardEndpoint = '/users/new/user';
-  static const addCardByNumberEndpoint = '/parents/parent-student/';
+  static const addCardByNumberEndpoint = '/parents/parent-student';
   static const reportsEndpoint = '/reports';
   static const deleteCardEndpoint = '/parent-student';
   static const getCardDetailsEndpoint = '/student-card';

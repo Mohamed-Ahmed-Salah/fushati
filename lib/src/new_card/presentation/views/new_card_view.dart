@@ -129,7 +129,8 @@ class _NewCardViewState extends State<NewCardView> {
                                 BlocBuilder<NfcScannerCubit, NfcScannerState>(
                                     builder: (context, state) {
                               return state.when(
-                                initial: (isNfcSupported) => isNfcSupported
+                                initial: (isNfcSupported) => isNfcSupported &&
+                                        Platform.isAndroid
                                     ? IconButton(
                                         onPressed: () {
                                           context
