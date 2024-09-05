@@ -75,19 +75,15 @@ abstract class ErrorConst {
 
   static const String servererrorAr = "خطأ في الخادم";
   static const String servererrorEn = "Server Error";
-  static const String couldNotLoadStudentDataEn = "Could not retrieve student history records.";
-  static const String couldNotLoadStudentRecordsAr = "تعذر الحصول على سجلات تاريخ الطالب.";
+  static const String couldNotLoadStudentDataEn =
+      "Could not retrieve student history records.";
+  static const String couldNotLoadStudentRecordsAr =
+      "تعذر الحصول على سجلات تاريخ الطالب.";
 
-  static const String couldNotLoadAllStudentDataEn ="Failed to retrieve history data for all students.";
-  static const String couldNotLoadAllStudentRecordsAr = "تعذر الحصول على سجلات تاريخ الطلاب.";
-
-
-
-
-
-
-
-
+  static const String couldNotLoadAllStudentDataEn =
+      "Failed to retrieve history data for all students.";
+  static const String couldNotLoadAllStudentRecordsAr =
+      "تعذر الحصول على سجلات تاريخ الطلاب.";
 
   static const String failedToFecthMoyayasarDetailsEn =
       "Failed to fetch payment details from Moyasa";
@@ -129,6 +125,11 @@ abstract class ErrorConst {
   static const String paymentFailedTitleEn = "Payment Failed";
   static const String paymentFailedTitleAr = "التحويل لم يتم بنجاح";
 
+  static const String failedToCreateRelationship = "relationship_not_created";
+  static const String failedToCreateRelationshipEn = "Unable to link card. Please check details and try again.";
+  static const String failedToCreateRelationshipAr = "لم نتمكن نت ربط البطاقة. يرجى التحقق من ان البطاقه صحيحه والمحاولة مرة أخرى";
+  static const String studentNotFound = "student_not_found";
+
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
     return isArabic
@@ -139,6 +140,10 @@ abstract class ErrorConst {
   //21
   static String getErrorArabicBody({required String text}) {
     switch (text) {
+      case failedToCreateRelationship:
+        return failedToCreateRelationshipAr;
+      case studentNotFound:
+        return CANNOT_FIND_CARD_AR;
       case couldNotLoadAllStudentDataEn:
         return couldNotLoadAllStudentRecordsAr;
       case couldNotLoadStudentDataEn:
@@ -227,7 +232,10 @@ abstract class ErrorConst {
 
   static String getErrorEnglishBody({required String text}) {
     switch (text) {
-
+      case failedToCreateRelationship:
+return failedToCreateRelationshipEn;
+      case studentNotFound:
+        return CANNOT_FIND_CARD_EN;
       case couldNotLoadAllStudentDataEn:
         return couldNotLoadAllStudentDataEn;
       case couldNotLoadStudentDataEn:
@@ -370,8 +378,8 @@ abstract class ErrorConst {
     }
   }
 
-  static String? localErrorValidation(BuildContext context, String message){
-    final localization= AppLocalizations.of(context);
+  static String? localErrorValidation(BuildContext context, String message) {
+    final localization = AppLocalizations.of(context);
     switch (message) {
       case 'validation.name_required':
         return localization?.validationNameRequired;

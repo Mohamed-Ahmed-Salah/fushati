@@ -116,6 +116,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     required String cardNumber,
   }) async {
     try {
+      print("AAAA");
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
           .post('${NetworkConstants.baseUrl}$addCardByNumberEndpoint',
@@ -124,7 +125,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
-      debugPrint("response ${response.data} ${response.statusCode}");
+      print("response ${response.data} ${response.statusCode}");
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
 
       if (isSuccess) {
@@ -143,8 +144,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
     } on DioException catch (e) {
-      debugPrint(
-          "error DioException  ${e.response?.data['errors']} ${e.response?.statusCode}");
+      print(
+          "error DioException addCardByNumber ${e.response?.data['errors']} ${e.response?.statusCode}");
 
       String status = e.response?.data["message"] ??
           e.response?.data['errors']["user_phone"][0] ??
@@ -182,6 +183,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } catch (e, s) {
+      print("CATCH ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

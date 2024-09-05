@@ -47,6 +47,7 @@ class AddNewCardBloc extends Bloc<AddNewCardEvent, AddNewCardState> {
     final result = await _addCardByNumber(event.cardNumber);
     result.fold(
       (failure) {
+        print("FAILUER ${failure.message}");
         emit(AddNewCardState.failed(failure.message));
       },
       (_) {
