@@ -15,6 +15,7 @@ import '../../../../core/utils/constants/network_constants.dart';
 class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   static const studentCardsEndpoint = '/parent/students';
   static const addCardEndpoint = '/users/new/user';
+  static const addCardByNumberEndpoint = '/parents/parent-student/';
   static const reportsEndpoint = '/reports';
   static const deleteCardEndpoint = '/parent-student';
   static const getCardDetailsEndpoint = '/student-card';
@@ -117,8 +118,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .post('${NetworkConstants.baseUrl}$addCardEndpoint',
-              data: {"user_card": cardNumber, "type": "student"},
+          .post('${NetworkConstants.baseUrl}$addCardByNumberEndpoint',
+              data: {"student_card": cardNumber, "type": "student"},
               options: Options(
                 headers: header,
               ))
