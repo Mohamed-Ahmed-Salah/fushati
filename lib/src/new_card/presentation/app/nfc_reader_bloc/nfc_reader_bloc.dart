@@ -20,7 +20,7 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
   }
 
   _readNfc(event, emit) async {
-    _readNfcFromExample();
+    _readNfcFromExample(emit);
     // try {
     //   emit(const NfcReaderState.loading());
     //   NFCTag tag = await FlutterNfcKit.poll();
@@ -40,16 +40,24 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
     // }
   }
 
-  _readNfcFromExample() async {
+  _readNfcFromExample(emit) async {
     try {
+      debugPrint("BEFORE FlutterNfcKit.poll()");
       NFCTag tag = await FlutterNfcKit.poll();
+      debugPrint("AFTER FlutterNfcKit.poll()");
 
       await FlutterNfcKit.setIosAlertMessage("Working on it...");
 
       CoreUtils.showSnackBar(
           message:
               "NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
+      log("NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
+      log("${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
+      String physicalCardNumber = tag.id;
+      String softwareCardNumber = convertCardNumber(physicalCardNumber);
+      log("Software Card Number: $softwareCardNumber");
 
+      emit(NfcReaderState.success(softwareCardNumber));
       // _mifareResult = null;
       if (tag.standard == "ISO 14443-4 (Type B)") {
         String result1 = await FlutterNfcKit.transceive("00B0950000");
