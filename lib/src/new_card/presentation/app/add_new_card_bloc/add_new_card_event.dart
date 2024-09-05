@@ -9,4 +9,7 @@ sealed class AddNewCardEvent with _$AddNewCardEvent {
     required String cardNumber,
     required String studentNumber,
   }) = AddCardEvent;
+  const factory AddNewCardEvent.addCardByNumber({
+    required String cardNumber,
+  }) = AddCardByNumberEvent;
 }

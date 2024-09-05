@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CardsEvent {
+  bool get callFromStart => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCards,
+    required TResult Function(bool callFromStart) getCards,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getCards,
+    TResult? Function(bool callFromStart)? getCards,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCards,
+    TResult Function(bool callFromStart)? getCards,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,12 @@ mixin _$CardsEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of CardsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CardsEventCopyWith<CardsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,6 +62,8 @@ abstract class $CardsEventCopyWith<$Res> {
   factory $CardsEventCopyWith(
           CardsEvent value, $Res Function(CardsEvent) then) =
       _$CardsEventCopyWithImpl<$Res, CardsEvent>;
+  @useResult
+  $Res call({bool callFromStart});
 }
 
 /// @nodoc
@@ -69,13 +78,29 @@ class _$CardsEventCopyWithImpl<$Res, $Val extends CardsEvent>
 
   /// Create a copy of CardsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? callFromStart = null,
+  }) {
+    return _then(_value.copyWith(
+      callFromStart: null == callFromStart
+          ? _value.callFromStart
+          : callFromStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$GetCardsEventImplCopyWith<$Res> {
+abstract class _$$GetCardsEventImplCopyWith<$Res>
+    implements $CardsEventCopyWith<$Res> {
   factory _$$GetCardsEventImplCopyWith(
           _$GetCardsEventImpl value, $Res Function(_$GetCardsEventImpl) then) =
       __$$GetCardsEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool callFromStart});
 }
 
 /// @nodoc
@@ -88,51 +113,78 @@ class __$$GetCardsEventImplCopyWithImpl<$Res>
 
   /// Create a copy of CardsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? callFromStart = null,
+  }) {
+    return _then(_$GetCardsEventImpl(
+      callFromStart: null == callFromStart
+          ? _value.callFromStart
+          : callFromStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetCardsEventImpl implements GetCardsEvent {
-  const _$GetCardsEventImpl();
+  const _$GetCardsEventImpl({this.callFromStart = false});
+
+  @override
+  @JsonKey()
+  final bool callFromStart;
 
   @override
   String toString() {
-    return 'CardsEvent.getCards()';
+    return 'CardsEvent.getCards(callFromStart: $callFromStart)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetCardsEventImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GetCardsEventImpl &&
+            (identical(other.callFromStart, callFromStart) ||
+                other.callFromStart == callFromStart));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, callFromStart);
+
+  /// Create a copy of CardsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCardsEventImplCopyWith<_$GetCardsEventImpl> get copyWith =>
+      __$$GetCardsEventImplCopyWithImpl<_$GetCardsEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCards,
+    required TResult Function(bool callFromStart) getCards,
   }) {
-    return getCards();
+    return getCards(callFromStart);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getCards,
+    TResult? Function(bool callFromStart)? getCards,
   }) {
-    return getCards?.call();
+    return getCards?.call(callFromStart);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCards,
+    TResult Function(bool callFromStart)? getCards,
     required TResult orElse(),
   }) {
     if (getCards != null) {
-      return getCards();
+      return getCards(callFromStart);
     }
     return orElse();
   }
@@ -167,7 +219,17 @@ class _$GetCardsEventImpl implements GetCardsEvent {
 }
 
 abstract class GetCardsEvent implements CardsEvent {
-  const factory GetCardsEvent() = _$GetCardsEventImpl;
+  const factory GetCardsEvent({final bool callFromStart}) = _$GetCardsEventImpl;
+
+  @override
+  bool get callFromStart;
+
+  /// Create a copy of CardsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetCardsEventImplCopyWith<_$GetCardsEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

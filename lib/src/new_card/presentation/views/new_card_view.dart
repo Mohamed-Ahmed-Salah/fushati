@@ -7,9 +7,11 @@ import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
-import 'package:fushati/src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
-import 'package:fushati/src/new_card/presentation/app/cubit/nfc_scanner_cubit.dart';
+import 'package:fushati/src/new_card/presentation/app/nfc_availability_checker_cubit/nfc_scanner_cubit.dart';
+import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
+import 'package:fushati/src/new_card/presentation/app/nfc_reader_bloc/nfc_reader_bloc.dart';
 import 'package:fushati/src/new_card/presentation/views/add_card_loader.dart';
+import 'package:fushati/src/new_card/presentation/widgets/card_detail_dialog.dart';
 import 'package:fushati/src/new_card/presentation/widgets/nfc_loader.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -32,7 +34,7 @@ class NewCardView extends StatefulWidget {
 }
 
 class _NewCardViewState extends State<NewCardView> {
-  late TextEditingController cardNumberController;
+  late TextEditingController controller;
   late TextEditingController emailController;
   late TextEditingController nameController;
   late TextEditingController studentNumberController;
@@ -41,10 +43,9 @@ class _NewCardViewState extends State<NewCardView> {
 
   @override
   void initState() {
-
     _formKey = GlobalKey<FormState>();
 
-    cardNumberController = TextEditingController();
+    controller = TextEditingController();
     emailController = TextEditingController();
     nameController = TextEditingController();
     studentNumberController = TextEditingController();
@@ -79,20 +80,19 @@ class _NewCardViewState extends State<NewCardView> {
           },
           success: (cardNumber) {
             ///to remove loader
-            cardNumberController.text = cardNumber;
+            controller.text = cardNumber;
             Navigator.pop(context);
           });
     }, builder: (context, state) {
       state.whenOrNull(success: (cardNumber) {
-        cardNumberController.text = cardNumber;
+        controller.text = cardNumber;
       });
       return Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(
-                left: SizeConst.horizontalPadding,
-                right: SizeConst.horizontalPadding,
-                top: SizeConst.verticalPadding),
+            padding: EdgeInsets.symmetric(
+                horizontal: SizeConst.horizontalPadding,
+                vertical: SizeConst.verticalPadding),
             child: Form(
               key: _formKey,
               child: CustomScrollView(
@@ -101,12 +101,10 @@ class _NewCardViewState extends State<NewCardView> {
                     delegate: SliverChildListDelegate(
                       [
                         SizedBox(height: SizeConst.verticalPadding),
-                        CustomAppBar(
-                          text: "${AppLocalizations.of(context)?.addNewCard}",
-                        ),
-                        SizedBox(height: SizeConst.verticalPaddingFour),
+                        const CustomAppBar(),
+                        SizedBox(height: 7.h),
                         Text(
-                          "${AppLocalizations.of(context)?.addNewStudentCard}",
+                          "${AppLocalizations.of(context)?.addNewCard}",
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -114,7 +112,7 @@ class _NewCardViewState extends State<NewCardView> {
                         ),
                         SizedBox(height: 1.h),
                         Text(
-                          "${AppLocalizations.of(context)?.pleaseEnterStudentCardAndInfo}",
+                          "${AppLocalizations.of(context)?.pleaseEnterCardNum}",
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -122,19 +120,16 @@ class _NewCardViewState extends State<NewCardView> {
                         ),
                         SizedBox(height: SizeConst.verticalPaddingFour),
                         TextFormField(
-                          keyboardType: TextInputType.number,
                           style: CustomTheme.textFieldTextStyle,
                           inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(25),
+                            LengthLimitingTextInputFormatter(14),
                           ],
                           decoration: InputDecoration(
                             suffixIcon:
                                 BlocBuilder<NfcScannerCubit, NfcScannerState>(
                                     builder: (context, state) {
                               return state.when(
-                                initial: (isNfcSupported) => isNfcSupported &&
-                                        Platform.isAndroid
+                                initial: (isNfcSupported) => isNfcSupported
                                     ? IconButton(
                                         onPressed: () {
                                           context
@@ -153,81 +148,29 @@ class _NewCardViewState extends State<NewCardView> {
                             hintText:
                                 "${AppLocalizations.of(context)?.cardNumber}",
                           ),
-                          controller: cardNumberController,
+                          controller: controller,
                           validator: (value) =>
                               TextFormValidation.requiredField(value,
                                   context: context),
+                          onFieldSubmitted: (_) {
+                            bool filledFormCorrectly =
+                                _formKey.currentState?.validate();
+                            if (filledFormCorrectly) {
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) => CardDetailsDialog(
+                                  cardNumber: controller.text,
+                                ),
+                              );
+                              context.read<GetCardDetailsBloc>().add(
+                                  GetCardDetailsEvent.getCard(
+                                      cardNumber: controller.text));
+                            }
+                          },
                           onTapOutside: (_) =>
                               FocusScope.of(context).requestFocus(FocusNode()),
                         ),
-                        SizedBox(height: SizeConst.horizontalPadding),
-                        TextFormField(
-                          style: CustomTheme.textFieldTextStyle,
-                          decoration: InputDecoration(
-                            hintText:
-                                "${AppLocalizations.of(context)?.studentName}",
-                          ),
-                          controller: nameController,
-                          validator: (value) =>
-                              TextFormValidation.fullNameValidation(value,
-                                  context: context),
-                          onTapOutside: (_) =>
-                              FocusScope.of(context).requestFocus(FocusNode()),
-                        ),
-                        SizedBox(height: SizeConst.horizontalPadding),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          style: CustomTheme.textFieldTextStyle,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(25),
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          decoration: InputDecoration(
-                            hintText:
-                                "${AppLocalizations.of(context)?.studentNumber}",
-                          ),
-                          controller: studentNumberController,
-                          validator: (value) =>
-                              TextFormValidation.requiredField(value,
-                                  context: context),
-                          onTapOutside: (_) =>
-                              FocusScope.of(context).requestFocus(FocusNode()),
-                        ),
-                        SizedBox(height: SizeConst.horizontalPadding),
-                        TextFormField(
-                          style: CustomTheme.textFieldTextStyle,
-                          decoration: InputDecoration(
-                            hintText: "${AppLocalizations.of(context)?.email}",
-                          ),
-                          controller: emailController,
-                          validator: (value) =>
-                              TextFormValidation.emailValidation(value,
-                                  context: context),
-                          onTapOutside: (_) =>
-                              FocusScope.of(context).requestFocus(FocusNode()),
-                        ),
-                        SizedBox(height: SizeConst.horizontalPadding),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          style: CustomTheme.textFieldTextStyle,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(12),
-                          ],
-                          decoration: InputDecoration(
-                            hintText:
-                                "${AppLocalizations.of(context)?.phoneNumber}",
-                          ),
-                          controller: phoneNumberController,
-                          validator: (value) =>
-                              TextFormValidation.saudiPhoneValidation(value,
-                                  context: context),
-                          onTapOutside: (_) =>
-                              FocusScope.of(context).requestFocus(FocusNode()),
-                        ),
-                        SizedBox(
-                          height: 5.h,
-                        )
                       ],
                     ),
                   ),
@@ -242,22 +185,20 @@ class _NewCardViewState extends State<NewCardView> {
                               bool filledFormCorrectly =
                                   _formKey.currentState?.validate();
                               if (filledFormCorrectly) {
-                                context.read<AddNewCardBloc>().add(
-                                    AddNewCardEvent.addCard(
-                                        cardNumber: cardNumberController.text,
-                                        name: nameController.text,
-                                        email: emailController.text,
-                                        phoneNumber: phoneNumberController.text,
-                                        studentNumber:
-                                            studentNumberController.text));
-                                context.pushNamed(AddCardLoaderView.path);
+                                showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (context) => CardDetailsDialog(
+                                    cardNumber: controller.text,
+                                  ),
+                                );
+                                context.read<GetCardDetailsBloc>().add(
+                                    GetCardDetailsEvent.getCard(
+                                        cardNumber: controller.text));
                               }
                             },
                             child:
                                 Text("${AppLocalizations.of(context)?.cont}")),
-                        SizedBox(
-                          height: SizeConst.verticalPadding,
-                        ),
                       ],
                     ),
                   )

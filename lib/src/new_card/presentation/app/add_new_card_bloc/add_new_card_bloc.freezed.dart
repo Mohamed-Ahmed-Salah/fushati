@@ -16,16 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AddNewCardEvent {
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
   String get cardNumber => throw _privateConstructorUsedError;
-  String get studentNumber => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name, String email, String phoneNumber,
             String cardNumber, String studentNumber)
         addCard,
+    required TResult Function(String cardNumber) addCardByNumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,6 +30,7 @@ mixin _$AddNewCardEvent {
     TResult? Function(String name, String email, String phoneNumber,
             String cardNumber, String studentNumber)?
         addCard,
+    TResult? Function(String cardNumber)? addCardByNumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,22 +38,26 @@ mixin _$AddNewCardEvent {
     TResult Function(String name, String email, String phoneNumber,
             String cardNumber, String studentNumber)?
         addCard,
+    TResult Function(String cardNumber)? addCardByNumber,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(AddCardByNumberEvent value) addCardByNumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddCardEvent value)? addCard,
+    TResult? Function(AddCardByNumberEvent value)? addCardByNumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(AddCardByNumberEvent value)? addCardByNumber,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,12 +75,7 @@ abstract class $AddNewCardEventCopyWith<$Res> {
           AddNewCardEvent value, $Res Function(AddNewCardEvent) then) =
       _$AddNewCardEventCopyWithImpl<$Res, AddNewCardEvent>;
   @useResult
-  $Res call(
-      {String name,
-      String email,
-      String phoneNumber,
-      String cardNumber,
-      String studentNumber});
+  $Res call({String cardNumber});
 }
 
 /// @nodoc
@@ -96,32 +93,12 @@ class _$AddNewCardEventCopyWithImpl<$Res, $Val extends AddNewCardEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? email = null,
-    Object? phoneNumber = null,
     Object? cardNumber = null,
-    Object? studentNumber = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       cardNumber: null == cardNumber
           ? _value.cardNumber
           : cardNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      studentNumber: null == studentNumber
-          ? _value.studentNumber
-          : studentNumber // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -246,6 +223,7 @@ class _$AddCardEventImpl implements AddCardEvent {
     required TResult Function(String name, String email, String phoneNumber,
             String cardNumber, String studentNumber)
         addCard,
+    required TResult Function(String cardNumber) addCardByNumber,
   }) {
     return addCard(name, email, phoneNumber, cardNumber, studentNumber);
   }
@@ -256,6 +234,7 @@ class _$AddCardEventImpl implements AddCardEvent {
     TResult? Function(String name, String email, String phoneNumber,
             String cardNumber, String studentNumber)?
         addCard,
+    TResult? Function(String cardNumber)? addCardByNumber,
   }) {
     return addCard?.call(name, email, phoneNumber, cardNumber, studentNumber);
   }
@@ -266,6 +245,7 @@ class _$AddCardEventImpl implements AddCardEvent {
     TResult Function(String name, String email, String phoneNumber,
             String cardNumber, String studentNumber)?
         addCard,
+    TResult Function(String cardNumber)? addCardByNumber,
     required TResult orElse(),
   }) {
     if (addCard != null) {
@@ -278,6 +258,7 @@ class _$AddCardEventImpl implements AddCardEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(AddCardByNumberEvent value) addCardByNumber,
   }) {
     return addCard(this);
   }
@@ -286,6 +267,7 @@ class _$AddCardEventImpl implements AddCardEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddCardEvent value)? addCard,
+    TResult? Function(AddCardByNumberEvent value)? addCardByNumber,
   }) {
     return addCard?.call(this);
   }
@@ -294,6 +276,7 @@ class _$AddCardEventImpl implements AddCardEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddCardEvent value)? addCard,
+    TResult Function(AddCardByNumberEvent value)? addCardByNumber,
     required TResult orElse(),
   }) {
     if (addCard != null) {
@@ -311,15 +294,11 @@ abstract class AddCardEvent implements AddNewCardEvent {
       required final String cardNumber,
       required final String studentNumber}) = _$AddCardEventImpl;
 
-  @override
   String get name;
-  @override
   String get email;
-  @override
   String get phoneNumber;
   @override
   String get cardNumber;
-  @override
   String get studentNumber;
 
   /// Create a copy of AddNewCardEvent
@@ -328,6 +307,160 @@ abstract class AddCardEvent implements AddNewCardEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddCardEventImplCopyWith<_$AddCardEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddCardByNumberEventImplCopyWith<$Res>
+    implements $AddNewCardEventCopyWith<$Res> {
+  factory _$$AddCardByNumberEventImplCopyWith(_$AddCardByNumberEventImpl value,
+          $Res Function(_$AddCardByNumberEventImpl) then) =
+      __$$AddCardByNumberEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String cardNumber});
+}
+
+/// @nodoc
+class __$$AddCardByNumberEventImplCopyWithImpl<$Res>
+    extends _$AddNewCardEventCopyWithImpl<$Res, _$AddCardByNumberEventImpl>
+    implements _$$AddCardByNumberEventImplCopyWith<$Res> {
+  __$$AddCardByNumberEventImplCopyWithImpl(_$AddCardByNumberEventImpl _value,
+      $Res Function(_$AddCardByNumberEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddNewCardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cardNumber = null,
+  }) {
+    return _then(_$AddCardByNumberEventImpl(
+      cardNumber: null == cardNumber
+          ? _value.cardNumber
+          : cardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddCardByNumberEventImpl implements AddCardByNumberEvent {
+  const _$AddCardByNumberEventImpl({required this.cardNumber});
+
+  @override
+  final String cardNumber;
+
+  @override
+  String toString() {
+    return 'AddNewCardEvent.addCardByNumber(cardNumber: $cardNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddCardByNumberEventImpl &&
+            (identical(other.cardNumber, cardNumber) ||
+                other.cardNumber == cardNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, cardNumber);
+
+  /// Create a copy of AddNewCardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddCardByNumberEventImplCopyWith<_$AddCardByNumberEventImpl>
+      get copyWith =>
+          __$$AddCardByNumberEventImplCopyWithImpl<_$AddCardByNumberEventImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)
+        addCard,
+    required TResult Function(String cardNumber) addCardByNumber,
+  }) {
+    return addCardByNumber(cardNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)?
+        addCard,
+    TResult? Function(String cardNumber)? addCardByNumber,
+  }) {
+    return addCardByNumber?.call(cardNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String email, String phoneNumber,
+            String cardNumber, String studentNumber)?
+        addCard,
+    TResult Function(String cardNumber)? addCardByNumber,
+    required TResult orElse(),
+  }) {
+    if (addCardByNumber != null) {
+      return addCardByNumber(cardNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddCardEvent value) addCard,
+    required TResult Function(AddCardByNumberEvent value) addCardByNumber,
+  }) {
+    return addCardByNumber(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AddCardEvent value)? addCard,
+    TResult? Function(AddCardByNumberEvent value)? addCardByNumber,
+  }) {
+    return addCardByNumber?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddCardEvent value)? addCard,
+    TResult Function(AddCardByNumberEvent value)? addCardByNumber,
+    required TResult orElse(),
+  }) {
+    if (addCardByNumber != null) {
+      return addCardByNumber(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddCardByNumberEvent implements AddNewCardEvent {
+  const factory AddCardByNumberEvent({required final String cardNumber}) =
+      _$AddCardByNumberEventImpl;
+
+  @override
+  String get cardNumber;
+
+  /// Create a copy of AddNewCardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddCardByNumberEventImplCopyWith<_$AddCardByNumberEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

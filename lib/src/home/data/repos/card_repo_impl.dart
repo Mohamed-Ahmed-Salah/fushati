@@ -37,6 +37,30 @@ class CardRepoImpl implements CardRepo {
   }
 
   @override
+  ResultFuture<void> addCardByNumber({
+    required String cardNumber,
+  }) async {
+    try {
+      final result =
+          await _remoteDataSource.addCardByNumber(cardNumber: cardNumber);
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
+    } on AuthenticationException catch (e) {
+      return Left(AuthenticationFailure.fromException(e));
+    } on NoInternetException catch (e) {
+      return Left(NoInternetFailure.fromException(e));
+    } on TimeOutException catch (e) {
+      return Left(TimeOutFailure.fromException(e));
+    } on CardNotFoundException catch (e) {
+      return Left(CardNotFoundFailure.fromException(e));
+    } catch (e) {
+      return Left(ServerFailure.fromException(
+          ServerException(message: e.toString(), statusCode: 1)));
+    }
+  }
+
+  @override
   ResultFuture<void> deleteCard({
     required int id,
   }) async {

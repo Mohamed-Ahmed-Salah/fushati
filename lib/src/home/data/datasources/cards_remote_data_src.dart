@@ -47,7 +47,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
-      print("response ${response.data} ${response.statusCode}");
+      debugPrint("response ${response.data} ${response.statusCode}");
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
 
       if (isSuccess) {
@@ -66,7 +66,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
     } on DioException catch (e) {
-      print(
+      debugPrint(
           "error Dioss  ${e.response?.data['errors']} ${e.response?.statusCode}");
 
       String status = e.response?.data["message"] ??
@@ -74,7 +74,82 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           e.response?.data['errors']["user_number"][0] ??
           e.response?.data['errors']["email"][0] ??
           ErrorConst.getError(statusCode: e.response?.statusCode ?? 0);
-      print("STATUS $status");
+
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.connectionError) {
+        throw const TimeOutException(
+            message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 0);
+      }
+      if (e.response == null) {
+        if (e.error.runtimeType == SocketException) {
+          throw NoInternetException(
+              message: ErrorConst.NO_INTERNET_MESSAGE,
+              statusCode: e.response?.statusCode ?? 400);
+        }
+      }
+
+      throw ServerException(message: status, statusCode: 500);
+    } on ServerException {
+      rethrow;
+    } on AuthenticationException {
+      rethrow;
+    } on CacheException {
+      rethrow;
+    } on NoInternetException {
+      rethrow;
+    } on TimeOutException {
+      rethrow;
+    } on CardNotFoundException {
+      rethrow;
+    } on TimeoutException {
+      throw throw const TimeOutException(
+          message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
+    } catch (e, s) {
+      throw const ServerException(
+          message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
+    }
+  }
+
+  @override
+  Future<void> addCardByNumber({
+    required String cardNumber,
+  }) async {
+    try {
+      final header = await NetworkConstants.getHeadersWithAuth();
+      final response = await _dio
+          .post('${NetworkConstants.baseUrl}$addCardEndpoint',
+              data: {"user_card": cardNumber, "type": "student"},
+              options: Options(
+                headers: header,
+              ))
+          .timeout(const Duration(seconds: NetworkConstants.timeout));
+      debugPrint("response ${response.data} ${response.statusCode}");
+      bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
+
+      if (isSuccess) {
+        return;
+      } else {
+        if (response.statusCode == 401) {
+          throw AuthenticationException(
+              message: ErrorConst.NO_TOKEN,
+              statusCode: response.statusCode ?? 0);
+        }
+        if (response.statusCode == 422) {
+          throw const CardNotFoundException(statusCode: 422);
+        }
+        throw ServerException(
+            message: response.data['message'],
+            statusCode: response.statusCode ?? 0);
+      }
+    } on DioException catch (e) {
+      debugPrint(
+          "error DioException  ${e.response?.data['errors']} ${e.response?.statusCode}");
+
+      String status = e.response?.data["message"] ??
+          e.response?.data['errors']["user_phone"][0] ??
+          e.response?.data['errors']["user_number"][0] ??
+          e.response?.data['errors']["email"][0] ??
+          ErrorConst.getError(statusCode: e.response?.statusCode ?? 0);
 
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
@@ -188,6 +263,10 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
+      debugPrint("getCard ${response.data}");
+      if((response.data["message"]??"").contains("Student not found")){
+        throw const CardNotFoundException(statusCode: 422);
+      }
       if (response.data["id"] == null) {
         throw const CardNotFoundException(statusCode: 422);
       }
@@ -204,9 +283,11 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
+      debugPrint("getCard DioException ${e.response?.data}");
+      if((e.response?.data["message"]??"").contains("Student not found")){
+        throw const CardNotFoundException(statusCode: 422);
+      }
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
@@ -238,6 +319,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on CardNotFoundException {
       rethrow;
     } catch (e, s) {
+      debugPrint("getCard ServerException ${e.toString()}");
+
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
@@ -315,6 +398,10 @@ abstract class CardRemoteDataSrc {
   const CardRemoteDataSrc();
 
   Future<CardEntity> getCard({
+    required String cardNumber,
+  });
+
+  Future<void> addCardByNumber({
     required String cardNumber,
   });
 

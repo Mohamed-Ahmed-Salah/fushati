@@ -20,5 +20,8 @@ abstract class CardRepo {
     required String studentNumber,
   });
 
+  ResultFuture<void> addCardByNumber({
+    required String cardNumber,
+  });
   ResultFuture<HomeResponse> getCards(int page);
 }

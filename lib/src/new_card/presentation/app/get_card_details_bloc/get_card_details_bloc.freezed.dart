@@ -238,6 +238,7 @@ mixin _$GetCardDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(String message) failed,
+    required TResult Function() notAddedBefore,
     required TResult Function(CardEntity card) success,
   }) =>
       throw _privateConstructorUsedError;
@@ -245,6 +246,7 @@ mixin _$GetCardDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
+    TResult? Function()? notAddedBefore,
     TResult? Function(CardEntity card)? success,
   }) =>
       throw _privateConstructorUsedError;
@@ -252,6 +254,7 @@ mixin _$GetCardDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(String message)? failed,
+    TResult Function()? notAddedBefore,
     TResult Function(CardEntity card)? success,
     required TResult orElse(),
   }) =>
@@ -260,6 +263,7 @@ mixin _$GetCardDetailsState {
   TResult map<TResult extends Object?>({
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
+    required TResult Function(_notAddedBeforeState value) notAddedBefore,
     required TResult Function(_success value) success,
   }) =>
       throw _privateConstructorUsedError;
@@ -267,6 +271,7 @@ mixin _$GetCardDetailsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
+    TResult? Function(_notAddedBeforeState value)? notAddedBefore,
     TResult? Function(_success value)? success,
   }) =>
       throw _privateConstructorUsedError;
@@ -274,6 +279,7 @@ mixin _$GetCardDetailsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
+    TResult Function(_notAddedBeforeState value)? notAddedBefore,
     TResult Function(_success value)? success,
     required TResult orElse(),
   }) =>
@@ -344,6 +350,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(String message) failed,
+    required TResult Function() notAddedBefore,
     required TResult Function(CardEntity card) success,
   }) {
     return loading();
@@ -354,6 +361,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
+    TResult? Function()? notAddedBefore,
     TResult? Function(CardEntity card)? success,
   }) {
     return loading?.call();
@@ -364,6 +372,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(String message)? failed,
+    TResult Function()? notAddedBefore,
     TResult Function(CardEntity card)? success,
     required TResult orElse(),
   }) {
@@ -378,6 +387,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult map<TResult extends Object?>({
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
+    required TResult Function(_notAddedBeforeState value) notAddedBefore,
     required TResult Function(_success value) success,
   }) {
     return loading(this);
@@ -388,6 +398,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
+    TResult? Function(_notAddedBeforeState value)? notAddedBefore,
     TResult? Function(_success value)? success,
   }) {
     return loading?.call(this);
@@ -398,6 +409,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
+    TResult Function(_notAddedBeforeState value)? notAddedBefore,
     TResult Function(_success value)? success,
     required TResult orElse(),
   }) {
@@ -482,6 +494,7 @@ class _$failedStateImpl implements _failedState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(String message) failed,
+    required TResult Function() notAddedBefore,
     required TResult Function(CardEntity card) success,
   }) {
     return failed(message);
@@ -492,6 +505,7 @@ class _$failedStateImpl implements _failedState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
+    TResult? Function()? notAddedBefore,
     TResult? Function(CardEntity card)? success,
   }) {
     return failed?.call(message);
@@ -502,6 +516,7 @@ class _$failedStateImpl implements _failedState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(String message)? failed,
+    TResult Function()? notAddedBefore,
     TResult Function(CardEntity card)? success,
     required TResult orElse(),
   }) {
@@ -516,6 +531,7 @@ class _$failedStateImpl implements _failedState {
   TResult map<TResult extends Object?>({
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
+    required TResult Function(_notAddedBeforeState value) notAddedBefore,
     required TResult Function(_success value) success,
   }) {
     return failed(this);
@@ -526,6 +542,7 @@ class _$failedStateImpl implements _failedState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
+    TResult? Function(_notAddedBeforeState value)? notAddedBefore,
     TResult? Function(_success value)? success,
   }) {
     return failed?.call(this);
@@ -536,6 +553,7 @@ class _$failedStateImpl implements _failedState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
+    TResult Function(_notAddedBeforeState value)? notAddedBefore,
     TResult Function(_success value)? success,
     required TResult orElse(),
   }) {
@@ -556,6 +574,124 @@ abstract class _failedState implements GetCardDetailsState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$notAddedBeforeStateImplCopyWith<$Res> {
+  factory _$$notAddedBeforeStateImplCopyWith(_$notAddedBeforeStateImpl value,
+          $Res Function(_$notAddedBeforeStateImpl) then) =
+      __$$notAddedBeforeStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$notAddedBeforeStateImplCopyWithImpl<$Res>
+    extends _$GetCardDetailsStateCopyWithImpl<$Res, _$notAddedBeforeStateImpl>
+    implements _$$notAddedBeforeStateImplCopyWith<$Res> {
+  __$$notAddedBeforeStateImplCopyWithImpl(_$notAddedBeforeStateImpl _value,
+      $Res Function(_$notAddedBeforeStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GetCardDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$notAddedBeforeStateImpl implements _notAddedBeforeState {
+  const _$notAddedBeforeStateImpl();
+
+  @override
+  String toString() {
+    return 'GetCardDetailsState.notAddedBefore()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$notAddedBeforeStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(String message) failed,
+    required TResult Function() notAddedBefore,
+    required TResult Function(CardEntity card) success,
+  }) {
+    return notAddedBefore();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(String message)? failed,
+    TResult? Function()? notAddedBefore,
+    TResult? Function(CardEntity card)? success,
+  }) {
+    return notAddedBefore?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String message)? failed,
+    TResult Function()? notAddedBefore,
+    TResult Function(CardEntity card)? success,
+    required TResult orElse(),
+  }) {
+    if (notAddedBefore != null) {
+      return notAddedBefore();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_loadingState value) loading,
+    required TResult Function(_failedState value) failed,
+    required TResult Function(_notAddedBeforeState value) notAddedBefore,
+    required TResult Function(_success value) success,
+  }) {
+    return notAddedBefore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_loadingState value)? loading,
+    TResult? Function(_failedState value)? failed,
+    TResult? Function(_notAddedBeforeState value)? notAddedBefore,
+    TResult? Function(_success value)? success,
+  }) {
+    return notAddedBefore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_loadingState value)? loading,
+    TResult Function(_failedState value)? failed,
+    TResult Function(_notAddedBeforeState value)? notAddedBefore,
+    TResult Function(_success value)? success,
+    required TResult orElse(),
+  }) {
+    if (notAddedBefore != null) {
+      return notAddedBefore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _notAddedBeforeState implements GetCardDetailsState {
+  const factory _notAddedBeforeState() = _$notAddedBeforeStateImpl;
 }
 
 /// @nodoc
@@ -628,6 +764,7 @@ class _$successImpl implements _success {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(String message) failed,
+    required TResult Function() notAddedBefore,
     required TResult Function(CardEntity card) success,
   }) {
     return success(card);
@@ -638,6 +775,7 @@ class _$successImpl implements _success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(String message)? failed,
+    TResult? Function()? notAddedBefore,
     TResult? Function(CardEntity card)? success,
   }) {
     return success?.call(card);
@@ -648,6 +786,7 @@ class _$successImpl implements _success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(String message)? failed,
+    TResult Function()? notAddedBefore,
     TResult Function(CardEntity card)? success,
     required TResult orElse(),
   }) {
@@ -662,6 +801,7 @@ class _$successImpl implements _success {
   TResult map<TResult extends Object?>({
     required TResult Function(_loadingState value) loading,
     required TResult Function(_failedState value) failed,
+    required TResult Function(_notAddedBeforeState value) notAddedBefore,
     required TResult Function(_success value) success,
   }) {
     return success(this);
@@ -672,6 +812,7 @@ class _$successImpl implements _success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_loadingState value)? loading,
     TResult? Function(_failedState value)? failed,
+    TResult? Function(_notAddedBeforeState value)? notAddedBefore,
     TResult? Function(_success value)? success,
   }) {
     return success?.call(this);
@@ -682,6 +823,7 @@ class _$successImpl implements _success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_loadingState value)? loading,
     TResult Function(_failedState value)? failed,
+    TResult Function(_notAddedBeforeState value)? notAddedBefore,
     TResult Function(_success value)? success,
     required TResult orElse(),
   }) {

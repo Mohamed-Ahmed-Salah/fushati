@@ -156,7 +156,6 @@ class VerifyOTPView extends StatelessWidget {
                   ),
                 ),
               )
-              //todo make otp change to submit via button
             ],
           ),
         ),

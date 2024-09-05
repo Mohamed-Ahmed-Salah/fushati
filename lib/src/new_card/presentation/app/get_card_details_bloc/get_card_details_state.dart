@@ -5,6 +5,7 @@ sealed class GetCardDetailsState with _$GetCardDetailsState {
   const factory GetCardDetailsState.loading() = _loadingState;
 
   const factory GetCardDetailsState.failed(String message) = _failedState;
+  const factory GetCardDetailsState.notAddedBefore() = _notAddedBeforeState;
 
   const factory GetCardDetailsState.success({required CardEntity card}) =
       _success;

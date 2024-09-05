@@ -26,7 +26,8 @@ class CardsBloc extends Bloc<CardsEvent, CardsState> {
     int maxPage = 1;
     List<CardEntity> cards = [];
 
-     state.when(
+    final bool callFromStart = event.callFromStart ?? false;
+    state.when(
         initial: () {},
         loading: (list, page, max) {
           cards = list;
@@ -46,6 +47,10 @@ class CardsBloc extends Bloc<CardsEvent, CardsState> {
         });
 
     int nextPage = currentPage + 1;
+    if(callFromStart){
+      nextPage=1;
+      maxPage=1;
+    }
     if (nextPage > maxPage || state is loadingState) {
       debugPrint("nextPage > maxPage || state is loadingState");
       debugPrint("$nextPage > $maxPage ${state is loadingState}");
@@ -71,7 +76,8 @@ class CardsBloc extends Bloc<CardsEvent, CardsState> {
         );
       },
       (response) {
-        debugPrint("current PAGE = ${response.currentPage}, ${response.lastPage}");
+        debugPrint(
+            "current PAGE = ${response.currentPage}, ${response.lastPage}");
         if (response.cards.isEmpty) {
           emit(const CardsState.emptyList());
         } else {

@@ -27,7 +27,9 @@ class AddCardLoaderView extends StatelessWidget {
       child: BlocConsumer<AddNewCardBloc, AddNewCardState>(
         listener: (BuildContext context, AddNewCardState state) {
           state.whenOrNull(success: () {
-            context.read<CardsBloc>().add(const CardsEvent.getCards());
+            context
+                .read<CardsBloc>()
+                .add(const CardsEvent.getCards(callFromStart: true));
             context.pushNamed(AddCardSuccessView.name);
           }, failed: (message) {
             context.pop();

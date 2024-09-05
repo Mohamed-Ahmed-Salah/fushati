@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/core/common/widgets/card_box.dart';
 import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
+import 'package:fushati/src/new_card/presentation/views/new_card_with_student_details.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/common/widgets/custom_animated_switcher.dart';
@@ -20,7 +23,13 @@ class CardDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GetCardDetailsBloc, GetCardDetailsState>(
-      listener: (BuildContext context, GetCardDetailsState state) {},
+      listener: (BuildContext context, GetCardDetailsState state) {
+        state.whenOrNull(notAddedBefore: () {
+          Navigator.pop(context);
+          context.pushNamed(NewCardWithStudentDetailsView.name,
+              extra: cardNumber);
+        });
+      },
       builder: (context, state) {
         double radius = SizeConst.borderRadius;
         state.whenOrNull(loading: () {
@@ -73,7 +82,9 @@ class CardDetailsDialog extends StatelessWidget {
                                       CardDetailError(message: message),
                                   success: (card) => CardDetail(
                                         card: card,
-                                      )),
+                                      ),
+                                  notAddedBefore: () =>
+                                      CustomCircularProgressIndicator()),
                             ),
                           ),
                         ),

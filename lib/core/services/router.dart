@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fushati/src/auth/presentation/views/auth_success.dart';
 import 'package:fushati/src/edit_profile/presentation/views/edit_profile_view.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:fushati/src/new_card/presentation/views/new_card_with_student_details.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/views/profile_view.dart';
 import 'package:go_router/go_router.dart';
@@ -35,9 +36,6 @@ GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
 
 GlobalKey<NavigatorState> get shellNavigatorKey => _shellNavigatorKey;
 
-
-
-
 final router = GoRouter(
   debugLogDiagnostics: true,
   navigatorKey: _rootNavigatorKey,
@@ -56,7 +54,6 @@ final router = GoRouter(
       path: LoginView.path,
       builder: (context, state) => const LoginView(),
     ),
-
     GoRoute(
       path: VerifyOTPView.path,
       name: VerifyOTPView.name,
@@ -64,7 +61,6 @@ final router = GoRouter(
         phone: state.uri.queryParameters["phone"]!,
       ),
     ),
-
     GoRoute(
       path: HomeView.path,
       builder: (context, state) => HomeView(
@@ -80,6 +76,13 @@ final router = GoRouter(
           path: AddCardLoaderView.path,
           name: AddCardLoaderView.name,
           builder: (context, state) => const AddCardLoaderView(),
+        ),
+        GoRoute(
+          path: NewCardWithStudentDetailsView.path,
+          name: NewCardWithStudentDetailsView.name,
+          builder: (context, state) => NewCardWithStudentDetailsView(
+            cardNumber: state.extra as String,
+          ),
         ),
         GoRoute(
           path: AddCardSuccessView.path,
@@ -134,7 +137,8 @@ final router = GoRouter(
     GoRoute(
       path: ProfileView.path,
       builder: (context, state) => const ProfileView(),
-    ), GoRoute(
+    ),
+    GoRoute(
       path: PolicyView.path,
       builder: (context, state) => const PolicyView(),
     ),

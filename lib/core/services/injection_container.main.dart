@@ -48,6 +48,7 @@ Future<void> _cardsInit() async {
     ..registerLazySingleton(() => AddCard(sl()))
     ..registerLazySingleton(() => GetCardDetails(sl()))
     ..registerLazySingleton(() => GetCards(sl()))
+    ..registerLazySingleton(() => AddCardByNumberUsecase(sl()))
     ..registerLazySingleton<CardRepo>(() => CardRepoImpl(sl()))
     ..registerLazySingleton<CardRemoteDataSrc>(
         () => CardRemoteDataSrcImpl(sl()));

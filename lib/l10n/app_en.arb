@@ -174,7 +174,9 @@
 "validationTypeInvalid": "The selected type is invalid.",
 "validationFaceImagesImage": "Each face image must be an image file.",
 "validationFaceImagesMimes": "Each face image must be a file of type: jpeg, png, jpg, gif.",
-"validationFaceImagesMax": "Each face image may not be greater than 2 MB."
+"validationFaceImagesMax": "Each face image may not be greater than 2 MB.",
+"cardNotLinked":"Card Not Linked Yet",
+
 
 }
 

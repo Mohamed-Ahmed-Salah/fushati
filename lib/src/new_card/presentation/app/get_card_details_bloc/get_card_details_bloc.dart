@@ -27,8 +27,12 @@ class GetCardDetailsBloc
     final result = await _getCardDetails(cardNumber);
     result.fold(
       (failure) {
-        emit(GetCardDetailsState.failed(
-            ErrorConst.getErrorBody(text: failure.message)));
+        if (failure.message == ErrorConst.CANNOT_FIND_CARD_EN) {
+          emit(const GetCardDetailsState.notAddedBefore());
+        } else {
+          emit(GetCardDetailsState.failed(
+              ErrorConst.getErrorBody(text: failure.message)));
+        }
       },
       (card) {
         emit(GetCardDetailsState.success(card: card));

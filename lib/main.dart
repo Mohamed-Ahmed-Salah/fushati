@@ -9,7 +9,6 @@ import 'package:fushati/src/manage_card/presentation/app/delete_card_bloc/delete
 import 'package:fushati/src/moyasar_transfer/presentation/app/bloc/transfer_money_bloc.dart';
 import 'package:fushati/src/moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
-import 'package:fushati/src/new_card/presentation/app/cubit/nfc_scanner_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:fushati/src/on_boarding/presentation/app/bloc/cubit/page_cubit.dart';
 import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_user_bloc.dart';
@@ -30,7 +29,8 @@ import 'src/auth/presentation/app/blocs/otp_bloc/otp_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'src/home/presentation/apps/registration_fees_bloc/registration_fees_bloc.dart';
-import 'src/new_card/presentation/app/bloc/nfc_reader_bloc.dart';
+import 'src/new_card/presentation/app/nfc_availability_checker_cubit/nfc_scanner_cubit.dart';
+import 'src/new_card/presentation/app/nfc_reader_bloc/nfc_reader_bloc.dart';
 import 'src/splash/presentation/app/get_schools_bloc/get_schools_bloc.dart';
 
 void main() async {
@@ -60,7 +60,8 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => AppRedirectionBloc(),
           ),
           BlocProvider<AddNewCardBloc>(
-            create: (BuildContext context) => AddNewCardBloc(addCard: sl()),
+            create: (BuildContext context) =>
+                AddNewCardBloc(addCard: sl(), addCardByNumber: sl()),
           ),
           BlocProvider<CustomerInfoBloc>(
             create: (BuildContext context) => CustomerInfoBloc(

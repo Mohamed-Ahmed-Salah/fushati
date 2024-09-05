@@ -6,6 +6,7 @@ import 'package:fushati/src/home/data/repos/registration_fees_repo_impl.dart';
 import 'package:fushati/src/home/data/repos/transaction_repo_impl.dart';
 import 'package:fushati/src/home/domain/repos/registration_fees_repo.dart';
 import 'package:fushati/src/home/domain/usecases/add_card.dart';
+import 'package:fushati/src/home/domain/usecases/add_card_usecase.dart';
 import 'package:fushati/src/home/domain/usecases/get_registration_fees.dart';
 import 'package:fushati/src/manage_card/domain/usecases/delete_card.dart';
 import 'package:fushati/src/home/domain/usecases/get_card.dart';
