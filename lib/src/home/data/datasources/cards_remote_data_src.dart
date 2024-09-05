@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -105,7 +106,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
-    } catch (e, s) {
+    } catch (e) {
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
@@ -116,7 +117,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     required String cardNumber,
   }) async {
     try {
-      print("AAAA");
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
           .post('${NetworkConstants.baseUrl}$addCardByNumberEndpoint',
@@ -125,7 +125,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
-      print("response ${response.data} ${response.statusCode}");
+      log("response ${response.data} ${response.statusCode}");
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
 
       if (isSuccess) {
@@ -144,7 +144,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
     } on DioException catch (e) {
-      print(
+      log(
           "error DioException addCardByNumber ${e.response?.data['errors']} ${e.response?.statusCode}");
 
       String status = e.response?.data["message"] ??
@@ -182,8 +182,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
-    } catch (e, s) {
-      print("CATCH ${e.toString()}");
+    } catch (e) {
+      log("CATCH ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
@@ -247,7 +247,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     } on TimeoutException {
       throw throw const TimeOutException(
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
-    } catch (e, s) {
+    } catch (e) {
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
@@ -321,7 +321,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } on CardNotFoundException {
       rethrow;
-    } catch (e, s) {
+    } catch (e) {
       debugPrint("getCard ServerException ${e.toString()}");
 
       throw const ServerException(
@@ -389,8 +389,8 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
           message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 500);
     } on CardNotFoundException {
       rethrow;
-    } catch (e, s) {
-      debugPrint("${e.toString()}");
+    } catch (e) {
+      log("catch ${e.toString()}");
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }
