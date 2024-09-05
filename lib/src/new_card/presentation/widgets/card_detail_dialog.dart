@@ -84,7 +84,7 @@ class CardDetailsDialog extends StatelessWidget {
                                         card: card,
                                       ),
                                   notAddedBefore: () =>
-                                      CustomCircularProgressIndicator()),
+                                      const CustomCircularProgressIndicator()),
                             ),
                           ),
                         ),

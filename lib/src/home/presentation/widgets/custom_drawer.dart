@@ -164,7 +164,6 @@ class CustomDrawer extends StatelessWidget {
                                   buttonText:
                                       "${AppLocalizations.of(context)?.yes}",
                                   onPressed: () {
-                                    // Navigator.pop(builderContext);
                                     context.read<DeleteUserBloc>().add(
                                         DeleteUserEvent.deleteUser(
                                             context: context, id: user.id));

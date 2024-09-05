@@ -46,7 +46,7 @@ class _AlertDeleteAccountState extends State<AlertDeleteAccount> {
     return BlocBuilder<DeleteUserBloc, DeleteUserState>(
         builder: (context, state) {
       double radius = SizeConst.borderRadius;
-      double height = 33.h;
+      double height = 35.h;
       double width = 100.w;
       state.whenOrNull(loading: () {
         radius = 100.w;
@@ -217,7 +217,7 @@ class _AlertDeleteAccountState extends State<AlertDeleteAccount> {
                                         ),
                                       );
                                     },
-                                    success: () => const Text("success"))
+                                    success: () => const Text(""))
                                 /* : Center(
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5.w),

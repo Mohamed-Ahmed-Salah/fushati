@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fushati/core/common/widgets/error_alert_dialog.dart';
 import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
+import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,10 +27,14 @@ class DeleteConfirmationCardBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<DeleteCardBloc, DeleteCardState>(
       listener: (BuildContext context, DeleteCardState state) {
-        state.whenOrNull(success: () {
-          context.read<CardsBloc>().add(const CardsEvent.getCards());
-          context.pushNamed(CardDeletedSuccessView.path);
-        });
+        state.whenOrNull(
+          success: () {
+            context
+                .read<CardsBloc>()
+                .add(const CardsEvent.getCards(callFromStart: true));
+            context.pushNamed(CardDeletedSuccessView.path);
+          },
+        );
       },
       builder: (context, state) {
         double radius = SizeConst.borderRadius;
@@ -39,8 +45,6 @@ class DeleteConfirmationCardBox extends StatelessWidget {
         return Center(
           child: Padding(
             padding: EdgeInsets.all(SizeConst.horizontalPaddingFour),
-
-
             child: AnimatedContainer(
               decoration: BoxDecoration(
                 color: Colours.whiteColor,
@@ -54,8 +58,9 @@ class DeleteConfirmationCardBox extends StatelessWidget {
                   ),
                 ],
                 borderRadius: BorderRadius.all(
-                  Radius.circular(
-                      state != const DeleteCardState.loading() ? radius : 100.w),
+                  Radius.circular(state != const DeleteCardState.loading()
+                      ? radius
+                      : 100.w),
                 ),
               ),
               duration: const Duration(seconds: 1),
@@ -72,14 +77,13 @@ class DeleteConfirmationCardBox extends StatelessWidget {
                     child: CustomAnimatedSwitcher(
                       child: state.when(
                           initial: () => Padding(
-                                padding: EdgeInsets.all(
-                                    SizeConst.horizontalPadding),
+                                padding:
+                                    EdgeInsets.all(SizeConst.horizontalPadding),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         CustomCloseButton(),
                                       ],
@@ -127,14 +131,12 @@ class DeleteConfirmationCardBox extends StatelessWidget {
                                             child: Text(
                                               "${AppLocalizations.of(context)?.cancel}",
                                               style: const TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.w400),
+                                                  fontWeight: FontWeight.w400),
                                             ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width:
-                                              SizeConst.horizontalPadding,
+                                          width: SizeConst.horizontalPadding,
                                         ),
                                         Expanded(
                                           child: ElevatedButton(
@@ -147,8 +149,7 @@ class DeleteConfirmationCardBox extends StatelessWidget {
                                             child: Text(
                                               "${AppLocalizations.of(context)?.delete}",
                                               style: const TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.w400),
+                                                  fontWeight: FontWeight.w400),
                                             ),
                                           ),
                                         ),
@@ -157,93 +158,16 @@ class DeleteConfirmationCardBox extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                          loading: () => const CustomCircularProgressIndicator(),
-                          failed: (failed) => Padding(
-                            padding: EdgeInsets.all(
-                                SizeConst.horizontalPadding),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.end,
-                                  children: [
-                                    CustomCloseButton(),
-                                  ],
-                                ),
-                                SvgPicture.asset(Media.deleteCardSvg),
-                                SizedBox(
-                                  height: SizeConst.verticalPadding,
-                                ),
-                                Text(
-                                  "${AppLocalizations.of(context)?.deleteCard}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge
-                                      ?.copyWith(
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  "${AppLocalizations.of(context)?.areYouSureDeleteCard}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                      color: Colours.textBlackColor
-                                          .withOpacity(0.7)),
-                                ),
-                                SizedBox(
-                                  height: SizeConst.verticalPadding,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor:
-                                          Colours.lightGreyButton,
-                                        ),
-                                        onPressed: () {
-                                          context.pop();
-                                        },
-                                        child: Text(
-                                          "${AppLocalizations.of(context)?.cancel}",
-                                          style: const TextStyle(
-                                              fontWeight:
-                                              FontWeight.w400),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width:
-                                      SizeConst.horizontalPadding,
-                                    ),
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          context
-                                              .read<DeleteCardBloc>()
-                                              .add(DeleteCardEvent
-                                              .deleteCard(id: id));
-                                        },
-                                        child: Text(
-                                          "${AppLocalizations.of(context)?.delete}",
-                                          style: const TextStyle(
-                                              fontWeight:
-                                              FontWeight.w400),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          loading: () =>
+                              const CustomCircularProgressIndicator(),
+                          failed: (failed) => ErrorAlertDialog(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                title: ErrorConst.getErrorTitle(
+                                    title: ErrorConst.errorEn),
+                                subtitle: failed,
+                              ),
                           success: () => Container()),
                     ),
                   ),
