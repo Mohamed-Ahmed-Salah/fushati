@@ -125,6 +125,7 @@ class _NewCardWithStudentDetailsViewState
                         ),
                         SizedBox(height: SizeConst.verticalPaddingFour),
                         TextFormField(
+                          enabled: false,
                           keyboardType: TextInputType.number,
                           style: CustomTheme.textFieldTextStyle,
                           inputFormatters: [
@@ -136,8 +137,7 @@ class _NewCardWithStudentDetailsViewState
                                 BlocBuilder<NfcScannerCubit, NfcScannerState>(
                                     builder: (context, state) {
                               return state.when(
-                                initial: (isNfcSupported) => isNfcSupported &&
-                                        Platform.isAndroid
+                                initial: (isNfcSupported) => isNfcSupported
                                     ? IconButton(
                                         onPressed: () {
                                           context
@@ -198,6 +198,7 @@ class _NewCardWithStudentDetailsViewState
                         ),
                         SizedBox(height: SizeConst.horizontalPadding),
                         TextFormField(
+                          keyboardType: TextInputType.emailAddress,
                           style: CustomTheme.textFieldTextStyle,
                           decoration: InputDecoration(
                             hintText: "${AppLocalizations.of(context)?.email}",

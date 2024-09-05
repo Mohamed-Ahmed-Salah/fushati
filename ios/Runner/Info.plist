@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+		<key>com.apple.developer.nfc.readersession.felica.systemcodes</key>
+    	<array>
+    		<string>8008</string>
+    	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -41,34 +45,26 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+<key>com.apple.developer.nfc.readersession.formats</key>
+<array>
+    <string>ISO7816</string>
+    <string>NDEF</string>
+</array>
+<key>NFCReaderUsageDescription</key>
+<string>This app requires access to NFC to scan NFC tags.</string>
+<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+	<array>
+		<string>A00000000386980701</string>
+	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>nfc</string>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-    <key>com.apple.developer.nfc.readersession.formats</key>
-    <array>
-        <string>ISO7816</string>
-        <string>NDEF</string>
-    </array>
-	<key>NSUserNFCReaderUsageDescription</key>
-	<string>This app requires access to NFC to scan NFC tags.</string>
-	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
-    <array>
-        <string>A0000000031010</string> <!-- Visa Debit/Credit -->
-        <string>A0000000041010</string> <!-- MasterCard Debit/Credit -->
-        <string>A00000002501</string>   <!-- American Express -->
-        <string>A0000000651010</string> <!-- JCB -->
-        <string>A0000001523010</string> <!-- Discover -->
-        <string>A0000003330101</string> <!-- UnionPay -->
-        <string>A0000000043060</string> <!-- Maestro -->
-        <string>A0000001524010</string> <!-- Diners Club -->
-        <string>A0000002771010</string> <!-- Interac -->
-        <string>A0000000032010</string> <!-- Visa Electron -->
-        <string>A0000000038010</string> <!-- Visa Plus -->
-        <string>A0000000042203</string> <!-- MasterCard Cirrus -->
-        <string>A0000000421010</string> <!-- Carte Bancaire -->
-        <string>A0000005241010</string> <!-- RuPay -->
-        <string>A0000000641010</string> <!-- Troy -->
-    </array>
+    	<true/>
+    	<key>UIApplicationSupportsIndirectInputEvents</key>
+    	<true/>
 </dict>
 </plist>

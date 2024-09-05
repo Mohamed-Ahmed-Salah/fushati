@@ -18,29 +18,41 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
     on<readCardNfcEvent>(_readNfc);
     on<resetCardNfcEvent>(_reset);
   }
-
+  //
+  // _readNfc(event, emit) async {
+  //   _readNfcFromExample(emit);
+  //   // try {
+  //   //   emit(const NfcReaderState.loading());
+  //   //   NFCTag tag = await FlutterNfcKit.poll();
+  //   //   log("NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
+  //   //   log("${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
+  //   //   String physicalCardNumber = tag.id;
+  //   //   String softwareCardNumber = convertCardNumber(physicalCardNumber);
+  //   //   print("Software Card Number: $softwareCardNumber");
+  //   //   closeSession();
+  //   //
+  //   //   emit(NfcReaderState.success(softwareCardNumber));
+  //   // } catch (e) {
+  //   //   closeSession();
+  //   //
+  //   //   emit(NfcReaderState.failed(
+  //   //       ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR)));
+  //   // }
+  // }
   _readNfc(event, emit) async {
-    _readNfcFromExample(emit);
-    // try {
-    //   emit(const NfcReaderState.loading());
-    //   NFCTag tag = await FlutterNfcKit.poll();
-    //   log("NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
-    //   log("${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
-    //   String physicalCardNumber = tag.id;
-    //   String softwareCardNumber = convertCardNumber(physicalCardNumber);
-    //   print("Software Card Number: $softwareCardNumber");
-    //   closeSession();
-    //
-    //   emit(NfcReaderState.success(softwareCardNumber));
-    // } catch (e) {
-    //   closeSession();
-    //
-    //   emit(NfcReaderState.failed(
-    //       ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR)));
-    // }
+    try {
+      emit(NfcReaderState.loading());
+      // Ensure we await the asynchronous function call
+      await _readNfcFromExample(emit);
+    } catch (e) {
+      // Handle any unexpected errors here
+      emit(NfcReaderState.failed(
+          ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR)));
+    }
   }
 
   _readNfcFromExample(emit) async {
+    String? softwareCardNumber;
     try {
       debugPrint("BEFORE FlutterNfcKit.poll()");
       NFCTag tag = await FlutterNfcKit.poll();
@@ -48,47 +60,28 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
 
       await FlutterNfcKit.setIosAlertMessage("Working on it...");
 
-      CoreUtils.showSnackBar(
-          message:
-              "NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
-      log("NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
-      log("${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
+      debugPrint("NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
+      debugPrint("${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
       String physicalCardNumber = tag.id;
-      String softwareCardNumber = convertCardNumber(physicalCardNumber);
-      log("Software Card Number: $softwareCardNumber");
+      softwareCardNumber = convertCardNumber(physicalCardNumber);
+      debugPrint("Software Card Number: $softwareCardNumber");
 
-      emit(NfcReaderState.success(softwareCardNumber));
-      // _mifareResult = null;
-      if (tag.standard == "ISO 14443-4 (Type B)") {
-        String result1 = await FlutterNfcKit.transceive("00B0950000");
-        String result2 =
-            await FlutterNfcKit.transceive("00A4040009A00000000386980701");
-        // setState(() {
-        //   _result = '1: $result1\n2: $result2\n';
-        // });
-      } else if (tag.type == NFCTagType.iso18092) {
-        String result1 = await FlutterNfcKit.transceive("060080080100");
-        // setState(() {
-        //   _result = '1: $result1\n';
-        // });
-      } else if (tag.ndefAvailable ?? false) {
-        var ndefRecords = await FlutterNfcKit.readNDEFRecords();
-        var ndefString = '';
-        for (int i = 0; i < ndefRecords.length; i++) {
-          ndefString += '${i + 1}: ${ndefRecords[i]}\n';
-        }
-        // setState(() {
-        //   _result = ndefString;
-        // });
-      } else if (tag.type == NFCTagType.webusb) {
-        var r = await FlutterNfcKit.transceive("00A4040006D27600012401");
-        print(r);
+      // Emit success only if we have the softwareCardNumber
+      if (softwareCardNumber != null) {
+        emit(NfcReaderState.success(softwareCardNumber));
       }
     } catch (e) {
-      debugPrint("CARCH ${e.toString()}");
-    }
+      CoreUtils.showSnackBar(
+          message: ErrorConst.getErrorBody(text: ErrorConst.couldNotReadCardNumberEn));
 
-    await FlutterNfcKit.finish(iosAlertMessage: "Finished!");
+      debugPrint("CARCH ${e.toString()}");
+      // Emit failure state in case of an error
+      emit(NfcReaderState.failed(
+          ErrorConst.getErrorBody(text: ErrorConst.couldNotReadCardNumberEn)));
+    } finally {
+      // Ensure we call finish in the finally block to close the session
+      await FlutterNfcKit.finish(iosAlertMessage: "Finished!");
+    }
   }
 
   String convertCardNumber(String physicalCardNumber) {

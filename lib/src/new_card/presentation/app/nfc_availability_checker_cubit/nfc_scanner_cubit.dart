@@ -14,9 +14,9 @@ class NfcScannerCubit extends Cubit<NfcScannerState> {
 
   checkNfcSupported() async {
     NFCAvailability value = await FlutterNfcKit.nfcAvailability;
-    log("Checking NFC availability");
+    debugPrint("Checking NFC availability");
     bool isAvailable = value == NFCAvailability.available;
-    log(
+    debugPrint(
         "Calling checkNfcSupported from splash value supports NFC: $isAvailable");
 
     emit(NfcScannerState.initial(isNfcAvailable: isAvailable));

@@ -1,5 +1,7 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_nfc_kit (2.0.0):
+    - Flutter
   - moyasar (0.0.1):
     - Flutter
   - nfc_manager (0.0.1):
@@ -13,19 +15,23 @@ PODS:
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_nfc_kit (from `.symlinks/plugins/flutter_nfc_kit/ios`)
   - moyasar (from `.symlinks/plugins/moyasar/ios`)
   - nfc_manager (from `.symlinks/plugins/nfc_manager/ios`)
   - pay_ios (from `.symlinks/plugins/pay_ios/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
-  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_nfc_kit:
+    :path: ".symlinks/plugins/flutter_nfc_kit/ios"
   moyasar:
     :path: ".symlinks/plugins/moyasar/ios"
   nfc_manager:
@@ -37,17 +43,18 @@ EXTERNAL SOURCES:
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   webview_flutter_wkwebview:
-    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_nfc_kit: 965c98c3fa68f5609f1cc89abb968fe1b8ffdbaa
   moyasar: ef85946ede43c27c8358c570e90ac66aebf8f0dc
   nfc_manager: d7da7cb781f7744b94df5fe9dbca904ac4a0939e
   pay_ios: 8c7beb9c61d885f3f51b61f75f8793023fc8843a
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
-  webview_flutter_wkwebview: be0f0d33777f1bfd0c9fdcb594786704dbf65f36
+  webview_flutter_wkwebview: 0982481e3d9c78fd5c6f62a002fcd24fc791f1e4
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.13.0
