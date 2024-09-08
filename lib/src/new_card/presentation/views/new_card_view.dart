@@ -6,14 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
-import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/nfc_availability_checker_cubit/nfc_scanner_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/get_card_details_bloc/get_card_details_bloc.dart';
 import 'package:fushati/src/new_card/presentation/app/nfc_reader_bloc/nfc_reader_bloc.dart';
-import 'package:fushati/src/new_card/presentation/views/add_card_loader.dart';
 import 'package:fushati/src/new_card/presentation/widgets/card_detail_dialog.dart';
 import 'package:fushati/src/new_card/presentation/widgets/nfc_loader.dart';
-import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/common/singletons/form_validation.dart';

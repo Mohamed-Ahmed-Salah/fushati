@@ -37,7 +37,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
 
       debugPrint("login ${response.data}");
       if (isSuccess) {
-        return ;
+        return;
       } else {
         if (response.statusCode == 401) {
           throw AuthenticationException(
@@ -45,7 +45,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
               statusCode: response.statusCode ?? 0);
         }
         throw ServerException(
-            message: response.data['message']??'',
+            message: response.data['message'] ?? '',
             statusCode: response.statusCode ?? 0);
       }
     } on DioException catch (e) {
@@ -113,9 +113,10 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
       if (response.data['message']
-          .toString()
-          .toLowerCase()
-          .contains("invalid code")) {
+              .toString()
+              .toLowerCase()
+              .contains("invalid code") ||
+          response.statusCode == 422) {
         throw const AuthenticationException(
             message: ErrorConst.invalidOtpEn, statusCode: 0);
       }
@@ -126,7 +127,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
     } on DioException catch (e) {
       debugPrint("verifyOTP DioException ${e.response?.data}");
 
-      if (e.response?.statusCode == 401) {
+      if (e.response?.statusCode == 401 || e.response?.statusCode == 422) {
         throw const AuthenticationException(
             message: ErrorConst.invalidOtpEn, statusCode: 0);
       }

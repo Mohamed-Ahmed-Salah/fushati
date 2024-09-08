@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:developer';
 
 part 'nfc_scanner_state.dart';
 
