@@ -1,8 +1,11 @@
-import 'dart:io';
+import 'package:ndef/ndef.dart' as ndef;
+import 'dart:io' show Platform, sleep;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
@@ -40,6 +43,12 @@ class _NewCardViewState extends State<NewCardView> {
   late TextEditingController studentNumberController;
   late TextEditingController phoneNumberController;
   late final _formKey;
+  String _platformVersion = '';
+  NFCAvailability _availability = NFCAvailability.not_supported;
+  NFCTag? _tag;
+  String? _result, _writeResult, _mifareResult;
+  late TabController _tabController;
+  List<ndef.NDEFRecord>? _records;
 
   @override
   void initState() {
@@ -133,12 +142,68 @@ class _NewCardViewState extends State<NewCardView> {
                                 builder: (context, state) {
                               return state.when(
                                 initial: (isNfcSupported) => isNfcSupported
-                                    ? IconButton(
-                                        onPressed: () {
-                                          context
-                                              .read<NfcReaderBloc>()
-                                              .add(const readCardNfcEvent());
-                                        },
+                                    ?
+                                IconButton(
+                                  onPressed: () async {
+                                    try {
+                                      NFCTag tag = await FlutterNfcKit.poll();
+                                      setState(() {
+                                        _tag = tag;
+                                      });
+                                      await FlutterNfcKit.setIosAlertMessage(
+                                          "Working on it...");
+                                      _mifareResult = null;
+                                      if (tag.standard == "ISO 14443-4 (Type B)") {
+                                        String result1 =
+                                        await FlutterNfcKit.transceive("00B0950000");
+                                        String result2 = await FlutterNfcKit.transceive(
+                                            "00A4040009A00000000386980701");
+                                        setState(() {
+                                          _result = '1: $result1\n2: $result2\n';
+                                        });
+                                      }
+                                      else if (tag.type == NFCTagType.iso18092) {
+                                        String result1 =
+                                        await FlutterNfcKit.transceive("060080080100");
+                                        setState(() {
+                                          _result = '1: $result1\n';
+                                        });
+                                      } else if (tag.ndefAvailable ?? false) {
+                                        var ndefRecords = await FlutterNfcKit.readNDEFRecords();
+                                        var ndefString = '';
+                                        for (int i = 0; i < ndefRecords.length; i++) {
+                                          ndefString += '${i + 1}: ${ndefRecords[i]}\n';
+                                        }
+                                        setState(() {
+                                          _result = ndefString;
+                                        });
+                                      } else if (tag.type == NFCTagType.webusb) {
+                                        var r = await FlutterNfcKit.transceive(
+                                            "00A4040006D27600012401");
+                                        print(r);
+                                      }
+                                      else if (tag.type == NFCTagType.iso15693) {
+                                        String result1 = await FlutterNfcKit.transceive("0600B001001F");
+                                        setState(() {
+                                          _result = '1: $result1\n';
+                                        });
+                                      }
+                                    } catch (e) {
+                                      setState(() {
+                                        _result = 'error: $e';
+                                      });
+                                    }
+
+                                    // Pretend that we are working
+                                    if (!kIsWeb) sleep(new Duration(seconds: 1));
+                                    await FlutterNfcKit.finish(iosAlertMessage: "Finished!");
+                                  },
+
+                                  // onPressed: () {
+                                        //   // context
+                                        //   //     .read<NfcReaderBloc>()
+                                        //   //     .add(const readCardNfcEvent());
+                                        // },
                                         icon: Icon(
                                           Media.nfcIcon,
                                           size: 4.h,

@@ -160,6 +160,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
     } on TimeOutException {
       rethrow;
     } catch (e, s) {
+      debugPrint(e.toString());
       throw const ServerException(
           message: ErrorConst.UNKNOWN_ERROR, statusCode: 500);
     }

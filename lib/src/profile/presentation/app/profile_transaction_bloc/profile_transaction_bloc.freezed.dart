@@ -68,9 +68,6 @@ class _$ProfileTransactionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProfileTransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -90,9 +87,6 @@ class __$$GetUserTransactionsEventImplCopyWithImpl<$Res>
       _$GetUserTransactionsEventImpl _value,
       $Res Function(_$GetUserTransactionsEventImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileTransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -266,9 +260,6 @@ class _$ProfileTransactionStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -285,9 +276,6 @@ class __$$initialStateImplCopyWithImpl<$Res>
   __$$initialStateImplCopyWithImpl(
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -631,8 +619,6 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -709,9 +695,7 @@ class _$failedStateImpl implements _failedState {
   int get hashCode => Object.hash(runtimeType, message,
       const DeepCollectionEquality().hash(_transactions), currentPage, maxPage);
 
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -821,10 +805,7 @@ abstract class _failedState implements ProfileTransactionState {
   List<Transaction> get transactions;
   int get currentPage;
   int get maxPage;
-
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -846,8 +827,6 @@ class __$$successStateImplCopyWithImpl<$Res>
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -915,9 +894,7 @@ class _$successStateImpl implements _successState {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_transactions), currentPage, maxPage);
 
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
@@ -1025,10 +1002,7 @@ abstract class _successState implements ProfileTransactionState {
   List<Transaction> get transactions;
   int get currentPage;
   int get maxPage;
-
-  /// Create a copy of ProfileTransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

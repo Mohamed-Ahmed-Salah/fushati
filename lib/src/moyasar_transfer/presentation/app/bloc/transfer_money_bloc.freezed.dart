@@ -62,9 +62,7 @@ mixin _$TransferMoneyEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TransferMoneyEventCopyWith<TransferMoneyEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -88,8 +86,6 @@ class _$TransferMoneyEventCopyWithImpl<$Res, $Val extends TransferMoneyEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,8 +119,6 @@ class __$$AddWalletEventImplCopyWithImpl<$Res>
       _$AddWalletEventImpl _value, $Res Function(_$AddWalletEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,9 +157,7 @@ class _$AddWalletEventImpl implements AddWalletEvent {
   @override
   int get hashCode => Object.hash(runtimeType, amount);
 
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddWalletEventImplCopyWith<_$AddWalletEventImpl> get copyWith =>
@@ -247,11 +239,8 @@ abstract class AddWalletEvent implements TransferMoneyEvent {
 
   @override
   int get amount;
-
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddWalletEventImplCopyWith<_$AddWalletEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -276,8 +265,6 @@ class __$$AddingAmountEventImplCopyWithImpl<$Res>
       $Res Function(_$AddingAmountEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -346,9 +333,7 @@ class _$AddingAmountEventImpl implements AddingAmountEvent {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(result), context, cardNumber, amount);
 
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddingAmountEventImplCopyWith<_$AddingAmountEventImpl> get copyWith =>
@@ -436,11 +421,8 @@ abstract class AddingAmountEvent implements TransferMoneyEvent {
   String get cardNumber;
   @override
   int get amount;
-
-  /// Create a copy of TransferMoneyEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddingAmountEventImplCopyWith<_$AddingAmountEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -509,9 +491,6 @@ class _$TransferMoneyStateCopyWithImpl<$Res, $Val extends TransferMoneyState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -531,8 +510,6 @@ class __$$loadingStateImplCopyWithImpl<$Res>
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -572,9 +549,7 @@ class _$loadingStateImpl implements _loadingState {
   @override
   int get hashCode => Object.hash(runtimeType, amount);
 
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
@@ -653,10 +628,7 @@ abstract class _loadingState implements TransferMoneyState {
   const factory _loadingState({final int amount}) = _$loadingStateImpl;
 
   int get amount;
-
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$loadingStateImplCopyWith<_$loadingStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -678,8 +650,6 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -718,9 +688,7 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -799,10 +767,7 @@ abstract class _failedState implements TransferMoneyState {
   const factory _failedState(final String error) = _$failedStateImpl;
 
   String get error;
-
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -821,9 +786,6 @@ class __$$suceessStateImplCopyWithImpl<$Res>
   __$$suceessStateImplCopyWithImpl(
       _$suceessStateImpl _value, $Res Function(_$suceessStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of TransferMoneyState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
