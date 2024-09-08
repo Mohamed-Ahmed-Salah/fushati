@@ -14,7 +14,7 @@ import '../../../../core/res/styles/colours.dart';
 import '../app/blocs/otp_bloc/otp_bloc.dart';
 import '../widgets/resend_otp_widget.dart';
 
-class VerifyOTPView extends StatelessWidget {
+class VerifyOTPView extends StatefulWidget {
   static const path = '/verify-otp';
   static const name = '/verify-otp';
 
@@ -23,8 +23,26 @@ class VerifyOTPView extends StatelessWidget {
   const VerifyOTPView({super.key, required this.phone});
 
   @override
+  State<VerifyOTPView> createState() => _VerifyOTPViewState();
+}
+
+class _VerifyOTPViewState extends State<VerifyOTPView> {
+  late final TextEditingController controller;
+
+  @override
+  void initState() {
+    controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String otp = '';
     return Scaffold(
       body: GreenBackground(
         child: Padding(
@@ -46,7 +64,7 @@ class VerifyOTPView extends StatelessWidget {
                     ),
                     SizedBox(height: 1.h),
                     Text(
-                      "${AppLocalizations.of(context)?.weSentOtp(phone)}",
+                      "${AppLocalizations.of(context)?.weSentOtp(widget.phone)}",
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w400,
                             color: Colours.textBlackColor.withOpacity(0.7),
@@ -57,6 +75,7 @@ class VerifyOTPView extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Pinput(
                         autofocus: true,
+                        controller: controller,
                         pinContentAlignment: Alignment.center,
                         validator: (value) {
                           TextFormValidation.otpValidation(value,
@@ -101,13 +120,13 @@ class VerifyOTPView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onChanged: (text) {
-                          otp = text;
-                        },
+
                         onCompleted: (pin) {
                           context.read<OtpBloc>().add(
                                 OtpEvent.verifyOTP(
-                                    otp: pin, context: context, phone: phone),
+                                    otp: pin,
+                                    context: context,
+                                    phone: widget.phone),
                               );
                         },
                       ),
@@ -124,19 +143,19 @@ class VerifyOTPView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         ResendOtpWidget(
-                          phone: phone,
+                          phone: widget.phone,
                         ),
                         BlocBuilder<OtpBloc, OtpState>(
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: state == const OtpState.loading() ||
-                                      otp.length < 6
+                                  controller.text.length < 6
                                   ? null
                                   : () => context.read<OtpBloc>().add(
                                         OtpEvent.verifyOTP(
-                                            otp: otp,
+                                            otp: controller.text,
                                             context: context,
-                                            phone: phone),
+                                            phone: widget.phone),
                                       ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +164,8 @@ class VerifyOTPView extends StatelessWidget {
                                     "${AppLocalizations.of(context)?.verify}",
                                   ),
                                   AnimatedButtonCircularLoader(
-                                      loading: state == const OtpState.loading()),
+                                      loading:
+                                          state == const OtpState.loading()),
                                 ],
                               ),
                             );

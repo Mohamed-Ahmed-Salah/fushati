@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
@@ -192,15 +192,46 @@ class _NewCardWithStudentDetailsViewState
                           style: CustomTheme.textFieldTextStyle,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(12),
+                            LengthLimitingTextInputFormatter(9),
                           ],
                           decoration: InputDecoration(
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 2.w),
+                              child: SizedBox(
+                                height: 3.h,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "+966",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colours.blackColor),
+                                    ),
+
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 1.w,
+                                          vertical: 0.5.h),
+                                      child: const VerticalDivider(
+                                        width: 4,
+                                        thickness: 1.5,
+                                        color: Colours.dividerGreyColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                             hintText:
                                 "${AppLocalizations.of(context)?.phoneNumber}",
                           ),
                           controller: phoneNumberController,
                           validator: (value) =>
-                              TextFormValidation.saudiPhoneValidation(value,
+                              TextFormValidation.phoneValidation(value,
                                   context: context),
                           onTapOutside: (_) =>
                               FocusScope.of(context).requestFocus(FocusNode()),
@@ -227,7 +258,7 @@ class _NewCardWithStudentDetailsViewState
                                         cardNumber: cardNumberController.text,
                                         name: nameController.text,
                                         email: emailController.text,
-                                        phoneNumber: phoneNumberController.text,
+                                        phoneNumber: "966${phoneNumberController.text}",
                                         studentNumber:
                                             studentNumberController.text));
                                 context.pushNamed(AddCardLoaderView.path);
