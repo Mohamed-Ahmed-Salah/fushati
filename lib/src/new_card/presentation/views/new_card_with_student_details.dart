@@ -133,26 +133,6 @@ class _NewCardWithStudentDetailsViewState
                             LengthLimitingTextInputFormatter(25),
                           ],
                           decoration: InputDecoration(
-                            suffixIcon:
-                                BlocBuilder<NfcScannerCubit, NfcScannerState>(
-                                    builder: (context, state) {
-                              return state.when(
-                                initial: (isNfcSupported) => isNfcSupported
-                                    ? IconButton(
-                                        onPressed: () {
-                                          context
-                                              .read<NfcReaderBloc>()
-                                              .add(const readCardNfcEvent());
-                                        },
-                                        icon: Icon(
-                                          Media.nfcIcon,
-                                          size: 4.h,
-                                          color: Colours.primaryGreenColor,
-                                        ),
-                                      )
-                                    : const SizedBox.shrink(),
-                              );
-                            }),
                             hintText:
                                 "${AppLocalizations.of(context)?.cardNumber}",
                           ),
