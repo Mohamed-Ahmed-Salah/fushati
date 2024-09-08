@@ -1,13 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fushati/core/res/media.dart';
+import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/new_card/presentation/app/add_new_card_bloc/add_new_card_bloc.dart';
-import 'package:fushati/src/new_card/presentation/app/nfc_availability_checker_cubit/nfc_scanner_cubit.dart';
 import 'package:fushati/src/new_card/presentation/app/nfc_reader_bloc/nfc_reader_bloc.dart';
 import 'package:fushati/src/new_card/presentation/views/add_card_loader.dart';
 import 'package:fushati/src/new_card/presentation/widgets/nfc_loader.dart';
@@ -18,7 +15,6 @@ import '../../../../core/common/singletons/form_validation.dart';
 import '../../../../core/common/widgets/custome_appbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
 
 class NewCardWithStudentDetailsView extends StatefulWidget {
@@ -133,26 +129,6 @@ class _NewCardWithStudentDetailsViewState
                             LengthLimitingTextInputFormatter(25),
                           ],
                           decoration: InputDecoration(
-                            suffixIcon:
-                                BlocBuilder<NfcScannerCubit, NfcScannerState>(
-                                    builder: (context, state) {
-                              return state.when(
-                                initial: (isNfcSupported) => isNfcSupported
-                                    ? IconButton(
-                                        onPressed: () {
-                                          context
-                                              .read<NfcReaderBloc>()
-                                              .add(const readCardNfcEvent());
-                                        },
-                                        icon: Icon(
-                                          Media.nfcIcon,
-                                          size: 4.h,
-                                          color: Colours.primaryGreenColor,
-                                        ),
-                                      )
-                                    : const SizedBox.shrink(),
-                              );
-                            }),
                             hintText:
                                 "${AppLocalizations.of(context)?.cardNumber}",
                           ),
@@ -216,15 +192,46 @@ class _NewCardWithStudentDetailsViewState
                           style: CustomTheme.textFieldTextStyle,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(12),
+                            LengthLimitingTextInputFormatter(9),
                           ],
                           decoration: InputDecoration(
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 2.w),
+                              child: SizedBox(
+                                height: 3.h,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "+966",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colours.blackColor),
+                                    ),
+
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 1.w,
+                                          vertical: 0.5.h),
+                                      child: const VerticalDivider(
+                                        width: 4,
+                                        thickness: 1.5,
+                                        color: Colours.dividerGreyColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                             hintText:
                                 "${AppLocalizations.of(context)?.phoneNumber}",
                           ),
                           controller: phoneNumberController,
                           validator: (value) =>
-                              TextFormValidation.saudiPhoneValidation(value,
+                              TextFormValidation.phoneValidation(value,
                                   context: context),
                           onTapOutside: (_) =>
                               FocusScope.of(context).requestFocus(FocusNode()),
@@ -251,7 +258,7 @@ class _NewCardWithStudentDetailsViewState
                                         cardNumber: cardNumberController.text,
                                         name: nameController.text,
                                         email: emailController.text,
-                                        phoneNumber: phoneNumberController.text,
+                                        phoneNumber: "966${phoneNumberController.text}",
                                         studentNumber:
                                             studentNumberController.text));
                                 context.pushNamed(AddCardLoaderView.path);

@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:fushati/src/home/domain/repos/card_repo.dart';
 
 import '../../../../core/usecase/usecase.dart';

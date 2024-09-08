@@ -28,7 +28,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?requestId=$userCard&page=$page&limit=${NetworkConstants.pageSize}&parent_id=$userId',
+              '${NetworkConstants.reportsUrl}?card_number=$userCard&page=$page&limit=${NetworkConstants.pageSize}&parent_id=$userId',
               options: Options(
                 headers: header,
               ))

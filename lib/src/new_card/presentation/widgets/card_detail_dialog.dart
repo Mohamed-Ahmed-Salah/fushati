@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fushati/core/common/widgets/card_box.dart';
 import 'package:fushati/core/common/widgets/loading_view.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
