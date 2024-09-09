@@ -66,9 +66,8 @@ class ProfileTransactionBloc
             currentPage: currentPage));
       },
       (response) async {
-        print("RESPONSE ${response.currentPage} ${response.lastPage}");
         emit(ProfileTransactionState.success(
-            transactions: response.transactions,
+            transactions: [...previousTransactions,...response.transactions],
             currentPage: response.currentPage,
             maxPage: response.lastPage));
       },

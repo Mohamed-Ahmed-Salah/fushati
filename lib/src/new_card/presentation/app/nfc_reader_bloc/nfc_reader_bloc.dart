@@ -67,14 +67,14 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
       debugPrint("Software Card Number: $softwareCardNumber");
 
       // Emit success only if we have the softwareCardNumber
-      if (softwareCardNumber != null) {
+      if (softwareCardNumber != null|| softwareCardNumber.isNotEmpty) {
         emit(NfcReaderState.success(softwareCardNumber));
       }
     } catch (e) {
       CoreUtils.showSnackBar(
           message: ErrorConst.getErrorBody(text: ErrorConst.couldNotReadCardNumberEn));
 
-      debugPrint("CARCH ${e.toString()}");
+      debugPrint("catch READING CARD ${e.toString()}");
       // Emit failure state in case of an error
       emit(NfcReaderState.failed(
           ErrorConst.getErrorBody(text: ErrorConst.couldNotReadCardNumberEn)));

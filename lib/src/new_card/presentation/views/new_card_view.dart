@@ -121,8 +121,10 @@ class _NewCardViewState extends State<NewCardView> {
                         ),
                         SizedBox(height: SizeConst.verticalPaddingFour),
                         TextFormField(
+                          keyboardType: TextInputType.number,
                           style: CustomTheme.textFieldTextStyle,
                           inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
                             LengthLimitingTextInputFormatter(14),
                           ],
                           decoration: InputDecoration(
