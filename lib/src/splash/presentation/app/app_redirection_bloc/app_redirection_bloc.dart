@@ -89,7 +89,7 @@ class AppRedirectionBloc
   }
 
   getData(BuildContext context) {
-    context.read<CardsBloc>().add(const CardsEvent.getCards());
+    context.read<CardsBloc>().add(const CardsEvent.getCards(callFromStart:true));
     context.read<UserInfoBloc>().add(const UserInfoEvent.getUserInfo());
     context
         .read<RegistrationFeesBloc>()

@@ -14,18 +14,68 @@
 "female":"Female",
 "gender":"Gender",
 "termsAndCondition":"Terms & Conditions",
-"p1": "At Fushati App, we aim to provide a comfortable and satisfactory experience for all parents and students. To achieve this goal, we present to you our refund policy for the amounts charged to your children's accounts.",
-  "p2": "Refund Policy:",
-  "p3": "Use of Charged Amounts:",
-  "p4": "The amounts charged to students' accounts are used solely for purchases within the school cafeteria.",
-  "p5": "We strive to provide the best products and services to our students to ensure a satisfactory experience every time.",
-  "p6": "Non-Refundable Amounts:",
-  "p7": "We would like to inform you that parents cannot request a refund for the amounts charged to their children's accounts. Please ensure that you charge appropriate amounts based on your children's needs.",
-  "p8": "Safe and Convenient Use:",
-  "p9": "We guarantee that all charged amounts will remain secure in students' accounts and will be used only in the school cafeteria. You can monitor purchase transactions through the app easily and transparently.",
-  "p10": "Policy Amendments:",
-  "p11": "We may modify this policy from time to time to ensure the continuous improvement of our services. Parents will be notified of any changes via the app.",
-  "p12": "We thank you for your trust in the Fushati App and look forward to providing the best services to you and your children.",
+"payments1": "Payment Fees and Rates",
+
+"payments2": "In the context of improving your experience with us, we would like to inform you that when using the payment gateway to top up your wallet, variable fees and rates may apply depending on the type of card used (such as Mada, Visa, or Mastercard). These fees include percentages taken by the payment company and transfer processing fees. You will be notified of the net calculated amount after deductions directly through the app before completing the top-up process.",
+
+"payments3": "We would like to inform you that when using payment gateways to top up your wallet, variable rates and fees will apply depending on the type of card used (such as Mada, Visa, or Mastercard). These fees include percentages taken by the payment company and transfer processing fees.",
+"payments4": "Please make sure to review the net amount before approving the top-up process to ensure transparency and your satisfaction.",
+
+"thanksForUsingFushati": "Thank you for choosing the Fushati app.",
+"usagePolicyDesc1": "We would like to inform you that your privacy is important to us, and please do not worry when we ask you to provide your personal information when using the app.",
+
+"usagePolicyDesc2": "This privacy policy is an integral part of the terms and conditions of the Fushati app. By using the app, you agree to our use of your information for the purposes stated in the privacy policy. If you do not agree to the terms of this privacy policy, you should stop registering or using the app.",
+
+"p1": "Fushati offers electronic solutions to keep up with the digital transformation in the Kingdom and align with Vision 2030. The vision of the Fushati app is to organize and streamline the sale operations in school canteens entirely electronically, allowing both students and their parents to transfer money and purchase from the canteen electronically with ease and security.",
+  "p2": "Usage Policy:",
+
+"p3": "Personal Information",
+
+"p4": "This includes basic information about the student that helps identify the information you provide, as well as details of banking operations and accounts.",
+
+"p5": "Sharing Personal Information with Others",
+
+"p6": "We have the right to share your information with a third party to provide services and assist you in using the app. The third party is also obliged to maintain the confidentiality of your personal information.",
+
+"p7": "Protecting Your Personal Information",
+
+"p8": "As you know, the internet is not considered a secure means of information. However, our technical team will make every effort to protect your information.",
+
+"p9": "Dear app user, you agree to be responsible for maintaining the confidentiality of your account information and also agree to notify us if any unauthorized person uses your account password or any other breach of your confidential information in the app.",
+
+"p10": "Fushati app will not be responsible for any loss you may incur, directly or indirectly, morally or materially, as a result of disclosing your information to an unauthorized party.",
+
+"p11": "The Fushati app undertakes to retain your personal and banking information during the period you are using the app. We commit not to handle your personal data for unauthorized or unauthorized purposes, whether for a fee or not, with any other party unless required or authorized by law in Saudi Arabia.",
+
+"p12": "How We Use Your Personal Information",
+
+"p13": "1. To create your personal account.",
+
+"p14": "2. To improve our services and process technical data such as verifying your phone number or email.",
+
+"p15": "3. We share your data with electronic payment entities to verify the payment process you perform.",
+
+"p16": "4. Other actions to improve the app.",
+
+"p17": "Disclosure of Your Personal Information",
+
+"p18": "We have the right to disclose your personal information to others in the following cases:",
+
+"p19": "•To provide services (including electronic account services) available through the app.",
+
+"p20": "•In cases where third parties assist us in providing services to you or performing some functions on our behalf, including IT support services or professional or logistical services.",
+
+"p21": "•To comply with the laws or any court order or decision by any competent regulatory authority, or if we believe that disclosing your data is necessary to protect and defend our rights. This includes exchanging data with other companies and organizations for fraud prevention and credit risk reduction purposes.",
+
+"p22": "•To comply with any legal requests, we may disclose the user's IP address and all recorded data in the registration page as well as all activities performed by the user through the app, as determined by the request or court order or ruling issued to us.",
+
+"p23": "Please note that in order for us to respond to requests from government authorities, subpoenas, or court orders, or for the purpose of protecting other users or our systems, we reserve the right to disclose any data if we deem it necessary, including your personal user data (such as name, email address, and other information) and usage history and content provided on the app.",
+
+"p24": "Privacy Policy Changes",
+
+"p25": "In the event of changes to this privacy policy, we will notify you immediately via the app. We will also inform you of the changes if necessary. Your continued use of the app will be considered acceptance of the changes made to the privacy policy. If you do not accept the changes, please stop using the app.",
+
+"p26": "We would also like to inform you that the 'Privacy Policy' is subject to the provisions of the laws in force in Saudi Arabia and its judicial authorities.",
 
 "getOTP":"Get OTP",
 "fieldOnlyNumbers":"This field must only contain numbers",
