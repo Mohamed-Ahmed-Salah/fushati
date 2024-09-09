@@ -50,6 +50,7 @@ class CardsBloc extends Bloc<CardsEvent, CardsState> {
     if(callFromStart){
       nextPage=1;
       maxPage=1;
+      cards=[];
     }
     if (nextPage > maxPage || state is loadingState) {
       debugPrint("nextPage > maxPage || state is loadingState");
