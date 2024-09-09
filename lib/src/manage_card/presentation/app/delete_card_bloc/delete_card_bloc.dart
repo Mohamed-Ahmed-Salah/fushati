@@ -28,7 +28,6 @@ class DeleteCardBloc extends Bloc<DeleteCardEvent, DeleteCardState> {
     int id = event.id;
     emit(const DeleteCardState.loading());
 
-
     final result = await _deleteCard(id);
     result.fold(
       (failure) {

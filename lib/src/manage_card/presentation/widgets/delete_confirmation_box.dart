@@ -160,14 +160,20 @@ class DeleteConfirmationCardBox extends StatelessWidget {
                               ),
                           loading: () =>
                               const CustomCircularProgressIndicator(),
-                          failed: (failed) => ErrorAlertDialog(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                title: ErrorConst.getErrorTitle(
-                                    title: ErrorConst.errorEn),
-                                subtitle: failed,
-                              ),
+                          failed: (failed) => Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ErrorAlertDialog(
+                                disableColorAndPadding: true,
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    title: ErrorConst.getErrorTitle(
+                                        title: ErrorConst.errorEn),
+                                    subtitle: failed,
+                                  ),
+                            ],
+                          ),
                           success: () => Container()),
                     ),
                   ),
