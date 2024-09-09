@@ -57,7 +57,7 @@ class MoyasarWalletTransferView extends StatelessWidget {
                       state.whenOrNull(successState: () {
                         context
                             .read<CardsBloc>()
-                            .add(const CardsEvent.getCards());
+                            .add(const CardsEvent.getCards(callFromStart:true));
                         context.pushNamed(CardTransactionSuccessView.name,
                             queryParameters: {
                               CardTransactionSuccessView.cardNumberParam:
