@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
+import 'package:fushati/main.dart';
+import 'package:fushati/src/manage_card/presentation/app/delete_card_bloc/delete_card_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -21,6 +24,7 @@ class DeleteCardButton extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
+          context.read<DeleteCardBloc>().add(const DeleteCardEvent.reset());
           showDialog(
             barrierDismissible:false,
             context: context,
