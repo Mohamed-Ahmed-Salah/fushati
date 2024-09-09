@@ -69,7 +69,50 @@ class PolicyView extends StatelessWidget {
               height: SizeConst.verticalPadding,
             ),
             Text(
-              "1.${AppLocalizations.of(context)?.p3}",
+              "${AppLocalizations.of(context)?.usagePolicyDesc1}",
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w400, color: Colours.textBlackColor),
+            ),
+            Text(
+              "${AppLocalizations.of(context)?.usagePolicyDesc2}",
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w400, color: Colours.textBlackColor),
+            ),
+            SizedBox(
+              height: SizeConst.verticalPadding,
+            ),
+            Text(
+              "1.${AppLocalizations.of(context)?.payments1}",
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colours.primaryGreenColor),
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.payments2}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.payments3}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.payments4}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text(
+              "2.${AppLocalizations.of(context)?.p3}",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: Colours.primaryGreenColor),
@@ -85,32 +128,7 @@ class PolicyView extends StatelessWidget {
               height: 1.h,
             ),
             Text(
-              "${AppLocalizations.of(context)?.p5}",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400, color: Colours.textBlackColor),
-            ),
-            SizedBox(
-              height: SizeConst.verticalPadding,
-            ),
-            Text(
-              "2.${AppLocalizations.of(context)?.p6}",
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: Colours.primaryGreenColor),
-            ),
-            SizedBox(
-              height: SizeConst.verticalPadding,
-            ),
-            Text(
-              "${AppLocalizations.of(context)?.p7}",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400, color: Colours.textBlackColor),
-            ),
-            SizedBox(
-              height: SizeConst.verticalPadding,
-            ),
-            Text(
-              "3.${AppLocalizations.of(context)?.p8}",
+              "- ${AppLocalizations.of(context)?.p5}",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: Colours.primaryGreenColor),
@@ -118,16 +136,15 @@ class PolicyView extends StatelessWidget {
             SizedBox(
               height: 1.h,
             ),
-            Text(
-              "${AppLocalizations.of(context)?.p9}",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400, color: Colours.textBlackColor),
-            ),
+            Text("${AppLocalizations.of(context)?.p6}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
             SizedBox(
               height: 1.h,
             ),
             Text(
-              "${AppLocalizations.of(context)?.p10}",
+              "- ${AppLocalizations.of(context)?.p7}",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: Colours.primaryGreenColor),
@@ -135,18 +152,142 @@ class PolicyView extends StatelessWidget {
             SizedBox(
               height: 1.h,
             ),
-            Text(
-              "${AppLocalizations.of(context)?.p11}",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400, color: Colours.textBlackColor),
+            Text("${AppLocalizations.of(context)?.p8}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
             ),
+            Text("${AppLocalizations.of(context)?.p9}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p10}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p11}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
             SizedBox(
               height: 1.h,
             ),
             Text(
-              "${AppLocalizations.of(context)?.p12}",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400, color: Colours.textBlackColor),
+              "- ${AppLocalizations.of(context)?.p12}",
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colours.primaryGreenColor),
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p13}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            Text("${AppLocalizations.of(context)?.p14}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            Text("${AppLocalizations.of(context)?.p15}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            Text("${AppLocalizations.of(context)?.p16}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text(
+              "- ${AppLocalizations.of(context)?.p17}",
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colours.primaryGreenColor),
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p18}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p19}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 0.5.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p20}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 0.5.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p21}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 0.5.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p22}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p23}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text(
+              "- ${AppLocalizations.of(context)?.p24}",
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colours.primaryGreenColor),
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p25}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 0.5.h,
+            ),
+            Text("${AppLocalizations.of(context)?.p26}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 1.h,
+            ),
+            Text("${AppLocalizations.of(context)?.thanksForUsingFushati}",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colours.textBlackColor)),
+            SizedBox(
+              height: 4.h,
             ),
           ],
         ),
