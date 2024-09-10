@@ -130,7 +130,7 @@ abstract class ErrorConst {
   static const String failedToCreateRelationshipAr = "لم نتمكن نت ربط البطاقة. يرجى التحقق من ان البطاقه صحيحه والمحاولة مرة أخرى";
   static const String studentNotFound = "student_not_found";
   static const String couldNotReadCardNumberEn = "Could not read card number";
-  static const String couldNotReadCardNumberAr = "“لم نتمكن من قراءة رقم البطاقة”";
+  static const String couldNotReadCardNumberAr = "لم نتمكن من قراءة رقم البطاقة";
 
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
@@ -197,7 +197,7 @@ abstract class ErrorConst {
       case platformNotSupportedEn:
         return platformNotSupportedAr;
 
-      //--------------------------
+    //--------------------------
       case UNKNOWN_ERROR:
         return UNKNOWN_ERROR_AR;
 
@@ -239,7 +239,7 @@ abstract class ErrorConst {
       case couldNotReadCardNumberEn:
         return couldNotReadCardNumberEn;
       case failedToCreateRelationship:
-return failedToCreateRelationshipEn;
+        return failedToCreateRelationshipEn;
       case studentNotFound:
         return CANNOT_FIND_CARD_EN;
       case couldNotLoadAllStudentDataEn:
@@ -293,7 +293,7 @@ return failedToCreateRelationshipEn;
       case platformNotSupportedEn:
         return platformNotSupportedEn;
 
-      //--------------------------
+    //--------------------------
       case UNKNOWN_ERROR:
         return UNKNOWN_ERROR;
 
