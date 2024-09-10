@@ -34,8 +34,11 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/splash.json
   String get splash => 'assets/lottie/splash.json';
 
+  /// File path: assets/lottie/update_required.json
+  String get updateRequired => 'assets/lottie/update_required.json';
+
   /// List of all assets
-  List<String> get values => [flow1, loader, nfcScan, splash];
+  List<String> get values => [flow1, loader, nfcScan, splash, updateRequired];
 }
 
 class $AssetsSvgGen {

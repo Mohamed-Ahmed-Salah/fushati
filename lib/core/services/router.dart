@@ -5,6 +5,7 @@ import 'package:fushati/src/home/domain/entity/card.dart';
 import 'package:fushati/src/new_card/presentation/views/new_card_with_student_details.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/views/profile_view.dart';
+import 'package:fushati/src/update_app/presentation/views/update_app_view.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../src/app_language/presentation/views/app_language.dart';
@@ -51,6 +52,9 @@ final router = GoRouter(
       },
     ),
     GoRoute(
+      path: UpdateAppView.path,
+      builder: (context, state) => const UpdateAppView(),
+    ),GoRoute(
       path: LoginView.path,
       builder: (context, state) => const LoginView(),
     ),

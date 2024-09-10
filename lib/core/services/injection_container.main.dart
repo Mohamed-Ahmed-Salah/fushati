@@ -6,6 +6,7 @@ Future<void> init() async {
   await cacheInit();
   Future.wait([
     ///we call cache from main file and call init from slash app and redirection bloc
+    _minVersion(),
     _appLanguageInit(),
     _authInit(),
     _cardsInit(),
@@ -17,6 +18,14 @@ Future<void> init() async {
   ]);
 }
 
+Future<void> _minVersion() async {
+  sl
+    ..registerLazySingleton(() => GetMinAppVersion(sl()))
+    ..registerLazySingleton<MinAppVersionRepo>(
+            () => MinAppVersionRepoImpl(sl()))
+    ..registerLazySingleton<AppVersionRemoteDataSrc>(
+            () => AppVersionRemoteDataSrcImpl(sl()));
+}
 Future<void> _appLanguageInit() async {
   sl.registerFactory(() => AppLanguageCubit(cacheHelper: sl()));
 }
