@@ -1,26 +1,18 @@
 part of 'app_redirection_bloc.dart';
 
-sealed class AppRedirectionEvent extends Equatable {
-  const AppRedirectionEvent();
+@freezed
+sealed class AppRedirectionEvent with _$AppRedirectionEvent {
+  const factory AppRedirectionEvent.getAppDataAndRedirect(
+      {required BuildContext context}) = GetAppDataAndRedirect;
 
-  @override
-  List<Object> get props => [];
-}
+  const factory AppRedirectionEvent.getAppData(
+      {required BuildContext context}) = GetAppData;
 
-class GetAppDataAndRedirect extends AppRedirectionEvent {
-  final BuildContext context;
+  const factory AppRedirectionEvent.getAppLocalDataData(
+      {required BuildContext context}) = GetAppLocalDataData;
 
-  const GetAppDataAndRedirect({required this.context});
-}
-
-class GetAppData extends AppRedirectionEvent {
-  final BuildContext context;
-
-  const GetAppData({required this.context});
-}
-
-class GetAppLocalDataData extends AppRedirectionEvent {
-  final BuildContext context;
-
-  const GetAppLocalDataData({required this.context});
+  const factory AppRedirectionEvent.updateLoadedSchools() =
+      UpdateLoadedSchoolsData;
+  const factory AppRedirectionEvent.updateLoadedMinVersion() =
+      UpdateLoadedMinVersionData;
 }

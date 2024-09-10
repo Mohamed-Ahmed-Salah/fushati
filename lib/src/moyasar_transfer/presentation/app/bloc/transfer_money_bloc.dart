@@ -33,9 +33,6 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
     final moyasarResult = event.result;
 
     if (moyasarResult is PaymentResponse) {
-      // emit(TransferMoneyState.loading());
-
-      // int amount = await moyasarResult.amount ~/ 100;
 
       ///made this because the backage The smallest currency unit.
       ///For example, to charge SAR 257.58 you will have the amount as 25758.

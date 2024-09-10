@@ -40,10 +40,10 @@ abstract class Media {
 
 
 
-  // static const splashLottie = "$_baseLottie/splash.json";
   static const splashLottie = "$_baseLottie/Flow 1.json";
   static const loadingLottie = "$_baseLottie/loader.json";
   static const nfcLottie = "$_baseLottie/nfc_scan.json";
+  static const updateRequiredLottie = '$_baseLottie/update_required.json';
 
 
   static const nfcIcon = Icons.contactless;

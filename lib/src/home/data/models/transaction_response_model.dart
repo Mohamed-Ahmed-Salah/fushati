@@ -6,9 +6,7 @@ import 'package:fushati/src/home/data/models/transaction_model.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
 import 'package:fushati/src/home/domain/entity/transactions_response.dart';
 
-class TransactionResponseModel extends TransactionResponse{
-
-
+class TransactionResponseModel extends TransactionResponse {
   TransactionResponseModel({
     required super.currentPage,
     required super.transactions,
@@ -17,9 +15,11 @@ class TransactionResponseModel extends TransactionResponse{
 
   factory TransactionResponseModel.fromJson(Map<String, dynamic> json) =>
       TransactionResponseModel(
-        currentPage: json["current_page"],
-        transactions: List<Transaction>.from(
-            json["data"].map((x) => TransactionModel.fromJson(x))),
-        lastPage: json["last_page"],
+        currentPage: json["current_page"] ?? 1,
+        transactions: json["data"] == null
+            ? []
+            : List<Transaction>.from(
+                json["data"].map((x) => TransactionModel.fromJson(x))),
+        lastPage: json["last_page"] ?? 1,
       );
 }

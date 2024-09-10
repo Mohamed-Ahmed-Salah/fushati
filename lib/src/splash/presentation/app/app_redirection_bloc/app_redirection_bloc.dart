@@ -7,7 +7,7 @@ import 'package:fushati/src/home/presentation/apps/registration_fees_bloc/regist
 import 'package:fushati/src/home/presentation/views/home_view.dart';
 import 'package:fushati/src/new_card/presentation/app/nfc_availability_checker_cubit/nfc_scanner_cubit.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
-
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../../core/common/app/cache_helper.dart';
 import '../../../../../core/common/singletons/cache.dart';
 import '../../../../../core/services/injection_container.dart';
@@ -19,20 +19,33 @@ part 'app_redirection_event.dart';
 
 part 'app_redirection_state.dart';
 
+part 'app_redirection_bloc.freezed.dart';
+
 class AppRedirectionBloc
     extends Bloc<AppRedirectionEvent, AppRedirectionState> {
-  AppRedirectionBloc() : super(AppRedirectionInitial()) {
+  static bool loadedMinVersionSuccess = false;
+  static bool loadedSchoolsSuccess = false;
+
+  AppRedirectionBloc() : super(const AppRedirectionState.initial()) {
     on<GetAppData>(_getAppData);
     on<GetAppDataAndRedirect>(_getAppDataAndRedirect);
 
     on<GetAppLocalDataData>(_getAppLocalData);
+    on<UpdateLoadedSchoolsData>(_updateSchool);
+    on<UpdateLoadedMinVersionData>(_updateMinVersion);
   }
 
   Future<void> _getAppLocalData(event, emit) async {
-    // Future.wait([, /*init()*/]);
-
     await getCache();
-    emit(AppRedirectionSuccess());
+    emit(const AppRedirectionState.loadedCache());
+  }
+
+  Future<void> _updateMinVersion(event, emit) async {
+    loadedMinVersionSuccess = true;
+  }
+
+  Future<void> _updateSchool(event, emit) async {
+    loadedSchoolsSuccess = true;
   }
 
   ///called from app run splash screen
@@ -66,28 +79,34 @@ class AppRedirectionBloc
   }
 
   redirect(BuildContext context) {
-    final isFirstTime = Cache.instance.firstTime;
+    debugPrint(
+        "Trying to Navigate loadedMinVersionSuccess=$loadedMinVersionSuccess ,loadedSchoolsSuccess=$loadedSchoolsSuccess");
+    if (loadedMinVersionSuccess && loadedSchoolsSuccess) {
+      final isFirstTime = Cache.instance.firstTime;
 
-    if (isFirstTime) {
-      //todo go onboarding
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        router.go(OnBoardingView.path);
-      });
-    } else if (Cache.instance.isLoggedOut()) {
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        router.go(LoginView.path);
-      });
-    } else {
-      getData(context);
-      // Wrap Navigator with SchedulerBinding to wait for rendering state before navigating
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        router.go(HomeView.path);
-      });
+      if (isFirstTime) {
+        //todo go onboarding
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          router.go(OnBoardingView.path);
+        });
+      } else if (Cache.instance.isLoggedOut()) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          router.go(LoginView.path);
+        });
+      } else {
+        getData(context);
+        // Wrap Navigator with SchedulerBinding to wait for rendering state before navigating
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          router.go(HomeView.path);
+        });
+      }
     }
   }
 
   getData(BuildContext context) {
-    context.read<CardsBloc>().add(const CardsEvent.getCards(callFromStart:true));
+    context
+        .read<CardsBloc>()
+        .add(const CardsEvent.getCards(callFromStart: true));
     context.read<UserInfoBloc>().add(const UserInfoEvent.getUserInfo());
     context
         .read<RegistrationFeesBloc>()
