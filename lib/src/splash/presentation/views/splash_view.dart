@@ -57,7 +57,20 @@ class _SplashViewState extends State<SplashView>
       },
       child: BlocListener<AppMinVersionBloc, AppMinVersionState>(
         listener: (BuildContext _, state) {
-          state.whenOrNull(successShouldUpdate: (_) {
+          state.whenOrNull(failed: (message) {
+            CoreUtils.showMyDialog(
+              title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
+              subTitle: ErrorConst.getErrorBody(text: message),
+              onPressed: () {
+                controller.reset();
+                controller.forward();
+                context
+                    .read<AppMinVersionBloc>()
+                    .add(AppMinVersionEvent.getAppVersion(context: context));
+                Navigator.pop(context);
+              },
+            );
+          }, successShouldUpdate: (_) {
             context.go(UpdateAppView.path);
           }, successNoUpdate: () {
             context
