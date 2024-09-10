@@ -130,7 +130,7 @@ abstract class ErrorConst {
   static const String failedToCreateRelationshipAr = "لم نتمكن نت ربط البطاقة. يرجى التحقق من ان البطاقه صحيحه والمحاولة مرة أخرى";
   static const String studentNotFound = "student_not_found";
   static const String couldNotReadCardNumberEn = "Could not read card number";
-  static const String couldNotReadCardNumberAr = "“لم نتمكمن من قراءة رقم البطاقة”";
+  static const String couldNotReadCardNumberAr = "“لم نتمكن من قراءة رقم البطاقة”";
 
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
