@@ -7,10 +7,10 @@ import '../styles/colours.dart';
 
 abstract class CustomTheme {
 
-  static LinearGradient linearGradiant =LinearGradient(
+  static LinearGradient linearGradiant = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    stops:  const [0, 0.2, 0.3, 0],
+    stops: const [0, 0.2, 0.3, 0],
     colors: [
       Colours.primaryGreenColor.withOpacity(0.2),
       Colours.primaryGreenColor.withOpacity(0.1),
@@ -18,10 +18,10 @@ abstract class CustomTheme {
       Colours.whiteColor,
     ],
   );
-  static LinearGradient linearGradiantLarge =LinearGradient(
+  static LinearGradient linearGradiantLarge = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    stops:  const [0, 0.4, 1, 0],
+    stops: const [0, 0.4, 1, 0],
     colors: [
       Colours.primaryGreenColor.withOpacity(0.2),
       Colours.primaryGreenColor.withOpacity(0.1),
@@ -30,10 +30,10 @@ abstract class CustomTheme {
     ],
   );
 
-  static LinearGradient linearGradiantLargeBottom =LinearGradient(
+  static LinearGradient linearGradiantLargeBottom = LinearGradient(
     begin: Alignment.bottomCenter,
     end: Alignment.topCenter,
-    stops:  const [0, 0.4, 1, 0],
+    stops: const [0, 0.4, 1, 0],
     colors: [
       Colours.primaryGreenColor.withOpacity(0.2),
       Colours.primaryGreenColor.withOpacity(0.1),
@@ -60,23 +60,29 @@ abstract class CustomTheme {
   );
 
   static ElevatedButtonThemeData elevatedButtonThemeData =
-      ElevatedButtonThemeData(
+  ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colours.primaryGreenColor,
-      disabledBackgroundColor: Colours.primaryGreenColor,
-      disabledForegroundColor: Colours.blackColor,
-      foregroundColor: Colours.blackColor,
-      //change background color of button
-      minimumSize: Size(100.w, 6.h),
-      textStyle: TextStyle(
-          fontSize: 16.px,
-          fontWeight: FontWeight.w500,
-          color: Colours.blackColor),
-      shape: RoundedRectangleBorder(
-        borderRadius:
-            BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
-      ),
+        backgroundColor: Colours.primaryGreenColor,
+        disabledBackgroundColor: Colours.primaryGreenColor,
+        disabledForegroundColor: Colours.blackColor,
+        foregroundColor: Colours.blackColor,
+        overlayColor:Colors.transparent,
+        // Removes the ink shadow effect
+        elevation: 0,
+        //change background color of button
+        minimumSize: Size(100.w, 6.h),
+    textStyle: TextStyle(
+        fontSize: 16.px,
+        fontWeight: FontWeight.w500,
+        color: Colours.blackColor),
+    shape: RoundedRectangleBorder(
+      borderRadius:
+      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
     ),
+  )
+
+  ,
+
   );
 
   static TextButtonThemeData textButtonThemeData = TextButtonThemeData(
@@ -95,38 +101,38 @@ abstract class CustomTheme {
         color: Colours.blackColor,
         fontWeight: FontWeight.w500,
         fontFamily: TextConstants.font),
-    hintStyle:  TextStyle(
+    hintStyle: TextStyle(
         color: Colours.hintTextColor,
         fontWeight: FontWeight.w500,
         fontFamily: TextConstants.font),
 
-      errorStyle:  TextStyle(
-      color: Colours.errorColor,
-      fontSize: 14.sp,
-      fontWeight: FontWeight.w500,
-      fontFamily: TextConstants.font),
+    errorStyle: TextStyle(
+        color: Colours.errorColor,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        fontFamily: TextConstants.font),
     contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
 
     // prefixIconColor: AppColors.primaryColor,
     border: OutlineInputBorder(
       borderRadius:
-          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
-      borderSide:  BorderSide(
+      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+      borderSide: BorderSide(
         width: 1.5,
         color: Colours.borderGreyColor,
       ),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius:
-          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
-      borderSide:  BorderSide(
+      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+      borderSide: BorderSide(
         width: 1.5,
         color: Colours.borderGreyColor,
       ),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius:
-          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
       borderSide: const BorderSide(
         width: 1.5,
         color: Colours.blackColor,
@@ -134,7 +140,7 @@ abstract class CustomTheme {
     ),
     errorBorder: OutlineInputBorder(
       borderRadius:
-          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
       borderSide: const BorderSide(
         width: 1.5,
         color: Colours.errorColor,
@@ -170,7 +176,7 @@ abstract class CustomTheme {
             fontSize: 16.sp,
             fontWeight: FontWeight.w300,
             color: Colours.textBlackColor),
-        titleLarge: TextStyle(fontSize: 18.sp,   fontWeight: FontWeight.w300,),
+        titleLarge: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300,),
         headlineSmall: TextStyle(
             fontSize: 23.5.sp,
             fontWeight: FontWeight.w300,

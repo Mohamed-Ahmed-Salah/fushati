@@ -32,10 +32,7 @@ class NewCardView extends StatefulWidget {
 
 class _NewCardViewState extends State<NewCardView> {
   late TextEditingController controller;
-  late TextEditingController emailController;
-  late TextEditingController nameController;
-  late TextEditingController studentNumberController;
-  late TextEditingController phoneNumberController;
+
   late final _formKey;
 
   @override
@@ -43,17 +40,21 @@ class _NewCardViewState extends State<NewCardView> {
     _formKey = GlobalKey<FormState>();
 
     controller = TextEditingController();
-    emailController = TextEditingController();
-    nameController = TextEditingController();
-    studentNumberController = TextEditingController();
-    phoneNumberController = TextEditingController();
 
     super.initState();
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NfcReaderBloc, NfcReaderState>(listener: (BuildContext _, state) {
+    return BlocConsumer<NfcReaderBloc, NfcReaderState>(
+        listener: (BuildContext _, state) {
       state.when(
           initial: () {},
           loading: () {
@@ -93,7 +94,8 @@ class _NewCardViewState extends State<NewCardView> {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: SizeConst.horizontalPadding, vertical: SizeConst.verticalPadding),
+                horizontal: SizeConst.horizontalPadding,
+                vertical: SizeConst.verticalPadding),
             child: Form(
               key: _formKey,
               child: CustomScrollView(
@@ -128,8 +130,9 @@ class _NewCardViewState extends State<NewCardView> {
                             LengthLimitingTextInputFormatter(14),
                           ],
                           decoration: InputDecoration(
-                            suffixIcon: BlocBuilder<NfcScannerCubit, NfcScannerState>(
-                                builder: (context, state) {
+                            suffixIcon:
+                                BlocBuilder<NfcScannerCubit, NfcScannerState>(
+                                    builder: (context, state) {
                               return state.when(
                                 initial: (isNfcSupported) => isNfcSupported
                                     ? IconButton(
@@ -147,13 +150,16 @@ class _NewCardViewState extends State<NewCardView> {
                                     : const SizedBox.shrink(),
                               );
                             }),
-                            hintText: "${AppLocalizations.of(context)?.cardNumber}",
+                            hintText:
+                                "${AppLocalizations.of(context)?.cardNumber}",
                           ),
                           controller: controller,
                           validator: (value) =>
-                              TextFormValidation.requiredField(value, context: context),
+                              TextFormValidation.requiredField(value,
+                                  context: context),
                           onFieldSubmitted: (_) {
-                            bool filledFormCorrectly = _formKey.currentState?.validate();
+                            bool filledFormCorrectly =
+                                _formKey.currentState?.validate();
                             if (filledFormCorrectly) {
                               showDialog(
                                 barrierDismissible: false,
@@ -162,12 +168,13 @@ class _NewCardViewState extends State<NewCardView> {
                                   cardNumber: controller.text,
                                 ),
                               );
-                              context
-                                  .read<GetCardDetailsBloc>()
-                                  .add(GetCardDetailsEvent.getCard(cardNumber: controller.text));
+                              context.read<GetCardDetailsBloc>().add(
+                                  GetCardDetailsEvent.getCard(
+                                      cardNumber: controller.text));
                             }
                           },
-                          onTapOutside: (_) => FocusScope.of(context).requestFocus(FocusNode()),
+                          onTapOutside: (_) =>
+                              FocusScope.of(context).requestFocus(FocusNode()),
                         ),
                       ],
                     ),
@@ -180,7 +187,8 @@ class _NewCardViewState extends State<NewCardView> {
                       children: [
                         ElevatedButton(
                             onPressed: () {
-                              bool filledFormCorrectly = _formKey.currentState?.validate();
+                              bool filledFormCorrectly =
+                                  _formKey.currentState?.validate();
                               if (filledFormCorrectly) {
                                 showDialog(
                                   barrierDismissible: false,
@@ -189,12 +197,13 @@ class _NewCardViewState extends State<NewCardView> {
                                     cardNumber: controller.text,
                                   ),
                                 );
-                                context
-                                    .read<GetCardDetailsBloc>()
-                                    .add(GetCardDetailsEvent.getCard(cardNumber: controller.text));
+                                context.read<GetCardDetailsBloc>().add(
+                                    GetCardDetailsEvent.getCard(
+                                        cardNumber: controller.text));
                               }
                             },
-                            child: Text("${AppLocalizations.of(context)?.cont}")),
+                            child:
+                                Text("${AppLocalizations.of(context)?.cont}")),
                       ],
                     ),
                   )

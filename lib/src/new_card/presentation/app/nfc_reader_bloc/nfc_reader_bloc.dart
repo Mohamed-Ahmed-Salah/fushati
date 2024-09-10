@@ -18,6 +18,7 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
     on<readCardNfcEvent>(_readNfc);
     on<resetCardNfcEvent>(_reset);
   }
+
   //
   // _readNfc(event, emit) async {
   //   _readNfcFromExample(emit);
@@ -41,38 +42,55 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
   // }
   _readNfc(event, emit) async {
     try {
-      emit(NfcReaderState.loading());
+      emit(const NfcReaderState.loading());
+      debugPrint("const NfcReaderState.loading()");
+
       // Ensure we await the asynchronous function call
-      await _readNfcFromExample(emit);
+      await _readNfcFunction(emit);
     } catch (e) {
       // Handle any unexpected errors here
-      emit(NfcReaderState.failed(
-          ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR)));
+      debugPrint("nfc CATCH ${e.toString().contains("NFC not available")}");
+      if (e.toString().contains("NFC not available")) {
+        emit(NfcReaderState.failed(
+            ErrorConst.getErrorBody(text: ErrorConst.platformNotSupportedEn)));
+      } else {
+        emit(NfcReaderState.failed(
+            ErrorConst.getErrorBody(text: ErrorConst.UNKNOWN_ERROR)));
+      }
     }
   }
 
-  _readNfcFromExample(emit) async {
+  _readNfcFunction(emit) async {
     String? softwareCardNumber;
     try {
+      final available = await FlutterNfcKit.nfcAvailability;
+      if (available != NFCAvailability.available) {
+        debugPrint("NFC NOT AVAILABLE");
+        return;
+      }
+
       debugPrint("BEFORE FlutterNfcKit.poll()");
       NFCTag tag = await FlutterNfcKit.poll();
       debugPrint("AFTER FlutterNfcKit.poll()");
 
       await FlutterNfcKit.setIosAlertMessage("Working on it...");
 
-      debugPrint("NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
-      debugPrint("${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
+      debugPrint(
+          "NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
+      debugPrint(
+          "${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
       String physicalCardNumber = tag.id;
       softwareCardNumber = convertCardNumber(physicalCardNumber);
       debugPrint("Software Card Number: $softwareCardNumber");
 
       // Emit success only if we have the softwareCardNumber
-      if (softwareCardNumber != null|| softwareCardNumber.isNotEmpty) {
+      if (softwareCardNumber != null || softwareCardNumber.isNotEmpty) {
         emit(NfcReaderState.success(softwareCardNumber));
       }
     } catch (e) {
       CoreUtils.showSnackBar(
-          message: ErrorConst.getErrorBody(text: ErrorConst.couldNotReadCardNumberEn));
+          message: ErrorConst.getErrorBody(
+              text: ErrorConst.couldNotReadCardNumberEn));
 
       debugPrint("catch READING CARD ${e.toString()}");
       // Emit failure state in case of an error

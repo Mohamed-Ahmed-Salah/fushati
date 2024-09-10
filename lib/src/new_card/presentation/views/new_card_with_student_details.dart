@@ -48,8 +48,17 @@ class _NewCardWithStudentDetailsViewState
     nameController = TextEditingController();
     studentNumberController = TextEditingController();
     phoneNumberController = TextEditingController();
-
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    cardNumberController.dispose();
+    emailController.dispose();
+    nameController.dispose();
+    studentNumberController.dispose();
+    phoneNumberController.dispose();
+    super.dispose();
   }
 
   @override
@@ -211,11 +220,9 @@ class _NewCardWithStudentDetailsViewState
                                               fontWeight: FontWeight.w500,
                                               color: Colours.blackColor),
                                     ),
-
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: 1.w,
-                                          vertical: 0.5.h),
+                                          horizontal: 1.w, vertical: 0.5.h),
                                       child: const VerticalDivider(
                                         width: 4,
                                         thickness: 1.5,
@@ -258,7 +265,8 @@ class _NewCardWithStudentDetailsViewState
                                         cardNumber: cardNumberController.text,
                                         name: nameController.text,
                                         email: emailController.text,
-                                        phoneNumber: "966${phoneNumberController.text}",
+                                        phoneNumber:
+                                            "966${phoneNumberController.text}",
                                         studentNumber:
                                             studentNumberController.text));
                                 context.pushNamed(AddCardLoaderView.path);
