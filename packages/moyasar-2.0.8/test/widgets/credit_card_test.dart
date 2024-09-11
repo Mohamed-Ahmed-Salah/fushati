@@ -17,6 +17,7 @@ Widget createTestableApp(
   return MaterialApp(
       home: Scaffold(
           body: CreditCard(
+    textWidget: Text(""),
     locale: locale,
     config: paymentConfig,
     onPaymentResult: onPaymentResult,

@@ -171,3 +171,6 @@ class MyApp extends StatelessWidget {
     });
   }
 }
+
+
+//todo remove user id from parent card transactions

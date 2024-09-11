@@ -6,18 +6,21 @@ import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/presentation/views/home_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CardTransactionSuccessView extends StatelessWidget {
   static String path = "card-transaction-added";
   static String name = "card-transaction-added";
-  static String amountParam = "amount";
+
+  // static String amountAndFeesParam = "amount-fees";
   static String cardNumberParam = "cardNumber";
-  final String amount;
+  final TransactionResponse transactionResponse;
   final String cardNumber;
 
-  const CardTransactionSuccessView({super.key, required this.amount, required this.cardNumber});
+  const CardTransactionSuccessView(
+      {super.key, required this.transactionResponse, required this.cardNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class CardTransactionSuccessView extends StatelessWidget {
         child: GreenBackground(
           child: Padding(
             padding:
-            EdgeInsets.symmetric(horizontal: SizeConst.horizontalPadding),
+                EdgeInsets.symmetric(horizontal: SizeConst.horizontalPadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,14 +46,15 @@ class CardTransactionSuccessView extends StatelessWidget {
                 Text(
                   "${AppLocalizations.of(context)?.transferSuccess}",
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontWeight: FontWeight.w700, color: Colours.textBlackColor),
+                      fontWeight: FontWeight.w700,
+                      color: Colours.textBlackColor),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   height: SizeConst.verticalPadding,
                 ),
                 Text(
-                  "${AppLocalizations.of(context)?.amountTransferred(amount,cardNumber)}",
+                  "${AppLocalizations.of(context)?.amountTransferredWithFees(transactionResponse.amount, transactionResponse.fee, cardNumber)}",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w400,
                       color: Colours.textBlackColor.withOpacity(0.7)),
@@ -59,7 +63,7 @@ class CardTransactionSuccessView extends StatelessWidget {
                 const Spacer(),
                 Padding(
                   padding:
-                  EdgeInsets.symmetric(vertical: SizeConst.verticalPadding),
+                      EdgeInsets.symmetric(vertical: SizeConst.verticalPadding),
                   child: ElevatedButton(
                     onPressed: () {
                       context.go(HomeView.path);

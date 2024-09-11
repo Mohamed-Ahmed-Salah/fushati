@@ -283,14 +283,16 @@ class _LoginViewState extends State<LoginView> {
                                 }),
 
                             SizedBox(height: 1.h),
-                            FormField<String>(validator: (value) {
+                            FormField<String>(
+                                validator: (value) {
                               if (schoolController.dropDownValue == null ||
                                   schoolController
                                       .dropDownValue?.value.isEmpty) {
                                 return "${AppLocalizations.of(context)?.requiredField}";
                               }
                               return null;
-                            }, builder: (FormFieldState<String> fieldState) {
+                            },
+                                builder: (FormFieldState<String> fieldState) {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -408,150 +410,6 @@ class _LoginViewState extends State<LoginView> {
                               );
                             }),
 
-                            // FormField<String>(
-                            //     validator: (value) =>
-                            //         TextFormValidation.requiredField(
-                            //             value,
-                            //             context: context),
-                            //     builder:
-                            //         (FormFieldState<String> dropdownFieldState) {
-                            //       return Column(
-                            //         crossAxisAlignment:
-                            //             CrossAxisAlignment.start,
-                            //         children: [
-                            //           DropDownTextField(
-                            //             validator: (value) =>
-                            //                 TextFormValidation.requiredField(
-                            //                     value,
-                            //                     context: context),
-                            //             dropdownRadius: 0,
-                            //             padding: const EdgeInsets.all(0),
-                            //             clearOption: false,
-                            //             dropdownColor: Colours.whiteColor,
-                            //             listTextStyle: Theme.of(context)
-                            //                 .textTheme
-                            //                 .titleMedium?.copyWith(fontWeight: FontWeight.w400),
-                            //             textStyle: Theme.of(context)
-                            //                 .textTheme
-                            //                 .titleMedium?.copyWith(fontWeight: FontWeight.w400),
-                            //             controller: schoolController,
-                            //             hintText:
-                            //                 "${AppLocalizations.of(context)?.school}",
-                            //             searchDecoration: InputDecoration(
-                            //               hintStyle: const TextStyle(
-                            //                 fontWeight: FontWeight.w400,
-                            //               ),
-                            //               labelText:
-                            //                   "${AppLocalizations.of(context)?.school}",
-                            //               helperText:
-                            //                   "${AppLocalizations.of(context)?.school}",
-                            //               prefixText:
-                            //                   "${AppLocalizations.of(context)?.school}",
-                            //               hintText:
-                            //                   "${AppLocalizations.of(context)?.school}",
-                            //               focusColor: Colors.white,
-                            //             ),
-                            //             textFieldDecoration:
-                            //                 InputDecoration(
-                            //               hintText:
-                            //                   "${AppLocalizations.of(context)?.school}",
-                            //               border:
-                            //                   const OutlineInputBorder(
-                            //                 gapPadding: 0,
-                            //                 borderRadius:
-                            //                     BorderRadius.all(
-                            //                         Radius.circular(0)),
-                            //                 borderSide: BorderSide(
-                            //                   width: 1.5,
-                            //                   color: Colors.transparent,
-                            //                 ),
-                            //               ),
-                            //               enabledBorder:
-                            //                   const OutlineInputBorder(
-                            //                 gapPadding: 0,
-                            //                 borderRadius:
-                            //                     BorderRadius.all(
-                            //                         Radius.circular(0)),
-                            //                 borderSide: BorderSide(
-                            //                   width: 1.5,
-                            //                   color: Colors.transparent,
-                            //                 ),
-                            //               ),
-                            //               focusedBorder:
-                            //                   const OutlineInputBorder(
-                            //                 borderRadius:
-                            //                     BorderRadius.all(
-                            //                         Radius.circular(0)),
-                            //                 borderSide: BorderSide(
-                            //                   width: 1.5,
-                            //                   color: Colors.transparent,
-                            //                 ),
-                            //               ),
-                            //               errorBorder:
-                            //                   const OutlineInputBorder(
-                            //                 borderRadius:
-                            //                     BorderRadius.all(
-                            //                         Radius.circular(0)),
-                            //                 borderSide: BorderSide(
-                            //                   width: 1.5,
-                            //                   color: Colors.transparent,
-                            //                 ),
-                            //               ),
-                            //               focusedErrorBorder:
-                            //                   const OutlineInputBorder(
-                            //                 borderRadius:
-                            //                     BorderRadius.all(
-                            //                         Radius.circular(0)),
-                            //                 borderSide: BorderSide(
-                            //                   width: 1.5,
-                            //                   color: Colors.transparent,
-                            //                 ),
-                            //               ),
-                            //             ),
-                            //             dropDownItemCount: 7,
-                            //             dropDownList: schools
-                            //                 .map((e) =>
-                            //                     DropDownValueModel(
-                            //                         name: e.name,
-                            //                         value: e.apiEndpoint))
-                            //                 .toList(),
-                            //             onChanged: (val) async {
-                            //               if (val.runtimeType
-                            //                       .toString() !=
-                            //                   "String") {
-                            //                 final model =
-                            //                     val as DropDownValueModel;
-                            //                 var url = model.value;
-                            //                 CacheHelper cache = sl();
-                            //
-                            //                 ///url already ends with /
-                            //                 cache.setBaseUrl("${url}api");
-                            //               }
-                            //             },
-                            //           ),
-                            //           Divider(
-                            //             height: 2,
-                            //             color: Colours.borderGreyColor,
-                            //           ),
-                            //           if (dropdownFieldState.hasError)
-                            //             Padding(
-                            //               padding: const EdgeInsets.only(
-                            //                   top: 8.0),
-                            //               child: Text(
-                            //                 dropdownFieldState.errorText ?? '',
-                            //                 style: TextStyle(
-                            //                     color: Colours.errorColor,
-                            //                     fontSize: 14.sp,
-                            //                     fontWeight:
-                            //                         FontWeight.w500,
-                            //                     fontFamily:
-                            //                         TextConstants.font),
-                            //               ),
-                            //             ),
-                            //           SizedBox(height: 1.h),
-                            //         ],
-                            //       );
-                            //     }),
                           ],
                         ),
                       ),

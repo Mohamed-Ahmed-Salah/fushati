@@ -6,9 +6,6 @@ import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/src/splash/domain/entities/min_version_response.dart';
 import 'package:fushati/src/splash/domain/usecases/min_app_version_usercase.dart';
-import 'package:fushati/src/splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
-import 'package:fushati/src/update_app/presentation/views/update_app_view.dart';
-import 'package:go_router/go_router.dart';
 import 'dart:io' show Platform;
 
 import 'package:package_info_plus/package_info_plus.dart';
