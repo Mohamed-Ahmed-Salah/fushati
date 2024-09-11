@@ -51,7 +51,7 @@ abstract class TextFormValidation {
     if (value == null) return requiredField("", context: context);
     if (value.isEmpty) return requiredField(value, context: context);
 
-    print("${value.compareTo("20")} = ${value.compareTo("20")>=0}");
+    print("LLLL ${value.compareTo("20")} = ${value.compareTo("20")<0}");
     if(value.compareTo("20")<0) return "${AppLocalizations.of(context)?.minBalance}";
     return null;
   }

@@ -222,11 +222,10 @@ abstract class CoreUtils {
             ));
   }
 
-
 // Function to format the complete date and time
   static String formatDateTime(String date) {
     DateFormat inputFormat = DateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
-    final dateTime= inputFormat.parse(date);
+    final dateTime = inputFormat.parse(date);
 
     DateFormat outputFormat = DateFormat('dd MMM yyyy hh:mm:ss a');
     String formattedDate = outputFormat.format(dateTime);
@@ -235,12 +234,6 @@ abstract class CoreUtils {
 
 // Function to get the date part only
   static String getFormattedDate(DateTime date) {
-    print("DATAAAAA ${date}");
-    // DateFormat inputFormat = DateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
-    //
-    // final dateTime= inputFormat.parse(date);
-
-    // DateTime dateTime = DateTime.parse(dateTimeString);
     DateFormat dateFormat = DateFormat('dd MMM yyyy');
     String formattedDate = dateFormat.format(date);
     return formattedDate;
@@ -248,11 +241,6 @@ abstract class CoreUtils {
 
 // Function to get the time part only
   static String getFormattedTime(DateTime dateTime) {
-    //
-    // DateFormat inputFormat = DateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
-    //
-    // final dateTime= inputFormat.parse(date);
-
     DateFormat timeFormat = DateFormat('hh:mm:ss a');
     String formattedTime = timeFormat.format(dateTime);
     return formattedTime;
@@ -267,7 +255,6 @@ abstract class CoreUtils {
     // Format the DateTime object to get only the AM or PM part
     String amOrPm = amPmFormat.format(dateTime);
     String formattedAmOrPm = "${amOrPm.split('').join('.').toUpperCase()}.";
-
 
     return formattedAmOrPm;
   }
