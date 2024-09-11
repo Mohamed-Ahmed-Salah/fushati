@@ -172,7 +172,7 @@ class _NewCardWithStudentDetailsViewState
                           ],
                           decoration: InputDecoration(
                             hintText:
-                                "${AppLocalizations.of(context)?.studentNumber}",
+                                "${AppLocalizations.of(context)?.studentNumberOrIdentityNumber}",
                           ),
                           controller: studentNumberController,
                           validator: (value) =>
