@@ -186,6 +186,7 @@
 "discard":"Discard",
 "registrationFees": "Registration Fees",
 "texFeesMayApply": "Additional fees may apply. Please review the privacy policy",
+"minBalance": "Minimum balance you can transfer is 20 riyals",
 
 
 
@@ -199,8 +200,8 @@
 
 "nfcIsNotAvailable":"NFC is not available on this device or is turned off",
 "transferSuccess":"Transfer Successful",
-"amountTransferred":"You have successfully transferred {amount} to card number {number}",
-"amountTransferredWithFees": "لقد قمت بنجاح بتحويل مبلغ {amount} إلى البطاقة رقم {number} مع رسوم قدرها {fees}",
+"amountTransferred":"You have successfully transferred {amount} R.s. to card number {number}",
+"amountTransferredWithFees": "You have successfully transferred an amount of {amount} R.s to card number {number} with a fee of {fees} R.s",
 "onBoardTitle1":"Enhanced Parental Control",
 "onBoardTitle2":"Comprehensive Service System",
 "onBoardTitle3":"Secure and Effortless Payments",

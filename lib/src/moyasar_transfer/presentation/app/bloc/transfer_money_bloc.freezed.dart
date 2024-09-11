@@ -451,21 +451,21 @@ mixin _$TransferMoneyState {
   TResult when<TResult extends Object?>({
     required TResult Function(int amount) loading,
     required TResult Function(String error) failed,
-    required TResult Function() successState,
+    required TResult Function(TransactionResponse transaction) successState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int amount)? loading,
     TResult? Function(String error)? failed,
-    TResult? Function()? successState,
+    TResult? Function(TransactionResponse transaction)? successState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int amount)? loading,
     TResult Function(String error)? failed,
-    TResult Function()? successState,
+    TResult Function(TransactionResponse transaction)? successState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -585,7 +585,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult when<TResult extends Object?>({
     required TResult Function(int amount) loading,
     required TResult Function(String error) failed,
-    required TResult Function() successState,
+    required TResult Function(TransactionResponse transaction) successState,
   }) {
     return loading(amount);
   }
@@ -595,7 +595,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int amount)? loading,
     TResult? Function(String error)? failed,
-    TResult? Function()? successState,
+    TResult? Function(TransactionResponse transaction)? successState,
   }) {
     return loading?.call(amount);
   }
@@ -605,7 +605,7 @@ class _$loadingStateImpl implements _loadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int amount)? loading,
     TResult Function(String error)? failed,
-    TResult Function()? successState,
+    TResult Function(TransactionResponse transaction)? successState,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -731,7 +731,7 @@ class _$failedStateImpl implements _failedState {
   TResult when<TResult extends Object?>({
     required TResult Function(int amount) loading,
     required TResult Function(String error) failed,
-    required TResult Function() successState,
+    required TResult Function(TransactionResponse transaction) successState,
   }) {
     return failed(error);
   }
@@ -741,7 +741,7 @@ class _$failedStateImpl implements _failedState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int amount)? loading,
     TResult? Function(String error)? failed,
-    TResult? Function()? successState,
+    TResult? Function(TransactionResponse transaction)? successState,
   }) {
     return failed?.call(error);
   }
@@ -751,7 +751,7 @@ class _$failedStateImpl implements _failedState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int amount)? loading,
     TResult Function(String error)? failed,
-    TResult Function()? successState,
+    TResult Function(TransactionResponse transaction)? successState,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -812,6 +812,8 @@ abstract class _$$suceessStateImplCopyWith<$Res> {
   factory _$$suceessStateImplCopyWith(
           _$suceessStateImpl value, $Res Function(_$suceessStateImpl) then) =
       __$$suceessStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TransactionResponse transaction});
 }
 
 /// @nodoc
@@ -824,35 +826,61 @@ class __$$suceessStateImplCopyWithImpl<$Res>
 
   /// Create a copy of TransferMoneyState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transaction = null,
+  }) {
+    return _then(_$suceessStateImpl(
+      transaction: null == transaction
+          ? _value.transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as TransactionResponse,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$suceessStateImpl implements _suceessState {
-  const _$suceessStateImpl();
+  const _$suceessStateImpl({required this.transaction});
+
+  @override
+  final TransactionResponse transaction;
 
   @override
   String toString() {
-    return 'TransferMoneyState.successState()';
+    return 'TransferMoneyState.successState(transaction: $transaction)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$suceessStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$suceessStateImpl &&
+            (identical(other.transaction, transaction) ||
+                other.transaction == transaction));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, transaction);
+
+  /// Create a copy of TransferMoneyState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$suceessStateImplCopyWith<_$suceessStateImpl> get copyWith =>
+      __$$suceessStateImplCopyWithImpl<_$suceessStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int amount) loading,
     required TResult Function(String error) failed,
-    required TResult Function() successState,
+    required TResult Function(TransactionResponse transaction) successState,
   }) {
-    return successState();
+    return successState(transaction);
   }
 
   @override
@@ -860,9 +888,9 @@ class _$suceessStateImpl implements _suceessState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int amount)? loading,
     TResult? Function(String error)? failed,
-    TResult? Function()? successState,
+    TResult? Function(TransactionResponse transaction)? successState,
   }) {
-    return successState?.call();
+    return successState?.call(transaction);
   }
 
   @override
@@ -870,11 +898,11 @@ class _$suceessStateImpl implements _suceessState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int amount)? loading,
     TResult Function(String error)? failed,
-    TResult Function()? successState,
+    TResult Function(TransactionResponse transaction)? successState,
     required TResult orElse(),
   }) {
     if (successState != null) {
-      return successState();
+      return successState(transaction);
     }
     return orElse();
   }
@@ -915,5 +943,14 @@ class _$suceessStateImpl implements _suceessState {
 }
 
 abstract class _suceessState implements TransferMoneyState {
-  const factory _suceessState() = _$suceessStateImpl;
+  const factory _suceessState(
+      {required final TransactionResponse transaction}) = _$suceessStateImpl;
+
+  TransactionResponse get transaction;
+
+  /// Create a copy of TransferMoneyState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$suceessStateImplCopyWith<_$suceessStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

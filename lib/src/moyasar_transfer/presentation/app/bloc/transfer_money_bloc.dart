@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
 import 'package:moyasar/moyasar.dart';
 
 import '../../../../../core/common/widgets/loading_alert_widget.dart';
@@ -33,7 +34,6 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
     final moyasarResult = event.result;
 
     if (moyasarResult is PaymentResponse) {
-
       ///made this because the backage The smallest currency unit.
       ///For example, to charge SAR 257.58 you will have the amount as 25758.
       ///In other words, 10 SAR = 10 * 100 Halalas.
@@ -41,6 +41,7 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
       String paymentId = moyasarResult.id;
       String status = getPaymentStatus(moyasarResult.status);
 
+      TransactionResponse? responseObject;
       showDialog(
         barrierDismissible: false,
         context: context,
@@ -67,12 +68,13 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
             },
           );
         },
-        (newAmount) {
+        (transactionResponse) {
+          responseObject = transactionResponse;
           success = true;
         },
       );
-      if (success) {
-        emit(const TransferMoneyState.successState());
+      if (success && responseObject != null) {
+        emit(TransferMoneyState.successState(transaction: responseObject!));
       } else {
         emit(TransferMoneyState.failed(message));
       }
@@ -87,8 +89,6 @@ class TransferMoneyBloc extends Bloc<TransferMoneyEvent, TransferMoneyState> {
       );
     }
 
-    // onPaymentResult(
-    //     event.result, event.context, emit, event.cardNumber, event.amount);
   }
 
   void onPaymentResult(moyasarResult, BuildContext context, emit,

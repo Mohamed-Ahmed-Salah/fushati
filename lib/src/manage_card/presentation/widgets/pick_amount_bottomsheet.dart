@@ -15,6 +15,7 @@ import '../../../../core/common/singletons/form_validation.dart';
 import '../../../../core/common/widgets/close_button.dart';
 import '../../../../core/res/styles/colours.dart';
 import '../../../../core/res/theme/app_theme.dart';
+import '../../../../core/utils/constants/text_constants.dart';
 import '../../../moyasar_transfer/presentation/app/cubit/amount_to_transfer_cubit.dart';
 import '../../../moyasar_transfer/presentation/view/moyasar_wallet_transfer_view.dart';
 
@@ -120,116 +121,139 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        child: Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                if (_controller.text.isEmpty) {
-                                  return;
-                                }
+                        child: FormField<String>(
+                            validator: (value) => TextFormValidation.minBalance(
+                                _controller.text,
+                                context: context),
+                            builder: (FormFieldState<String> fieldState) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          if (_controller.text.isEmpty) {
+                                            return;
+                                          }
 
-                                final text = _controller.text;
+                                          final text = _controller.text;
 
-                                final textLength = text.length;
-                                int number = int.parse(text);
-                                if (number <= 0) {
-                                  _controller.text = "0";
-                                  return;
-                                } else {
-                                  int multiplyer = textLength > 2
-                                      ? int.parse(
-                                          "1${("0" * (textLength - 1))}")
-                                      : 100;
-                                  String normalCeil =
-                                      (((number / multiplyer).floor()) *
-                                              multiplyer)
-                                          .toString();
-                                  String customCeil =
-                                      ((((number - multiplyer) / multiplyer)
-                                                  .floor()) *
-                                              multiplyer)
-                                          .toString();
-                                  _controller.text = normalCeil == text
-                                      ? customCeil
-                                      : normalCeil;
-                                }
-                              },
-                              child: Container(
-                                  padding: EdgeInsets.all(
-                                      SizeConst.horizontalPaddingFour),
-                                  decoration: BoxDecoration(
-                                      color: Colours.primaryGreenColor,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(3.w))),
-                                  child: const Icon(Media.minusIcon,
-                                      color: Colours.brandColorOne)),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: SizeConst.horizontalPadding),
-                                child: TextFormField(
-                                  style: CustomTheme.textFieldTextStyle,
-                                  textAlign: TextAlign.center,
-                                  controller: _controller,
-                                  validator: (value) =>
-                                      TextFormValidation.requiredFieldNoMessage(
-                                          value,
-                                          context: context),
-                                  onTapOutside: (_) => FocusScope.of(context)
-                                      .requestFocus(FocusNode()),
-                                  // controller: _controller,
-                                  onChanged: (value) {},
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(9),
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'^[1-9][0-9]*')),
-                                  ],
-                                  decoration:
-                                      const InputDecoration(hintText: "0"),
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                if (_controller.text.isEmpty) {
-                                  _controller.text = "500";
-                                  return;
-                                }
-                                final text = _controller.text;
-                                final textLength = text.length;
-                                int number = int.parse(text);
-                                int multiplyer = textLength > 2
-                                    ? int.parse("1${("0" * (textLength - 1))}")
-                                    : 100;
-                                String normalCeil =
-                                    (((number / multiplyer).ceil()) *
-                                            multiplyer)
-                                        .toString();
-                                String customCeil =
-                                    ((((number + multiplyer) / multiplyer)
-                                                .ceil()) *
-                                            multiplyer)
-                                        .toString();
-                                _controller.text = normalCeil == text
-                                    ? customCeil
-                                    : normalCeil;
-                              },
-                              child: Container(
-                                  padding: EdgeInsets.all(
-                                      SizeConst.horizontalPaddingFour),
-                                  decoration: BoxDecoration(
-                                      color: Colours.primaryGreenColor,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(3.w))),
-                                  child: const Icon(
-                                    Media.plusIcon,
-                                    color: Colours.brandColorOne,
-                                  )),
-                            ),
-                          ],
-                        ),
+                                          int number = int.parse(text);
+                                          if (number <= 0) {
+                                            _controller.text = "0";
+                                            return;
+                                          } else {
+                                            int multiplyer = 100;
+                                            String normalCeil =
+                                                (((number / multiplyer)
+                                                            .floor()) *
+                                                        multiplyer)
+                                                    .toString();
+                                            String customCeil =
+                                                ((((number - multiplyer) /
+                                                                multiplyer)
+                                                            .floor()) *
+                                                        multiplyer)
+                                                    .toString();
+                                            _controller.text =
+                                                normalCeil == text
+                                                    ? customCeil
+                                                    : normalCeil;
+                                          }
+                                        },
+                                        child: Container(
+                                            padding: EdgeInsets.all(SizeConst
+                                                .horizontalPaddingFour),
+                                            decoration: BoxDecoration(
+                                                color:
+                                                    Colours.primaryGreenColor,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(3.w))),
+                                            child: const Icon(Media.minusIcon,
+                                                color: Colours.brandColorOne)),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal:
+                                                  SizeConst.horizontalPadding),
+                                          child: TextFormField(
+                                            style:
+                                                CustomTheme.textFieldTextStyle,
+                                            textAlign: TextAlign.center,
+                                            controller: _controller,
+
+                                            onTapOutside: (_) =>
+                                                FocusScope.of(context)
+                                                    .requestFocus(FocusNode()),
+                                            // controller: _controller,
+                                            onChanged: (value) {},
+                                            keyboardType: TextInputType.number,
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(
+                                                  9),
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp(r'^[1-9][0-9]*')),
+                                            ],
+                                            decoration: const InputDecoration(
+                                                hintText: "0"),
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          if (_controller.text.isEmpty) {
+                                            _controller.text = "500";
+                                            return;
+                                          }
+                                          final text = _controller.text;
+                                          int number = int.parse(text);
+                                          int multiplyer = 100;
+                                          String normalCeil =
+                                              (((number / multiplyer).ceil()) *
+                                                      multiplyer)
+                                                  .toString();
+                                          String customCeil =
+                                              ((((number + multiplyer) /
+                                                              multiplyer)
+                                                          .ceil()) *
+                                                      multiplyer)
+                                                  .toString();
+                                          _controller.text = normalCeil == text
+                                              ? customCeil
+                                              : normalCeil;
+                                        },
+                                        child: Container(
+                                            padding: EdgeInsets.all(SizeConst
+                                                .horizontalPaddingFour),
+                                            decoration: BoxDecoration(
+                                                color:
+                                                    Colours.primaryGreenColor,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(3.w))),
+                                            child: const Icon(
+                                              Media.plusIcon,
+                                              color: Colours.brandColorOne,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  if (fieldState.hasError)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Text(
+                                        fieldState.errorText ?? '',
+                                        style: TextStyle(
+                                            color: Colours.errorColor,
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: TextConstants.font),
+                                      ),
+                                    ),
+                                ],
+                              );
+                            }),
                       ),
                       SizedBox(
                         height: SizeConst.verticalPadding,
@@ -243,34 +267,34 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                           alignment: WrapAlignment.center,
                           children: [
                             CustomChipButton(
-                              price: "500",
+                              price: "50",
                               onTap: () {
-                                _controller.text = "500";
+                                _controller.text = "50";
                               },
                             ),
                             CustomChipButton(
                               onTap: () {
-                                _controller.text = "750";
+                                _controller.text = "100";
                               },
-                              price: "750",
+                              price: "100",
                             ),
                             CustomChipButton(
                               onTap: () {
-                                _controller.text = "1000";
+                                _controller.text = "200";
                               },
-                              price: "1000",
+                              price: "200",
                             ),
                             CustomChipButton(
                               onTap: () {
-                                _controller.text = "1500";
+                                _controller.text = "300";
                               },
-                              price: "1500",
+                              price: "300",
                             ),
                             CustomChipButton(
                               onTap: () {
-                                _controller.text = "2000";
+                                _controller.text = "400";
                               },
-                              price: "2000",
+                              price: "400",
                             ),
                           ],
                         ),

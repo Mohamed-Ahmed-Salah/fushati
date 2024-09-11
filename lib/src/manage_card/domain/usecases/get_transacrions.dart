@@ -12,20 +12,15 @@ class GetCardTransactions
 
   @override
   ResultFuture<TransactionResponse> call(TransactionParam params) =>
-      _repo.getTransactions(
-          userId: params.userId,
-          userCard: params.userCard,
-          page: params.page);
+      _repo.getTransactions(userCard: params.userCard, page: params.page);
 }
 
 class TransactionParam {
-  final int userId;
   final int page;
   final String userCard;
 
-  TransactionParam(
-      {required this.userId,
-      required this.page,
-      required this.userCard,
-      });
+  TransactionParam({
+    required this.page,
+    required this.userCard,
+  });
 }

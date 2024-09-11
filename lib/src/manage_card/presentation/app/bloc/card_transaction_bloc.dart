@@ -53,14 +53,12 @@ class CardTransactionBlocBloc
       return;
     }
 
-    final int id = event.id;
     String cardNumber = event.cardNumber;
     emit(CardTransactionBlocState.loading(
         transactions: previousTransactions,
         maxPage: maxPage,
         currentPage: currentPage));
     final result = await _getCardTransactions(TransactionParam(
-      userId: id,
       userCard: cardNumber,
       page: nextPage,
     ));

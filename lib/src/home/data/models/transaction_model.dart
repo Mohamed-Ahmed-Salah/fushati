@@ -41,7 +41,7 @@ class TransactionModel extends Transaction {
         id: json["id"],
         consumeType: getTransactionType(json["type"]),
         amount: double.parse(json["amount"].toString()),
-        createdAt: DateTime.parse(json["created_at"]),
+        createdAt: DateTime.parse(json["completedTime"]),
         orderId: json["order_id"] ?? "",
         cardHolderName: json["user"]["name"] ?? "",
         carNumber: json["user"]["user_card"] ?? "",

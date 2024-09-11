@@ -14,13 +14,12 @@ class TransactionsRepoImpl implements TransactionsRepo {
 
   @override
   ResultFuture<TransactionResponse> getTransactions({
-    required int userId,
     required String userCard,
     required int page,
   }) async {
     try {
       final result = await _remoteDataSource.getTransactions(
-          page: page, userId: userId, userCard: userCard, );
+          page: page, userCard: userCard, );
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

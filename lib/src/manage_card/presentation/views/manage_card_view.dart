@@ -69,7 +69,6 @@ class _ManageCardViewState extends State<ManageCardView> {
             _scrollController.position.maxScrollExtent * _scrollThreshold &&
         !_scrollController.position.outOfRange) {
       context.read<CardTransactionBlocBloc>().add(GetCardTransactionEvent(
-            id: widget.card.id,
             cardNumber: widget.card.userCard,
           ));
     }
@@ -120,77 +119,76 @@ class _ManageCardViewState extends State<ManageCardView> {
                     ],
                   ),
                 ),
-                BlocBuilder<UserInfoBloc, UserInfoState>(
-                    builder: (context, state) {
-                  return state.when(
-                    loading: () => const LoadingSliver(),
-                    failed: (message) => ErrorSliver(
-                      onPressed: () {
-                        context
-                            .read<UserInfoBloc>()
-                            .add(const UserInfoEvent.getUserInfo());
+
+                BlocBuilder<CardTransactionBlocBloc, CardTransactionBlocState>(
+                  builder: (context, state) {
+                    return state.when(
+                      initial: () {
+                        return const Center(
+                            child: CustomCircularProgressIndicator());
                       },
-                      message: message,
-                    ),
-                    success: (user) => BlocBuilder<CardTransactionBlocBloc,
-                        CardTransactionBlocState>(
-                      builder: (context, state) {
-                        return state.when(
-                          initial: () {
-                            return const Center(
-                                child: CustomCircularProgressIndicator());
-                          },
-                          loading: (transactions, _, __) => TransactionsLoading(
-                            transactions: transactions,
-                          ),
-                          failed: (message, transactions, currentPage, ___) {
-                            if (transactions.isEmpty) {
-                              return ErrorSliver(
-                                onPressed: () {
-                                  context.read<CardTransactionBlocBloc>().add(
-                                          CardTransactionBlocEvent
-                                              .getCardTransaction(
-                                        id: widget.card.id,
-                                        cardNumber: widget.card.userCard,
-                                      ));
-                                },
-                                message: message,
-                              );
-                            } else {
-                              return SliverList(
-                                delegate: SliverChildBuilderDelegate(
-                                  (BuildContext context, int index) {
-                                    if (index >= transactions.length) {
-                                      return PaginationErrorText(
-                                        message: message,
-                                      );
-                                    }
-                                    Transaction transaction =
-                                        transactions[index];
-                                    return TransactionBox(
-                                      transaction: transaction,
-                                      isProfileTransaction: true,
-                                    );
-                                  },
-                                  childCount: transactions.length + 1,
-                                ),
-                              );
-                            }
-                          },
-                          success: (transactions, _, __) => SliverList(
+                      loading: (transactions, _, __) => TransactionsLoading(
+                        transactions: transactions,
+                      ),
+                      failed: (message, transactions, currentPage, ___) {
+                        if (transactions.isEmpty) {
+                          return ErrorSliver(
+                            onPressed: () {
+                              context.read<CardTransactionBlocBloc>().add(
+                                      CardTransactionBlocEvent
+                                          .getCardTransaction(
+                                    cardNumber: widget.card.userCard,
+                                  ));
+                            },
+                            message: message,
+                          );
+                        } else {
+                          return SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (BuildContext context, int index) {
+                                if (index >= transactions.length) {
+                                  return PaginationErrorText(
+                                    message: message,
+                                  );
+                                }
                                 Transaction transaction = transactions[index];
-                                return TransactionBox(transaction: transaction);
+                                return TransactionBox(
+                                  transaction: transaction,
+                                  isProfileTransaction: true,
+                                );
                               },
-                              childCount: transactions.length,
+                              childCount: transactions.length + 1,
                             ),
-                          ),
-                        ); //
+                          );
+                        }
                       },
-                    ),
-                  );
-                }),
+                      success: (transactions, _, __) => SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            Transaction transaction = transactions[index];
+                            return TransactionBox(transaction: transaction);
+                          },
+                          childCount: transactions.length,
+                        ),
+                      ),
+                    ); //
+                  },
+                ),
+                // BlocBuilder<UserInfoBloc, UserInfoState>(
+                //     builder: (context, state) {
+                //   return state.when(
+                //     loading: () => const LoadingSliver(),
+                //     failed: (message) => ErrorSliver(
+                //       onPressed: () {
+                //         context
+                //             .read<UserInfoBloc>()
+                //             .add(const UserInfoEvent.getUserInfo());
+                //       },
+                //       message: message,
+                //     ),
+                //     success: (user) =>
+                //   );
+                // }),
               ],
             ),
           ),

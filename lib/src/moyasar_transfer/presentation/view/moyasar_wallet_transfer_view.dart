@@ -34,7 +34,10 @@ class MoyasarWalletTransferView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(SizeConst.horizontalPadding),
+          padding: EdgeInsets.only(
+              left: SizeConst.horizontalPadding,
+              right: SizeConst.horizontalPadding,
+              top: SizeConst.horizontalPadding),
           child: BlocBuilder<RegistrationFeesBloc, RegistrationFeesState>(
               builder: (context, state) {
             return state.when(loading: () {
@@ -54,15 +57,14 @@ class MoyasarWalletTransferView extends StatelessWidget {
                   initial: (amount) =>
                       BlocListener<TransferMoneyBloc, TransferMoneyState>(
                     listener: (BuildContext context, TransferMoneyState state) {
-                      state.whenOrNull(successState: () {
+                      state.whenOrNull(successState: (response) {
                         context.read<CardsBloc>().add(
                             const CardsEvent.getCards(callFromStart: true));
                         context.pushNamed(CardTransactionSuccessView.name,
+                            extra: response,
                             queryParameters: {
                               CardTransactionSuccessView.cardNumberParam:
                                   card.userCard,
-                              CardTransactionSuccessView.amountParam:
-                                  amount.toString(),
                             });
                       });
                     },

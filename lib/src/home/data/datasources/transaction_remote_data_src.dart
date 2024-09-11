@@ -19,7 +19,6 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 
   @override
   Future<TransactionResponse> getTransactions({
-    required int userId,
     required String userCard,
     required int page,
   }) async {
@@ -28,7 +27,7 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
 
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?card_number=$userCard&page=$page&limit=${NetworkConstants.pageSize}&parent_id=$userId',
+              '${NetworkConstants.reportsUrl}?card_number=$userCard&page=$page&limit=${NetworkConstants.pageSize}',
               options: Options(
                 headers: header,
               ))
@@ -179,7 +178,6 @@ abstract class TransactionsRemoteDataSrc {
   const TransactionsRemoteDataSrc();
 
   Future<TransactionResponse> getTransactions({
-    required int userId,
     required String userCard,
     required int page,
   });

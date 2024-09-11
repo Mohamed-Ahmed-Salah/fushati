@@ -1,17 +1,19 @@
 import 'dart:convert';
 
 
+import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
+
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/typedefs.dart';
 import '../repo/deposit_repo.dart';
 
-class TransferAmount extends UsecaseWithParams<void, DepositToCardParam> {
+class TransferAmount extends UsecaseWithParams<TransactionResponse, DepositToCardParam> {
   const TransferAmount(this._repo);
 
   final DepositRepo _repo;
 
   @override
-  ResultFuture<void> call(DepositToCardParam params) => _repo.deposit(
+  ResultFuture<TransactionResponse> call(DepositToCardParam params) => _repo.deposit(
       cardNumber: params.cardNumber,
       paymentId: params.paymentId,
       amount: params.amount,

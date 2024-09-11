@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fushati/src/auth/presentation/views/auth_success.dart';
 import 'package:fushati/src/edit_profile/presentation/views/edit_profile_view.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
+import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
 import 'package:fushati/src/new_card/presentation/views/new_card_with_student_details.dart';
 import 'package:fushati/src/profile/domain/entities/user.dart';
 import 'package:fushati/src/profile/presentation/views/profile_view.dart';
@@ -125,8 +126,7 @@ final router = GoRouter(
                   path: CardTransactionSuccessView.path,
                   name: CardTransactionSuccessView.name,
                   builder: (context, state) => CardTransactionSuccessView(
-                    amount: state.uri.queryParameters[
-                        CardTransactionSuccessView.amountParam]!,
+                    transactionResponse: state.extra as TransactionResponse,
                     cardNumber: state.uri.queryParameters[
                         CardTransactionSuccessView.cardNumberParam]!,
                   ),

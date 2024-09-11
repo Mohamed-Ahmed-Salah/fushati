@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
@@ -13,7 +14,7 @@ class DepositRepoImpl implements DepositRepo {
   final DepositRemoteDataSrc _remoteDataSource;
 
   @override
-  ResultFuture<void> deposit(
+  ResultFuture<TransactionResponse> deposit(
       {required String cardNumber,
       required String paymentId,
 

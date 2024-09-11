@@ -56,7 +56,6 @@ class CardBox extends StatelessWidget {
                   context
                       .read<CardTransactionBlocBloc>()
                       .add(CardTransactionBlocEvent.getCardTransaction(
-                        id: userId!,
                         cardNumber: card.userCard,
                       ));
                   context.push(ManageCardView.path, extra: card);

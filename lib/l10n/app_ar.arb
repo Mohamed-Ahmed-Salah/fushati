@@ -173,7 +173,8 @@
 "discard": "تجاهل",
  "transferSuccess": "تم التحويل بنجاح",
   "amountTransferred": "لقد قمت بتحويل مبلغ {amount} بنجاح إلى رقم البطاقة {number}",
-  "amountTransferredWithFees": "لقد قمت بتحويل مبلغ {amount} بنجاح إلى رقم البطاقة {number}",
+"amountTransferredWithFees": "لقد قمت بنجاح بتحويل مبلغ {amount} ر.س إلى البطاقة رقم {number} مع رسوم قدرها {fees} ر.س",
+"minBalance": "الحد الأدنى للمبلغ الذي يمكنك تحويله هو 20 ريال",
 "nfcIsNotAvailable":"NFC غير متوفر في هذا الجهاز",
 
 "texFeesMayApply":"قد تنطبق رسوم اضافية, راجع سياسة الخصوصيه",

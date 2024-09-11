@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fushati/src/moyasar_transfer/data/models/transaction_response_model.dart';
+import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -16,7 +18,7 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
   final Dio _dio;
 
   @override
-  Future<void> deposit({
+  Future<TransactionResponse> deposit({
     required String cardNumber,
     required String paymentId,
     required int amount,
@@ -37,7 +39,7 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
       debugPrint("deposit ${response.data}");
       bool isSuccess = response.statusCode == 200 || response.statusCode == 201;
       if (isSuccess) {
-        return;
+        return TransactionResponseModel.fromJson(response.data["data"]["transaction"]);
       } else {
         if (response.statusCode == 400) {
           throw PaymentException(
@@ -53,8 +55,6 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
       debugPrint("DioException deposit ${e.response?.data}");
 
@@ -105,7 +105,7 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
 abstract class DepositRemoteDataSrc {
   const DepositRemoteDataSrc();
 
-  Future<void> deposit({
+  Future<TransactionResponse> deposit({
     required String cardNumber,
     required String paymentId,
     required int amount,

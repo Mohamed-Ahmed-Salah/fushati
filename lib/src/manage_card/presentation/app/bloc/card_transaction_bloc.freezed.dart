@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CardTransactionBlocEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id, String cardNumber) getCardTransaction,
+    required TResult Function(String cardNumber) getCardTransaction,
     required TResult Function() resetCardTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String cardNumber)? getCardTransaction,
+    TResult? Function(String cardNumber)? getCardTransaction,
     TResult? Function()? resetCardTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String cardNumber)? getCardTransaction,
+    TResult Function(String cardNumber)? getCardTransaction,
     TResult Function()? resetCardTransaction,
     required TResult orElse(),
   }) =>
@@ -88,7 +88,7 @@ abstract class _$$GetCardTransactionEventImplCopyWith<$Res> {
           $Res Function(_$GetCardTransactionEventImpl) then) =
       __$$GetCardTransactionEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int id, String cardNumber});
+  $Res call({String cardNumber});
 }
 
 /// @nodoc
@@ -106,14 +106,9 @@ class __$$GetCardTransactionEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? cardNumber = null,
   }) {
     return _then(_$GetCardTransactionEventImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       cardNumber: null == cardNumber
           ? _value.cardNumber
           : cardNumber // ignore: cast_nullable_to_non_nullable
@@ -125,17 +120,14 @@ class __$$GetCardTransactionEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
-  const _$GetCardTransactionEventImpl(
-      {required this.id, required this.cardNumber});
+  const _$GetCardTransactionEventImpl({required this.cardNumber});
 
-  @override
-  final int id;
   @override
   final String cardNumber;
 
   @override
   String toString() {
-    return 'CardTransactionBlocEvent.getCardTransaction(id: $id, cardNumber: $cardNumber)';
+    return 'CardTransactionBlocEvent.getCardTransaction(cardNumber: $cardNumber)';
   }
 
   @override
@@ -143,13 +135,12 @@ class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetCardTransactionEventImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.cardNumber, cardNumber) ||
                 other.cardNumber == cardNumber));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, cardNumber);
+  int get hashCode => Object.hash(runtimeType, cardNumber);
 
   /// Create a copy of CardTransactionBlocEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -163,30 +154,30 @@ class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id, String cardNumber) getCardTransaction,
+    required TResult Function(String cardNumber) getCardTransaction,
     required TResult Function() resetCardTransaction,
   }) {
-    return getCardTransaction(id, cardNumber);
+    return getCardTransaction(cardNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String cardNumber)? getCardTransaction,
+    TResult? Function(String cardNumber)? getCardTransaction,
     TResult? Function()? resetCardTransaction,
   }) {
-    return getCardTransaction?.call(id, cardNumber);
+    return getCardTransaction?.call(cardNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String cardNumber)? getCardTransaction,
+    TResult Function(String cardNumber)? getCardTransaction,
     TResult Function()? resetCardTransaction,
     required TResult orElse(),
   }) {
     if (getCardTransaction != null) {
-      return getCardTransaction(id, cardNumber);
+      return getCardTransaction(cardNumber);
     }
     return orElse();
   }
@@ -227,11 +218,9 @@ class _$GetCardTransactionEventImpl implements GetCardTransactionEvent {
 }
 
 abstract class GetCardTransactionEvent implements CardTransactionBlocEvent {
-  const factory GetCardTransactionEvent(
-      {required final int id,
-      required final String cardNumber}) = _$GetCardTransactionEventImpl;
+  const factory GetCardTransactionEvent({required final String cardNumber}) =
+      _$GetCardTransactionEventImpl;
 
-  int get id;
   String get cardNumber;
 
   /// Create a copy of CardTransactionBlocEvent
@@ -287,7 +276,7 @@ class _$ResetRecievedCardTransactionsEventImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id, String cardNumber) getCardTransaction,
+    required TResult Function(String cardNumber) getCardTransaction,
     required TResult Function() resetCardTransaction,
   }) {
     return resetCardTransaction();
@@ -296,7 +285,7 @@ class _$ResetRecievedCardTransactionsEventImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String cardNumber)? getCardTransaction,
+    TResult? Function(String cardNumber)? getCardTransaction,
     TResult? Function()? resetCardTransaction,
   }) {
     return resetCardTransaction?.call();
@@ -305,7 +294,7 @@ class _$ResetRecievedCardTransactionsEventImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String cardNumber)? getCardTransaction,
+    TResult Function(String cardNumber)? getCardTransaction,
     TResult Function()? resetCardTransaction,
     required TResult orElse(),
   }) {

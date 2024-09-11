@@ -235,6 +235,7 @@ abstract class CoreUtils {
 
 // Function to get the date part only
   static String getFormattedDate(DateTime date) {
+    print("DATAAAAA ${date}");
     // DateFormat inputFormat = DateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
     //
     // final dateTime= inputFormat.parse(date);
