@@ -176,6 +176,7 @@
   "amountTransferredWithFees": "لقد قمت بتحويل مبلغ {amount} بنجاح إلى رقم البطاقة {number}",
 "nfcIsNotAvailable":"NFC غير متوفر في هذا الجهاز",
 
+"texFeesMayApply":"قد تنطبق رسوم اضافية, راجع سياسة الخصوصيه",
     "onBoardTitle1": "تعزيز التحكم الأبوي",
     "onBoardTitle2": "نظام خدمة متكامل",
     "onBoardTitle3": "دفع آمن وسلس",

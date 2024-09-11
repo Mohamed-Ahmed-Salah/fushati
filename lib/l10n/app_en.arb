@@ -185,6 +185,17 @@
 "emailOption":"Email (Optional)",
 "discard":"Discard",
 "registrationFees": "Registration Fees",
+"texFeesMayApply": "Additional fees may apply. Please review the privacy policy",
+
+
+
+
+
+
+
+
+
+
 
 "nfcIsNotAvailable":"NFC is not available on this device or is turned off",
 "transferSuccess":"Transfer Successful",
