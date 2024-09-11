@@ -24,7 +24,6 @@
 
 "payments2": "In the context of improving your experience with us, we would like to inform you that when using the payment gateway to top up your wallet, variable fees and rates may apply depending on the type of card used (such as Mada, Visa, or Mastercard). These fees include percentages taken by the payment company and transfer processing fees. You will be notified of the net calculated amount after deductions directly through the app before completing the top-up process.",
 
-"payments3": "We would like to inform you that when using payment gateways to top up your wallet, variable rates and fees will apply depending on the type of card used (such as Mada, Visa, or Mastercard). These fees include percentages taken by the payment company and transfer processing fees.",
 "payments4": "Please make sure to review the net amount before approving the top-up process to ensure transparency and your satisfaction.",
 
 "thanksForUsingFushati": "Thank you for choosing the Fushati app.",
@@ -122,6 +121,9 @@
 "email":"Email",
 "studentName":"Student Name",
 "studentNumber":"Student Number",
+"studentNumberOrIdentityNumber": "Student number or national ID",
+
+
 "cardDetails":"Card details",
 "name":"Name",
 "phoneNumber": "Phone number",

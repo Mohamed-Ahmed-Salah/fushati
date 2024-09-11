@@ -97,13 +97,6 @@ class PolicyView extends StatelessWidget {
               SizedBox(
                 height: 1.h,
               ),
-              Text("${AppLocalizations.of(context)?.payments3}",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Colours.textBlackColor)),
-              SizedBox(
-                height: 1.h,
-              ),
               Text("${AppLocalizations.of(context)?.payments4}",
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w400,

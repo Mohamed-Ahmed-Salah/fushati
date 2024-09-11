@@ -56,8 +56,6 @@ abstract class TextFormValidation {
     if (intValue == null) {
       return "${AppLocalizations.of(context)?.invalidNumber}";
     }
-    print(
-        "VALUE $value ${value.compareTo("20") < 0}  ${value.compareTo("20")}");
     // Validate if the value is greater than or equal to 20
     if (intValue < 20) {
       return "${AppLocalizations.of(context)?.minBalance}";
