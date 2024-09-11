@@ -10,11 +10,13 @@ import 'package:moyasar/src/widgets/three_d_s_webview.dart';
 class CreditCard extends StatefulWidget {
   const CreditCard(
       {super.key,
+      required this.textWidget,
       required this.config,
       required this.onPaymentResult,
       this.locale = const Localization.en(),
       required this.buttonColor});
 
+  final Text textWidget;
   final Color buttonColor;
   final Function onPaymentResult;
   final PaymentConfig config;
@@ -168,6 +170,9 @@ class _CreditCardState extends State<CreditCard> {
             onSaved: (value) => _cardData.cvc = value ?? '',
           ),
           Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: widget.textWidget),
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SizedBox(
               child: ElevatedButton(
@@ -184,7 +189,7 @@ class _CreditCardState extends State<CreditCard> {
                         strokeWidth: 2,
                       )
                     : Text(showAmount(widget.config.amount, widget.locale),
-                        style: const TextStyle(color: Colors.white)),
+                        style: const TextStyle(color: Colors.black)),
               ),
             ),
           ),

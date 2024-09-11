@@ -55,9 +55,8 @@ class MoyasarWalletTransferView extends StatelessWidget {
                       BlocListener<TransferMoneyBloc, TransferMoneyState>(
                     listener: (BuildContext context, TransferMoneyState state) {
                       state.whenOrNull(successState: () {
-                        context
-                            .read<CardsBloc>()
-                            .add(const CardsEvent.getCards(callFromStart:true));
+                        context.read<CardsBloc>().add(
+                            const CardsEvent.getCards(callFromStart: true));
                         context.pushNamed(CardTransactionSuccessView.name,
                             queryParameters: {
                               CardTransactionSuccessView.cardNumberParam:
@@ -127,6 +126,16 @@ class MoyasarWalletTransferView extends StatelessWidget {
                                 ),
                               SizedBox(height: SizeConst.verticalPadding),
                               CreditCard(
+                                textWidget: Text(
+                                  "${AppLocalizations.of(context)?.texFeesMayApply}",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                          color: Colours.blackColor,
+                                          fontWeight: FontWeight.w400),
+                                ),
                                 config: MoyasarConfig.config(
                                     card.isNewCard
                                         ? (amount + fees)
@@ -142,14 +151,13 @@ class MoyasarWalletTransferView extends StatelessWidget {
                                             amount: amount));
                                   }
                                 },
-
                                 locale:
                                     AppLocalizations.of(context)?.localeName ==
                                             "ar"
                                         ? const Localization.ar()
                                         : const Localization.en(),
                                 buttonColor: Colours.primaryGreenColor,
-                              )
+                              ),
                             ],
                           ),
                         ),

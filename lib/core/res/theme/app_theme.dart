@@ -6,7 +6,6 @@ import '../../utils/constants/size_constatnts.dart';
 import '../styles/colours.dart';
 
 abstract class CustomTheme {
-
   static LinearGradient linearGradiant = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -60,29 +59,26 @@ abstract class CustomTheme {
   );
 
   static ElevatedButtonThemeData elevatedButtonThemeData =
-  ElevatedButtonThemeData(
+      ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-        backgroundColor: Colours.primaryGreenColor,
-        disabledBackgroundColor: Colours.primaryGreenColor,
-        disabledForegroundColor: Colours.blackColor,
-        foregroundColor: Colours.blackColor,
-        overlayColor:Colors.transparent,
-        // Removes the ink shadow effect
-        elevation: 0,
-        //change background color of button
-        minimumSize: Size(100.w, 6.h),
-    textStyle: TextStyle(
-        fontSize: 16.px,
-        fontWeight: FontWeight.w500,
-        color: Colours.blackColor),
-    shape: RoundedRectangleBorder(
-      borderRadius:
-      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+      backgroundColor: Colours.primaryGreenColor,
+      disabledBackgroundColor: Colours.primaryGreenColor,
+      disabledForegroundColor: Colours.blackColor,
+      foregroundColor: Colours.blackColor,
+      overlayColor: Colors.transparent,
+      // Removes the ink shadow effect
+      elevation: 0,
+      //change background color of button
+      minimumSize: Size(100.w, 6.h),
+      textStyle: TextStyle(
+          fontSize: 16.px,
+          fontWeight: FontWeight.w500,
+          color: Colours.blackColor),
+      shape: RoundedRectangleBorder(
+        borderRadius:
+            BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+      ),
     ),
-  )
-
-  ,
-
   );
 
   static TextButtonThemeData textButtonThemeData = TextButtonThemeData(
@@ -116,7 +112,7 @@ abstract class CustomTheme {
     // prefixIconColor: AppColors.primaryColor,
     border: OutlineInputBorder(
       borderRadius:
-      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
       borderSide: BorderSide(
         width: 1.5,
         color: Colours.borderGreyColor,
@@ -124,7 +120,7 @@ abstract class CustomTheme {
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius:
-      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
       borderSide: BorderSide(
         width: 1.5,
         color: Colours.borderGreyColor,
@@ -132,7 +128,7 @@ abstract class CustomTheme {
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius:
-      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
       borderSide: const BorderSide(
         width: 1.5,
         color: Colours.blackColor,
@@ -140,7 +136,7 @@ abstract class CustomTheme {
     ),
     errorBorder: OutlineInputBorder(
       borderRadius:
-      BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
+          BorderRadius.all(Radius.circular(SizeConst.horizontalPaddingFour)),
       borderSide: const BorderSide(
         width: 1.5,
         color: Colours.errorColor,
@@ -170,13 +166,15 @@ abstract class CustomTheme {
             fontSize: 15.sp,
             fontWeight: FontWeight.w300,
             color: Colours.textBlackColor),
-
         titleMedium: TextStyle(
             fontFamily: TextConstants.font,
             fontSize: 16.sp,
             fontWeight: FontWeight.w300,
             color: Colours.textBlackColor),
-        titleLarge: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300,),
+        titleLarge: TextStyle(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w300,
+        ),
         headlineSmall: TextStyle(
             fontSize: 23.5.sp,
             fontWeight: FontWeight.w300,
@@ -191,7 +189,6 @@ abstract class CustomTheme {
           fontWeight: FontWeight.w300,
           fontSize: 23.sp,
         ),
-
         bodySmall: TextStyle(
             color: Colours.textBlackColor,
             fontSize: 12.sp,
@@ -201,7 +198,6 @@ abstract class CustomTheme {
           fontSize: 16.sp,
           fontWeight: FontWeight.w300,
         ),
-
         displaySmall: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.sp),
         displayMedium: TextStyle(
           color: Colours.blackColor,
@@ -213,7 +209,6 @@ abstract class CustomTheme {
             fontFamily: TextConstants.font,
             fontSize: 31.sp,
             fontWeight: FontWeight.w900),
-
       ),
       textSelectionTheme: const TextSelectionThemeData(
         cursorColor: Colours.textBlackColor,

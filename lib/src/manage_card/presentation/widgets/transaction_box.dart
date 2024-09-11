@@ -42,6 +42,8 @@ class TransactionBox extends StatelessWidget {
               children: [
                 if (!isProfileTransaction)
                   Container(
+                    // height: 15.w,
+                    // width: 16.w,
                     padding: EdgeInsets.all(SizeConst.horizontalPadding),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(
@@ -49,13 +51,15 @@ class TransactionBox extends StatelessWidget {
                         gradient: CustomTheme.linearGradiantLarge),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
-                      child: Text(
-                        CoreUtils.getAmOrPm(
-                          transaction.createdAt,
+                      child: Center(
+                        child: Text(
+                          CoreUtils.getAmOrPm(
+                            transaction.createdAt,
+                          ),
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: Colours.brandColorOne.withOpacity(0.5)),
                         ),
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: Colours.brandColorOne.withOpacity(0.5)),
                       ),
                     ),
                   ),
