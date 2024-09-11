@@ -179,15 +179,31 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                                               horizontal:
                                                   SizeConst.horizontalPadding),
                                           child: TextFormField(
+                                            onFieldSubmitted: (_) {
+                                              bool filledFormCorrectly =
+                                                  _formKey.currentState
+                                                      ?.validate();
+                                              if (filledFormCorrectly) {
+                                                context
+                                                    .read<
+                                                        AmountToTransferCubit>()
+                                                    .addingAmountEvent(
+                                                        amount: int.parse(
+                                                            _controller.text));
+                                                Navigator.pop(context);
+                                                context.pushNamed(
+                                                    MoyasarWalletTransferView
+                                                        .name,
+                                                    extra: widget.card);
+                                              }
+                                            },
                                             style:
                                                 CustomTheme.textFieldTextStyle,
                                             textAlign: TextAlign.center,
                                             controller: _controller,
-
                                             onTapOutside: (_) =>
                                                 FocusScope.of(context)
                                                     .requestFocus(FocusNode()),
-                                            // controller: _controller,
                                             onChanged: (value) {},
                                             keyboardType: TextInputType.number,
                                             inputFormatters: [
@@ -197,7 +213,7 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                                                   RegExp(r'^[1-9][0-9]*')),
                                             ],
                                             decoration: const InputDecoration(
-                                                hintText: "0"),
+                                                hintText: "20"),
                                           ),
                                         ),
                                       ),

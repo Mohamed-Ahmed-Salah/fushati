@@ -51,7 +51,17 @@ abstract class TextFormValidation {
     if (value == null) return requiredField("", context: context);
     if (value.isEmpty) return requiredField(value, context: context);
 
-    if(value.compareTo("20")<0) return "${AppLocalizations.of(context)?.minBalance}";
+    // Try to parse the value to an integer
+    final intValue = int.tryParse(value);
+    if (intValue == null) {
+      return "${AppLocalizations.of(context)?.invalidNumber}";
+    }
+    print(
+        "VALUE $value ${value.compareTo("20") < 0}  ${value.compareTo("20")}");
+    // Validate if the value is greater than or equal to 20
+    if (intValue < 20) {
+      return "${AppLocalizations.of(context)?.minBalance}";
+    }
     return null;
   }
 

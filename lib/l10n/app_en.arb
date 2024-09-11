@@ -9,6 +9,7 @@
 "enterFullName":"Please enter full name",
 "enterNameWithNoNumber":"Please enter valid full name with no numbers",
 "enterValidFullName":"Please enter valid full name",
+"invalidNumber":"Invalid number",
 "selectLanguage":"Select the app language",
 "male":"Male",
 "female":"Female",
@@ -187,6 +188,7 @@
 "registrationFees": "Registration Fees",
 "texFeesMayApply": "Additional fees may apply. Please review the privacy policy",
 "minBalance": "Minimum balance you can transfer is 20 riyals",
+
 
 
 

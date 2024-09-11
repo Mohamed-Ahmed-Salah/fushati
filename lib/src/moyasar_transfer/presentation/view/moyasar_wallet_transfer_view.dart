@@ -11,7 +11,6 @@ import 'package:go_router/go_router.dart';
 
 import 'dart:io' show Platform;
 import 'package:moyasar/moyasar.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/common/widgets/custome_appbar.dart';
@@ -78,7 +77,7 @@ class MoyasarWalletTransferView extends StatelessWidget {
                                 text:
                                     "${AppLocalizations.of(context)?.topUpBalance}",
                               ),
-                              SizedBox(height: 5.h),
+                              SizedBox(height: SizeConst.verticalPaddingFour),
                               CardBox.withoutManage(card: card),
                               SizedBox(height: SizeConst.verticalPadding),
                               ApplePay(

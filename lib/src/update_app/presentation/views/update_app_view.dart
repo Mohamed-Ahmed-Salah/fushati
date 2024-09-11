@@ -12,7 +12,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:store_redirect/store_redirect.dart';
 import 'dart:io' show Platform;
 
-import 'package:url_launcher/url_launcher.dart';
 
 class UpdateAppView extends StatelessWidget {
   static String path = "/update-app";

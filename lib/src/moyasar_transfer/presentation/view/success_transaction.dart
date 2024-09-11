@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/common/widgets/green_background.dart';
 import 'package:fushati/core/res/media.dart';
 import 'package:fushati/core/res/styles/colours.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
-import 'package:fushati/main.dart';
-import 'package:fushati/src/app_language/presentation/app/cubit/app_language_cubit.dart';
 import 'package:fushati/src/home/presentation/views/home_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';

@@ -5,7 +5,6 @@ import 'package:fushati/core/common/widgets/pagination_error_text.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
 import 'package:fushati/src/manage_card/presentation/app/bloc/card_transaction_bloc.dart';
-import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/common/widgets/card_box.dart';
@@ -14,7 +13,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../home/domain/entity/card.dart';
 import '../../../home/presentation/widgets/error_sliver.dart';
-import '../../../home/presentation/widgets/loading_sliver.dart';
 import '../app/delete_card_bloc/delete_card_bloc.dart';
 import '../widgets/delete_card_button.dart';
 import '../widgets/top_up_button.dart';

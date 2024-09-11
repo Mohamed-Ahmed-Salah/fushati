@@ -72,7 +72,7 @@ abstract class CustomTheme {
       minimumSize: Size(100.w, 6.h),
       textStyle: TextStyle(
           fontSize: 16.px,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w800,
           color: Colours.blackColor),
       shape: RoundedRectangleBorder(
         borderRadius:

@@ -13,6 +13,14 @@
 "enterNameWithNoNumber":"يرجى إدخال اسم كامل بدون أي أرقام",
 "enterValidFullName":"الرجاء إدخال الاسم الكامل الصحيح",
 "selectLanguage":"حدد لغة التطبيق",
+"invalidNumber": "رقم غير صالح",
+
+
+
+
+
+
+
 "male": "ذكر",
 "female": "أنثى",
 "gender": "الجنس",
