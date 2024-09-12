@@ -56,7 +56,6 @@ dependencies:
   dots_indicator: ^3.0.0
   smooth_page_indicator: ^1.2.0
   nfc_manager: ^3.5.0
-  timezone: ^0.9.1
   package_info_plus: ^8.0.2
   store_redirect: ^2.0.2
   flutter_nfc_kit:
