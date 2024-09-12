@@ -1,5 +1,3 @@
-
-
 import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
 
 class TransactionResponseModel extends TransactionResponse {

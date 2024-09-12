@@ -1,8 +1,6 @@
-
-
 class TransactionResponse {
-  final int fee;
-  final int amount;
+  final double fee;
+  final double amount;
 
   TransactionResponse({
     required this.fee,
