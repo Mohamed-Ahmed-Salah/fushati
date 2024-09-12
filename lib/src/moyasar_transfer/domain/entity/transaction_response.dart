@@ -1,6 +1,6 @@
 class TransactionResponse {
-  final double fee;
-  final double amount;
+  final String fee;
+  final String amount;
 
   TransactionResponse({
     required this.fee,

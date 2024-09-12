@@ -9,8 +9,8 @@ class TransactionResponseModel extends TransactionResponse {
   });
 
   factory TransactionResponseModel.fromJson(Map<String, dynamic> json) => TransactionResponseModel(
-    fee: json["fee"],
-    amount: json["amount"],
+    fee: json["fee"].toString(),
+    amount: json["amount"].toString(),
   );
 
   Map<String, dynamic> toJson() => {
