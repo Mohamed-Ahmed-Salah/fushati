@@ -213,7 +213,7 @@ class _PickAmountBottomSheetState extends State<PickAmountBottomSheet> {
                                                   RegExp(r'^[1-9][0-9]*')),
                                             ],
                                             decoration: const InputDecoration(
-                                                hintText: "20"),
+                                                hintText: "0"),
                                           ),
                                         ),
                                       ),
