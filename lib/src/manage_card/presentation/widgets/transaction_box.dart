@@ -4,6 +4,7 @@ import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/core/utils/enums/transaction_enum.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
+import 'package:fushati/src/manage_card/presentation/views/manage_card_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,106 +13,83 @@ import '../../../../core/res/theme/app_theme.dart';
 
 class TransactionBox extends StatelessWidget {
   final Transaction transaction;
-
+  final bool showDashSeparator;
   final bool isProfileTransaction;
 
   const TransactionBox(
       {super.key,
+      required this.showDashSeparator,
       required this.transaction,
       this.isProfileTransaction = false});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
+      clipBehavior: Clip.none,
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: SizeConst.verticalPadding),
-          child: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: SizeConst.horizontalPadding,
-                vertical: SizeConst.verticalPadding),
-            decoration: BoxDecoration(
-              color: Colours.whiteColor,
-              border: Border.all(color: Colours.borderGreyColor),
-              borderRadius: BorderRadius.all(
-                Radius.circular(SizeConst.borderRadius),
+        Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: SizeConst.horizontalPadding,
+                  vertical: SizeConst.verticalPadding),
+              decoration: BoxDecoration(
+                color: Colours.whiteColor,
+                border: Border.all(color: Colours.borderGreyColor),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(SizeConst.borderRadius),
+                ),
               ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (!isProfileTransaction)
-                  Container(
-                    // height: 15.w,
-                    // width: 16.w,
-                    padding: EdgeInsets.all(SizeConst.horizontalPadding),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(SizeConst.borderRadius)),
-                        gradient: CustomTheme.linearGradiantLarge),
-                    child: Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Center(
-                        child: Text(
-                          CoreUtils.getAmOrPm(
-                            transaction.createdAt,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (!isProfileTransaction)
+                    Container(
+                      height: 15.w,
+                      width: 15.w,
+                      // padding: EdgeInsets.all(SizeConst.horizontalPadding),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(SizeConst.borderRadius)),
+                          gradient: CustomTheme.linearGradiantLarge),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Center(
+                          child: Text(
+                            CoreUtils.getAmOrPm(
+                              transaction.createdAt,
+                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        Colours.brandColorOne.withOpacity(0.5)),
                           ),
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: Colours.brandColorOne.withOpacity(0.5)),
                         ),
                       ),
                     ),
-                  ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: SizeConst.horizontalPadding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${AppLocalizations.of(context)?.rs(transaction.amount)}",
-                          style: TextStyle(
-                              fontSize: 17.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colours.textBlackColor),
-                        ),
-                        RichText(
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          text: TextSpan(
-                            text:
-                                "${AppLocalizations.of(context)?.transactionId} ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colours.textBlackColor
-                                        .withOpacity(0.5)),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: transaction.orderId.toString(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                        overflow: TextOverflow.fade,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colours.textBlackColor
-                                            .withOpacity(0.7)),
-                              ),
-                            ],
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: SizeConst.horizontalPadding),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${AppLocalizations.of(context)?.rs(transaction.amount)}",
+                            style: TextStyle(
+                                fontSize: 17.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colours.textBlackColor),
                           ),
-                        ),
-                        if (isProfileTransaction)
                           RichText(
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             text: TextSpan(
                               text:
-                                  "${AppLocalizations.of(context)?.cardNumber} ",
+                                  "${AppLocalizations.of(context)?.transactionId} ",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium
@@ -121,7 +99,7 @@ class TransactionBox extends StatelessWidget {
                                           .withOpacity(0.5)),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: transaction.carNumber,
+                                  text: transaction.orderId.toString(),
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium
@@ -134,46 +112,83 @@ class TransactionBox extends StatelessWidget {
                               ],
                             ),
                           ),
-                      ],
+                          if (isProfileTransaction)
+                            RichText(
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              text: TextSpan(
+                                text:
+                                    "${AppLocalizations.of(context)?.cardNumber} ",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colours.textBlackColor
+                                            .withOpacity(0.5)),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: transaction.carNumber,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                            overflow: TextOverflow.fade,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colours.textBlackColor
+                                                .withOpacity(0.7)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      CoreUtils.getFormattedDate(transaction.createdAt),
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: Colours.textBlackColor.withOpacity(0.5)),
-                    ),
-                    Text(
-                      CoreUtils.getFormattedTime(transaction.createdAt),
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: Colours.textBlackColor.withOpacity(0.5)),
-                    ),
-                    if (isProfileTransaction && transaction.cardHolderName !=null && (transaction.cardHolderName??"").isNotEmpty )
-                      Padding(
-                        padding: EdgeInsets.only(top: 0.5.h),
-                        child: Text(
-                          transaction.cardHolderName ?? "",
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: Colours.textBlackColor.withOpacity(0.5)),
-                        ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        CoreUtils.getFormattedDate(transaction.createdAt),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: Colours.textBlackColor.withOpacity(0.5)),
                       ),
-                  ],
-                ),
-              ],
+                      Text(
+                        CoreUtils.getFormattedTime(transaction.createdAt),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: Colours.textBlackColor.withOpacity(0.5)),
+                      ),
+                      if (isProfileTransaction &&
+                          transaction.cardHolderName != null &&
+                          (transaction.cardHolderName ?? "").isNotEmpty)
+                        Padding(
+                          padding: EdgeInsets.only(top: 0.5.h),
+                          child: Text(
+                            transaction.cardHolderName ?? "",
+                            maxLines: 1,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colours.textBlackColor
+                                        .withOpacity(0.5)),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
+            if (showDashSeparator) const DottedLineSeparatedWidget(),
+          ],
         ),
         Positioned(
-          top: 1.h,
-          left: AppLocalizations.of(context)?.localeName == "en" ? 7.w : 0,
-          right: AppLocalizations.of(context)?.localeName == "ar" ? 7.w : 0,
+          top: -1.h,
+          left: AppLocalizations.of(context)?.localeName == "en" ? 20.w : 0,
+          right: AppLocalizations.of(context)?.localeName == "ar" ? 20.w : 0,
           child: IntrinsicWidth(
             child: Align(
               alignment: AppLocalizations.of(context)?.localeName == "en"

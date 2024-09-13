@@ -77,9 +77,10 @@ class _ManageCardViewState extends State<ManageCardView> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: SizeConst.horizontalPadding,
-              vertical: SizeConst.verticalPadding),
+          padding: EdgeInsets.only(
+              right: SizeConst.horizontalPadding,
+              left: SizeConst.horizontalPadding,
+              top: SizeConst.verticalPadding),
           child: Form(
             key: _formKey,
             child: CustomScrollView(
@@ -117,7 +118,6 @@ class _ManageCardViewState extends State<ManageCardView> {
                     ],
                   ),
                 ),
-
                 BlocBuilder<CardTransactionBlocBloc, CardTransactionBlocState>(
                   builder: (context, state) {
                     return state.when(
@@ -152,6 +152,8 @@ class _ManageCardViewState extends State<ManageCardView> {
                                 Transaction transaction = transactions[index];
                                 return TransactionBox(
                                   transaction: transaction,
+                                  showDashSeparator:
+                                      index < transactions.length - 1,
                                   isProfileTransaction: true,
                                 );
                               },
@@ -164,29 +166,24 @@ class _ManageCardViewState extends State<ManageCardView> {
                         delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
                             Transaction transaction = transactions[index];
-                            return TransactionBox(transaction: transaction);
+                            return TransactionBox(
+                              transaction: transaction,
+                              showDashSeparator:
+                                  index < transactions.length - 1,
+                            );
                           },
+                          // Adjusted childCount to include separators
                           childCount: transactions.length,
                         ),
                       ),
                     ); //
                   },
                 ),
-                // BlocBuilder<UserInfoBloc, UserInfoState>(
-                //     builder: (context, state) {
-                //   return state.when(
-                //     loading: () => const LoadingSliver(),
-                //     failed: (message) => ErrorSliver(
-                //       onPressed: () {
-                //         context
-                //             .read<UserInfoBloc>()
-                //             .add(const UserInfoEvent.getUserInfo());
-                //       },
-                //       message: message,
-                //     ),
-                //     success: (user) =>
-                //   );
-                // }),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: SizeConst.verticalPaddingFour,
+                  ),
+                ),
               ],
             ),
           ),
@@ -212,7 +209,10 @@ class TransactionsLoading extends StatelessWidget {
             return const Center(child: CustomCircularProgressIndicator());
           } else {
             Transaction transaction = transactions[index];
-            return TransactionBox(transaction: transaction);
+            return TransactionBox(
+              transaction: transaction,
+              showDashSeparator: index < length - 1,
+            );
           }
         },
         childCount: transactions.length + 1,
@@ -232,10 +232,61 @@ class TransactionList extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           Transaction transaction = transactions[index];
-          return TransactionBox(transaction: transaction);
+          return TransactionBox(
+              transaction: transaction,
+              showDashSeparator: index < transactions.length - 1);
         },
         childCount: transactions.length,
       ),
     );
+  }
+}
+
+class DottedLineSeparatedWidget extends StatelessWidget {
+  const DottedLineSeparatedWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: List.generate(4, (subIndex) {
+        return Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 10.w,
+            vertical: 5,
+          ),
+          alignment: AppLocalizations.of(context)?.localeName == "ar"
+              ? Alignment.centerRight
+              : Alignment.centerLeft,
+          child: CustomPaint(
+            painter: DottedLinePainter(),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+class DottedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = Colors.black.withOpacity(0.1) // Color of the dashed line
+      ..strokeWidth = 2;
+
+    double dashHeight = 3; // Height of each dash
+    double dashSpace =
+        (size.height - (dashHeight * 4)) / 3; // Space between dashes
+    double startY = 0;
+
+    for (int i = 0; i < 4; i++) {
+      // Draw each dash
+      canvas.drawLine(Offset(0, startY), Offset(0, startY + dashHeight), paint);
+      startY += dashHeight + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
