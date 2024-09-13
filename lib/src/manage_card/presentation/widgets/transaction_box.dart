@@ -5,7 +5,6 @@ import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:fushati/core/utils/core_utils.dart';
 import 'package:fushati/core/utils/enums/transaction_enum.dart';
 import 'package:fushati/src/home/domain/entity/transaction.dart';
-import 'package:fushati/src/manage_card/presentation/views/manage_card_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -48,7 +47,6 @@ class TransactionBox extends StatelessWidget {
                     Container(
                       height: 15.w,
                       width: 15.w,
-                      // padding: EdgeInsets.all(SizeConst.horizontalPadding),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
                               Radius.circular(SizeConst.borderRadius)),

@@ -247,8 +247,7 @@ abstract class CoreUtils {
   }
 
   static String getAmOrPm(DateTime dateTime) {
-    // DateFormat inputFormat = DateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
-    // final dateTime= inputFormat.parse(date);
+
     // Define the output format to get only the AM or PM part
     DateFormat amPmFormat = DateFormat('a');
 
