@@ -52,7 +52,7 @@ class TransactionBox extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
                               Radius.circular(SizeConst.borderRadius)),
-                          gradient: CustomTheme.linearGradiantLarge),
+                          gradient: CustomTheme.linearGradiantLargeLighter),
                       child: Directionality(
                         textDirection: TextDirection.ltr,
                         child: Center(
@@ -64,6 +64,7 @@ class TransactionBox extends StatelessWidget {
                                 .textTheme
                                 .titleLarge
                                 ?.copyWith(
+                                    fontSize: 17.sp,
                                     fontWeight: FontWeight.w500,
                                     color:
                                         Colours.brandColorOne.withOpacity(0.5)),
