@@ -32,10 +32,6 @@ class UpdateAppView extends StatelessWidget {
                 onPressed: () async {
                   final Uri url = Uri.parse(response.storeUrl);
                   await launchUrl(url);
-                  // bool isIOS = Platform.isIOS;
-                  // StoreRedirect.redirect(
-                  //     androidAppId: isIOS ? "" : response.storeId,
-                  //     iOSAppId: isIOS ? response.storeId : "");
                 },
                 child: Text("${AppLocalizations.of(context)?.update}")),
           ),
