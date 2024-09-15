@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 abstract class TextFormValidation {
-  // TextFormValidation._();
+  TextFormValidation._();
 
   static String? phoneValidation(String? value,
       {required BuildContext context}) {
@@ -17,6 +17,7 @@ abstract class TextFormValidation {
     if (value.startsWith("0")) {
       return "${AppLocalizations.of(context)?.fieldDontStartWithZero}";
     }
+    return null;
   }
 
   static String? saudiPhoneValidation(String? value,
@@ -35,6 +36,7 @@ abstract class TextFormValidation {
     if (!value.startsWith("9665")) {
       return "${AppLocalizations.of(context)?.fieldShouldStartWithKsa}";
     }
+    return null;
   }
 
   static String? requiredField(String? value, {required BuildContext context}) {
@@ -57,7 +59,7 @@ abstract class TextFormValidation {
       return "${AppLocalizations.of(context)?.invalidNumber}";
     }
     // Validate if the value is greater than or equal to 20
-    if (intValue < 20) {
+    if (intValue < 1) {
       return "${AppLocalizations.of(context)?.minBalance}";
     }
     return null;
@@ -133,5 +135,6 @@ abstract class TextFormValidation {
     if (value.length < 4) {
       return "${AppLocalizations.of(context)?.onlyFourNumber}";
     }
+    return null;
   }
 }
