@@ -76,53 +76,6 @@ class _HomeViewState extends State<HomeView> {
             key: const PageStorageKey<String>('home_scroll_position'),
             controller: _scrollController,
             slivers: [
-              // BlocBuilder<UserInfoBloc, UserInfoState>(
-              //     builder: (context, state) {
-              //   return state.when(
-              //     loading: () => const LoadingSliver(),
-              //     failed: (message) => ErrorSliver(
-              //       onPressed: () {
-              //         context
-              //             .read<UserInfoBloc>()
-              //             .add(const UserInfoEvent.getUserInfo());
-              //       },
-              //       message: message,
-              //     ),
-              //     success: (user) => BlocBuilder<CardsBloc, CardsState>(
-              //         builder: (context, state) {
-              //       return state.when(
-              //           initial: () => const LoadingSliver(),
-              //           loading: (cards, currentPage, maxPage) {
-              //             if (cards.isEmpty) {
-              //               return const LoadingSliver();
-              //             } else {
-              //               return LoadedCardList(
-              //                 isLoading: true,
-              //                 cards: cards,
-              //                 userId: user.id,
-              //               );
-              //             }
-              //           },
-              //           emptyList: () => const EmptyCardList(),
-              //           failed: (message, cards, currentPage, maxPage) =>
-              //               ErrorSliver(
-              //                 onPressed: () {
-              //                   context
-              //                       .read<CardsBloc>()
-              //                       .add(const CardsEvent.getCards());
-              //                 },
-              //                 message: message,
-              //               ),
-              //           success: (cards, currentPage, maxPage) =>
-              //               LoadedCardList(
-              //                 isLoading: false,
-              //                 cards: cards,
-              //                 userId: user.id,
-              //               ));
-              //     }),
-              //   );
-              // }),
-
               BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
                 return state.when(
                     initial: () => const LoadingSliver(),

@@ -6,6 +6,10 @@ Future<void> init() async {
   await cacheInit();
   Future.wait([
     ///we call cache from main file and call init from slash app and redirection bloc
+
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ),
     _minVersion(),
     _appLanguageInit(),
     _authInit(),
@@ -22,10 +26,11 @@ Future<void> _minVersion() async {
   sl
     ..registerLazySingleton(() => GetMinAppVersion(sl()))
     ..registerLazySingleton<MinAppVersionRepo>(
-            () => MinAppVersionRepoImpl(sl()))
+        () => MinAppVersionRepoImpl(sl()))
     ..registerLazySingleton<AppVersionRemoteDataSrc>(
-            () => AppVersionRemoteDataSrcImpl(sl()));
+        () => AppVersionRemoteDataSrcImpl(sl()));
 }
+
 Future<void> _appLanguageInit() async {
   sl.registerFactory(() => AppLanguageCubit(cacheHelper: sl()));
 }
@@ -62,13 +67,14 @@ Future<void> _cardsInit() async {
     ..registerLazySingleton<CardRemoteDataSrc>(
         () => CardRemoteDataSrcImpl(sl()));
 }
+
 Future<void> _registrationFeesInit() async {
   sl
-
     ..registerLazySingleton(() => GetRegistrationFeesUseCase(sl()))
-    ..registerLazySingleton<RegistrationFeesRepo>(() => RegistrationFeesRepoImpl(sl()))
+    ..registerLazySingleton<RegistrationFeesRepo>(
+        () => RegistrationFeesRepoImpl(sl()))
     ..registerLazySingleton<RegistrationFeesRemoteDataSrc>(
-            () => RegistrationFeesRemoteDataSrcImpl(sl()));
+        () => RegistrationFeesRemoteDataSrcImpl(sl()));
 }
 
 Future<void> _moyasarInit() async {

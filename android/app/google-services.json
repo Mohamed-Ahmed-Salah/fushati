@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "506731571370",
+    "firebase_url": "https://fushati-pay-4ee38-default-rtdb.firebaseio.com",
+    "project_id": "fushati-pay-4ee38",
+    "storage_bucket": "fushati-pay-4ee38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506731571370:android:d6c69b1c33b6b725c088d3",
+        "android_client_info": {
+          "package_name": "com.fushati.parents"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChLsCrieEnukOi9Do0J9vuqm3a839MLsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506731571370:android:8ad209b730e8c880c088d3",
+        "android_client_info": {
+          "package_name": "com.fushati.terminal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChLsCrieEnukOi9Do0J9vuqm3a839MLsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

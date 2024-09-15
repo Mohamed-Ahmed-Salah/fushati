@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:fushati/firebase_options.dart';
 import 'package:fushati/src/home/data/datasources/registration_fees_remote_data_src.dart';
 import 'package:fushati/src/home/data/datasources/transaction_remote_data_src.dart';
 import 'package:fushati/src/home/data/repos/card_repo_impl.dart';
