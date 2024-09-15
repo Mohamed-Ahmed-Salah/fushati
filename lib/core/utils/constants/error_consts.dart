@@ -126,11 +126,14 @@ abstract class ErrorConst {
   static const String paymentFailedTitleAr = "التحويل لم يتم بنجاح";
 
   static const String failedToCreateRelationship = "relationship_not_created";
-  static const String failedToCreateRelationshipEn = "Unable to link card. Please check details and try again.";
-  static const String failedToCreateRelationshipAr = "لم نتمكن نت ربط البطاقة. يرجى التحقق من ان البطاقه صحيحه والمحاولة مرة أخرى";
+  static const String failedToCreateRelationshipEn =
+      "Unable to link card. Please check details and try again.";
+  static const String failedToCreateRelationshipAr =
+      "لم نتمكن نت ربط البطاقة. يرجى التحقق من ان البطاقه صحيحه والمحاولة مرة أخرى";
   static const String studentNotFound = "student_not_found";
   static const String couldNotReadCardNumberEn = "Could not read card number";
-  static const String couldNotReadCardNumberAr = "لم نتمكن من قراءة رقم البطاقة";
+  static const String couldNotReadCardNumberAr =
+      "لم نتمكن من قراءة رقم البطاقة";
 
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
@@ -197,7 +200,7 @@ abstract class ErrorConst {
       case platformNotSupportedEn:
         return platformNotSupportedAr;
 
-    //--------------------------
+      //--------------------------
       case UNKNOWN_ERROR:
         return UNKNOWN_ERROR_AR;
 
@@ -293,7 +296,7 @@ abstract class ErrorConst {
       case platformNotSupportedEn:
         return platformNotSupportedEn;
 
-    //--------------------------
+      //--------------------------
       case UNKNOWN_ERROR:
         return UNKNOWN_ERROR;
 
@@ -456,7 +459,7 @@ abstract class ErrorConst {
       case 'validation.face_images_max':
         return localization?.validationFaceImagesMax;
       default:
-        return null;
+        return getErrorBody(text: message);
     }
   }
 }

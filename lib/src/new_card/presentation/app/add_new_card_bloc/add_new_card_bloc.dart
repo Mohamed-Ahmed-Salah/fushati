@@ -34,6 +34,7 @@ class AddNewCardBloc extends Bloc<AddNewCardEvent, AddNewCardState> {
         phoneNumber: event.phoneNumber));
     result.fold(
       (failure) {
+        print("failure.message ${failure.message}");
         emit(AddNewCardState.failed(failure.message));
       },
       (_) {
