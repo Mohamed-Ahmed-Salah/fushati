@@ -50,9 +50,7 @@ mixin _$GetCardDetailsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of GetCardDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $GetCardDetailsEventCopyWith<GetCardDetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,8 +74,6 @@ class _$GetCardDetailsEventCopyWithImpl<$Res, $Val extends GetCardDetailsEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GetCardDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -111,8 +107,6 @@ class __$$GetCardEventImplCopyWithImpl<$Res>
       _$GetCardEventImpl _value, $Res Function(_$GetCardEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetCardDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,9 +146,7 @@ class _$GetCardEventImpl implements GetCardEvent {
   @override
   int get hashCode => Object.hash(runtimeType, cardNumber);
 
-  /// Create a copy of GetCardDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GetCardEventImplCopyWith<_$GetCardEventImpl> get copyWith =>
@@ -223,11 +215,8 @@ abstract class GetCardEvent implements GetCardDetailsEvent {
 
   @override
   String get cardNumber;
-
-  /// Create a copy of GetCardDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GetCardEventImplCopyWith<_$GetCardEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -302,9 +291,6 @@ class _$GetCardDetailsStateCopyWithImpl<$Res, $Val extends GetCardDetailsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -321,9 +307,6 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -441,8 +424,6 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -481,9 +462,7 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -568,10 +547,7 @@ abstract class _failedState implements GetCardDetailsState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
-
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -711,8 +687,6 @@ class __$$successImplCopyWithImpl<$Res>
       _$successImpl _value, $Res Function(_$successImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -751,9 +725,7 @@ class _$successImpl implements _success {
   @override
   int get hashCode => Object.hash(runtimeType, card);
 
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$successImplCopyWith<_$successImpl> get copyWith =>
@@ -838,10 +810,7 @@ abstract class _success implements GetCardDetailsState {
   const factory _success({required final CardEntity card}) = _$successImpl;
 
   CardEntity get card;
-
-  /// Create a copy of GetCardDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$successImplCopyWith<_$successImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

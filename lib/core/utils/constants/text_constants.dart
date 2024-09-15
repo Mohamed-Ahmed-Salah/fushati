@@ -4,7 +4,7 @@ abstract class TextConstants {
   static const String starterLangCode = "en";
   static const String font = "Sans-Arabic";
 
-  static const whatsAppPhoneNumber = "+966";
+  static const whatsAppPhoneNumber = "+966592918830";
   static const closeEn = "Close";
   static const closeAr = "اغلق";
   static const okayAr = "تأكيد";

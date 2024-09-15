@@ -62,9 +62,7 @@ mixin _$AddNewCardEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of AddNewCardEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AddNewCardEventCopyWith<AddNewCardEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -88,8 +86,6 @@ class _$AddNewCardEventCopyWithImpl<$Res, $Val extends AddNewCardEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AddNewCardEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,8 +124,6 @@ class __$$AddCardEventImplCopyWithImpl<$Res>
       _$AddCardEventImpl _value, $Res Function(_$AddCardEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddNewCardEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,9 +203,7 @@ class _$AddCardEventImpl implements AddCardEvent {
   int get hashCode => Object.hash(
       runtimeType, name, email, phoneNumber, cardNumber, studentNumber);
 
-  /// Create a copy of AddNewCardEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddCardEventImplCopyWith<_$AddCardEventImpl> get copyWith =>
@@ -300,11 +292,8 @@ abstract class AddCardEvent implements AddNewCardEvent {
   @override
   String get cardNumber;
   String get studentNumber;
-
-  /// Create a copy of AddNewCardEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddCardEventImplCopyWith<_$AddCardEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -527,9 +516,6 @@ class _$AddNewCardStateCopyWithImpl<$Res, $Val extends AddNewCardState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of AddNewCardState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -546,9 +532,6 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AddNewCardState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -660,8 +643,6 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddNewCardState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -700,9 +681,7 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of AddNewCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -781,10 +760,7 @@ abstract class _failedState implements AddNewCardState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
-
-  /// Create a copy of AddNewCardState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -803,9 +779,6 @@ class __$$successImplCopyWithImpl<$Res>
   __$$successImplCopyWithImpl(
       _$successImpl _value, $Res Function(_$successImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AddNewCardState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

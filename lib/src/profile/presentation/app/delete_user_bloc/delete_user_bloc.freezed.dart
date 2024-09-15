@@ -72,9 +72,6 @@ class _$DeleteUserEventCopyWithImpl<$Res, $Val extends DeleteUserEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,8 +91,6 @@ class __$$DeleteUserInfoEventImplCopyWithImpl<$Res>
       $Res Function(_$DeleteUserInfoEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,9 +137,7 @@ class _$DeleteUserInfoEventImpl implements DeleteUserInfoEvent {
   @override
   int get hashCode => Object.hash(runtimeType, context, id);
 
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteUserInfoEventImplCopyWith<_$DeleteUserInfoEventImpl> get copyWith =>
@@ -221,10 +214,7 @@ abstract class DeleteUserInfoEvent implements DeleteUserEvent {
 
   BuildContext get context;
   int get id;
-
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeleteUserInfoEventImplCopyWith<_$DeleteUserInfoEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -243,9 +233,6 @@ class __$$ResetUserStateEventImplCopyWithImpl<$Res>
   __$$ResetUserStateEventImplCopyWithImpl(_$ResetUserStateEventImpl _value,
       $Res Function(_$ResetUserStateEventImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of DeleteUserEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -405,9 +392,6 @@ class _$DeleteUserStateCopyWithImpl<$Res, $Val extends DeleteUserState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of DeleteUserState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -424,9 +408,6 @@ class __$$initialStateImplCopyWithImpl<$Res>
   __$$initialStateImplCopyWithImpl(
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of DeleteUserState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -541,9 +522,6 @@ class __$$loadingStateImplCopyWithImpl<$Res>
   __$$loadingStateImplCopyWithImpl(
       _$loadingStateImpl _value, $Res Function(_$loadingStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of DeleteUserState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -661,8 +639,6 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteUserState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -701,9 +677,7 @@ class _$failedStateImpl implements _failedState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of DeleteUserState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -788,10 +762,7 @@ abstract class _failedState implements DeleteUserState {
   const factory _failedState(final String message) = _$failedStateImpl;
 
   String get message;
-
-  /// Create a copy of DeleteUserState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -810,9 +781,6 @@ class __$$successStateImplCopyWithImpl<$Res>
   __$$successStateImplCopyWithImpl(
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of DeleteUserState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

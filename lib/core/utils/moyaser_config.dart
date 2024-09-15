@@ -21,7 +21,7 @@ abstract class MoyasarConfig {
       description:
           'Transfer #${uuid.v4()} - for Student CARD NUMBER: $card with AMOUNT $amount SAR',
       creditCard: CreditCardConfig(saveCard: false, manual: false),
-      applePay: ApplePayConfig(merchantId: '', label: '', manual: false),
+      applePay: ApplePayConfig(merchantId: 'merchant.fushati.parents', label: 'Fushati - فسحتي', manual: false),
     );
   }
 }
