@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fushati/core/common/widgets/green_background.dart';
+import 'package:fushati/core/services/firebase_messaging_service.dart';
 import 'package:fushati/core/utils/constants/size_constatnts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -91,123 +92,131 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           },
                         ),
                       ),
-                      BlocBuilder<OnBoardingPageCubit, PageState>(
-                          builder: (_, state) {
-                        return GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onHorizontalDragEnd: (details) {
-                            final bool isArabic =
-                                AppLocalizations.of(context)?.localeName ==
-                                    "ar";
-                            int currentPage = state.currentIndexPage;
-                            // Swiping logic based on language
-                            if (details.velocity.pixelsPerSecond.dx < 0) {
-                              // User swiped left
-                              if (isArabic) {
-                                // In Arabic, swipe left goes back
-                                if (currentPage > 0) {
-                                  currentPage--;
-                                  context
-                                      .read<OnBoardingPageCubit>()
-                                      .changePage(currentPage);
-                                  controller.animateToPage(
-                                    currentPage,
-                                    duration: duration,
-                                    curve: Curves.easeInOut,
-                                  );
+                      BlocConsumer<OnBoardingPageCubit, PageState>(
+                        listener:
+                            (BuildContext context, PageState state) async {
+                          if (state.currentIndexPage >= title.length - 1) {
+                            await MyFirebaseMessagingService.requestPermission();
+                          }
+                        },
+                        builder: (_, state) {
+                          return GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onHorizontalDragEnd: (details) {
+                              final bool isArabic =
+                                  AppLocalizations.of(context)?.localeName ==
+                                      "ar";
+                              int currentPage = state.currentIndexPage;
+                              // Swiping logic based on language
+                              if (details.velocity.pixelsPerSecond.dx < 0) {
+                                // User swiped left
+                                if (isArabic) {
+                                  // In Arabic, swipe left goes back
+                                  if (currentPage > 0) {
+                                    currentPage--;
+                                    context
+                                        .read<OnBoardingPageCubit>()
+                                        .changePage(currentPage);
+                                    controller.animateToPage(
+                                      currentPage,
+                                      duration: duration,
+                                      curve: Curves.easeInOut,
+                                    );
+                                  }
+                                } else {
+                                  // In English, swipe left goes forward
+                                  if (currentPage < 2) {
+                                    currentPage++;
+                                    controller.animateToPage(
+                                      currentPage,
+                                      duration: duration,
+                                      curve: Curves.easeInOut,
+                                    );
+                                  }
                                 }
-                              } else {
-                                // In English, swipe left goes forward
-                                if (currentPage < 2) {
-                                  currentPage++;
-                                  controller.animateToPage(
-                                    currentPage,
-                                    duration: duration,
-                                    curve: Curves.easeInOut,
-                                  );
+                              } else if (details.velocity.pixelsPerSecond.dx >
+                                  0) {
+                                // User swiped right
+                                if (isArabic) {
+                                  // In Arabic, swipe right goes forward
+                                  if (currentPage < 2) {
+                                    currentPage++;
+                                    controller.animateToPage(
+                                      currentPage,
+                                      duration: duration,
+                                      curve: Curves.easeInOut,
+                                    );
+                                  }
+                                } else {
+                                  // In English, swipe right goes back
+                                  if (currentPage > 0) {
+                                    currentPage--;
+                                    controller.animateToPage(
+                                      currentPage,
+                                      duration: duration,
+                                      curve: Curves.easeInOut,
+                                    );
+                                  }
                                 }
                               }
-                            } else if (details.velocity.pixelsPerSecond.dx >
-                                0) {
-                              // User swiped right
-                              if (isArabic) {
-                                // In Arabic, swipe right goes forward
-                                if (currentPage < 2) {
-                                  currentPage++;
-                                  controller.animateToPage(
-                                    currentPage,
-                                    duration: duration,
-                                    curve: Curves.easeInOut,
-                                  );
-                                }
-                              } else {
-                                // In English, swipe right goes back
-                                if (currentPage > 0) {
-                                  currentPage--;
-                                  controller.animateToPage(
-                                    currentPage,
-                                    duration: duration,
-                                    curve: Curves.easeInOut,
-                                  );
-                                }
-                              }
-                            }
-                          },
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: SizeConst.verticalPaddingFour,
-                              ),
-                              AnimatedSwitcher(
-                                duration: duration,
-                                switchInCurve: Curves.easeInOutCubic,
-                                switchOutCurve: Curves.easeInOut,
-                                child: Align(
-                                  alignment: Alignment.topCenter,
-                                  key: Key(title[state.currentIndexPage]),
-                                  child: Text(
+                            },
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: SizeConst.verticalPaddingFour,
+                                ),
+                                AnimatedSwitcher(
+                                  duration: duration,
+                                  switchInCurve: Curves.easeInOutCubic,
+                                  switchOutCurve: Curves.easeInOut,
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
                                     key: Key(title[state.currentIndexPage]),
-                                    title[state.currentIndexPage],
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                          color: Colours.brandColorOne,
-                                        ),
-                                    textAlign: TextAlign.center,
+                                    child: Text(
+                                      key: Key(title[state.currentIndexPage]),
+                                      title[state.currentIndexPage],
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: Colours.brandColorOne,
+                                          ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: SizeConst.verticalPadding,
-                              ),
-                              CustomAnimatedSwitcher(
-                                child: Align(
-                                  alignment: Alignment.topCenter,
-                                  key: Key(subTitle[state.currentIndexPage]),
-                                  child: Text(
+                                SizedBox(
+                                  height: SizeConst.verticalPadding,
+                                ),
+                                CustomAnimatedSwitcher(
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
                                     key: Key(subTitle[state.currentIndexPage]),
-                                    subTitle[state.currentIndexPage],
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w400,
-                                          color: Colours.textBlackColor
-                                              .withOpacity(0.5),
-                                        ),
-                                    textAlign: TextAlign.center,
+                                    child: Text(
+                                      key:
+                                          Key(subTitle[state.currentIndexPage]),
+                                      subTitle[state.currentIndexPage],
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: Colours.textBlackColor
+                                                .withOpacity(0.5),
+                                          ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: SizeConst.verticalPadding,
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
+                                SizedBox(
+                                  height: SizeConst.verticalPadding,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                       const Spacer(),
                       const BottomPageIndicator(),
                       BlocBuilder<OnBoardingPageCubit, PageState>(

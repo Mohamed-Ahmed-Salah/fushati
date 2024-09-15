@@ -34,10 +34,13 @@ if (flutterVersionName == null) {
 }
 
 android {
+    defaultConfig {
+        multiDexEnabled true
+    }
     namespace = "com.fushati.parents"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
-
+    // Sets Java compatibility to Java 8
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

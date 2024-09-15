@@ -3,13 +3,15 @@ part of 'injection_container.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  await cacheInit();
-  Future.wait([
-    ///we call cache from main file and call init from slash app and redirection bloc
-
+  await Future.wait([
+    cacheInit(),
     Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     ),
+  ]);
+  ///we call cache and firebase initializeApp first from because other inits depend on them
+
+  Future.wait([
     _minVersion(),
     _appLanguageInit(),
     _authInit(),
@@ -19,6 +21,7 @@ Future<void> init() async {
     _transactions(),
     _schools(),
     _registrationFeesInit(),
+    MyFirebaseMessagingService.initNotifications(),
   ]);
 }
 
