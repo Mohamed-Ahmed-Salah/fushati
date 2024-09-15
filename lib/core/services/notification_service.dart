@@ -16,15 +16,19 @@ class NotificationService {
     AndroidInitializationSettings('ic_launcher');
 
     // iOS initialization (Darwin is used for both iOS and macOS)
-    const DarwinInitializationSettings initializationSettingsDarwin =
+    DarwinInitializationSettings initializationSettingsDarwin =
     DarwinInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,
+      onDidReceiveLocalNotification: (int id, String? title, String? message, String ?payload){
+        print("RECIEVED " + "$title" + "message " + "$message");
+      }
+
     );
 
     // Combine Android and iOS initialization
-    const InitializationSettings initializationSettings =
+    InitializationSettings initializationSettings =
     InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
