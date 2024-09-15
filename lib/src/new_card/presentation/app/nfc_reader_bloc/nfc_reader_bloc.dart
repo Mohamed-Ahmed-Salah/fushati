@@ -88,9 +88,6 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
         emit(NfcReaderState.success(softwareCardNumber));
       }
     } catch (e) {
-      CoreUtils.showSnackBar(
-          message: ErrorConst.getErrorBody(
-              text: ErrorConst.couldNotReadCardNumberEn));
 
       debugPrint("catch READING CARD ${e.toString()}");
       // Emit failure state in case of an error

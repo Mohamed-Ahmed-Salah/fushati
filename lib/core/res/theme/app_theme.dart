@@ -28,6 +28,17 @@ abstract class CustomTheme {
       Colours.whiteColor,
     ],
   );
+  static LinearGradient linearGradiantLargeLighter = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops: const [0, 0.4, 1, 0],
+    colors: [
+      Colours.primaryGreenColor.withOpacity(0.1),
+      Colours.primaryGreenColor.withOpacity(0.1),
+      Colours.primaryGreenColor.withOpacity(0.01),
+      Colours.whiteColor,
+    ],
+  );
 
   static LinearGradient linearGradiantLargeBottom = LinearGradient(
     begin: Alignment.bottomCenter,

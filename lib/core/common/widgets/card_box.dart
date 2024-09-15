@@ -15,24 +15,18 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CardBox extends StatelessWidget {
   final bool showManage;
   final CardEntity card;
-  final int? userId;
-
-  // const CardBox(
-  //     {super.key, this.showManage = false, required this.card, this.userId});
 
   const CardBox.withoutManage({
     super.key,
     this.showManage = false,
     required this.card,
-  }) : userId = null;
+  });
 
-  // Constructor that asserts userId is not null
   const CardBox.withManage({
     super.key,
     this.showManage = true,
     required this.card,
-    required this.userId,
-  }) : assert(userId != null);
+  }) ;
 
   @override
   Widget build(BuildContext context) {

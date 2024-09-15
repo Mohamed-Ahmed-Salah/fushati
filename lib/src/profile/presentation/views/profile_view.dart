@@ -243,6 +243,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                       return TransactionBox(
                         transaction: transaction,
                         isProfileTransaction: true,
+                        showDashSeparator: index < transactions.length - 1,
                       );
                     },
                     childCount: transactions.length + 1,
@@ -250,11 +251,11 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ),
                 failed: (message, transactions, _, __) {
                   if (transactions.isEmpty) {
-                   return ErrorSliver(
+                    return ErrorSliver(
                       onPressed: () {
-                        context
-                            .read<ProfileTransactionBloc>()
-                            .add(const ProfileTransactionEvent.getUserTransactions());
+                        context.read<ProfileTransactionBloc>().add(
+                            const ProfileTransactionEvent
+                                .getUserTransactions());
                       },
                       message: message,
                     );
@@ -271,6 +272,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                           return TransactionBox(
                             transaction: transaction,
                             isProfileTransaction: true,
+                            showDashSeparator: index < transactions.length - 1,
                           );
                         },
                         childCount: transactions.length + 1,
@@ -285,6 +287,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                       return TransactionBox(
                         transaction: transaction,
                         isProfileTransaction: true,
+                        showDashSeparator: index < transactions.length - 1,
                       );
                     },
                     childCount: transactions.length,
@@ -292,6 +295,10 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ),
               );
             }),
+
+            SliverToBoxAdapter(
+              child: SizedBox(height: SizeConst.verticalPaddingFour,),
+            ),
           ],
         ),
       ),

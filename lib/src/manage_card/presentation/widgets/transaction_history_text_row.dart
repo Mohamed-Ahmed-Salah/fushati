@@ -8,31 +8,27 @@ class TransactionHistoryRowText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          "${AppLocalizations
-              .of(context)
-              ?.transactionHistory}",
-          style: Theme
-              .of(context)
-              .textTheme
-              .titleMedium
-              ?.copyWith(
-              fontWeight: FontWeight.w400,
-              color: Colours.textBlackColor
-                  .withOpacity(0.7)),
-        ),
-        SizedBox(
-          width: SizeConst.horizontalPadding,
-        ),
-        Expanded(
-          child: Divider(
-            color: Colours.borderGreyColor,
-            height: 5,
+    return Padding(
+      padding: EdgeInsets.only(bottom: SizeConst.verticalPadding),
+      child: Row(
+        children: [
+          Text(
+            "${AppLocalizations.of(context)?.transactionHistory}",
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w400,
+                color: Colours.textBlackColor.withOpacity(0.7)),
           ),
-        ),
-      ],
+          SizedBox(
+            width: SizeConst.horizontalPadding,
+          ),
+          Expanded(
+            child: Divider(
+              color: Colours.borderGreyColor,
+              height: 5,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
