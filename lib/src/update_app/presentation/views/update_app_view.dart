@@ -9,9 +9,8 @@ import 'package:fushati/src/splash/presentation/app/min_version_bloc/app_min_ver
 import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:store_redirect/store_redirect.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:io' show Platform;
-
 
 class UpdateAppView extends StatelessWidget {
   static String path = "/update-app";
@@ -31,10 +30,12 @@ class UpdateAppView extends StatelessWidget {
             padding: EdgeInsets.all(5.w),
             child: ElevatedButton(
                 onPressed: () async {
-                  bool isIOS = Platform.isIOS;
-                  StoreRedirect.redirect(
-                      androidAppId: isIOS ? "" : response.storeId,
-                      iOSAppId: isIOS ? response.storeId : "");
+                  final Uri url = Uri.parse(response.storeUrl);
+                  await launchUrl(url);
+                  // bool isIOS = Platform.isIOS;
+                  // StoreRedirect.redirect(
+                  //     androidAppId: isIOS ? "" : response.storeId,
+                  //     iOSAppId: isIOS ? response.storeId : "");
                 },
                 child: Text("${AppLocalizations.of(context)?.update}")),
           ),
