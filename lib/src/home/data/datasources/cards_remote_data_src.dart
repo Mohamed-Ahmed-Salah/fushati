@@ -41,7 +41,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
                 "user_card": cardNumber,
                 "name": name,
                 "email": email,
-                "user_number": phoneNumber,
+                "user_number": studentNumber,
                 "user_phone": phoneNumber,
                 "type": "student"
               },
