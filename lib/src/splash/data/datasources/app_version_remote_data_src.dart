@@ -42,12 +42,12 @@ class AppVersionRemoteDataSrcImpl implements AppVersionRemoteDataSrc {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         throw const TimeOutException(
-            message: ErrorConst.TIMEOUT_MESSAGE, statusCode: 0);
+            message: ErrorConst.failedToStartAppConnectionEn, statusCode: 0);
       }
       if (e.response == null) {
         if (e.error.runtimeType == SocketException) {
           throw NoInternetException(
-              message: ErrorConst.NO_INTERNET_MESSAGE,
+              message: ErrorConst.failedToStartAppConnectionEn,
               statusCode: e.response?.statusCode ?? 400);
         }
       }

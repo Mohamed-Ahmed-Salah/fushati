@@ -143,19 +143,31 @@ abstract class CoreUtils {
 
     return Duration(milliseconds: finalDuration);
   }
+  static bool _isDialogOpen = false;
 
   static void showMyDialog({
     required String title,
     required String subTitle,
+    bool isRestart = false,
     required Function()? onPressed,
   }) {
+    // Check if a dialog is already open
+    if (_isDialogOpen) {
+      return; // Don't open another dialog
+    }
+
+    _isDialogOpen = true;
     showDialog(
         context: rootNavigatorKey.currentContext!,
         builder: (context) => ErrorAlertDialog(
               title: title,
+              isRestart: isRestart,
               subtitle: subTitle,
               onPressed: onPressed,
-            ));
+            )).then((_) {
+      // Reset the flag when the dialog is dismissed
+      _isDialogOpen = false;
+    });
   }
 
   static void showLoadingDialog() {
@@ -247,7 +259,6 @@ abstract class CoreUtils {
   }
 
   static String getAmOrPm(DateTime dateTime) {
-
     // Define the output format to get only the AM or PM part
     DateFormat amPmFormat = DateFormat('a');
 

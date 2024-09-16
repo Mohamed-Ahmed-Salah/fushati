@@ -13,21 +13,26 @@ class ErrorAlertDialog extends StatelessWidget {
   final String title;
   final String subtitle;
   final bool disableColorAndPadding;
+  final bool isRestart;
   final Function()? onPressed;
 
   const ErrorAlertDialog(
       {super.key,
       this.disableColorAndPadding = false,
+      this.isRestart = false,
       required this.title,
       required this.subtitle,
       this.onPressed});
 
   const ErrorAlertDialog.delete(
       {super.key,
+      this.isRestart = false,
       this.disableColorAndPadding = true,
       required this.title,
       required this.subtitle,
       this.onPressed});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,39 +104,51 @@ class ErrorAlertDialog extends StatelessWidget {
                           SizedBox(
                             height: SizeConst.verticalPadding,
                           ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    backgroundColor: Colours.lightGreyButton,
-                                  ),
-                                  onPressed: () {
-                                    context.pop();
-                                  },
-                                  child: Text(
-                                    "${AppLocalizations.of(context)?.cancel}",
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w400),
+                          if (isRestart)
+                            ElevatedButton(
+                              onPressed: () {
+                                context.pop();
+                              },
+                              child: Text(
+                                "${AppLocalizations.of(context)?.confirm}",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          if (!isRestart)
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      elevation: 0,
+                                      backgroundColor: Colours.lightGreyButton,
+                                    ),
+                                    onPressed: () {
+                                      context.pop();
+                                    },
+                                    child: Text(
+                                      "${AppLocalizations.of(context)?.cancel}",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w400),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: SizeConst.horizontalPadding,
-                              ),
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text(
-                                    "${AppLocalizations.of(context)?.tryAgian}",
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w400),
+                                SizedBox(
+                                  width: SizeConst.horizontalPadding,
+                                ),
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text(
+                                      "${AppLocalizations.of(context)?.tryAgian}",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w400),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
                         ],
                       ),
                     ),

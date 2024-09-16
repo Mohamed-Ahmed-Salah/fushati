@@ -4,6 +4,21 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../common/singletons/cache.dart';
 
 abstract class ErrorConst {
+  static const String paymentFailedMessage = "auth.Payment not found";
+  static const String paymentFailedMessageEn =
+      "The transaction was not successful. Please try again";
+  static const String paymentFailedMessageAr =
+      "التحويل لم تنجح. يرجى المحاولة مرة أخرى";
+  static const String failedToStartAppConnectionEn =
+      "Connection error. Check your internet and restart the app.";
+  static const String failedToStartAppEn =
+      "App failed to start. Check your connection and try again.";
+
+  static const String failedToStartAppConnectionAr =
+      "خطأ في الاتصال. تحقق من الإنترنت وأعد تشغيل التطبيق.";
+  static const String failedToStartAppAr =
+      "فشل في تشغيل التطبيق. تحقق من الاتصال وحاول مرة أخرى.";
+
   static const String PROFILE_NOT_COMPLETED_MESSAGE =
       "please complete your profile";
 
@@ -137,14 +152,20 @@ abstract class ErrorConst {
 
   static String getErrorBody({required String text}) {
     bool isArabic = Cache.instance.language == "ar";
+    print("TESETT $text");
     return isArabic
         ? getErrorArabicBody(text: text)
         : getErrorEnglishBody(text: text);
   }
 
-  //21
   static String getErrorArabicBody({required String text}) {
     switch (text) {
+      case paymentFailedMessage:
+        return paymentFailedMessageAr;
+      case failedToStartAppConnectionEn:
+        return failedToStartAppConnectionAr;
+      case failedToStartAppEn:
+        return failedToStartAppAr;
       case couldNotReadCardNumberEn:
         return couldNotReadCardNumberAr;
       case failedToCreateRelationship:
@@ -239,6 +260,13 @@ abstract class ErrorConst {
 
   static String getErrorEnglishBody({required String text}) {
     switch (text) {
+      case paymentFailedMessage:
+        return paymentFailedMessageEn;
+      case failedToStartAppConnectionEn:
+        return failedToStartAppConnectionEn;
+      case failedToStartAppEn:
+        return failedToStartAppEn;
+
       case couldNotReadCardNumberEn:
         return couldNotReadCardNumberEn;
       case failedToCreateRelationship:

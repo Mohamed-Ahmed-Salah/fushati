@@ -59,6 +59,7 @@ class _SplashViewState extends State<SplashView>
         listener: (BuildContext _, state) {
           state.whenOrNull(failed: (message) {
             CoreUtils.showMyDialog(
+              isRestart: true,
               title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
               subTitle: ErrorConst.getErrorBody(text: message),
               onPressed: () {
@@ -85,6 +86,7 @@ class _SplashViewState extends State<SplashView>
           listener: (BuildContext _, state) {
             state.whenOrNull(failed: (message) {
               CoreUtils.showMyDialog(
+                isRestart: true,
                 title: ErrorConst.getErrorTitle(title: ErrorConst.errorEn),
                 subTitle: ErrorConst.getErrorBody(text: message),
                 onPressed: () {
