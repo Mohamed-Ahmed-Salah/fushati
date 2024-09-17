@@ -55,6 +55,54 @@
 <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
 	<array>
 		<string>A00000000386980701</string>
+		   <!-- Visa Credit/Debit -->
+            <string>A0000000031010</string> <!-- Visa application for credit and debit cards -->
+
+            <!-- Visa Electron -->
+            <string>A0000000032010</string> <!-- Visa Electron, a debit card offering from Visa -->
+
+            <!-- MasterCard Credit/Debit -->
+            <string>A0000000041010</string> <!-- MasterCard credit and debit cards -->
+
+            <!-- Maestro (MasterCard Debit) -->
+            <string>A0000000043060</string> <!-- Maestro, MasterCard's debit network -->
+
+            <!-- American Express -->
+            <string>A00000002501</string> <!-- American Express credit and debit cards -->
+
+            <!-- Discover Card -->
+            <string>A0000001523010</string> <!-- Discover card for NFC payments -->
+
+            <!-- JCB (Japan Credit Bureau) -->
+            <string>A0000000651010</string> <!-- JCB, Japan’s major credit card network -->
+
+            <!-- UnionPay (China’s national payment network) -->
+            <string>A000000333010101</string> <!-- UnionPay credit and debit cards -->
+
+            <!-- Diners Club International -->
+            <string>A0000001524010</string> <!-- Diners Club credit and charge cards -->
+
+            <!-- GlobalPlatform Card Manager (used for managing secure elements like smart cards) -->
+            <string>A000000151000000</string> <!-- GlobalPlatform Card Manager for managing card applications -->
+
+            <!-- ICAO MRTD Application (for e-passports worldwide) -->
+            <string>A0000002471001</string> <!-- ICAO Machine-Readable Travel Document (MRTD) for e-passports -->
+
+            <!-- MIFARE DESFire (used in public transit and access control systems) -->
+            <string>D2760000850100</string> <!-- MIFARE DESFire Application, often used in transit systems -->
+
+            <!-- Octopus Card (Hong Kong transit system) -->
+            <string>A000000632010105</string> <!-- Octopus transit card in Hong Kong -->
+
+            <!-- Suica Card (Japan transit system) -->
+            <string>F001020100</string> <!-- Suica transit card used in Japan -->
+
+            <!-- PBOC (People's Bank of China) EMV-compliant AID -->
+            <string>A000000333010101</string> <!-- PBOC-compliant UnionPay credit and debit cards in China -->
+
+            <!-- Resident Identity Card (China national ID) -->
+            <string>A0000002471002</string> <!-- Example of AID for China's national identity cards -->
+
 	</array>
 
 	<key>CADisableMinimumFrameDurationOnPhone</key>
