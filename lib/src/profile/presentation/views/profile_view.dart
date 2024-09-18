@@ -85,9 +85,9 @@ class _ProfileBodyState extends State<ProfileBody> {
     if (_scrollController.offset >=
             _scrollController.position.maxScrollExtent * _scrollThreshold &&
         !_scrollController.position.outOfRange) {
-      context
-          .read<ProfileTransactionBloc>()
-          .add(const ProfileTransactionEvent.getUserTransactions());
+      context.read<ProfileTransactionBloc>().add(
+          const ProfileTransactionEvent.getUserTransactions(
+              isFromStart: false));
     }
   }
 
@@ -254,8 +254,8 @@ class _ProfileBodyState extends State<ProfileBody> {
                     return ErrorSliver(
                       onPressed: () {
                         context.read<ProfileTransactionBloc>().add(
-                            const ProfileTransactionEvent
-                                .getUserTransactions());
+                            const ProfileTransactionEvent.getUserTransactions(
+                                isFromStart: true));
                       },
                       message: message,
                     );
@@ -295,9 +295,10 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ),
               );
             }),
-
             SliverToBoxAdapter(
-              child: SizedBox(height: SizeConst.verticalPaddingFour,),
+              child: SizedBox(
+                height: SizeConst.verticalPaddingFour,
+              ),
             ),
           ],
         ),

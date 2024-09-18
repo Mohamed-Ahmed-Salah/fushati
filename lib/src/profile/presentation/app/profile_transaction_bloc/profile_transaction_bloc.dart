@@ -27,23 +27,30 @@ class ProfileTransactionBloc
     int maxPage = 1;
     List<Transaction> previousTransactions = [];
 
-    state.when(
-        initial: () {},
-        loading: (list, page, max) {
-          previousTransactions = list;
-          currentPage = page;
-          maxPage = max;
-        },
-        failed: (error, list, page, max) {
-          previousTransactions = list;
-          currentPage = page;
-          maxPage = max;
-        },
-        success: (list, page, max) {
-          previousTransactions = list;
-          currentPage = page;
-          maxPage = max;
-        });
+    final isFromStart = event.isFromStart ?? false;
+
+    if(isFromStart){
+      //do nothing keep data the same
+    }else{
+      state.when(
+          initial: () {},
+          loading: (list, page, max) {
+            previousTransactions = list;
+            currentPage = page;
+            maxPage = max;
+          },
+          failed: (error, list, page, max) {
+            previousTransactions = list;
+            currentPage = page;
+            maxPage = max;
+          },
+          success: (list, page, max) {
+            previousTransactions = list;
+            currentPage = page;
+            maxPage = max;
+          });
+    }
+
 
     int nextPage = currentPage + 1;
     if (nextPage > maxPage || state is _loadingState) {
@@ -67,7 +74,7 @@ class ProfileTransactionBloc
       },
       (response) async {
         emit(ProfileTransactionState.success(
-            transactions: [...previousTransactions,...response.transactions],
+            transactions: [...previousTransactions, ...response.transactions],
             currentPage: response.currentPage,
             maxPage: response.lastPage));
       },

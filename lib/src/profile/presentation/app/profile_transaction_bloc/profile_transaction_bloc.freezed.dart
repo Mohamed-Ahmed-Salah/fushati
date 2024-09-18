@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileTransactionEvent {
+  bool get isFromStart => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUserTransactions,
+    required TResult Function(bool isFromStart) getUserTransactions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserTransactions,
+    TResult? Function(bool isFromStart)? getUserTransactions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserTransactions,
+    TResult Function(bool isFromStart)? getUserTransactions,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +50,12 @@ mixin _$ProfileTransactionEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of ProfileTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProfileTransactionEventCopyWith<ProfileTransactionEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -56,6 +63,8 @@ abstract class $ProfileTransactionEventCopyWith<$Res> {
   factory $ProfileTransactionEventCopyWith(ProfileTransactionEvent value,
           $Res Function(ProfileTransactionEvent) then) =
       _$ProfileTransactionEventCopyWithImpl<$Res, ProfileTransactionEvent>;
+  @useResult
+  $Res call({bool isFromStart});
 }
 
 /// @nodoc
@@ -68,14 +77,33 @@ class _$ProfileTransactionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProfileTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFromStart = null,
+  }) {
+    return _then(_value.copyWith(
+      isFromStart: null == isFromStart
+          ? _value.isFromStart
+          : isFromStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$GetUserTransactionsEventImplCopyWith<$Res> {
+abstract class _$$GetUserTransactionsEventImplCopyWith<$Res>
+    implements $ProfileTransactionEventCopyWith<$Res> {
   factory _$$GetUserTransactionsEventImplCopyWith(
           _$GetUserTransactionsEventImpl value,
           $Res Function(_$GetUserTransactionsEventImpl) then) =
       __$$GetUserTransactionsEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isFromStart});
 }
 
 /// @nodoc
@@ -87,52 +115,81 @@ class __$$GetUserTransactionsEventImplCopyWithImpl<$Res>
       _$GetUserTransactionsEventImpl _value,
       $Res Function(_$GetUserTransactionsEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFromStart = null,
+  }) {
+    return _then(_$GetUserTransactionsEventImpl(
+      isFromStart: null == isFromStart
+          ? _value.isFromStart
+          : isFromStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetUserTransactionsEventImpl implements GetUserTransactionsEvent {
-  const _$GetUserTransactionsEventImpl();
+  const _$GetUserTransactionsEventImpl({required this.isFromStart});
+
+  @override
+  final bool isFromStart;
 
   @override
   String toString() {
-    return 'ProfileTransactionEvent.getUserTransactions()';
+    return 'ProfileTransactionEvent.getUserTransactions(isFromStart: $isFromStart)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetUserTransactionsEventImpl);
+            other is _$GetUserTransactionsEventImpl &&
+            (identical(other.isFromStart, isFromStart) ||
+                other.isFromStart == isFromStart));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isFromStart);
+
+  /// Create a copy of ProfileTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUserTransactionsEventImplCopyWith<_$GetUserTransactionsEventImpl>
+      get copyWith => __$$GetUserTransactionsEventImplCopyWithImpl<
+          _$GetUserTransactionsEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUserTransactions,
+    required TResult Function(bool isFromStart) getUserTransactions,
   }) {
-    return getUserTransactions();
+    return getUserTransactions(isFromStart);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserTransactions,
+    TResult? Function(bool isFromStart)? getUserTransactions,
   }) {
-    return getUserTransactions?.call();
+    return getUserTransactions?.call(isFromStart);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserTransactions,
+    TResult Function(bool isFromStart)? getUserTransactions,
     required TResult orElse(),
   }) {
     if (getUserTransactions != null) {
-      return getUserTransactions();
+      return getUserTransactions(isFromStart);
     }
     return orElse();
   }
@@ -168,7 +225,18 @@ class _$GetUserTransactionsEventImpl implements GetUserTransactionsEvent {
 }
 
 abstract class GetUserTransactionsEvent implements ProfileTransactionEvent {
-  const factory GetUserTransactionsEvent() = _$GetUserTransactionsEventImpl;
+  const factory GetUserTransactionsEvent({required final bool isFromStart}) =
+      _$GetUserTransactionsEventImpl;
+
+  @override
+  bool get isFromStart;
+
+  /// Create a copy of ProfileTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetUserTransactionsEventImplCopyWith<_$GetUserTransactionsEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -260,6 +328,9 @@ class _$ProfileTransactionStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -276,6 +347,9 @@ class __$$initialStateImplCopyWithImpl<$Res>
   __$$initialStateImplCopyWithImpl(
       _$initialStateImpl _value, $Res Function(_$initialStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -619,6 +693,8 @@ class __$$failedStateImplCopyWithImpl<$Res>
       _$failedStateImpl _value, $Res Function(_$failedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -695,7 +771,9 @@ class _$failedStateImpl implements _failedState {
   int get hashCode => Object.hash(runtimeType, message,
       const DeepCollectionEquality().hash(_transactions), currentPage, maxPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
@@ -805,7 +883,10 @@ abstract class _failedState implements ProfileTransactionState {
   List<Transaction> get transactions;
   int get currentPage;
   int get maxPage;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$failedStateImplCopyWith<_$failedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -827,6 +908,8 @@ class __$$successStateImplCopyWithImpl<$Res>
       _$successStateImpl _value, $Res Function(_$successStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -894,7 +977,9 @@ class _$successStateImpl implements _successState {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_transactions), currentPage, maxPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
@@ -1002,7 +1087,10 @@ abstract class _successState implements ProfileTransactionState {
   List<Transaction> get transactions;
   int get currentPage;
   int get maxPage;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProfileTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$successStateImplCopyWith<_$successStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

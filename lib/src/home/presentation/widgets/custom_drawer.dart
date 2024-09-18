@@ -86,7 +86,8 @@ class CustomDrawer extends StatelessWidget {
                   title: "${AppLocalizations.of(context)?.profile}",
                   onTap: () {
                     context.read<ProfileTransactionBloc>().add(
-                        const ProfileTransactionEvent.getUserTransactions());
+                        const ProfileTransactionEvent.getUserTransactions(
+                            isFromStart: true));
                     context.push(ProfileView.path);
                   },
                   widget: showComplete
