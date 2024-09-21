@@ -28,6 +28,7 @@ import 'package:fushati/src/splash/domain/repo/schools_repo.dart';
 import 'package:fushati/src/splash/domain/usecases/get_schools.dart';
 import 'package:fushati/src/splash/domain/usecases/min_app_version_usercase.dart';
 import 'package:fushati/src/splash/domain/usecases/notification_usecase.dart';
+import 'package:fushati/src/splash/presentation/app/notification_cubit/notification_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

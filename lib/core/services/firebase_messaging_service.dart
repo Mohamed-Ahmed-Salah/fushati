@@ -1,14 +1,15 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fushati/core/services/notification_service.dart';
+import 'package:fushati/src/splash/presentation/app/notification_cubit/notification_cubit.dart';
+import 'package:get_it/get_it.dart';
 
 class MyFirebaseMessagingService {
   MyFirebaseMessagingService._();
 
   static final FirebaseMessaging messaging = FirebaseMessaging.instance;
 
- static Future<String?> getFCMToken() async {
+  static Future<String?> getFCMToken() async {
     final String? fcmToken = await messaging.getToken();
     return fcmToken;
   }
@@ -51,11 +52,10 @@ class MyFirebaseMessagingService {
     foregroundListening();
 
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-      // TODO: If necessary send token to application server.
-
-      // Note: This callback is fired at each app startup and whenever a new
-      // token is generated.
+      debugPrint("FCM token Refreshed! $fcmToken");
+      GetIt.instance.get<NotificationCubit>().updateNotification(fcmToken);
     }).onError((err) {
+      debugPrint("Error when listening to  FirebaseMessaging.instance.onTokenRefresh");
       // Error getting token.
     });
   }

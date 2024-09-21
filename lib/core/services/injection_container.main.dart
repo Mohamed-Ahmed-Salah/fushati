@@ -9,6 +9,7 @@ Future<void> init() async {
       options: DefaultFirebaseOptions.currentPlatform,
     ),
   ]);
+
   ///we call cache and firebase initializeApp first from because other inits depend on them
 
   Future.wait([
@@ -37,11 +38,14 @@ Future<void> _minVersion() async {
 
 Future<void> _notification() async {
   sl
+    ..registerFactory(() => NotificationCubit(
+          notificationUsecase: sl(),
+        ))
     ..registerLazySingleton(() => NotificationUsecase(sl()))
     ..registerLazySingleton<NotificationsRepo>(
-            () => NotificationsRepoImpl(sl()))
+        () => NotificationsRepoImpl(sl()))
     ..registerLazySingleton<NotificationFcmRemoteDataSrc>(
-            () => NotificationFcmRemoteDataSrcImpl(sl()));
+        () => NotificationFcmRemoteDataSrcImpl(sl()));
 }
 
 Future<void> _appLanguageInit() async {

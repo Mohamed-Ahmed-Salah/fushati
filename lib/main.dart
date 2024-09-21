@@ -174,4 +174,4 @@ class MyApp extends StatelessWidget {
 }
 
 //todo make min amount back to 20
-//todo push notification
+//todo push notification for IOS

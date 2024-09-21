@@ -15,11 +15,13 @@ class NotificationCubit extends Cubit<NotificationState> {
       : _notificationUsecase = notificationUsecase,
         super(const NotificationState.initial());
 
-  updateNotification() async {
-    final String? fcmToken = await MyFirebaseMessagingService.getFCMToken();
+  updateNotification(String? token) async {
+    ///token is recieved from refresh firebase message and the same function is used in app data if theres a token
+    final String? fcmToken =
+        token ?? await MyFirebaseMessagingService.getFCMToken();
     try {
       if (fcmToken?.isNotEmpty ?? false) {
-        final response = _notificationUsecase(fcmToken!);
+        final response = await _notificationUsecase(fcmToken!);
       }
     } catch (e) {
       debugPrint("ERROR updateNotification ${e.toString()}");
