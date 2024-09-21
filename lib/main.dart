@@ -15,6 +15,7 @@ import 'package:fushati/src/profile/presentation/app/delete_user_bloc/delete_use
 import 'package:fushati/src/profile/presentation/app/profile_transaction_bloc/profile_transaction_bloc.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import 'package:fushati/src/splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
+import 'package:fushati/src/splash/presentation/app/notification_cubit/notification_cubit.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'core/res/theme/app_theme.dart';
@@ -144,6 +145,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<GetSchoolsBloc>(
             create: (BuildContext context) => GetSchoolsBloc(getSchools: sl()),
+          ),
+          BlocProvider<NotificationCubit>(
+            create: (BuildContext context) => NotificationCubit(notificationUsecase: sl()),
           ),
         ],
         child: BlocBuilder<AppLanguageCubit, AppLanguageState>(

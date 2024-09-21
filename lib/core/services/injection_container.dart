@@ -17,13 +17,17 @@ import 'package:fushati/src/home/domain/usecases/get_cards.dart';
 import 'package:fushati/src/moyasar_transfer/data/datasources/deposite_remote_data_src.dart';
 import 'package:fushati/src/profile/domain/usecases/user_transactions.dart';
 import 'package:fushati/src/splash/data/datasources/app_version_remote_data_src.dart';
+import 'package:fushati/src/splash/data/datasources/notification_fcm_remote_data_src.dart';
 import 'package:fushati/src/splash/data/datasources/schools_remote_data_src.dart';
 import 'package:fushati/src/splash/data/repo/min_app_version_repo_impl.dart';
+import 'package:fushati/src/splash/data/repo/notification_repo_impl.dart';
 import 'package:fushati/src/splash/data/repo/school_repo_impl.dart';
 import 'package:fushati/src/splash/domain/repo/min_app_version_repo.dart';
+import 'package:fushati/src/splash/domain/repo/notifications_repo.dart';
 import 'package:fushati/src/splash/domain/repo/schools_repo.dart';
 import 'package:fushati/src/splash/domain/usecases/get_schools.dart';
 import 'package:fushati/src/splash/domain/usecases/min_app_version_usercase.dart';
+import 'package:fushati/src/splash/domain/usecases/notification_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

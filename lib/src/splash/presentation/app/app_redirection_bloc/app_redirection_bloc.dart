@@ -7,6 +7,7 @@ import 'package:fushati/src/home/presentation/views/home_view.dart';
 import 'package:fushati/src/new_card/presentation/app/nfc_availability_checker_cubit/nfc_scanner_cubit.dart';
 import 'package:fushati/src/profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fushati/src/splash/presentation/app/notification_cubit/notification_cubit.dart';
 import '../../../../../core/common/app/cache_helper.dart';
 import '../../../../../core/common/singletons/cache.dart';
 import '../../../../../core/services/injection_container.dart';
@@ -111,5 +112,10 @@ class AppRedirectionBloc
         .read<RegistrationFeesBloc>()
         .add(const RegistrationFeesEvent.getFees());
     context.read<NfcScannerCubit>().checkNfcSupported();
+
+    if (Cache.instance.sessionToken?.isNotEmpty ?? false) {
+        context.read<NotificationCubit>().updateNotification();
+      }
+    
   }
 }

@@ -4,7 +4,6 @@ import 'package:fushati/src/home/presentation/apps/cards_bloc/cards_bloc.dart';
 import 'package:fushati/src/home/presentation/widgets/custom_drawer.dart';
 
 import '../../../../core/utils/constants/size_constatnts.dart';
-import '../../../profile/presentation/app/user_info_bloc/user_info_bloc.dart';
 import '../../../splash/presentation/app/app_redirection_bloc/app_redirection_bloc.dart';
 import '../widgets/cards_list.dart';
 import '../widgets/error_sliver.dart';

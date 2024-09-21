@@ -14,6 +14,7 @@ Future<void> init() async {
   Future.wait([
     _minVersion(),
     _appLanguageInit(),
+    _notification(),
     _authInit(),
     _cardsInit(),
     _moyasarInit(),
@@ -32,6 +33,15 @@ Future<void> _minVersion() async {
         () => MinAppVersionRepoImpl(sl()))
     ..registerLazySingleton<AppVersionRemoteDataSrc>(
         () => AppVersionRemoteDataSrcImpl(sl()));
+}
+
+Future<void> _notification() async {
+  sl
+    ..registerLazySingleton(() => NotificationUsecase(sl()))
+    ..registerLazySingleton<NotificationsRepo>(
+            () => NotificationsRepoImpl(sl()))
+    ..registerLazySingleton<NotificationFcmRemoteDataSrc>(
+            () => NotificationFcmRemoteDataSrcImpl(sl()));
 }
 
 Future<void> _appLanguageInit() async {

@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fushati/core/utils/constants/error_consts.dart';
-import 'package:fushati/core/utils/core_utils.dart';
 
 part 'nfc_reader_bloc.freezed.dart';
 
