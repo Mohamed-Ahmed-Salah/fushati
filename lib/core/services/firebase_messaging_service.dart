@@ -14,7 +14,7 @@ class MyFirebaseMessagingService {
     return fcmToken;
   }
 
-  static Future<void> handleIncomingMessage(RemoteMessage message) async {
+  static Future<void> handleBackgroundMessage(RemoteMessage message) async {
     if (message.notification != null) {
       debugPrint('Notification Title: ${message.notification?.title}');
       debugPrint('Notification Body: ${message.notification?.body}');
@@ -32,8 +32,8 @@ class MyFirebaseMessagingService {
 
       if (message.notification != null) {
         debugPrint(
-            'Message also contained a notification: ${message.notification}');
-        // Show the notification when the app is in the foreground
+            'Message also contained a notification: ${message.notification?.toMap()}');
+        /// Show the notification when the app is in the foreground
         NotificationService.instance.showNotification(
           0, // Notification ID
           message.notification?.title ?? 'No Title',
@@ -48,7 +48,7 @@ class MyFirebaseMessagingService {
         .initializeNotifications(); // Initialize notifications
     final fcmToken = await getFCMToken();
     debugPrint("fcmToken= $fcmToken");
-    FirebaseMessaging.onBackgroundMessage(handleIncomingMessage);
+    FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
     foregroundListening();
 
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {

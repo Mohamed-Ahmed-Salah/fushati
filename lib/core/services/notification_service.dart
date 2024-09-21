@@ -47,6 +47,8 @@ class NotificationService {
       channelDescription: 'This channel is used for important notifications.',
       importance: Importance.max,
       priority: Priority.high,
+      icon: "ic_launcher",
+
     );
 
     const DarwinNotificationDetails iosPlatformChannelSpecifics =
