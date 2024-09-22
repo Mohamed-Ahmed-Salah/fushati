@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:fushati/core/common/app/cache_helper.dart';
+import 'package:fushati/core/services/injection_container.dart';
 import 'package:fushati/src/home/data/models/transaction_response_model.dart';
 import 'package:fushati/src/home/domain/entity/transactions_response.dart';
 import 'package:dio/dio.dart';
@@ -25,9 +27,10 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
 
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/reports";
       final response = await _dio
           .get(
-              '${NetworkConstants.reportsUrl}?card_number=$userCard&page=$page&limit=${NetworkConstants.pageSize}',
+              '$url?card_number=$userCard&page=$page&limit=${NetworkConstants.pageSize}',
               options: Options(
                 headers: header,
               ))
@@ -101,8 +104,9 @@ class TransactionsRemoteDataSrcImpl implements TransactionsRemoteDataSrc {
   Future<TransactionResponse> getUserTransactions(int page) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parents";
       final response = await _dio
-          .get('${NetworkConstants.parentsUrl}$cardsHistoryEndpoint/?page=$page',
+          .get('$url$cardsHistoryEndpoint/?page=$page',
               options: Options(
                 headers: header,
               ))

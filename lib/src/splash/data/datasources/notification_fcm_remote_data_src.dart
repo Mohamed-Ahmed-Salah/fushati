@@ -3,7 +3,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fushati/core/common/app/cache_helper.dart';
 import 'package:fushati/core/errors/exceptions.dart';
+import 'package:fushati/core/services/injection_container.dart';
 import 'package:fushati/core/utils/constants/error_consts.dart';
 import 'package:fushati/core/utils/constants/network_constants.dart';
 
@@ -15,9 +17,11 @@ class NotificationFcmRemoteDataSrcImpl implements NotificationFcmRemoteDataSrc {
   @override
   Future<void> postFCM(String fcm) async {
     try {
+      final String url=sl<CacheHelper>().getBaseUrl()??"";
+
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .post('${NetworkConstants.baseUrl}/users/update-fcm',
+          .post('$url/users/update-fcm',
               data: {"fcm_token": fcm},
               options: Options(
                 headers: header,

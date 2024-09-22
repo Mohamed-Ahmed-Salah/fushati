@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fushati/core/common/app/cache_helper.dart';
+import 'package:fushati/core/services/injection_container.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -23,9 +25,11 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
     required String phone,
   }) async {
     try {
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parent";
+
       final header = await NetworkConstants.getHeaders();
       final response = await _dio
-          .post('${NetworkConstants.parentUrl}$loginEndpoint',
+          .post('$url$loginEndpoint',
               data: {"phone": phone},
               options: Options(
                 headers: header,
@@ -94,9 +98,10 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
   }) async {
     try {
       final header = await NetworkConstants.getHeaders();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parent";
 
       final response = await _dio
-          .post('${NetworkConstants.parentUrl}$loginEndpoint',
+          .post('$url$loginEndpoint',
               data: {"phone": phone, "code": otp},
               options: Options(
                 headers: header,
@@ -173,9 +178,11 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
     required String name,
   }) async {
     try {
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parent";
+
       final header = await NetworkConstants.getHeadersWithAuth();
       final response = await _dio
-          .post('${NetworkConstants.parentUrl}$addUserInfoEndpoint',
+          .post('$url$addUserInfoEndpoint',
               data: {
                 "email": email,
                 "username": name,

@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fushati/core/common/app/cache_helper.dart';
+import 'package:fushati/core/services/injection_container.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/constants/error_consts.dart';
@@ -19,10 +21,12 @@ class RegistrationFeesRemoteDataSrcImpl
   @override
   Future<double> getRegistrationFees() async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final String url=sl<CacheHelper>().getBaseUrl()??"";
+
+      final header = await NetworkConstants.getHeadersWithAuth(location: "getRegistrationFees");
 
       final response = await _dio
-          .get('${NetworkConstants.baseUrl}$feesEndpoint',
+          .get('$url$feesEndpoint',
               options: Options(
                 headers: header,
               ))
@@ -32,7 +36,10 @@ class RegistrationFeesRemoteDataSrcImpl
       bool isSuccess = response.statusCode == 200;
 
       if (isSuccess) {
-        final double fees = response.data["registration_fees"];
+        var fees = response.data["registration_fees"];
+        if (fees is int) {
+          fees = fees.toDouble();
+        }
         return fees;
       } else {
         if (response.statusCode == 401) {

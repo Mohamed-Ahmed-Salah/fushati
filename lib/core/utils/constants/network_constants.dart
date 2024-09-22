@@ -6,11 +6,11 @@ import '../../services/injection_container.dart';
 abstract class NetworkConstants {
   static const String topBaseUrl = 'https://schools.fushati.com/api/v1/schools';
   ///updated from cache singleton depending on cached or chosen value in login
-  static String baseUrl = '';
-  static String parentUrl = '$baseUrl/parent';
-  static String reportsUrl = '$baseUrl/reports';
-  static String usersUrl = '$baseUrl/users';
-  static String parentsUrl = '$baseUrl/parents';
+  // static String baseUrl = '';
+  // static String parentUrl = '$baseUrl/parent';
+  // static String reportsUrl = '$baseUrl/reports';
+  // static String usersUrl = '$baseUrl/users';
+  // static String parentsUrl = '$baseUrl/parents';
 
   static const String moyasarAPIKey =
       "pk_test_YbFP7wPpUviz5JjTFhgTWGmTL5Ls23FtF17hkP5E";
@@ -33,12 +33,13 @@ abstract class NetworkConstants {
   }
 
   static Future<Map<String, String>> getHeadersWithAuth(
-      {String contentType = "application/json"}) async {
+      {String contentType = "application/json", String? location}) async {
+
     Map<String, String> headers = await getHeaders(contentType: contentType);
     CacheHelper cacheHelper = CacheHelper(sl());
     String token = cacheHelper.getSessionToken() ?? '';
+    debugPrint("LOCATION $location , token = $token");
     headers["Authorization"] = 'Bearer ${token.replaceAll("\"", "")}';
-    debugPrint("token: $token");
     return headers;
   }
 }

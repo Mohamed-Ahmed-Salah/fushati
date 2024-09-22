@@ -4,6 +4,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fushati/core/common/app/cache_helper.dart';
+import 'package:fushati/core/services/injection_container.dart';
 import 'package:fushati/src/home/data/models/card_model.dart';
 import 'package:fushati/src/home/data/models/home_response_model.dart';
 import 'package:fushati/src/home/domain/entity/card.dart';
@@ -34,9 +36,12 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     required String studentNumber,
   }) async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parents";
+
+      final header = await NetworkConstants.getHeadersWithAuth(
+          location: "addCard with full details");
       final response = await _dio
-          .post('${NetworkConstants.baseUrl}$addCardEndpoint',
+          .post('$url$addCardEndpoint',
               data: {
                 "user_card": cardNumber,
                 "name": name,
@@ -119,9 +124,12 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     required String cardNumber,
   }) async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final header = await NetworkConstants.getHeadersWithAuth(
+          location: "addCardByNumber");
+      final String url=sl<CacheHelper>().getBaseUrl()??"";
+
       final response = await _dio
-          .post('${NetworkConstants.baseUrl}$addCardByNumberEndpoint',
+          .post('$url$addCardByNumberEndpoint',
               data: {"student_card": cardNumber, "type": "student"},
               options: Options(
                 headers: header,
@@ -146,8 +154,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             statusCode: response.statusCode ?? 0);
       }
     } on DioException catch (e) {
-      log(
-          "error DioException addCardByNumber ${e.response?.data['errors']} ${e.response?.statusCode}");
+      log("error DioException addCardByNumber ${e.response?.data['errors']} ${e.response?.statusCode}");
 
       String status = e.response?.data["message"] ??
           e.response?.data['errors']["user_phone"][0] ??
@@ -194,9 +201,12 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   @override
   Future<void> deleteCard({required int id}) async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parents";
+
+      final header =
+          await NetworkConstants.getHeadersWithAuth(location: "deleteCard");
       final response = await _dio
-          .delete('${NetworkConstants.parentsUrl}$deleteCardEndpoint',
+          .delete('$url$deleteCardEndpoint',
               data: {"student_id": id},
               options: Options(
                 headers: header,
@@ -216,8 +226,6 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
             message: response.data['message'],
             statusCode: response.statusCode ?? 0);
       }
-
-      // CoreUtils.showErrorSnackBar(message: "Success");
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
@@ -258,18 +266,21 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   @override
   Future<CardEntity> getCard({required String cardNumber}) async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parents";
+
+      final header =
+          await NetworkConstants.getHeadersWithAuth(location: "GET CARD");
 
       final response = await _dio
           .get(
-              '${NetworkConstants.parentsUrl}$getCardDetailsEndpoint/$cardNumber',
+              '$url$getCardDetailsEndpoint/$cardNumber',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200;
       debugPrint("getCard ${response.data}");
-      if((response.data["message"]??"").contains("Student not found")){
+      if ((response.data["message"] ?? "").contains("Student not found")) {
         throw const CardNotFoundException(statusCode: 422);
       }
       if (response.data["id"] == null) {
@@ -290,7 +301,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       }
     } on DioException catch (e) {
       debugPrint("getCard DioException ${e.response?.data}");
-      if((e.response?.data["message"]??"").contains("Student not found")){
+      if ((e.response?.data["message"] ?? "").contains("Student not found")) {
         throw const CardNotFoundException(statusCode: 422);
       }
       if (e.type == DioExceptionType.connectionTimeout ||
@@ -334,17 +345,23 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
   @override
   Future<HomeResponse> getCards(int page) async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parents";
+
+      final header =
+          await NetworkConstants.getHeadersWithAuth(location: "getCards");
+      debugPrint(
+        '$url$studentCardsEndpoint/?page=$page',
+      );
       final response = await _dio
           .get(
-              '${NetworkConstants.parentsUrl}$studentCardsEndpoint/?page=$page',
+              '$url$studentCardsEndpoint/?page=$page',
               options: Options(
                 headers: header,
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
       bool isSuccess = response.statusCode == 200 || response.statusCode == 206;
 
-      debugPrint("getCards page=$page ${response.statusCode}");
+      debugPrint("getCards page=$page ${response.statusCode} ${response.data}");
       if (isSuccess) {
         final data = HomeResponseModel.fromJson(response.data["data"]);
         return data;

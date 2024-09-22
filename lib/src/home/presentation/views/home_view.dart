@@ -31,6 +31,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     if (widget.shouldGetAppData) {
+      debugPrint("calling data again from HOME");
       context.read<AppRedirectionBloc>().add(
             GetAppData(context: context),
           );
@@ -94,7 +95,7 @@ class _HomeViewState extends State<HomeView> {
                           onPressed: () {
                             context
                                 .read<CardsBloc>()
-                                .add(const CardsEvent.getCards());
+                                .add(const CardsEvent.getCards(callFromStart: true));
                           },
                           message: message,
                         ),

@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fushati/core/common/app/cache_helper.dart';
+import 'package:fushati/core/services/injection_container.dart';
 import 'package:fushati/src/moyasar_transfer/data/models/transaction_response_model.dart';
 import 'package:fushati/src/moyasar_transfer/domain/entity/transaction_response.dart';
 
@@ -24,9 +26,11 @@ class DepositRemoteDataSrcImpl implements DepositRemoteDataSrc {
     required int amount,
   }) async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parents";
+
+      final header = await NetworkConstants.getHeadersWithAuth(location: "DEPOSITE TRANSACTION");
       final response = await _dio.post(
-        '${NetworkConstants.parentsUrl}$rechargeEndpoint',
+        '$url$rechargeEndpoint',
         options: Options(
           headers: header,
         ),

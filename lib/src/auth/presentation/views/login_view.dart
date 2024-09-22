@@ -383,6 +383,7 @@ class _LoginViewState extends State<LoginView> {
                                           "String") {
                                         final model = val as DropDownValueModel;
                                         var url = model.value;
+                                        print("URLLLL $url");
                                         CacheHelper cache = sl();
 
                                         ///url already ends with /

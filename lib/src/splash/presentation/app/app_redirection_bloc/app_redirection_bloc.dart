@@ -58,9 +58,9 @@ class AppRedirectionBloc
     redirect(context);
   }
 
-  ///called from login screen success and also from home screen just to not recall everyhing again
+  ///called from login/OTP screen success and also from home screen just to not recall everyhing again
   _getAppData(event, emit) async {
-    await getCache();
+    // await getCache();
 
     BuildContext context = event.context;
 

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fushati/core/utils/constants/network_constants.dart';
 
 import '../../utils/constants/text_constants.dart';
@@ -29,7 +30,7 @@ class Cache {
 
   bool isLoggedOut() {
     return ((Cache.instance.sessionToken == null) &&
-        !Cache.instance.firstTime ||
+            !Cache.instance.firstTime ||
         (Cache.instance.ipBaseUrl == null));
   }
 
@@ -42,9 +43,7 @@ class Cache {
   }
 
   void setIpBaseUrl(String? setBaseUrl) {
-    if (_ipBaseUrl != setBaseUrl) _ipBaseUrl = setBaseUrl;
-    ///to Update base url used;
-    if(setBaseUrl!=null) NetworkConstants.baseUrl= setBaseUrl;
+    if (setBaseUrl != null) _ipBaseUrl = setBaseUrl;
   }
 
   void setUserName(String? name) {

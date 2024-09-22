@@ -69,14 +69,6 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
           SchedulerBinding.instance.addPostFrameCallback((_) {
             router.go(HomeView.name, extra: true);
           });
-          // await Future.delayed(Duration(seconds: 1));
-          //0 means user is first time and didnt complete his data info
-          // if (response.user.name == null) {
-          //   router.push(UpdateUserInfoView.path);
-          // } else {
-          //   //used to not push until home loading is completed
-          //
-          // }
         },
       );
     } catch (e) {

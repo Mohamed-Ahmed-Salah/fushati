@@ -83,7 +83,7 @@ class CacheHelper {
   String? getBaseUrl() {
     final baseUrl = _prefs.getString(_ipBaseUrlKey);
     if (baseUrl != null) {
-      debugPrint('_ipBaseUrlKey: Session _ipBaseUrlKey exists');
+      debugPrint('_ipBaseUrlKey: Session _ipBaseUrlKey exists $baseUrl');
       Cache.instance.setIpBaseUrl(baseUrl);
     } else {
       debugPrint('getBaseUrl: session does not exist');
@@ -92,29 +92,17 @@ class CacheHelper {
   }
 
   String? getUserName() {
-    // _prefs.remove(_sessionTokenKey);
-    // _prefs.remove(_userIdKey);
-    // _prefs.remove(_firstTimerKey);
     final username = _prefs.getString(_userNameKey);
     if (username != null) {
-      // debugPrint('getSessionToken: Session Token exists');
       Cache.instance.setUserName(username);
-    } else {
-      // debugPrint('getSessionToken: session does not exist');
-    }
+    } else {}
     return username;
   }
 
   String? getLanguage() {
-    // _prefs.remove(_sessionTokenKey);
-    // _prefs.remove(_userIdKey);
-    // _prefs.remove(_firstTimerKey);
     final language = _prefs.getString(_language);
     if (language != null) {
-      // debugPrint('language: Session language exists');
       Cache.instance.setLanguage(language);
-    } else {
-      // debugPrint('language: language language not exist');
     }
     return language;
   }
@@ -141,6 +129,7 @@ class CacheHelper {
     await _prefs.remove(_userIdKey);
     await _prefs.remove(_ipBaseUrlKey);
     Cache.instance.logout();
+    debugPrint("Logout and removed all locally saved data");
   }
 
   bool isFirstTime() {

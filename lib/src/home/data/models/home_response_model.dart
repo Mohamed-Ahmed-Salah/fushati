@@ -16,7 +16,7 @@ class HomeResponseModel extends HomeResponse {
   factory HomeResponseModel.fromJson(Map<String, dynamic> json) =>
       HomeResponseModel(
         currentPage: json["current_page"] ?? 1,
-        cards: json["data"] == null || json["data"].length == 0
+        cards: json["data"] == null || json["data"]?.length == 0
             ? []
             : List<CardEntity>.from(
                 json["data"].map((x) => CardModel.fromJson(x))),

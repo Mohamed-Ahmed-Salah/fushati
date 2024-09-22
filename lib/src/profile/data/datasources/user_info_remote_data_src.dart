@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fushati/core/common/app/cache_helper.dart';
+import 'package:fushati/core/services/injection_container.dart';
 import 'package:fushati/src/profile/data/models/user_model.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -20,12 +22,12 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
 
   @override
   Future<User> getUserInfo() async {
-    // TODO: implement fetchPlans
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/users";
 
       final response = await _dio
-          .get("${NetworkConstants.usersUrl}$getUser",
+          .get("$url$getUser",
               options: Options(
                 headers: header,
               ))
@@ -87,9 +89,10 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
     // TODO: implement fetchPlans
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/users";
 
       final response = await _dio
-          .post("${NetworkConstants.usersUrl}$editUser",
+          .post("$url$editUser",
               data: {
                 "name": name,
                 "email": email,
@@ -146,9 +149,10 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
   Future<void> deleteProfile({required int id}) async {
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
+      final String url="${sl<CacheHelper>().getBaseUrl()??""}/users";
 
       final response = await _dio
-          .delete('${NetworkConstants.usersUrl}$deleteUser$id',
+          .delete('$url$deleteUser$id',
               options: Options(
                 headers: header,
               ))
