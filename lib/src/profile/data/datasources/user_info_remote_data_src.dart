@@ -17,7 +17,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
 
   final Dio _dio;
   static const String getUser = "/user";
-  static const String editUser = "/update-profile";
+  static const String editUser = "/profile/update";
   static const String deleteUser = "/delete/user/";
 
   @override
@@ -86,11 +86,9 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
     String? gender,
     required String name,
   }) async {
-    // TODO: implement fetchPlans
     try {
       final header = await NetworkConstants.getHeadersWithAuth();
       final String url="${sl<CacheHelper>().getBaseUrl()??""}/users";
-
       final response = await _dio
           .post("$url$editUser",
               data: {
@@ -103,6 +101,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
               ))
           .timeout(const Duration(seconds: NetworkConstants.timeout));
 
+      debugPrint("EDIT USER ${response.data}");
       if (response.statusCode == 200 || response.statusCode == 201) {
         return;
       } else {
@@ -148,7 +147,7 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
   @override
   Future<void> deleteProfile({required int id}) async {
     try {
-      final header = await NetworkConstants.getHeadersWithAuth();
+      final header = await NetworkConstants.getHeadersWithAuth(location: "delete user");
       final String url="${sl<CacheHelper>().getBaseUrl()??""}/users";
 
       final response = await _dio

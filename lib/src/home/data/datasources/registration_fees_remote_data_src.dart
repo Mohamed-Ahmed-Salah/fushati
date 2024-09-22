@@ -23,6 +23,7 @@ class RegistrationFeesRemoteDataSrcImpl
     try {
       final String url=sl<CacheHelper>().getBaseUrl()??"";
 
+      print("FEES $url");
       final header = await NetworkConstants.getHeadersWithAuth(location: "getRegistrationFees");
 
       final response = await _dio
