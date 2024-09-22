@@ -59,7 +59,7 @@ abstract class TextFormValidation {
       return "${AppLocalizations.of(context)?.invalidNumber}";
     }
     // Validate if the value is greater than or equal to 20
-    if (intValue < 1) {
+    if (intValue < 20) {
       return "${AppLocalizations.of(context)?.minBalance}";
     }
     return null;

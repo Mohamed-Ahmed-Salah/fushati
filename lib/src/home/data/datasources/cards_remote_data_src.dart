@@ -36,7 +36,7 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
     required String studentNumber,
   }) async {
     try {
-      final String url="${sl<CacheHelper>().getBaseUrl()??""}/parents";
+      final String url=sl<CacheHelper>().getBaseUrl()??"";
 
       final header = await NetworkConstants.getHeadersWithAuth(
           location: "addCard with full details");
