@@ -36,20 +36,14 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+
 <key>com.apple.developer.nfc.readersession.formats</key>
 <array>
     <string>ISO7816</string>
     <string>NDEF</string>
 </array>
 <key>NFCReaderUsageDescription</key>
-<string>This app requires access to NFC to scan NFC tags.</string>
+<string>This app requires access to NFC to scan NFC tags to read students card number.</string>
 <key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
@@ -68,5 +62,8 @@
     </array>
     <key>FirebaseAppDelegateProxyEnabled</key>
        <false/>
+
+    <key>NSApplePayUsageDescription</key>
+      <string>This app uses Apple Pay for secure payments to recharge/topup students cards.</string>
 </dict>
 </plist>
