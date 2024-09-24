@@ -42,6 +42,8 @@ class UserInfoRemoteDataSrcImpl implements UserInfoRemoteDataSrc {
       }
     } on DioException catch (e) {
       debugPrint("DioException getUserInfo  ${e.response?.data}");
+      debugPrint("DioException getUserInfo  ${e.response?.statusCode}");
+
 
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {

@@ -74,12 +74,12 @@ class CardRemoteDataSrcImpl implements CardRemoteDataSrc {
       }
     } on DioException catch (e) {
       debugPrint(
-          "error Dio  ${e.response?.data['errors']} ${e.response?.statusCode}");
+          "error Dio  ${e.response?.data} ${e.response?.statusCode}");
 
       String status = e.response?.data["message"] ??
-          e.response?.data['errors']["user_phone"]?[0] ??
-          e.response?.data['errors']["user_number"]?[0] ??
-          e.response?.data['errors']["email"]?[0] ??
+          e.response?.data['errors']?["user_phone"]?[0] ??
+          e.response?.data['errors']?["user_number"]?[0] ??
+          e.response?.data['errors']?["email"]?[0] ??
           ErrorConst.getError(statusCode: e.response?.statusCode ?? 0);
 
       debugPrint("error status response $status");

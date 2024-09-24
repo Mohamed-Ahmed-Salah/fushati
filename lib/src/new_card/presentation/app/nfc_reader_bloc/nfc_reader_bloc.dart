@@ -42,13 +42,13 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
   _readNfc(event, emit) async {
     try {
       emit(const NfcReaderState.loading());
-      debugPrint("const NfcReaderState.loading()");
+      print("const NfcReaderState.loading()");
 
       // Ensure we await the asynchronous function call
       await _readNfcFunction(emit);
     } catch (e) {
       // Handle any unexpected errors here
-      debugPrint("nfc CATCH ${e.toString().contains("NFC not available")}");
+      print("nfc CATCH ${e.toString().contains("NFC not available")}");
       if (e.toString().contains("NFC not available")) {
         emit(NfcReaderState.failed(
             ErrorConst.getErrorBody(text: ErrorConst.platformNotSupportedEn)));
@@ -64,23 +64,23 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
     try {
       final available = await FlutterNfcKit.nfcAvailability;
       if (available != NFCAvailability.available) {
-        debugPrint("NFC NOT AVAILABLE");
+        print("NFC NOT AVAILABLE");
         return;
       }
 
-      debugPrint("BEFORE FlutterNfcKit.poll()");
+      print("BEFORE FlutterNfcKit.poll()");
       NFCTag tag = await FlutterNfcKit.poll();
-      debugPrint("AFTER FlutterNfcKit.poll()");
+      print("AFTER FlutterNfcKit.poll()");
 
       await FlutterNfcKit.setIosAlertMessage("Working on it...");
 
-      debugPrint(
+      print(
           "NFC tag discovered: ${tag.id} applicationData ${tag.applicationData} ${tag.toJson.toString()}");
-      debugPrint(
+      print(
           "${tag.protocolInfo} tag.protocolInfo and tag.systemCode= ${tag.systemCode}");
       String physicalCardNumber = tag.id;
       softwareCardNumber = convertCardNumber(physicalCardNumber);
-      debugPrint("Software Card Number: $softwareCardNumber");
+      print("Software Card Number: $softwareCardNumber");
 
       // Emit success only if we have the softwareCardNumber
       if (softwareCardNumber != null || softwareCardNumber.isNotEmpty) {
@@ -88,7 +88,7 @@ class NfcReaderBloc extends Bloc<NfcReaderEvent, NfcReaderState> {
       }
     } catch (e) {
 
-      debugPrint("catch READING CARD ${e.toString()}");
+      print("catch READING CARD ${e.toString()}");
       // Emit failure state in case of an error
       emit(NfcReaderState.failed(
           ErrorConst.getErrorBody(text: ErrorConst.couldNotReadCardNumberEn)));

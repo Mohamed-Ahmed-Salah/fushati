@@ -4,6 +4,7 @@ import Firebase
 import flutter_local_notifications
 
 @main
+
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
     _ application: UIApplication,
@@ -16,7 +17,7 @@ import flutter_local_notifications
     if #available(iOS 10.0, *) {
       UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     }
-    FirebaseApp.configure()
+   // FirebaseApp.configure()
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
